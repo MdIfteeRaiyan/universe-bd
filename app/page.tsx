@@ -4,12 +4,15 @@ import { useEffect, useMemo, useState } from "react";
 import {
   ArrowRight,
   BriefcaseBusiness,
+  Building2,
   Check,
   CircleDollarSign,
   ExternalLink,
   GitCompareArrows,
+  House,
   MapPin,
   ShieldCheck,
+  WalletCards,
 } from "lucide-react";
 import {
   Dialog,
@@ -8827,6 +8830,35 @@ function ExactGpaField({
   );
 }
 
+type AccommodationMode = "hall" | "hostel" | "mess" | "family";
+
+const accommodationLabels: Record<AccommodationMode, string> = {
+  hall: "University hall",
+  hostel: "Private hostel",
+  mess: "Shared mess",
+  family: "Family / rented flat",
+};
+
+const districtLivingCosts: Record<
+  string,
+  { rent: Record<AccommodationMode, [number, number]>; food: [number, number]; transport: [number, number]; personal: [number, number] }
+> = {
+  Dhaka: {
+    rent: { hall: [1200, 3500], hostel: [5000, 10000], mess: [4000, 8000], family: [0, 15000] },
+    food: [4500, 8000], transport: [1200, 3000], personal: [1200, 3000],
+  },
+  Chattogram: {
+    rent: { hall: [1000, 3000], hostel: [4000, 8500], mess: [3500, 7000], family: [0, 12000] },
+    food: [4200, 7500], transport: [1000, 2500], personal: [1200, 2800],
+  },
+  default: {
+    rent: { hall: [800, 2500], hostel: [3000, 6500], mess: [2500, 5500], family: [0, 9000] },
+    food: [3800, 6500], transport: [800, 2000], personal: [1000, 2500],
+  },
+};
+
+const livingCostChecked = "15 September 2026";
+
 export default function Home() {
   const [program, setProgram] = useState(""),
     [division, setDivision] = useState(""),
@@ -8857,7 +8889,11 @@ export default function Home() {
     [oneGolden, setOneGolden] = useState(false),
     [female, setFemale] = useState(false),
     [secondChild, setSecondChild] = useState(false),
-    [admissionScore, setAdmissionScore] = useState(0);
+    [admissionScore, setAdmissionScore] = useState(0),
+    [livingUniversity, setLivingUniversity] = useState(""),
+    [accommodationMode, setAccommodationMode] =
+      useState<AccommodationMode>("mess"),
+    [studyMonths, setStudyMonths] = useState(48);
   const programFilter = program === "All programmes" ? "" : program;
   const divisionFilter = division === "All divisions" ? "" : division;
   const districtFilter = district === "All districts" ? "" : district;
@@ -8890,6 +8926,24 @@ export default function Home() {
   const directoryUniversityOptions = calculatorUniversities.map(
     universityOptionLabel,
   );
+  const livingProfile = universities.find(
+    (u) => universityOptionLabel(u) === livingUniversity,
+  );
+  const livingModel = livingProfile
+    ? districtLivingCosts[livingProfile.district] ?? districtLivingCosts.default
+    : districtLivingCosts.default;
+  const livingMonthlyLow = livingProfile
+    ? livingModel.rent[accommodationMode][0] +
+      livingModel.food[0] +
+      livingModel.transport[0] +
+      livingModel.personal[0]
+    : 0;
+  const livingMonthlyHigh = livingProfile
+    ? livingModel.rent[accommodationMode][1] +
+      livingModel.food[1] +
+      livingModel.transport[1] +
+      livingModel.personal[1]
+    : 0;
   const programOptions = useMemo(
     () =>
       [...new Set(universities.flatMap((u) => u.programs))].sort((a, b) =>
@@ -9888,6 +9942,12 @@ export default function Home() {
 
   return (
     <main className="soft-dark min-h-screen bg-[#101827] text-slate-100">
+      <a
+        href="#main-content"
+        className="sr-only z-50 rounded-md bg-white px-4 py-2 font-semibold text-slate-950 focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+      >
+        Skip to main content
+      </a>
       <header className="sticky top-0 z-40 border-b border-slate-700/70 bg-[#101827]/95 backdrop-blur">
         <div className="mx-auto flex min-h-16 max-w-7xl flex-wrap items-center justify-between gap-2 px-5 py-2 lg:px-8">
           <a href="#top" className="flex items-center gap-3">
@@ -9953,7 +10013,8 @@ export default function Home() {
           <nav className="hidden gap-5 text-sm font-semibold text-slate-300 xl:flex">
             <a href="#universities">Universities</a>
             <a href="#calculator">Cost calculator</a>
-            <a href="#scholarship">Scholarship check</a>
+            <a href="#living-cost">Living cost</a>
+            <a href="#scholarship">Funding opportunities</a>
             <a href="#grades">Grade charts</a>
             <a href="#about">About</a>
           </nav>
@@ -9971,7 +10032,7 @@ export default function Home() {
         </div>
       </header>
 
-      <section id="top" className="border-b border-slate-700/70 bg-[#121c2b]">
+      <section id="main-content" tabIndex={-1} className="border-b border-slate-700/70 bg-[#121c2b] outline-none">
         <div className="mx-auto grid max-w-7xl gap-9 px-5 py-12 lg:grid-cols-[.85fr_1.15fr] lg:px-8 lg:py-16">
           <div className="flex flex-col justify-center">
             <p className="text-sm font-bold text-blue-400">
@@ -10534,20 +10595,130 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="living-cost" className="border-y border-slate-700 bg-[#121c2b]">
+        <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr]">
+            <div>
+              <p className="text-sm font-bold text-blue-400">TOTAL STUDENT BUDGET</p>
+              <h2 className="mt-2 text-3xl font-bold tracking-tight">
+                Add living costs to the study plan.
+              </h2>
+              <p className="mt-4 leading-7 text-slate-300">
+                Compare university hall, private hostel, shared mess and family or rented-flat living. Results are monthly and full-study ranges—not fixed promises.
+              </p>
+              <div className="mt-5 rounded-lg border border-amber-400/20 bg-amber-300/5 p-4 text-sm leading-6 text-amber-100">
+                Hall availability and seat allocation must be confirmed by the university. Selecting “University hall” estimates cost only; it does not claim that a hall or seat is available.
+              </div>
+            </div>
+            <div className="rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <SearchSelect
+                  label="University"
+                  placeholder="Search university…"
+                  value={livingUniversity}
+                  options={directoryUniversityOptions}
+                  onChange={setLivingUniversity}
+                />
+                <SearchSelect
+                  label="Living arrangement"
+                  value={accommodationLabels[accommodationMode]}
+                  options={Object.values(accommodationLabels)}
+                  onChange={(value) => {
+                    const mode = (Object.entries(accommodationLabels).find(([, label]) => label === value)?.[0] ?? "mess") as AccommodationMode;
+                    setAccommodationMode(mode);
+                  }}
+                />
+                <Field label="Study period" value={`${studyMonths} months`}>
+                  <input
+                    type="range"
+                    aria-label="Study period in months"
+                    min="12"
+                    max="72"
+                    step="6"
+                    value={studyMonths}
+                    onChange={(event) => setStudyMonths(Number(event.target.value))}
+                  />
+                </Field>
+                <Info
+                  label="Location model"
+                  value={livingProfile ? `${livingProfile.district}, ${livingProfile.division}` : "Select a university"}
+                />
+              </div>
+
+              {livingProfile ? (
+                <div className="mt-6" aria-live="polite">
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    <div className="rounded-xl border border-blue-500/30 bg-blue-400/10 p-5">
+                      <WalletCards className="text-blue-300" aria-hidden="true" />
+                      <p className="mt-3 text-sm text-blue-200">Probable monthly living cost</p>
+                      <p className="mt-1 text-2xl font-bold text-blue-100">
+                        {money(livingMonthlyLow)}–{money(livingMonthlyHigh)}
+                      </p>
+                    </div>
+                    <div className="rounded-xl border border-emerald-500/30 bg-emerald-400/10 p-5">
+                      {accommodationMode === "hall" ? <Building2 className="text-emerald-300" aria-hidden="true" /> : <House className="text-emerald-300" aria-hidden="true" />}
+                      <p className="mt-3 text-sm text-emerald-200">Estimated {studyMonths}-month living total</p>
+                      <p className="mt-1 text-2xl font-bold text-emerald-100">
+                        {money(livingMonthlyLow * studyMonths)}–{money(livingMonthlyHigh * studyMonths)}
+                      </p>
+                    </div>
+                  </div>
+                  <dl className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
+                    <Info label="Accommodation / month" value={`${money(livingModel.rent[accommodationMode][0])}–${money(livingModel.rent[accommodationMode][1])}`} />
+                    <Info label="Food / month" value={`${money(livingModel.food[0])}–${money(livingModel.food[1])}`} />
+                    <Info label="Transport / month" value={`${money(livingModel.transport[0])}–${money(livingModel.transport[1])}`} />
+                    <Info label="Personal, mobile & study / month" value={`${money(livingModel.personal[0])}–${money(livingModel.personal[1])}`} />
+                  </dl>
+                  <p className="mt-4 text-xs leading-5 text-slate-400">
+                    Planning estimate checked {livingCostChecked}. Actual rent, meals, utilities, transport, deposits and lifestyle costs vary by campus area and room sharing. Confirm halls directly with the university before relying on a hall estimate.
+                  </p>
+                </div>
+              ) : (
+                <div className="mt-6 rounded-xl border border-dashed border-slate-600 bg-[#111b2a] p-7 text-center">
+                  <House className="mx-auto text-slate-500" aria-hidden="true" />
+                  <h3 className="mt-3 font-bold text-slate-200">Select a university to estimate living costs</h3>
+                  <p className="mt-2 text-sm text-slate-400">Nothing is selected by default.</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section
         id="scholarship"
         className="mx-auto max-w-7xl px-5 py-14 lg:px-8"
       >
         <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr]">
           <div>
-            <p className="text-sm font-bold text-blue-400">RESULT-BASED COST</p>
+            <p className="text-sm font-bold text-blue-400">FUNDING OPPORTUNITIES</p>
             <h2 className="mt-2 text-3xl font-bold tracking-tight">
-              See how your results may change the cost.
+              Find ways to reduce tuition and fund your study.
             </h2>
             <p className="mt-4 leading-7 text-slate-300">
-              Enter SSC and HSC results to check published entry-level waiver
-              routes. This is an eligibility guide—not a scholarship promise.
+              Check published merit scholarships, tuition waivers, need-based aid,
+              special-category support, stipends and verified internship routes.
+              This is an eligibility guide—not an award promise.
             </p>
+            <div className="mt-5 space-y-3 text-sm">
+              <div className="rounded-lg border border-slate-700 bg-[#172337] p-4">
+                <b className="text-slate-100">University funding</b>
+                <p className="mt-1 leading-6 text-slate-400">Result-based waivers, continuing merit awards, need-based aid and special-category support.</p>
+              </div>
+              <div className="rounded-lg border border-slate-700 bg-[#172337] p-4">
+                <b className="text-slate-100">External opportunities</b>
+                <p className="mt-1 leading-6 text-slate-400">Government, UGC, employer and foundation scholarships or stipends are shown only with an official application source.</p>
+              </div>
+              <a
+                href="https://ssiicsetep.ugc.gov.bd/"
+                target="_blank"
+                rel="noreferrer"
+                className="block rounded-lg border border-emerald-500/20 bg-emerald-400/5 p-4 hover:border-emerald-400/40"
+              >
+                <b className="inline-flex items-center gap-2 text-emerald-200"><BriefcaseBusiness size={16} /> UGC internship and stipend portal <ExternalLink size={13} /></b>
+                <p className="mt-1 leading-6 text-slate-300">Official eligibility and application information for available UGC-supported routes.</p>
+              </a>
+            </div>
             <div className="mt-5 rounded-lg border border-amber-400/20 bg-amber-300/5 p-4 text-sm leading-6 text-amber-100">
               {verifiedProgrammeTotals} programme totals across {verifiedCalculatorUniversities}{" "}
               universities are currently verified. Every directory university
