@@ -29,51 +29,13 @@ import {
   ComboboxItem,
   ComboboxList,
 } from "@/components/ui/combobox";
-
-type ProgramCost = {
-  name: string;
-  credits: number;
-  semesters?: number;
-  tuitionPerCredit: number;
-  total: number;
-  minimum?: boolean;
-  pending?: boolean;
-};
-type University = {
-  id: number;
-  name: string;
-  short: string;
-  district: string;
-  division: string;
-  area?: string;
-  address?: string;
-  logo?: string;
-  programs: string[];
-  programCosts?: ProgramCost[];
-  programCatalogComplete?: boolean;
-  cost?: number;
-  admission?: number;
-  lab?: number;
-  semester?: number;
-  credits?: number;
-  minGpa?: number;
-  totalCost?: number;
-  publishedMinimumCost?: number;
-  costLabel?: string;
-  matchedProgram?: string;
-  feeBreakdown?: string[];
-  scholarships?: string[];
-  status: "Official" | "Directory";
-  facts?: string[];
-  sources?: { label: string; url: string }[];
-  verifiedAt?: string;
-};
-type GradeChart = {
-  source: string;
-  checked: string;
-  note: string;
-  bands: { score: string; letter: string; point: string }[];
-};
+import type { AccommodationMode, GradeChart, University } from "@/data/models";
+import {
+  accommodationLabels,
+  districtLivingCosts,
+  livingCostChecked,
+} from "@/data/living-costs";
+import { validateUniversityData } from "@/lib/data-quality";
 
 const gradeCharts: Record<string, GradeChart> = {
   RUD: {
@@ -687,7 +649,7 @@ const universities: University[] = [
     credits: 130,
     minGpa: 3.5,
     publishedMinimumCost: 1172000,
-    costLabel: "Published CSE fee formula",
+    costLabel: "Published CSE planning total",
     feeBreakdown: [
       "CSE tuition: ৳8,000 × 130 credits = ৳10,40,000",
       "Admission fee: ৳25,000",
@@ -837,7 +799,7 @@ const universities: University[] = [
         total: 1147400,
         minimum: true,
       },
-      { name: "CSE", credits: 136, semesters: 12, tuitionPerCredit: 8250, total: 1246400, minimum: true },
+      { name: "CSE", credits: 136, semesters: 12, tuitionPerCredit: 8250, total: 1397600 },
       {
         name: "Electronic & Communication Engineering",
         credits: 136,
@@ -883,8 +845,7 @@ const universities: University[] = [
         credits: 164,
         semesters: 8,
         tuitionPerCredit: 8250,
-        total: 1477400,
-        minimum: true,
+        total: 1589400,
       },
       { name: "Physics", credits: 132, tuitionPerCredit: 8250, total: 1213400, minimum: true },
     ],
@@ -898,6 +859,7 @@ const universities: University[] = [
       "Library membership: ৳2,500",
       "CSE semester fee: ৳12,600 per enrolled semester; most other programmes: ৳9,350 per enrolled semester",
       "Residential Semester fee: ৳88,000",
+      "CSE planning total across 12 semesters: ৳13,97,600 before the application fee and any additional assigned courses",
       "Published fixed minimum: ৳12,46,400 before recurring semester fees and admission-test-assigned courses",
       "Admission application fee: ৳1,500 separately",
       "The initial admission payment includes one assigned course; each additional assigned course costs ৳24,750 for CSE and most other programmes",
@@ -906,7 +868,7 @@ const universities: University[] = [
       "BBA published fixed minimum: ৳11,96,900 from 130 credits plus admission, library and Residential Semester fees, before recurring semester fees",
       "English and Applied English Language Studies published fixed minimum: ৳12,13,400 each from 132 credits plus admission, library and Residential Semester fees, before recurring semester fees",
       "Computer Science published fixed minimum: ৳11,47,400 from 124 credits plus admission, library and Residential Semester fees, before recurring semester fees",
-      "Pharmacy published fixed minimum: ৳14,77,400 from 164 credits plus admission, library and Residential Semester fees, before recurring semester fees",
+      "Pharmacy planning total across 8 semesters: ৳15,89,400 from 164 credits, admission, library, Residential Semester and published recurring semester fees",
       "EEE and Electronic & Communication Engineering published fixed minimum: ৳12,46,400 each from 136 credits plus admission, library and Residential Semester fees, before recurring semester fees",
       "Applied Physics & Electronics published fixed minimum: ৳11,96,900 from 130 credits plus admission, library and Residential Semester fees, before recurring semester fees",
       "Physics published fixed minimum: ৳12,13,400 from 132 credits plus admission, library and Residential Semester fees, before recurring semester fees",
@@ -5289,36 +5251,42 @@ Object.assign(
         credits: 140,
         tuitionPerCredit: 3000,
         total: 283517,
+        discounted: true,
       },
       {
         name: "CSE — Diploma Evening",
         credits: 140,
         tuitionPerCredit: 3000,
         total: 248055,
+        discounted: true,
       },
       {
         name: "Civil Engineering — Diploma Weekend",
         credits: 146,
         tuitionPerCredit: 3000,
         total: 341992,
+        discounted: true,
       },
       {
         name: "Civil Engineering — Diploma Evening",
         credits: 146,
         tuitionPerCredit: 3000,
         total: 247114,
+        discounted: true,
       },
       {
         name: "EEE — Diploma Weekend",
         credits: 140,
         tuitionPerCredit: 3000,
         total: 267809,
+        discounted: true,
       },
       {
         name: "EEE — Diploma Evening",
         credits: 140,
         tuitionPerCredit: 3000,
         total: 248055,
+        discounted: true,
       },
     ],
     credits: 140,
@@ -7174,6 +7142,7 @@ Object.assign(
         semesters: 12,
         tuitionPerCredit: 4000,
         total: 357000,
+        discounted: true,
       },
       {
         name: "Law",
@@ -8830,34 +8799,7 @@ function ExactGpaField({
   );
 }
 
-type AccommodationMode = "hall" | "hostel" | "mess" | "family";
-
-const accommodationLabels: Record<AccommodationMode, string> = {
-  hall: "University hall",
-  hostel: "Private hostel",
-  mess: "Shared mess",
-  family: "Family / rented flat",
-};
-
-const districtLivingCosts: Record<
-  string,
-  { rent: Record<AccommodationMode, [number, number]>; food: [number, number]; transport: [number, number]; personal: [number, number] }
-> = {
-  Dhaka: {
-    rent: { hall: [1200, 3500], hostel: [5000, 10000], mess: [4000, 8000], family: [0, 15000] },
-    food: [4500, 8000], transport: [1200, 3000], personal: [1200, 3000],
-  },
-  Chattogram: {
-    rent: { hall: [1000, 3000], hostel: [4000, 8500], mess: [3500, 7000], family: [0, 12000] },
-    food: [4200, 7500], transport: [1000, 2500], personal: [1200, 2800],
-  },
-  default: {
-    rent: { hall: [800, 2500], hostel: [3000, 6500], mess: [2500, 5500], family: [0, 9000] },
-    food: [3800, 6500], transport: [800, 2000], personal: [1000, 2500],
-  },
-};
-
-const livingCostChecked = "15 September 2026";
+const dataQualityReport = validateUniversityData(universities);
 
 export default function Home() {
   const [program, setProgram] = useState(""),
@@ -8891,6 +8833,7 @@ export default function Home() {
     [secondChild, setSecondChild] = useState(false),
     [admissionScore, setAdmissionScore] = useState(0),
     [livingUniversity, setLivingUniversity] = useState(""),
+    [livingProgram, setLivingProgram] = useState(""),
     [accommodationMode, setAccommodationMode] =
       useState<AccommodationMode>("mess"),
     [studyMonths, setStudyMonths] = useState(48);
@@ -8929,6 +8872,16 @@ export default function Home() {
   const livingProfile = universities.find(
     (u) => universityOptionLabel(u) === livingUniversity,
   );
+  const livingPrograms = livingProfile
+    ? [...new Set(livingProfile.programs)].sort((a, b) => a.localeCompare(b))
+    : [];
+  const livingProgrammeCost = livingProfile
+    ? matchingProgramCost(livingProfile, livingProgram)
+    : undefined;
+  const livingAcademicTotal =
+    livingProgrammeCost && !livingProgrammeCost.pending
+      ? livingProgrammeCost.total
+      : undefined;
   const livingModel = livingProfile
     ? districtLivingCosts[livingProfile.district] ?? districtLivingCosts.default
     : districtLivingCosts.default;
@@ -9071,7 +9024,9 @@ export default function Home() {
           costLabel: subjectCost
             ? subjectCost.pending
               ? `${subjectCost.name} total verification pending`
-              : subjectCost.minimum
+              : subjectCost.discounted
+                ? `${programFilter ? "Published" : "Best verified fit:"} ${subjectCost.name} discounted total`
+                : subjectCost.minimum
                 ? `${programFilter ? "Published" : "Best verified fit:"} ${subjectCost.name} minimum`
                 : `${programFilter ? "Published" : "Best verified fit:"} ${subjectCost.name} total`
             : u.costLabel,
@@ -10119,8 +10074,9 @@ export default function Home() {
                 <input
                   type="range"
                   aria-label="Maximum budget"
-                  min="400000"
-                  max="1400000"
+                  aria-valuetext={`${money(budget)} maximum total academic budget`}
+                  min="200000"
+                  max="2000000"
                   step="50000"
                   value={budget}
                   onChange={(e) => {
@@ -10128,6 +10084,11 @@ export default function Home() {
                     setVisible(18);
                   }}
                 />
+                <span className="mt-2 flex justify-between text-xs text-slate-500" aria-hidden="true">
+                  <span>৳2 lakh</span>
+                  <span>৳10 lakh</span>
+                  <span>৳20 lakh</span>
+                </span>
               </Field>
               <ExactGpaField
                 label="Academic GPA"
@@ -10518,6 +10479,8 @@ export default function Home() {
                 label={
                   selectedProgramCost?.pending
                     ? "Total verification pending"
+                    : selectedProgramCost?.discounted
+                    ? "Published discounted total"
                     : selectedProgramCost?.minimum
                     ? "Published minimum"
                     : "Published total"
@@ -10617,8 +10580,22 @@ export default function Home() {
                   placeholder="Search university…"
                   value={livingUniversity}
                   options={directoryUniversityOptions}
-                  onChange={setLivingUniversity}
+                  onChange={(value) => {
+                    setLivingUniversity(value);
+                    setLivingProgram("");
+                  }}
                 />
+                {livingPrograms.length ? (
+                  <SearchSelect
+                    label="Programme"
+                    placeholder="Search programme…"
+                    value={livingProgram}
+                    options={livingPrograms}
+                    onChange={setLivingProgram}
+                  />
+                ) : (
+                  <Info label="Programme" value="Select a university" />
+                )}
                 <SearchSelect
                   label="Living arrangement"
                   value={accommodationLabels[accommodationMode]}
@@ -10660,6 +10637,26 @@ export default function Home() {
                       <p className="mt-3 text-sm text-emerald-200">Estimated {studyMonths}-month living total</p>
                       <p className="mt-1 text-2xl font-bold text-emerald-100">
                         {money(livingMonthlyLow * studyMonths)}–{money(livingMonthlyHigh * studyMonths)}
+                      </p>
+                    </div>
+                    <div className="rounded-xl border border-slate-600 bg-[#111b2a] p-5">
+                      <CircleDollarSign className="text-slate-300" aria-hidden="true" />
+                      <p className="mt-3 text-sm text-slate-300">Verified academic cost</p>
+                      <p className="mt-1 text-2xl font-bold text-slate-100">
+                        {!livingProgram
+                          ? "Select a programme"
+                          : livingAcademicTotal === undefined
+                            ? "Verification pending"
+                            : money(livingAcademicTotal)}
+                      </p>
+                    </div>
+                    <div className="rounded-xl border border-violet-500/30 bg-violet-400/10 p-5">
+                      <WalletCards className="text-violet-300" aria-hidden="true" />
+                      <p className="mt-3 text-sm text-violet-200">Academic + living plan</p>
+                      <p className="mt-1 text-2xl font-bold text-violet-100">
+                        {livingAcademicTotal === undefined
+                          ? "Select a verified programme"
+                          : `${money(livingAcademicTotal + livingMonthlyLow * studyMonths)}–${money(livingAcademicTotal + livingMonthlyHigh * studyMonths)}`}
                       </p>
                     </div>
                   </div>
@@ -11058,6 +11055,9 @@ export default function Home() {
                 locations. Its purpose is simple: reduce financial stress,
                 remove confusion and make university decisions easier.
               </p>
+              <p className="mt-3 text-xs font-semibold text-emerald-100">
+                {dataQualityReport.universityCount} directory records · {dataQualityReport.officialCount} source-checked profiles · {dataQualityReport.verifiedProgrammeCount} verified programme totals · {dataQualityReport.issues.length} automated data flags
+              </p>
             </div>
           </div>
           <a
@@ -11202,6 +11202,8 @@ export default function Home() {
                           <span className="block text-xs text-slate-400">
                             {selectedDetailCost.pending
                               ? "Total verification pending"
+                              : selectedDetailCost.discounted
+                              ? "Published discounted total"
                               : selectedDetailCost.minimum
                               ? "Published minimum"
                               : "Published total"}
