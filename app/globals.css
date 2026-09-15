@@ -9,6 +9,33 @@
   --accent:#e8f0fb;--accent-foreground:#173b68;--destructive:#dc2626;--border:#dce3ec;
   --input:#cbd5e1;--ring:#3b82f6;--radius:.625rem;
 }
+
+@media print {
+  header,
+  main > section:not(#readiness),
+  #readiness > div > div:first-child,
+  #readiness button {
+    display: none !important;
+  }
+
+  body,
+  main,
+  #readiness {
+    background: white !important;
+    color: #111827 !important;
+  }
+
+  #readiness {
+    display: block !important;
+    padding: 0 !important;
+  }
+
+  #readiness * {
+    color: #111827 !important;
+    border-color: #cbd5e1 !important;
+    box-shadow: none !important;
+  }
+}
 @theme inline{
   --color-background:var(--background);--color-foreground:var(--foreground);--color-card:var(--card);--color-card-foreground:var(--card-foreground);
   --color-popover:var(--popover);--color-popover-foreground:var(--popover-foreground);--color-primary:var(--primary);--color-primary-foreground:var(--primary-foreground);

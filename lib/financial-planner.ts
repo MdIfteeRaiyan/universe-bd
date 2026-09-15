@@ -11,7 +11,7 @@ export type FinancialPlanInput = {
   setupCost?: MoneyRange;
 };
 
-const compoundAcademicCost = (
+const academicSchedule = (
   base: number,
   months: number,
   annualIncreasePercent: number,
@@ -19,8 +19,10 @@ const compoundAcademicCost = (
   const years = Math.max(1, Math.ceil(months / 12));
   const annualBase = base / years;
   const rate = Math.max(0, annualIncreasePercent) / 100;
-  return Array.from({ length: years }, (_, year) => annualBase * (1 + rate) ** year)
-    .reduce((total, amount) => total + amount, 0);
+  return Array.from(
+    { length: years },
+    (_, year) => annualBase * (1 + rate) ** year,
+  );
 };
 
 export function createFinancialPlan(input: FinancialPlanInput) {
@@ -37,10 +39,14 @@ export function createFinancialPlan(input: FinancialPlanInput) {
     0,
     input.academicTotal - scholarshipSaving,
   );
-  const projectedAcademic = compoundAcademicCost(
+  const academicByYear = academicSchedule(
     academicAfterScholarship,
     input.studyMonths,
     input.annualAcademicIncreasePercent,
+  );
+  const projectedAcademic = academicByYear.reduce(
+    (total, amount) => total + amount,
+    0,
   );
   const living = {
     low: input.monthlyLiving.low * input.studyMonths,
@@ -52,6 +58,29 @@ export function createFinancialPlan(input: FinancialPlanInput) {
     high: projectedAcademic + living.high + setup.high,
   };
   const contingencyRate = Math.max(0, input.contingencyPercent) / 100;
+  const yearBreakdown = academicByYear.map((academic, index) => {
+    const months = Math.min(12, input.studyMonths - index * 12);
+    const livingLow = input.monthlyLiving.low * months;
+    const livingHigh = input.monthlyLiving.high * months;
+    const setupLow = index === 0 ? setup.low : 0;
+    const setupHigh = index === 0 ? setup.high : 0;
+    const subtotalLow = academic + livingLow + setupLow;
+    const subtotalHigh = academic + livingHigh + setupHigh;
+    return {
+      year: index + 1,
+      months,
+      academic,
+      living: { low: livingLow, high: livingHigh },
+      contingency: {
+        low: subtotalLow * contingencyRate,
+        high: subtotalHigh * contingencyRate,
+      },
+      total: {
+        low: subtotalLow * (1 + contingencyRate),
+        high: subtotalHigh * (1 + contingencyRate),
+      },
+    };
+  });
 
   return {
     academicAfterScholarship,
@@ -59,6 +88,7 @@ export function createFinancialPlan(input: FinancialPlanInput) {
     scholarshipSaving,
     living,
     setup,
+    yearBreakdown,
     contingency: {
       low: subtotal.low * contingencyRate,
       high: subtotal.high * contingencyRate,
@@ -69,4 +99,3 @@ export function createFinancialPlan(input: FinancialPlanInput) {
     },
   };
 }
-

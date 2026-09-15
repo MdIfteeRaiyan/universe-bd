@@ -11,6 +11,13 @@ export type CatalogRecord = University & {
   verificationState: VerificationState;
   verifiedProgrammeCount: number;
   pendingProgrammeCount: number;
+  sourceCoverage: {
+    fees: boolean;
+    admissions: boolean;
+    scholarships: boolean;
+    academics: boolean;
+  };
+  profileCompleteness: number;
 };
 
 const parseVerifiedDate = (value?: string) => {
@@ -36,6 +43,32 @@ export function buildUniversityCatalog(
     ).length;
     const checkedAt = parseVerifiedDate(university.verifiedAt);
     const needsRefresh = checkedAt !== undefined && checkedAt < refreshThreshold;
+    const sourceLabels = (university.sources ?? [])
+      .map((source) => source.label)
+      .join(" ")
+      .toLocaleLowerCase();
+    const sourceCoverage = {
+      fees: /fee|tuition|cost|charge/.test(sourceLabels),
+      admissions: /admission|requirement|eligib/.test(sourceLabels),
+      scholarships: /scholarship|waiver|financial aid|assistance/.test(
+        sourceLabels,
+      ),
+      academics: /programme|program|catalog|curriculum|credit/.test(sourceLabels),
+    };
+    const completenessChecks = [
+      university.status === "Official" && Boolean(university.sources?.length),
+      Boolean(university.verifiedAt),
+      Boolean(university.address || university.area),
+      Boolean(university.programCatalogComplete),
+      verifiedProgrammeCount > 0,
+      sourceCoverage.fees,
+      sourceCoverage.admissions,
+      sourceCoverage.scholarships,
+    ];
+    const profileCompleteness = Math.round(
+      (completenessChecks.filter(Boolean).length / completenessChecks.length) *
+        100,
+    );
     const verificationState: VerificationState =
       university.status !== "Official"
         ? "pending"
@@ -56,6 +89,8 @@ export function buildUniversityCatalog(
       verificationState,
       verifiedProgrammeCount,
       pendingProgrammeCount,
+      sourceCoverage,
+      profileCompleteness,
     };
   });
 
@@ -82,4 +117,3 @@ export function buildUniversityCatalog(
     },
   };
 }
-

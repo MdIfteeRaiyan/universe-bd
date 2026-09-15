@@ -47,6 +47,19 @@ export function validateUniversityData(universities: University[]) {
     if (university.status === "Official" && !university.sources?.length) {
       issues.push({ university: university.name, field: "sources", message: "Official profile has no source" });
     }
+    if (university.status === "Official" && !university.verifiedAt) {
+      issues.push({ university: university.name, field: "verifiedAt", message: "Official profile has no verification date" });
+    }
+    for (const source of university.sources ?? []) {
+      try {
+        const url = new URL(source.url);
+        if (url.protocol !== "https:") {
+          issues.push({ university: university.name, field: "sources", message: "Official source must use HTTPS" });
+        }
+      } catch {
+        issues.push({ university: university.name, field: "sources", message: "Official source URL is invalid" });
+      }
+    }
   }
 
   return {

@@ -11,6 +11,7 @@ import {
   GitCompareArrows,
   House,
   MapPin,
+  Printer,
   ShieldCheck,
   WalletCards,
 } from "lucide-react";
@@ -39,6 +40,7 @@ import {
 import { validateUniversityData } from "@/lib/data-quality";
 import { buildUniversityCatalog } from "@/data/catalog";
 import { createFinancialPlan } from "@/lib/financial-planner";
+import { evaluateAdmissionReadiness } from "@/lib/admission-readiness";
 
 const gradeCharts: Record<string, GradeChart> = {
   RUD: {
@@ -8844,6 +8846,11 @@ export default function Home() {
     [annualFeeIncrease, setAnnualFeeIncrease] = useState(5),
     [contingency, setContingency] = useState(8),
     [planningScholarship, setPlanningScholarship] = useState(0);
+  const [verificationUniversity, setVerificationUniversity] = useState("");
+  const [readinessUniversity, setReadinessUniversity] = useState("");
+  const [readinessProgram, setReadinessProgram] = useState("");
+  const [readinessSsc, setReadinessSsc] = useState(4);
+  const [readinessHsc, setReadinessHsc] = useState(4);
   const programFilter = program === "All programmes" ? "" : program;
   const divisionFilter = division === "All divisions" ? "" : division;
   const districtFilter = district === "All districts" ? "" : district;
@@ -8929,6 +8936,42 @@ export default function Home() {
             low: accommodationSetupCosts[accommodationMode][0],
             high: accommodationSetupCosts[accommodationMode][1],
           },
+        })
+      : undefined;
+  const verificationProfile = universityCatalog.records.find(
+    (university) => universityOptionLabel(university) === verificationUniversity,
+  );
+  const readinessProfile = universityCatalog.records.find(
+    (university) => universityOptionLabel(university) === readinessUniversity,
+  );
+  const readinessPrograms = readinessProfile
+    ? [...new Set(readinessProfile.programs)].sort((a, b) => a.localeCompare(b))
+    : [];
+  const readinessProgrammeCost = readinessProfile
+    ? matchingProgramCost(readinessProfile, readinessProgram)
+    : undefined;
+  const readinessResult =
+    readinessProfile && readinessProgram
+      ? evaluateAdmissionReadiness({
+          universityName: readinessProfile.name,
+          programmeName: readinessProgram,
+          programmeAvailable: readinessProfile.programs.some((name) =>
+            programMatches(name, readinessProgram),
+          ),
+          programmeCatalogComplete: Boolean(readinessProfile.programCatalogComplete),
+          minimumGpa: readinessProfile.minGpa,
+          sscGpa: readinessSsc,
+          hscGpa: readinessHsc,
+          hasVerifiedCost: Boolean(
+            readinessProgrammeCost &&
+              !readinessProgrammeCost.pending &&
+              readinessProgrammeCost.total > 0,
+          ),
+          hasAdmissionSource: readinessProfile.sourceCoverage.admissions,
+          hasScholarshipSource: readinessProfile.sourceCoverage.scholarships,
+          requiresScienceReview: /engineering|cse|computer|pharmacy|science|biology|biochemistry|microbiology|mathematics|physics|chemistry|architecture/i.test(
+            readinessProgram,
+          ),
         })
       : undefined;
   const programOptions = useMemo(
@@ -10005,6 +10048,8 @@ export default function Home() {
             <a href="#living-cost">Living cost</a>
             <a href="#scholarship">Funding opportunities</a>
             <a href="#grades">Grade charts</a>
+            <a href="#verification">Data verification</a>
+            <a href="#readiness">Admission readiness</a>
             <a href="#about">About</a>
           </nav>
           <button
@@ -10748,6 +10793,35 @@ export default function Home() {
                   <p className="mt-4 text-xs leading-5 text-slate-400">
                     Planning estimate checked {livingCostChecked}. Scholarship, annual increase and safety allowance are user-selected scenarios—not university promises. Actual rent, meals, utilities, transport, deposits and lifestyle costs vary by campus area and room sharing. Confirm halls and awarded waivers directly before relying on the plan.
                   </p>
+                  {completeFinancialPlan && (
+                    <div className="mt-6 overflow-x-auto rounded-xl border border-slate-700">
+                      <table className="w-full min-w-[640px] text-left text-sm">
+                        <caption className="bg-[#111b2a] px-4 py-3 text-left font-bold text-slate-100">
+                          Year-by-year planning schedule
+                        </caption>
+                        <thead className="border-y border-slate-700 bg-[#111b2a] text-xs uppercase tracking-wide text-slate-400">
+                          <tr>
+                            <th className="px-4 py-3">Period</th>
+                            <th className="px-4 py-3">Academic</th>
+                            <th className="px-4 py-3">Living range</th>
+                            <th className="px-4 py-3">With safety allowance</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-700/70">
+                          {completeFinancialPlan.yearBreakdown.map((year) => (
+                            <tr key={year.year}>
+                              <th className="px-4 py-3 font-semibold text-slate-200">
+                                Year {year.year} <span className="font-normal text-slate-500">· {year.months} months</span>
+                              </th>
+                              <td className="px-4 py-3 text-slate-300">{money(year.academic)}</td>
+                              <td className="px-4 py-3 text-slate-300">{money(year.living.low)}–{money(year.living.high)}</td>
+                              <td className="px-4 py-3 font-semibold text-blue-200">{money(year.total.low)}–{money(year.total.high)}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
                 </div>
               ) : (
                 <div className="mt-6 rounded-xl border border-dashed border-slate-600 bg-[#111b2a] p-7 text-center">
@@ -11112,6 +11186,169 @@ export default function Home() {
                 </div>
               )}
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="verification" className="border-y border-slate-700 bg-[#121c2b]">
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 lg:grid-cols-[.72fr_1.28fr] lg:px-8">
+          <div>
+            <p className="text-sm font-bold text-blue-400">DATA VERIFICATION CENTRE</p>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight">See what is verified before you decide.</h2>
+            <p className="mt-4 leading-7 text-slate-300">
+              Every profile separates published facts from pending information. Check source coverage, programme-cost completeness and the last review date before relying on a result.
+            </p>
+            <div className="mt-5 grid grid-cols-2 gap-3 text-sm">
+              <Info label="Directory profiles" value={String(universityCatalog.stats.total)} />
+              <Info label="Verified programme totals" value={String(dataQualityReport.verifiedProgrammeCount)} />
+              <Info label="Fully verified profiles" value={String(universityCatalog.stats.verified)} />
+              <Info label="Automated data flags" value={String(dataQualityReport.issues.length)} />
+            </div>
+          </div>
+          <div className="rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
+            <SearchSelect
+              label="Check a university profile"
+              placeholder="Search university…"
+              value={verificationUniversity}
+              options={directoryUniversityOptions}
+              onChange={setVerificationUniversity}
+            />
+            {verificationProfile ? (
+              <div className="mt-6" aria-live="polite">
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div>
+                    <h3 className="text-xl font-bold">{verificationProfile.name}</h3>
+                    <p className="mt-1 text-sm text-slate-400">
+                      Last checked: {verificationProfile.verifiedAt ?? "not yet verified"}
+                    </p>
+                  </div>
+                  <span className={`rounded-full px-3 py-1 text-sm font-semibold ${verificationProfile.verificationState === "verified" ? "bg-emerald-400/10 text-emerald-300" : verificationProfile.verificationState === "needs-refresh" ? "bg-rose-400/10 text-rose-200" : "bg-amber-400/10 text-amber-200"}`}>
+                    {verificationProfile.verificationState === "verified" ? "Verified" : verificationProfile.verificationState === "partially-verified" ? "Partially verified" : verificationProfile.verificationState === "needs-refresh" ? "Refresh required" : "Verification pending"}
+                  </span>
+                </div>
+                <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                  <Info label="Profile completeness" value={`${verificationProfile.profileCompleteness}%`} />
+                  <Info label="Verified costs" value={String(verificationProfile.verifiedProgrammeCount)} />
+                  <Info label="Pending costs" value={String(verificationProfile.pendingProgrammeCount)} />
+                </div>
+                <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                  {Object.entries(verificationProfile.sourceCoverage).map(([category, available]) => (
+                    <div key={category} className={`flex items-center gap-2 rounded-lg border px-3 py-3 text-sm ${available ? "border-emerald-500/20 bg-emerald-400/5 text-emerald-100" : "border-amber-400/20 bg-amber-300/5 text-amber-100"}`}>
+                      {available ? <Check size={16} aria-hidden="true" /> : <span aria-hidden="true">—</span>}
+                      <span className="capitalize">{category} source {available ? "available" : "pending"}</span>
+                    </div>
+                  ))}
+                </div>
+                {verificationProfile.sources?.length ? (
+                  <div className="mt-5 border-t border-slate-700 pt-4">
+                    <p className="text-sm font-bold text-slate-200">Official source register</p>
+                    <div className="mt-3 grid gap-2">
+                      {verificationProfile.sources.map((source) => (
+                        <a key={source.url} href={source.url} target="_blank" rel="noreferrer" className="flex items-center justify-between gap-3 rounded-lg bg-[#111b2a] px-4 py-3 text-sm font-semibold text-blue-300 hover:text-blue-200">
+                          <span>{source.label}</span><ExternalLink size={14} className="shrink-0" aria-hidden="true" />
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <p className="mt-5 rounded-lg border border-amber-400/20 bg-amber-300/5 p-4 text-sm text-amber-100">Official sources are still being collected. No fee estimate is produced from directory-only data.</p>
+                )}
+              </div>
+            ) : (
+              <div className="mt-6 rounded-xl border border-dashed border-slate-600 bg-[#111b2a] p-7 text-center">
+                <ShieldCheck className="mx-auto text-slate-500" aria-hidden="true" />
+                <h3 className="mt-3 font-bold text-slate-200">Select a university to inspect its evidence</h3>
+                <p className="mt-2 text-sm text-slate-400">Nothing is selected by default.</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      <section id="readiness" className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr]">
+          <div>
+            <p className="text-sm font-bold text-blue-400">ADMISSION READINESS</p>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight">Check the next steps before applying.</h2>
+            <p className="mt-4 leading-7 text-slate-300">
+              Review programme availability, the university’s general GPA reference, programme costs, subject requirements and official admission sources in one checklist.
+            </p>
+            <div className="mt-5 rounded-lg border border-amber-400/20 bg-amber-300/5 p-4 text-sm leading-6 text-amber-100">
+              This planner is a preparation aid, not an admission decision. Department-specific subject grades, passing years, admission tests, quotas and intake rules must be confirmed on the official page.
+            </div>
+          </div>
+          <div className="rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
+            <div className="grid gap-5 sm:grid-cols-2">
+              <SearchSelect
+                label="University"
+                placeholder="Search university…"
+                value={readinessUniversity}
+                options={directoryUniversityOptions}
+                onChange={(value) => {
+                  setReadinessUniversity(value);
+                  setReadinessProgram("");
+                }}
+              />
+              {readinessPrograms.length ? (
+                <SearchSelect
+                  label="Programme"
+                  placeholder="Search programme…"
+                  value={readinessProgram}
+                  options={readinessPrograms}
+                  onChange={setReadinessProgram}
+                />
+              ) : (
+                <Info label="Programme" value="Select a university" />
+              )}
+              <ExactGpaField label="SSC GPA" value={readinessSsc} onChange={setReadinessSsc} />
+              <ExactGpaField label="HSC GPA" value={readinessHsc} onChange={setReadinessHsc} />
+            </div>
+            {readinessResult && readinessProfile ? (
+              <div className="mt-6" aria-live="polite">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-700 pt-5">
+                  <div>
+                    <p className="text-sm text-slate-400">Readiness summary</p>
+                    <p className="mt-1 text-xl font-bold text-slate-100">
+                      {readinessResult.status === "not-listed"
+                        ? "Programme not found in verified catalogue"
+                        : readinessResult.status === "needs-attention"
+                          ? "Important requirement needs attention"
+                          : "Ready for final official review"}
+                    </p>
+                  </div>
+                  <span className="rounded-full bg-blue-400/10 px-3 py-1 text-sm font-semibold text-blue-200">
+                    {readinessResult.completedChecks}/{readinessResult.checks.length} checks complete
+                  </span>
+                </div>
+                <div className="mt-4 grid gap-2">
+                  {readinessResult.checks.map((check) => (
+                    <div key={check.label} className={`rounded-lg border p-4 ${check.state === "complete" ? "border-emerald-500/20 bg-emerald-400/5" : check.state === "attention" ? "border-rose-400/20 bg-rose-400/5" : "border-amber-400/20 bg-amber-300/5"}`}>
+                      <div className="flex items-start gap-3">
+                        <span className={`mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full text-xs ${check.state === "complete" ? "bg-emerald-400/20 text-emerald-200" : check.state === "attention" ? "bg-rose-400/20 text-rose-200" : "bg-amber-400/20 text-amber-100"}`} aria-hidden="true">
+                          {check.state === "complete" ? "✓" : "!"}
+                        </span>
+                        <div>
+                          <p className="font-semibold text-slate-100">{check.label}</p>
+                          <p className="mt-1 text-sm leading-6 text-slate-400">{check.note}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-slate-700 pt-4">
+                  <p className="text-xs text-slate-400">Print or save as PDF from your browser for a personal application checklist.</p>
+                  <button type="button" onClick={() => window.print()} className="inline-flex items-center gap-2 rounded-lg border border-blue-400/40 bg-blue-400/10 px-4 py-2 text-sm font-semibold text-blue-200 hover:bg-blue-400/20">
+                    <Printer size={16} aria-hidden="true" /> Print checklist
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="mt-6 rounded-xl border border-dashed border-slate-600 bg-[#111b2a] p-7 text-center">
+                <Check className="mx-auto text-slate-500" aria-hidden="true" />
+                <h3 className="mt-3 font-bold text-slate-200">Select a university and programme</h3>
+                <p className="mt-2 text-sm text-slate-400">Your readiness checklist will appear here.</p>
+              </div>
+            )}
           </div>
         </div>
       </section>
