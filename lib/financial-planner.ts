@@ -1,0 +1,72 @@
+export type MoneyRange = { low: number; high: number };
+
+export type FinancialPlanInput = {
+  academicTotal: number;
+  studyMonths: number;
+  monthlyLiving: MoneyRange;
+  annualAcademicIncreasePercent: number;
+  contingencyPercent: number;
+  scholarshipPercent?: number;
+  scholarshipAppliesTo?: number;
+  setupCost?: MoneyRange;
+};
+
+const compoundAcademicCost = (
+  base: number,
+  months: number,
+  annualIncreasePercent: number,
+) => {
+  const years = Math.max(1, Math.ceil(months / 12));
+  const annualBase = base / years;
+  const rate = Math.max(0, annualIncreasePercent) / 100;
+  return Array.from({ length: years }, (_, year) => annualBase * (1 + rate) ** year)
+    .reduce((total, amount) => total + amount, 0);
+};
+
+export function createFinancialPlan(input: FinancialPlanInput) {
+  const scholarshipPercent = Math.min(
+    100,
+    Math.max(0, input.scholarshipPercent ?? 0),
+  );
+  const scholarshipBase = Math.min(
+    input.academicTotal,
+    Math.max(0, input.scholarshipAppliesTo ?? input.academicTotal),
+  );
+  const scholarshipSaving = scholarshipBase * (scholarshipPercent / 100);
+  const academicAfterScholarship = Math.max(
+    0,
+    input.academicTotal - scholarshipSaving,
+  );
+  const projectedAcademic = compoundAcademicCost(
+    academicAfterScholarship,
+    input.studyMonths,
+    input.annualAcademicIncreasePercent,
+  );
+  const living = {
+    low: input.monthlyLiving.low * input.studyMonths,
+    high: input.monthlyLiving.high * input.studyMonths,
+  };
+  const setup = input.setupCost ?? { low: 0, high: 0 };
+  const subtotal = {
+    low: projectedAcademic + living.low + setup.low,
+    high: projectedAcademic + living.high + setup.high,
+  };
+  const contingencyRate = Math.max(0, input.contingencyPercent) / 100;
+
+  return {
+    academicAfterScholarship,
+    projectedAcademic,
+    scholarshipSaving,
+    living,
+    setup,
+    contingency: {
+      low: subtotal.low * contingencyRate,
+      high: subtotal.high * contingencyRate,
+    },
+    grandTotal: {
+      low: subtotal.low * (1 + contingencyRate),
+      high: subtotal.high * (1 + contingencyRate),
+    },
+  };
+}
+

@@ -31,11 +31,14 @@ import {
 } from "@/components/ui/combobox";
 import type { AccommodationMode, GradeChart, University } from "@/data/models";
 import {
+  accommodationSetupCosts,
   accommodationLabels,
   districtLivingCosts,
   livingCostChecked,
 } from "@/data/living-costs";
 import { validateUniversityData } from "@/lib/data-quality";
+import { buildUniversityCatalog } from "@/data/catalog";
+import { createFinancialPlan } from "@/lib/financial-planner";
 
 const gradeCharts: Record<string, GradeChart> = {
   RUD: {
@@ -8799,7 +8802,8 @@ function ExactGpaField({
   );
 }
 
-const dataQualityReport = validateUniversityData(universities);
+const universityCatalog = buildUniversityCatalog(universities);
+const dataQualityReport = validateUniversityData(universityCatalog.records);
 
 export default function Home() {
   const [program, setProgram] = useState(""),
@@ -8836,7 +8840,10 @@ export default function Home() {
     [livingProgram, setLivingProgram] = useState(""),
     [accommodationMode, setAccommodationMode] =
       useState<AccommodationMode>("mess"),
-    [studyMonths, setStudyMonths] = useState(48);
+    [studyMonths, setStudyMonths] = useState(48),
+    [annualFeeIncrease, setAnnualFeeIncrease] = useState(5),
+    [contingency, setContingency] = useState(8),
+    [planningScholarship, setPlanningScholarship] = useState(0);
   const programFilter = program === "All programmes" ? "" : program;
   const divisionFilter = division === "All divisions" ? "" : division;
   const districtFilter = district === "All districts" ? "" : district;
@@ -8882,6 +8889,13 @@ export default function Home() {
     livingProgrammeCost && !livingProgrammeCost.pending
       ? livingProgrammeCost.total
       : undefined;
+  const livingTuitionBase =
+    livingProgrammeCost &&
+    !livingProgrammeCost.pending &&
+    livingProgrammeCost.credits > 0 &&
+    livingProgrammeCost.tuitionPerCredit > 0
+      ? livingProgrammeCost.credits * livingProgrammeCost.tuitionPerCredit
+      : undefined;
   const livingModel = livingProfile
     ? districtLivingCosts[livingProfile.district] ?? districtLivingCosts.default
     : districtLivingCosts.default;
@@ -8897,6 +8911,26 @@ export default function Home() {
       livingModel.transport[1] +
       livingModel.personal[1]
     : 0;
+  const completeFinancialPlan =
+    livingAcademicTotal !== undefined
+      ? createFinancialPlan({
+          academicTotal: livingAcademicTotal,
+          studyMonths,
+          monthlyLiving: {
+            low: livingMonthlyLow,
+            high: livingMonthlyHigh,
+          },
+          annualAcademicIncreasePercent: annualFeeIncrease,
+          contingencyPercent: contingency,
+          scholarshipPercent:
+            livingTuitionBase === undefined ? 0 : planningScholarship,
+          scholarshipAppliesTo: livingTuitionBase,
+          setupCost: {
+            low: accommodationSetupCosts[accommodationMode][0],
+            high: accommodationSetupCosts[accommodationMode][1],
+          },
+        })
+      : undefined;
   const programOptions = useMemo(
     () =>
       [...new Set(universities.flatMap((u) => u.programs))].sort((a, b) =>
@@ -10616,6 +10650,43 @@ export default function Home() {
                     onChange={(event) => setStudyMonths(Number(event.target.value))}
                   />
                 </Field>
+                <Field label="Possible annual fee increase" value={`${annualFeeIncrease}%`}>
+                  <input
+                    type="range"
+                    aria-label="Possible annual academic fee increase"
+                    min="0"
+                    max="15"
+                    step="1"
+                    value={annualFeeIncrease}
+                    onChange={(event) => setAnnualFeeIncrease(Number(event.target.value))}
+                  />
+                </Field>
+                <Field
+                  label="Expected tuition scholarship"
+                  value={livingTuitionBase === undefined ? "Tuition split required" : `${planningScholarship}%`}
+                >
+                  <input
+                    type="range"
+                    aria-label="Expected tuition scholarship percentage"
+                    disabled={livingTuitionBase === undefined}
+                    min="0"
+                    max="100"
+                    step="5"
+                    value={livingTuitionBase === undefined ? 0 : planningScholarship}
+                    onChange={(event) => setPlanningScholarship(Number(event.target.value))}
+                  />
+                </Field>
+                <Field label="Safety allowance" value={`${contingency}%`}>
+                  <input
+                    type="range"
+                    aria-label="Contingency safety allowance percentage"
+                    min="0"
+                    max="20"
+                    step="1"
+                    value={contingency}
+                    onChange={(event) => setContingency(Number(event.target.value))}
+                  />
+                </Field>
                 <Info
                   label="Location model"
                   value={livingProfile ? `${livingProfile.district}, ${livingProfile.division}` : "Select a university"}
@@ -10649,14 +10720,19 @@ export default function Home() {
                             ? "Verification pending"
                             : money(livingAcademicTotal)}
                       </p>
+                      {completeFinancialPlan && (
+                        <p className="mt-2 text-xs leading-5 text-slate-400">
+                          Projected academic amount: {money(completeFinancialPlan.projectedAcademic)} after the selected scholarship and annual increase assumptions.
+                        </p>
+                      )}
                     </div>
                     <div className="rounded-xl border border-violet-500/30 bg-violet-400/10 p-5">
                       <WalletCards className="text-violet-300" aria-hidden="true" />
                       <p className="mt-3 text-sm text-violet-200">Academic + living plan</p>
                       <p className="mt-1 text-2xl font-bold text-violet-100">
-                        {livingAcademicTotal === undefined
+                        {!completeFinancialPlan
                           ? "Select a verified programme"
-                          : `${money(livingAcademicTotal + livingMonthlyLow * studyMonths)}–${money(livingAcademicTotal + livingMonthlyHigh * studyMonths)}`}
+                          : `${money(completeFinancialPlan.grandTotal.low)}–${money(completeFinancialPlan.grandTotal.high)}`}
                       </p>
                     </div>
                   </div>
@@ -10665,9 +10741,12 @@ export default function Home() {
                     <Info label="Food / month" value={`${money(livingModel.food[0])}–${money(livingModel.food[1])}`} />
                     <Info label="Transport / month" value={`${money(livingModel.transport[0])}–${money(livingModel.transport[1])}`} />
                     <Info label="Personal, mobile & study / month" value={`${money(livingModel.personal[0])}–${money(livingModel.personal[1])}`} />
+                    <Info label="One-time setup estimate" value={`${money(accommodationSetupCosts[accommodationMode][0])}–${money(accommodationSetupCosts[accommodationMode][1])}`} />
+                    <Info label="Scholarship saving assumption" value={completeFinancialPlan ? money(completeFinancialPlan.scholarshipSaving) : "Select a verified programme"} />
+                    <Info label="Safety allowance" value={completeFinancialPlan ? `${money(completeFinancialPlan.contingency.low)}–${money(completeFinancialPlan.contingency.high)}` : "Select a verified programme"} />
                   </dl>
                   <p className="mt-4 text-xs leading-5 text-slate-400">
-                    Planning estimate checked {livingCostChecked}. Actual rent, meals, utilities, transport, deposits and lifestyle costs vary by campus area and room sharing. Confirm halls directly with the university before relying on a hall estimate.
+                    Planning estimate checked {livingCostChecked}. Scholarship, annual increase and safety allowance are user-selected scenarios—not university promises. Actual rent, meals, utilities, transport, deposits and lifestyle costs vary by campus area and room sharing. Confirm halls and awarded waivers directly before relying on the plan.
                   </p>
                 </div>
               ) : (
@@ -11057,6 +11136,9 @@ export default function Home() {
               </p>
               <p className="mt-3 text-xs font-semibold text-emerald-100">
                 {dataQualityReport.universityCount} directory records · {dataQualityReport.officialCount} source-checked profiles · {dataQualityReport.verifiedProgrammeCount} verified programme totals · {dataQualityReport.issues.length} automated data flags
+              </p>
+              <p className="mt-1 text-xs text-emerald-100/80">
+                Catalogue status: {universityCatalog.stats.verified} complete · {universityCatalog.stats.partial} partially verified · {universityCatalog.stats.pending} pending · {universityCatalog.stats.needsRefresh} due for refresh
               </p>
             </div>
           </div>

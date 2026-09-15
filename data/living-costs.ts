@@ -31,3 +31,12 @@ export const districtLivingCosts: Record<string, LivingCostModel> = {
 
 export const livingCostChecked = "15 September 2026";
 
+export const accommodationSetupCosts: Record<
+  AccommodationMode,
+  [number, number]
+> = {
+  hall: [2000, 5000],
+  hostel: [8000, 20000],
+  mess: [10000, 25000],
+  family: [10000, 40000],
+};
