@@ -28,7 +28,7 @@ const parseVerifiedDate = (value?: string) => {
 
 export function buildUniversityCatalog(
   universities: University[],
-  now = new Date("2026-09-15T00:00:00Z"),
+  now = new Date("2026-09-16T00:00:00Z"),
 ) {
   const refreshAfterDays = 180;
   const refreshThreshold = now.getTime() - refreshAfterDays * 86_400_000;

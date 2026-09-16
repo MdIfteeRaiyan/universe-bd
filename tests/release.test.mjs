@@ -16,6 +16,10 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(html, /Safety allowance/);
   assert.match(pageSource, /Year-by-year planning schedule/);
   assert.match(html, /DATA VERIFICATION CENTRE/);
+  assert.match(html, /Private verification progress/);
+  assert.match(html, /Still awaiting readable official publications:/);
+  assert.match(html, /Britannia University/);
+  assert.match(pageSource, /UODA's official introduction states that the university was established in 2002/);
   assert.match(pageSource, /Official source register/);
   assert.match(html, /ADMISSION READINESS/);
   assert.match(pageSource, /Print checklist/);
@@ -24,6 +28,9 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(pageSource, /universe-bd-shortlist/);
   assert.match(html, /A student-built guide for comparing university programmes/);
   assert.match(html, /PRIVATE UNIVERSITY FINDER/);
+  assert.match(html, /Jump to what you need/);
+  assert.match(html, /More location filters/);
+  assert.match(html, /directory-only profiles/);
   assert.match(html, /Institution type/);
   assert.match(pageSource, /Bangladesh University of Engineering and Technology/);
 });

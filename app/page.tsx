@@ -4088,7 +4088,7 @@ Object.assign(
       { label: "Official university website", url: "https://britannia.edu.bd/" },
       { label: "University Grants Commission of Bangladesh", url: "https://ugc.gov.bd/" },
     ],
-    verifiedAt: "10 September 2026",
+    verifiedAt: "16 September 2026",
   },
 );
 Object.assign(
@@ -4815,24 +4815,27 @@ Object.assign(
 Object.assign(
   universities.find((u) => u.short === "UODA")!,
   {
-    status: "Directory",
+    area: "Dhanmondi",
+    address: "80 Satmosjid Road, Dhanmondi, Dhaka 1209, Bangladesh",
+    status: "Official",
     facts: [
-      "UODA remains searchable through the national private-university directory",
-      "The university's official website did not return a readable current programme, fee, scholarship or grading publication during this verification pass",
-      "No programme names, costs, GPA rules, scholarships or grade chart are inferred from third-party summaries",
-      "Programme-level calculators remain pending until an official current table can be checked",
+      "UODA's official introduction states that the university was established in 2002",
+      "The university reports six faculties and undergraduate courses in more than 14 subjects",
+      "Administrative office: 80 Satmosjid Road, Dhanmondi, Dhaka 1209",
+      "The official site exposes a tuition-fee route, but a current programme-by-programme amount table was not readable during this verification pass",
+      "Programme names, costs, admission rules, scholarships and grading remain pending rather than being inferred from third-party summaries",
     ],
     sources: [
       {
-        label: "Official university website",
-        url: "https://uoda.edu.bd/",
+        label: "Official university introduction and undergraduate overview",
+        url: "https://uoda.edu.bd/about-uoda/introduction",
       },
       {
-        label: "University Grants Commission of Bangladesh",
-        url: "https://ugc.gov.bd/",
+        label: "Official tuition-fee route",
+        url: "https://uoda.edu.bd/admission/tuition-fees/",
       },
     ],
-    verifiedAt: "10 September 2026",
+    verifiedAt: "16 September 2026",
   },
 );
 Object.assign(
@@ -8959,7 +8962,7 @@ export default function Home() {
     [sortBy, setSortBy] = useState<"match" | "price-asc" | "price-desc">(
       "match",
     ),
-    [visible, setVisible] = useState(18);
+    [visible, setVisible] = useState(9);
   const [compare, setCompare] = useState<number[]>([]),
     [detail, setDetail] = useState<University | null>(null),
     [directProfile, setDirectProfile] = useState(false),
@@ -9016,7 +9019,7 @@ export default function Home() {
     setBudget(800000);
     setGpa(4);
     setSortBy("match");
-    setVisible(18);
+    setVisible(9);
   };
   const calculatorUniversities = [...universities].sort((a, b) =>
     a.name.localeCompare(b.name),
@@ -9085,6 +9088,9 @@ export default function Home() {
       : undefined;
   const verificationProfile = universityCatalog.records.find(
     (university) => universityOptionLabel(university) === verificationUniversity,
+  );
+  const pendingVerificationProfiles = universityCatalog.records.filter(
+    (university) => university.verificationState === "pending",
   );
   const readinessProfile = universityCatalog.records.find(
     (university) => universityOptionLabel(university) === readinessUniversity,
@@ -10284,7 +10290,7 @@ export default function Home() {
                 options={["All programmes", ...programOptions]}
                 onChange={(value) => {
                   setProgram(value);
-                  setVisible(18);
+                  setVisible(9);
                 }}
               />
               <SearchSelect
@@ -10298,7 +10304,7 @@ export default function Home() {
                     return;
                   }
                   setInstitutionType(value);
-                  setVisible(18);
+                  setVisible(9);
                 }}
               />
               <SearchSelect
@@ -10320,28 +10326,7 @@ export default function Home() {
                   setDivision(value);
                   setDistrict("");
                   setArea("");
-                  setVisible(18);
-                }}
-              />
-              <SearchSelect
-                label="District"
-                placeholder="Search district…"
-                value={district}
-                options={["All districts", ...districtOptions]}
-                onChange={(value) => {
-                  setDistrict(value);
-                  setArea("");
-                  setVisible(18);
-                }}
-              />
-              <SearchSelect
-                label="Area"
-                placeholder="Search area…"
-                value={area}
-                options={["All areas", ...areaOptions]}
-                onChange={(value) => {
-                  setArea(value);
-                  setVisible(18);
+                  setVisible(9);
                 }}
               />
               <Field label="Maximum budget" value={money(budget)}>
@@ -10355,7 +10340,7 @@ export default function Home() {
                   value={budget}
                   onChange={(e) => {
                     setBudget(Number(e.target.value));
-                    setVisible(18);
+                    setVisible(9);
                   }}
                 />
                 <span className="mt-2 flex justify-between text-xs text-slate-500" aria-hidden="true">
@@ -10369,9 +10354,45 @@ export default function Home() {
                 value={gpa}
                 onChange={(value) => {
                   setGpa(value);
-                  setVisible(18);
+                  setVisible(9);
                 }}
               />
+              <details className="group rounded-xl border border-slate-700 bg-[#111b2a]/60 sm:col-span-2">
+                <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-semibold text-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
+                  <span>
+                    More location filters
+                    {(districtFilter || areaFilter) && (
+                      <small className="ml-2 rounded-full bg-blue-400/15 px-2 py-1 text-blue-200">
+                        Active
+                      </small>
+                    )}
+                  </span>
+                  <span className="text-slate-400 transition group-open:rotate-180" aria-hidden="true">⌄</span>
+                </summary>
+                <div className="grid gap-5 border-t border-slate-700 p-4 sm:grid-cols-2">
+                  <SearchSelect
+                    label="District"
+                    placeholder="Search district…"
+                    value={district}
+                    options={["All districts", ...districtOptions]}
+                    onChange={(value) => {
+                      setDistrict(value);
+                      setArea("");
+                      setVisible(9);
+                    }}
+                  />
+                  <SearchSelect
+                    label="Area"
+                    placeholder="Search area…"
+                    value={area}
+                    options={["All areas", ...areaOptions]}
+                    onChange={(value) => {
+                      setArea(value);
+                      setVisible(9);
+                    }}
+                  />
+                </div>
+              </details>
             </div>
             <div className="mt-5 flex items-center justify-end border-t border-slate-700/70 pt-4">
               <button
@@ -10386,6 +10407,26 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <nav aria-label="Page sections" className="border-b border-slate-700 bg-[#0d1522] xl:hidden">
+        <div className="mx-auto max-w-7xl px-5 py-4 lg:px-8">
+          <p className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-400">Jump to what you need</p>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+            {[
+              ["Results", "#universities"],
+              ["My shortlist", "#shortlist"],
+              ["Total budget", "#living-cost"],
+              ["Funding", "#scholarship"],
+              ["Admission check", "#readiness"],
+              ["Data sources", "#verification"],
+            ].map(([label, href]) => (
+              <a key={href} href={href} className="flex min-h-11 items-center justify-center rounded-lg border border-slate-700 bg-[#172337] px-3 py-2 text-center text-sm font-semibold text-slate-200 hover:border-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
+                {label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </nav>
 
       <section
         id="universities"
@@ -10440,9 +10481,9 @@ export default function Home() {
                   setSortBy(
                     event.target.value as "match" | "price-asc" | "price-desc",
                   );
-                  setVisible(18);
+                  setVisible(9);
                 }}
-                className="h-10 rounded-lg border border-slate-600 bg-[#111b2a] px-3 text-sm text-slate-100 outline-none focus:border-blue-400"
+                className="h-11 rounded-lg border border-slate-600 bg-[#111b2a] px-3 text-sm text-slate-100 outline-none focus:border-blue-400"
               >
                 <option value="match">Best match</option>
                 <option value="price-desc">Highest tuition first</option>
@@ -10658,7 +10699,7 @@ export default function Home() {
                   onClick={() => toggle(u.id)}
                   aria-label={`${compare.includes(u.id) ? "Remove" : "Add"} ${u.name} ${compare.includes(u.id) ? "from" : "to"} comparison`}
                   aria-pressed={compare.includes(u.id)}
-                  className={`grid size-10 place-items-center rounded-lg border transition ${compare.includes(u.id) ? "border-blue-400 bg-blue-400/15 text-blue-200" : "border-slate-600 text-slate-300 hover:border-blue-400 hover:text-blue-200"}`}
+                  className={`grid size-11 place-items-center rounded-lg border transition ${compare.includes(u.id) ? "border-blue-400 bg-blue-400/15 text-blue-200" : "border-slate-600 text-slate-300 hover:border-blue-400 hover:text-blue-200"}`}
                 >
                   {compare.includes(u.id) ? (
                     <Check size={17} />
@@ -10673,7 +10714,7 @@ export default function Home() {
         {visible < sortedResults.length && (
           <div className="mt-8 text-center">
             <button
-              onClick={() => setVisible((v) => v + 18)}
+              onClick={() => setVisible((v) => v + 9)}
               className="rounded-lg border border-slate-600 bg-[#172337] px-5 py-2.5 text-sm font-semibold text-slate-200 hover:border-blue-400"
             >
               Show more universities
@@ -11458,6 +11499,27 @@ export default function Home() {
               <Info label="Verified programme totals" value={String(dataQualityReport.verifiedProgrammeCount)} />
               <Info label="Fully verified profiles" value={String(universityCatalog.stats.verified)} />
               <Info label="Automated data flags" value={String(dataQualityReport.issues.length)} />
+            </div>
+            <div className="mt-5 rounded-xl border border-slate-600 bg-[#172337] p-4 text-sm leading-6">
+              <div className="flex items-center justify-between gap-3">
+                <span className="font-bold text-slate-100">Private verification progress</span>
+                <span className="rounded-full bg-emerald-400/10 px-2.5 py-1 font-semibold text-emerald-300">
+                  {universityCatalog.stats.total - universityCatalog.stats.pending}/{universityCatalog.stats.total} source-checked
+                </span>
+              </div>
+              <p className="mt-2 text-slate-300">
+                {universityCatalog.stats.verified} complete · {universityCatalog.stats.partial} partial · {universityCatalog.stats.pending} directory-only
+              </p>
+              {pendingVerificationProfiles.length > 0 && (
+                <details className="mt-2 border-t border-slate-600 pt-2 text-amber-200">
+                  <summary className="min-h-11 cursor-pointer py-2 font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
+                    View {pendingVerificationProfiles.length} directory-only profiles
+                  </summary>
+                  <p className="pb-1 text-slate-300">
+                    Still awaiting readable official publications: {pendingVerificationProfiles.map((university) => university.name).join(", ")}.
+                  </p>
+                </details>
+              )}
             </div>
           </div>
           <div className="rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
