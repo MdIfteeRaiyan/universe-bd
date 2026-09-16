@@ -18,6 +18,7 @@ export type University = {
   id: number;
   name: string;
   short: string;
+  institutionType?: "Public" | "Private";
   district: string;
   division: string;
   area?: string;

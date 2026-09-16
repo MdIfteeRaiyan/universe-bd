@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   ArrowRight,
+  BookmarkCheck,
   BriefcaseBusiness,
   Building2,
   Check,
@@ -8637,6 +8639,142 @@ Object.assign(
   },
 );
 
+universities.push(
+  {
+    id: 89,
+    name: "Bangladesh University of Engineering and Technology",
+    short: "BUET",
+    institutionType: "Public",
+    district: "Dhaka",
+    division: "Dhaka",
+    area: "Palashi",
+    address: "BUET Central Road, Dhaka 1000, Bangladesh",
+    programs: [
+      "Architecture", "Biomedical Engineering", "Chemical Engineering",
+      "Civil Engineering", "CSE", "EEE", "Industrial & Production Engineering",
+      "Materials & Metallurgical Engineering", "Mechanical Engineering",
+      "Nanomaterials & Ceramic Engineering", "Naval Architecture & Marine Engineering",
+      "Urban & Regional Planning", "Water Resources Engineering",
+    ],
+    programCatalogComplete: false,
+    status: "Official",
+    costLabel: "Current programme costs pending verification",
+    facts: [
+      "Public engineering university in Dhaka",
+      "Undergraduate departments are being reconciled across BUET's official university and department pages",
+      "No programme total is shown until an official current fee schedule is verified",
+    ],
+    sources: [
+      { label: "Official university website", url: "https://www.buet.ac.bd/web/" },
+      { label: "Official undergraduate admission portal", url: "https://ugadmission.buet.ac.bd/" },
+    ],
+    verifiedAt: "16 September 2026",
+  },
+  {
+    id: 90,
+    name: "Chittagong University of Engineering and Technology",
+    short: "CUET",
+    institutionType: "Public",
+    district: "Chattogram",
+    division: "Chattogram",
+    area: "Pahartali, Raozan",
+    address: "Pahartali, Raozan, Chattogram 4349, Bangladesh",
+    programs: [
+      "Architecture", "Biomedical Engineering", "Civil Engineering", "CSE",
+      "Electrical & Electronic Engineering", "Electronics & Telecommunication Engineering",
+      "Industrial & Production Engineering", "Materials Science & Engineering",
+      "Mechanical Engineering", "Mechatronics & Industrial Engineering",
+      "Petroleum & Mining Engineering", "Urban & Regional Planning",
+      "Water Resources Engineering",
+    ],
+    programCatalogComplete: true,
+    status: "Official",
+    costLabel: "Current programme costs pending verification",
+    facts: [
+      "CUET's official site confirms undergraduate study in engineering, architecture and urban and regional planning",
+      "No programme total is inserted without a current official fee schedule",
+    ],
+    sources: [
+      { label: "Official programme and department catalogue", url: "https://cuet.ac.bd/" },
+      { label: "Official undergraduate admission portal", url: "https://admissioncuet.ac.bd/" },
+    ],
+    verifiedAt: "16 September 2026",
+  },
+  {
+    id: 91,
+    name: "Khulna University of Engineering and Technology",
+    short: "KUET",
+    institutionType: "Public",
+    district: "Khulna",
+    division: "Khulna",
+    area: "Fulbarigate",
+    address: "Khulna University of Engineering & Technology, Khulna 9203, Bangladesh",
+    programs: [
+      "Architecture", "Biomedical Engineering", "Building Engineering & Construction Management",
+      "Chemical Engineering", "Civil Engineering", "CSE", "Electrical & Electronic Engineering",
+      "Electronics & Communication Engineering", "Energy Science & Engineering",
+      "Industrial Engineering & Management", "Leather Engineering", "Materials Science & Engineering",
+      "Mechanical Engineering", "Mechatronics Engineering", "Textile Engineering",
+      "Urban & Regional Planning",
+    ],
+    programCatalogComplete: false,
+    status: "Official",
+    costLabel: "Current programme costs pending verification",
+    facts: [
+      "Public engineering university in Khulna",
+      "The active undergraduate admission portal is linked for current intake notices",
+      "Programme totals remain pending until a current official fee table is verified",
+    ],
+    sources: [
+      { label: "Official university academics and departments", url: "https://kuet.ac.bd/" },
+      { label: "Official undergraduate admission portal", url: "https://admission.kuet.ac.bd/" },
+    ],
+    verifiedAt: "16 September 2026",
+  },
+  {
+    id: 92,
+    name: "Rajshahi University of Engineering and Technology",
+    short: "RUET",
+    institutionType: "Public",
+    district: "Rajshahi",
+    division: "Rajshahi",
+    area: "Kazla",
+    address: "Kazla, Rajshahi 6204, Bangladesh",
+    programs: [
+      "Architecture", "Building Engineering & Construction Management",
+      "Ceramic & Metallurgical Engineering", "Chemical Engineering", "Civil Engineering",
+      "CSE", "Electrical & Computer Engineering", "Electrical & Electronic Engineering",
+      "Electronics & Telecommunication Engineering", "Glass & Ceramic Engineering",
+      "Industrial & Production Engineering", "Materials Science & Engineering",
+      "Mechanical Engineering", "Mechatronics Engineering", "Urban & Regional Planning",
+    ],
+    programCatalogComplete: true,
+    status: "Official",
+    costLabel: "Current programme costs pending verification",
+    facts: [
+      "RUET's official site identifies it as a public engineering university",
+      "The official department directory is searchable through UniVerse BD",
+      "No cost estimate is produced without a current official programme fee source",
+    ],
+    sources: [
+      { label: "Official university and department directory", url: "https://www.ruet.ac.bd/" },
+      { label: "Official undergraduate admission information", url: "https://www.ruet.ac.bd/page/undergraduate-admission" },
+    ],
+    verifiedAt: "16 September 2026",
+  },
+);
+
+universities.forEach((university) => {
+  university.institutionType ??= "Private";
+});
+
+// Public admission is intentionally kept on its own dedicated page.
+universities.splice(
+  0,
+  universities.length,
+  ...universities.filter((university) => university.institutionType === "Private"),
+);
+
 // Keep every indexed programme usable in the calculator while preserving a
 // strict distinction between published totals and records still under review.
 // A pending route is deliberately numeric-free: it must never be interpreted
@@ -8808,7 +8946,9 @@ const universityCatalog = buildUniversityCatalog(universities);
 const dataQualityReport = validateUniversityData(universityCatalog.records);
 
 export default function Home() {
+  const router = useRouter();
   const [program, setProgram] = useState(""),
+    [institutionType, setInstitutionType] = useState(""),
     [division, setDivision] = useState(""),
     [district, setDistrict] = useState(""),
     [area, setArea] = useState(""),
@@ -8827,6 +8967,8 @@ export default function Home() {
     [waiver, setWaiver] = useState(0),
     [calcId, setCalcId] = useState<number | null>(null),
     [calcProgram, setCalcProgram] = useState("");
+  const [shortlistStages, setShortlistStages] = useState<Record<number, "researching" | "ready" | "applied">>({});
+  const [shortlistLoaded, setShortlistLoaded] = useState(false);
   const [aidUniversity, setAidUniversity] = useState(""),
     [aidProgram, setAidProgram] = useState(""),
     [gradeUniversity, setGradeUniversity] = useState(""),
@@ -8852,11 +8994,13 @@ export default function Home() {
   const [readinessSsc, setReadinessSsc] = useState(4);
   const [readinessHsc, setReadinessHsc] = useState(4);
   const programFilter = program === "All programmes" ? "" : program;
+  const institutionTypeFilter = institutionType === "All institution types" ? "" : institutionType;
   const divisionFilter = division === "All divisions" ? "" : division;
   const districtFilter = district === "All districts" ? "" : district;
   const areaFilter = area === "All areas" ? "" : area;
   const filtersChanged =
     Boolean(programFilter) ||
+    Boolean(institutionTypeFilter) ||
     Boolean(divisionFilter) ||
     Boolean(districtFilter) ||
     Boolean(areaFilter) ||
@@ -8865,6 +9009,7 @@ export default function Home() {
     sortBy !== "match";
   const resetFilters = () => {
     setProgram("");
+    setInstitutionType("");
     setDivision("");
     setDistrict("");
     setArea("");
@@ -9055,6 +9200,7 @@ export default function Home() {
           !programFilter ||
           u.programs.some((name) => programMatches(name, programFilter)),
       )
+      .filter((u) => !institutionTypeFilter || u.institutionType === institutionTypeFilter)
       .filter((u) => !divisionFilter || u.division === divisionFilter)
       .filter((u) => !districtFilter || u.district === districtFilter)
       .filter((u) => !areaFilter || u.area === areaFilter)
@@ -9132,7 +9278,7 @@ export default function Home() {
           Number(b.status === "Official") - Number(a.status === "Official") ||
           a.name.localeCompare(b.name),
       );
-  }, [programFilter, divisionFilter, districtFilter, areaFilter, budget, gpa]);
+  }, [programFilter, institutionTypeFilter, divisionFilter, districtFilter, areaFilter, budget, gpa]);
   const results = evaluatedResults.filter(
     (u) =>
       u.totalCost !== undefined && u.totalCost <= budget && u.gpaMet === true,
@@ -9168,6 +9314,7 @@ export default function Home() {
   const closestSuggestions = useMemo(() => {
     if (results.length) return [];
     return universities
+      .filter((u) => !institutionTypeFilter || u.institutionType === institutionTypeFilter)
       .map((u) => {
         const nearestVerifiedProgramme = !programFilter
           ? (u.programCosts ?? [])
@@ -9253,7 +9400,7 @@ export default function Home() {
           a.name.localeCompare(b.name),
       )
       .slice(0, 3);
-  }, [results.length, programFilter, divisionFilter, districtFilter, areaFilter, budget, gpa]);
+  }, [results.length, programFilter, institutionTypeFilter, divisionFilter, districtFilter, areaFilter, budget, gpa]);
   const confirmedWithinBudget = results.length;
   const pendingBudgetCheck = evaluatedResults.filter(
     (u) => u.totalCost === undefined,
@@ -9972,6 +10119,39 @@ export default function Home() {
           : c,
     );
 
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      try {
+        const saved = window.localStorage.getItem("universe-bd-shortlist");
+        if (saved) {
+          const parsed = JSON.parse(saved) as {
+            ids?: number[];
+            stages?: Record<number, "researching" | "ready" | "applied">;
+          };
+          setCompare(
+            (parsed.ids ?? [])
+              .filter((id) => universities.some((university) => university.id === id))
+              .slice(0, 3),
+          );
+          setShortlistStages(parsed.stages ?? {});
+        }
+      } catch {
+        // Ignore damaged browser storage and begin with a clean shortlist.
+      } finally {
+        setShortlistLoaded(true);
+      }
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!shortlistLoaded) return;
+    window.localStorage.setItem(
+      "universe-bd-shortlist",
+      JSON.stringify({ ids: compare, stages: shortlistStages }),
+    );
+  }, [compare, shortlistLoaded, shortlistStages]);
+
   return (
     <main className="soft-dark min-h-screen bg-[#101827] text-slate-100">
       <a
@@ -10044,6 +10224,7 @@ export default function Home() {
           </div>
           <nav className="hidden gap-5 text-sm font-semibold text-slate-300 xl:flex">
             <a href="#universities">Universities</a>
+            <a href="#shortlist">My shortlist</a>
             <a href="#calculator">Cost calculator</a>
             <a href="#living-cost">Living cost</a>
             <a href="#scholarship">Funding opportunities</a>
@@ -10103,6 +10284,20 @@ export default function Home() {
                 options={["All programmes", ...programOptions]}
                 onChange={(value) => {
                   setProgram(value);
+                  setVisible(18);
+                }}
+              />
+              <SearchSelect
+                label="Institution type"
+                placeholder="Search institution type…"
+                value={institutionType}
+                options={["All institution types", "Public", "Private"]}
+                onChange={(value) => {
+                  if (value === "Public") {
+                    router.push("/public-universities");
+                    return;
+                  }
+                  setInstitutionType(value);
                   setVisible(18);
                 }}
               />
@@ -10370,6 +10565,9 @@ export default function Home() {
               <h3 className="mt-4 min-h-12 text-lg font-bold leading-6">
                 {u.name}
               </h3>
+              <span className="mb-3 w-fit rounded-full bg-slate-700/70 px-2.5 py-1 text-xs font-semibold text-slate-300">
+                {u.institutionType ?? "Private"} university
+              </span>
               {u.gpaMet === false && (
                 <div className="mb-3 rounded-lg border border-rose-400/25 bg-rose-400/5 px-3 py-2 text-sm text-rose-200">
                   Your GPA {gpa.toFixed(1)} does not meet the verified minimum
@@ -10482,6 +10680,63 @@ export default function Home() {
             </button>
           </div>
         )}
+      </section>
+
+      <section id="shortlist" className="border-y border-slate-700 bg-[#121c2b]">
+        <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="text-sm font-bold text-blue-400">MY SHORTLIST</p>
+              <h2 className="mt-2 text-3xl font-bold tracking-tight">Keep your top choices in one place.</h2>
+              <p className="mt-3 max-w-2xl leading-7 text-slate-300">
+                Save up to three universities for comparison and track whether you are researching, ready to apply or already applied. This shortlist stays in this browser.
+              </p>
+            </div>
+            {compare.length >= 2 && (
+              <button type="button" onClick={() => setCompareOpen(true)} className="inline-flex items-center gap-2 rounded-lg bg-[#173b68] px-4 py-2.5 text-sm font-semibold text-white">
+                <GitCompareArrows size={16} aria-hidden="true" /> Compare saved choices
+              </button>
+            )}
+          </div>
+          {compare.length ? (
+            <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {compare.map((id) => universities.find((university) => university.id === id)).filter((university): university is University => Boolean(university)).map((university) => (
+                <article key={university.id} className="rounded-xl border border-slate-700 bg-[#172337] p-5">
+                  <div className="flex items-start gap-3">
+                    <UniversityMark university={university} />
+                    <div className="min-w-0">
+                      <h3 className="font-bold text-slate-100">{university.name}</h3>
+                      <p className="mt-1 text-sm text-slate-400">{university.district} · {university.programs.length} programmes listed</p>
+                    </div>
+                  </div>
+                  <label className="mt-5 block text-sm font-semibold text-slate-300">
+                    Application stage
+                    <select
+                      value={shortlistStages[university.id] ?? "researching"}
+                      onChange={(event) => setShortlistStages((current) => ({ ...current, [university.id]: event.target.value as "researching" | "ready" | "applied" }))}
+                      className="field mt-2"
+                    >
+                      <option value="researching">Researching</option>
+                      <option value="ready">Ready to apply</option>
+                      <option value="applied">Applied</option>
+                    </select>
+                  </label>
+                  <div className="mt-4 flex gap-2">
+                    <button type="button" onClick={() => { setDirectProfile(true); setDetail(university); }} className="flex-1 rounded-lg border border-slate-600 px-3 py-2 text-sm font-semibold text-slate-200 hover:border-blue-400">View profile</button>
+                    <button type="button" onClick={() => toggle(university.id)} className="rounded-lg border border-rose-400/30 px-3 py-2 text-sm font-semibold text-rose-200 hover:bg-rose-400/10" aria-label={`Remove ${university.name} from shortlist`}>Remove</button>
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div className="mt-6 rounded-xl border border-dashed border-slate-600 bg-[#111b2a] p-8 text-center">
+              <BookmarkCheck className="mx-auto text-slate-500" aria-hidden="true" />
+              <h3 className="mt-3 font-bold text-slate-200">Your shortlist is empty</h3>
+              <p className="mt-2 text-sm text-slate-400">Use the comparison button on a university card to save it here.</p>
+            </div>
+          )}
+          <p className="mt-4 text-xs leading-5 text-slate-500">Shortlist information is stored only in this browser. Clearing browser data or using another device will remove it.</p>
+        </div>
       </section>
 
       <section
@@ -11354,28 +11609,21 @@ export default function Home() {
       </section>
 
       <section id="about" className="mx-auto max-w-7xl px-5 py-8 lg:px-8">
-        <div className="flex flex-col gap-5 rounded-2xl border border-emerald-400/20 bg-gradient-to-r from-[#153653] to-[#087068] p-5 shadow-[0_18px_45px_rgba(5,34,52,.28)] sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-4 rounded-xl border border-slate-700 bg-[#172337] p-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-start gap-4">
             <div className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-cyan-200 sm:flex">
               <BriefcaseBusiness size={20} />
             </div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-[.14em] text-emerald-200">
+              <p className="text-xs font-bold uppercase tracking-[.14em] text-blue-300">
                 About UniVerse BD
               </p>
               <h2 className="mt-1 text-xl font-bold">Md Iftee Raiyan</h2>
-              <p className="mt-1 max-w-3xl text-sm leading-6 text-slate-100">
-                A CSE undergraduate at East West University building one
-                dependable guide for Bangladeshi students to compare verified
-                subjects, full costs, scholarships, admission rules and
-                locations. Its purpose is simple: reduce financial stress,
-                remove confusion and make university decisions easier.
+              <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-300">
+                A student-built guide for comparing university programmes, costs and official admission information in Bangladesh.
               </p>
-              <p className="mt-3 text-xs font-semibold text-emerald-100">
-                {dataQualityReport.universityCount} directory records · {dataQualityReport.officialCount} source-checked profiles · {dataQualityReport.verifiedProgrammeCount} verified programme totals · {dataQualityReport.issues.length} automated data flags
-              </p>
-              <p className="mt-1 text-xs text-emerald-100/80">
-                Catalogue status: {universityCatalog.stats.verified} complete · {universityCatalog.stats.partial} partially verified · {universityCatalog.stats.pending} pending · {universityCatalog.stats.needsRefresh} due for refresh
+              <p className="mt-2 text-xs text-slate-400">
+                {dataQualityReport.universityCount} universities · {dataQualityReport.verifiedProgrammeCount} verified programme totals · data checked against linked sources
               </p>
             </div>
           </div>
@@ -11383,7 +11631,7 @@ export default function Home() {
             href="https://www.linkedin.com/in/md-iftee-raiyan-b20336386/"
             target="_blank"
             rel="noreferrer"
-            className="flex shrink-0 items-center justify-center gap-2 rounded-lg border border-white/30 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10"
+            className="flex shrink-0 items-center justify-center gap-2 rounded-lg border border-slate-600 px-4 py-2.5 text-sm font-semibold text-slate-200 transition hover:border-blue-400"
           >
             View LinkedIn <ExternalLink size={14} />
           </a>
@@ -11641,6 +11889,10 @@ export default function Home() {
                 </thead>
                 <tbody>
                   <Row label="University" values={chosen.map((u) => u.name)} />
+                  <Row
+                    label="Institution type"
+                    values={chosen.map((u) => `${u.institutionType ?? "Private"} university`)}
+                  />
                   <Row
                     label="Location"
                     values={chosen.map((u) =>
