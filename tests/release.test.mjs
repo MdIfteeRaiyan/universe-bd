@@ -20,6 +20,9 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(html, /Still awaiting readable official publications:/);
   assert.match(html, /Britannia University/);
   assert.match(pageSource, /UODA's official introduction states that the university was established in 2002/);
+  assert.match(pageSource, /Official 2026 undergraduate fee table/);
+  assert.match(pageSource, /Golden GPA 5.00: 100% tuition scholarship/);
+  assert.match(pageSource, /Feni University publishes this UGC-approved scale/);
   assert.match(pageSource, /Official source register/);
   assert.match(html, /ADMISSION READINESS/);
   assert.match(pageSource, /Print checklist/);
