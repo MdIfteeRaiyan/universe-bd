@@ -30,12 +30,17 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(pageSource, /Print checklist/);
   assert.match(html, /MY SHORTLIST/);
   assert.match(pageSource, /universe-bd-shortlist/);
+  assert.match(pageSource, /Compare the same programme and scan only the facts that matter/);
+  assert.match(pageSource, /Lowest verified/);
+  assert.match(pageSource, /Remove one saved university before adding another/);
   assert.match(html, /A student-built guide that makes university programmes/);
   assert.match(html, /PRIVATE UNIVERSITY FINDER/);
   assert.match(html, /Start here/);
   assert.match(html, /View eligibility summary/);
   assert.match(html, /Show more ·/);
   assert.match(html, /Refine by GPA or exact location/);
+  assert.match(html, /Check my GPA eligibility/);
+  assert.match(html, /no hidden GPA filter is applied/);
   assert.match(html, /Looking for public universities\? Open the separate guide/);
   assert.doesNotMatch(html, /Search institution type/);
   assert.match(pageSource, /Bangladesh University of Engineering and Technology/);

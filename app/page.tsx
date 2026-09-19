@@ -9145,6 +9145,7 @@ export default function Home() {
     [area, setArea] = useState(""),
     [budget, setBudget] = useState(800000),
     [gpa, setGpa] = useState(4),
+    [useGpa, setUseGpa] = useState(false),
     [universityLookup, setUniversityLookup] = useState(""),
     [universitySearch, setUniversitySearch] = useState(""),
     [sortBy, setSortBy] = useState<"match" | "price-asc" | "price-desc">(
@@ -9155,6 +9156,7 @@ export default function Home() {
     [detail, setDetail] = useState<University | null>(null),
     [directProfile, setDirectProfile] = useState(false),
     [compareOpen, setCompareOpen] = useState(false),
+    [compareProgram, setCompareProgram] = useState(""),
     [waiver, setWaiver] = useState(0),
     [calcId, setCalcId] = useState<number | null>(null),
     [calcProgram, setCalcProgram] = useState("");
@@ -9193,7 +9195,7 @@ export default function Home() {
     Boolean(districtFilter) ||
     Boolean(areaFilter) ||
     budget !== 800000 ||
-    gpa !== 4 ||
+    useGpa ||
     sortBy !== "match";
   const resetFilters = () => {
     setProgram("");
@@ -9202,6 +9204,7 @@ export default function Home() {
     setArea("");
     setBudget(800000);
     setGpa(4);
+    setUseGpa(false);
     setSortBy("match");
     setVisible(9);
   };
@@ -9436,7 +9439,8 @@ export default function Home() {
                 ? `${programFilter ? "Published" : "Best verified fit:"} ${subjectCost.name} minimum`
                 : `${programFilter ? "Published" : "Best verified fit:"} ${subjectCost.name} total`
             : u.costLabel,
-          gpaMet: u.minGpa === undefined ? null : gpa >= u.minGpa,
+          gpaMet:
+            !useGpa || u.minGpa === undefined ? null : gpa >= u.minGpa,
         };
       })
       .map((u) => {
@@ -9461,10 +9465,12 @@ export default function Home() {
           Number(b.status === "Official") - Number(a.status === "Official") ||
           a.name.localeCompare(b.name),
       );
-  }, [programFilter, divisionFilter, districtFilter, areaFilter, budget, gpa]);
+  }, [programFilter, divisionFilter, districtFilter, areaFilter, budget, gpa, useGpa]);
   const results = evaluatedResults.filter(
     (u) =>
-      u.totalCost !== undefined && u.totalCost <= budget && u.gpaMet === true,
+      u.totalCost !== undefined &&
+      u.totalCost <= budget &&
+      u.gpaMet !== false,
   );
   const displayResults = evaluatedResults.filter(
     (u) => u.totalCost === undefined || u.totalCost <= budget,
@@ -9531,12 +9537,14 @@ export default function Home() {
           reasons.push(`in ${u.area ?? u.district}`);
           distance += 5;
         }
-        if (u.minGpa === undefined) {
-          reasons.push("GPA rule pending");
-          distance += 12;
-        } else if (gpa < u.minGpa) {
-          reasons.push(`needs GPA ${u.minGpa.toFixed(1)}`);
-          distance += 20 + (u.minGpa - gpa) * 10;
+        if (useGpa) {
+          if (u.minGpa === undefined) {
+            reasons.push("GPA rule pending");
+            distance += 12;
+          } else if (gpa < u.minGpa) {
+            reasons.push(`needs GPA ${u.minGpa.toFixed(1)}`);
+            distance += 20 + (u.minGpa - gpa) * 10;
+          }
         }
         if (total === undefined) {
           reasons.push("complete cost pending");
@@ -9568,7 +9576,8 @@ export default function Home() {
           (!divisionFilter || u.division === divisionFilter) &&
           (!districtFilter || u.district === districtFilter) &&
           (!areaFilter || u.area === areaFilter);
-        const gpaClose = u.minGpa !== undefined && gpa >= u.minGpa - 0.5;
+        const gpaClose =
+          !useGpa || (u.minGpa !== undefined && gpa >= u.minGpa - 0.5);
         const budgetClose =
           u.totalCost !== undefined &&
           u.totalCost <= budget + Math.max(150000, budget * 0.25);
@@ -9582,7 +9591,7 @@ export default function Home() {
           a.name.localeCompare(b.name),
       )
       .slice(0, 3);
-  }, [results.length, programFilter, divisionFilter, districtFilter, areaFilter, budget, gpa]);
+  }, [results.length, programFilter, divisionFilter, districtFilter, areaFilter, budget, gpa, useGpa]);
   const confirmedWithinBudget = results.length;
   const pendingBudgetCheck = evaluatedResults.filter(
     (u) => u.totalCost === undefined,
@@ -9654,29 +9663,52 @@ export default function Home() {
     calculatorBaseTotal === undefined
       ? undefined
       : calculatorBaseTotal - ((calculatorTuition ?? 0) * waiver) / 100;
-  const chosen = compare
+  const chosenBase = compare
     .map((id) => universities.find((u) => u.id === id))
-    .filter((u): u is University => Boolean(u))
+    .filter((u): u is University => Boolean(u));
+  const comparisonProgramOptions = [
+    "General overview",
+    ...new Set([
+      ...(programFilter ? [programFilter] : []),
+      ...chosenBase.flatMap((u) => u.programs),
+    ]),
+  ].sort((a, b) =>
+    a === "General overview"
+      ? -1
+      : b === "General overview"
+        ? 1
+        : a.localeCompare(b),
+  );
+  const comparisonSubject =
+    compareProgram === "General overview"
+      ? ""
+      : (compareProgram || programFilter);
+  const chosen = chosenBase
     .map((u) => {
-      if (!programFilter) {
+      if (!comparisonSubject) {
         return evaluatedResults.find((result) => result.id === u.id) ?? u;
       }
-      const programmeCost = matchingProgramCost(u, programFilter);
+      const programmeCost = matchingProgramCost(u, comparisonSubject);
       const verifiedTotal = programmeCost?.pending
         ? undefined
         : (programmeCost?.total ??
-          (programFilter === "CSE" ? u.totalCost : undefined));
+          (comparisonSubject === "CSE" ? u.totalCost : undefined));
       return {
         ...u,
         totalCost: verifiedTotal,
         credits:
           programmeCost && programmeCost.credits > 0
             ? programmeCost.credits
-            : programFilter === "CSE"
+            : comparisonSubject === "CSE"
               ? u.credits
               : undefined,
       };
     });
+  const verifiedComparisonCosts = chosen
+    .filter((u) => u.totalCost !== undefined)
+    .sort((a, b) => (a.totalCost ?? Infinity) - (b.totalCost ?? Infinity));
+  const lowestVerifiedComparisonCost =
+    verifiedComparisonCosts.length >= 2 ? verifiedComparisonCosts[0] : null;
   const luResult = (() => {
     let result = ssc >= 3.5 && hsc >= 3.5 ? 10 : 0;
     if (ssc >= 4 && hsc >= 4) result = 15;
@@ -10512,7 +10544,7 @@ export default function Home() {
                 <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-semibold text-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
                   <span>
                     Refine by GPA or exact location
-                    {(gpa !== 4 || districtFilter || areaFilter) && (
+                    {(useGpa || districtFilter || areaFilter) && (
                       <small className="ml-2 rounded-full bg-blue-400/15 px-2 py-1 text-blue-200">
                         Active
                       </small>
@@ -10521,14 +10553,37 @@ export default function Home() {
                   <span className="text-slate-400 transition group-open:rotate-180" aria-hidden="true">⌄</span>
                 </summary>
                 <div className="grid gap-5 border-t border-slate-700 p-4 sm:grid-cols-3">
-                  <ExactGpaField
-                    label="Academic GPA"
-                    value={gpa}
-                    onChange={(value) => {
-                      setGpa(value);
-                      setVisible(9);
-                    }}
-                  />
+                  <div className="rounded-lg border border-slate-700 bg-slate-900/30 p-3">
+                    <label className="flex min-h-10 cursor-pointer items-center gap-3 text-sm font-semibold text-slate-200">
+                      <input
+                        type="checkbox"
+                        checked={useGpa}
+                        onChange={(event) => {
+                          setUseGpa(event.target.checked);
+                          setVisible(9);
+                        }}
+                        className="size-4 accent-blue-500"
+                      />
+                      Check my GPA eligibility
+                    </label>
+                    {!useGpa && (
+                      <p className="mt-1 text-xs leading-5 text-slate-400">
+                        Off by default—no hidden GPA filter is applied.
+                      </p>
+                    )}
+                    {useGpa && (
+                      <div className="mt-3 border-t border-slate-700 pt-3">
+                        <ExactGpaField
+                          label="Academic GPA"
+                          value={gpa}
+                          onChange={(value) => {
+                            setGpa(value);
+                            setVisible(9);
+                          }}
+                        />
+                      </div>
+                    )}
+                  </div>
                   <SearchSelect
                     label="District"
                     placeholder="Search district…"
@@ -10639,7 +10694,10 @@ export default function Home() {
                     View eligibility summary
                   </summary>
                   <p className="mt-1 leading-5">
-                    {gpaEligible} GPA met · {gpaNotMet} not met · {gpaPending} pending · {universities.length} private universities indexed
+                    {useGpa
+                      ? `${gpaEligible} GPA met · ${gpaNotMet} not met · ${gpaPending} pending`
+                      : "Add your GPA in Refine results to check eligibility"}
+                    {` · ${universities.length} private universities indexed`}
                   </p>
                 </details>
               </div>
@@ -10750,27 +10808,31 @@ export default function Home() {
               <div className="flex items-start justify-between">
                 <UniversityMark university={u} />
                 <div className="text-right">
-                  {u.gpaMet === false ? (
+                  {useGpa && u.gpaMet === false ? (
                     <span className="rounded-full bg-rose-400/10 px-2.5 py-1 text-xs font-semibold text-rose-300">
                       GPA NOT MET
                     </span>
-                  ) : u.gpaMet === null ? (
+                  ) : useGpa && u.gpaMet === null ? (
                     <span
                       className={`rounded-full px-2.5 py-1 text-xs font-semibold ${u.status === "Official" ? "bg-amber-400/10 text-amber-200" : "bg-slate-700 text-slate-300"}`}
                     >
                       {u.status === "Official" ? "GPA PENDING" : "DIRECTORY"}
                     </span>
-                  ) : u.score === null ? (
+                  ) : useGpa && u.score === null ? (
                     <span className="rounded-full bg-emerald-400/10 px-2.5 py-1 text-xs font-semibold text-emerald-300">
                       GPA MET
                     </span>
-                  ) : (
+                  ) : useGpa ? (
                     <>
                       <span className="text-xs font-semibold text-slate-400">
                         MATCH
                       </span>
                       <b className="block text-2xl text-blue-400">{u.score}%</b>
                     </>
+                  ) : (
+                    <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${u.totalCost !== undefined ? "bg-emerald-400/10 text-emerald-300" : "bg-amber-400/10 text-amber-200"}`}>
+                      {u.totalCost !== undefined ? "COST CHECKED" : "COST PENDING"}
+                    </span>
                   )}
                 </div>
               </div>
@@ -10780,13 +10842,13 @@ export default function Home() {
               <span className="mb-3 w-fit rounded-full bg-slate-700/70 px-2.5 py-1 text-xs font-semibold text-slate-300">
                 {u.institutionType ?? "Private"} university
               </span>
-              {u.gpaMet === false && (
+              {useGpa && u.gpaMet === false && (
                 <div className="mb-3 rounded-lg border border-rose-400/25 bg-rose-400/5 px-3 py-2 text-sm text-rose-200">
                   Your GPA {gpa.toFixed(1)} does not meet the verified minimum
                   of {u.minGpa?.toFixed(1)}.
                 </div>
               )}
-              {u.gpaMet === true && (
+              {useGpa && u.gpaMet === true && (
                 <div className="mb-3 text-xs font-semibold text-emerald-300">
                   GPA requirement met · minimum {u.minGpa?.toFixed(1)}
                 </div>
@@ -10874,7 +10936,9 @@ export default function Home() {
                   onClick={() => toggle(u.id)}
                   aria-label={`${compare.includes(u.id) ? "Remove" : "Add"} ${u.name} ${compare.includes(u.id) ? "from" : "to"} comparison`}
                   aria-pressed={compare.includes(u.id)}
-                  className={`grid size-11 place-items-center rounded-lg border transition ${compare.includes(u.id) ? "border-blue-400 bg-blue-400/15 text-blue-200" : "border-slate-600 text-slate-300 hover:border-blue-400 hover:text-blue-200"}`}
+                  disabled={compare.length >= 3 && !compare.includes(u.id)}
+                  title={compare.length >= 3 && !compare.includes(u.id) ? "Remove one saved university before adding another" : undefined}
+                  className={`grid size-11 place-items-center rounded-lg border transition disabled:cursor-not-allowed disabled:opacity-35 ${compare.includes(u.id) ? "border-blue-400 bg-blue-400/15 text-blue-200" : "border-slate-600 text-slate-300 hover:border-blue-400 hover:text-blue-200"}`}
                 >
                   {compare.includes(u.id) ? (
                     <Check size={17} />
@@ -11817,11 +11881,11 @@ export default function Home() {
               </DialogHeader>
               {detail.status === "Official" && (
                 <div
-                  className={`mt-3 rounded-lg border px-4 py-3 text-sm ${detail.minGpa === undefined ? "border-amber-400/25 bg-amber-400/5 text-amber-100" : directProfile ? "border-blue-400/25 bg-blue-400/5 text-blue-100" : gpa >= detail.minGpa ? "border-emerald-400/25 bg-emerald-400/5 text-emerald-100" : "border-rose-400/25 bg-rose-400/5 text-rose-100"}`}
+                  className={`mt-3 rounded-lg border px-4 py-3 text-sm ${detail.minGpa === undefined ? "border-amber-400/25 bg-amber-400/5 text-amber-100" : directProfile || !useGpa ? "border-blue-400/25 bg-blue-400/5 text-blue-100" : gpa >= detail.minGpa ? "border-emerald-400/25 bg-emerald-400/5 text-emerald-100" : "border-rose-400/25 bg-rose-400/5 text-rose-100"}`}
                 >
                   {detail.minGpa === undefined ? (
                     <b>Minimum GPA verification is still pending.</b>
-                  ) : directProfile ? (
+                  ) : directProfile || !useGpa ? (
                     <b>
                       Verified general minimum GPA: {detail.minGpa.toFixed(1)}
                     </b>
@@ -12016,38 +12080,124 @@ export default function Home() {
         </DialogContent>
       </Dialog>
       <Dialog open={compareOpen} onOpenChange={setCompareOpen}>
-        <DialogContent className="max-h-[90vh] overflow-y-auto border-slate-700 bg-[#172337] text-slate-100 sm:max-w-4xl">
+        <DialogContent className="max-h-[92vh] overflow-y-auto border-slate-700 bg-[#172337] text-slate-100 sm:max-w-5xl">
           <DialogHeader>
             <DialogTitle className="text-2xl text-white">
               Compare your shortlist
             </DialogTitle>
             <DialogDescription className="text-slate-400">
-              Select up to three universities from the results.
+              Compare the same programme and scan only the facts that matter.
             </DialogDescription>
           </DialogHeader>
           {chosen.length < 2 ? (
-            <div className="my-5 rounded-xl border border-dashed border-slate-600 p-8 text-center text-slate-400">
-              Add at least two universities to compare them.
+            <div className="my-5 rounded-xl border border-dashed border-slate-600 p-7 text-center">
+              <GitCompareArrows className="mx-auto text-slate-500" aria-hidden="true" />
+              <h3 className="mt-3 font-bold text-slate-200">Add one more university</h3>
+              <p className="mt-2 text-sm text-slate-400">
+                Choose two or three universities for a useful side-by-side comparison.
+              </p>
+              <a
+                href="#universities"
+                onClick={() => setCompareOpen(false)}
+                className="mt-5 inline-flex min-h-11 items-center justify-center rounded-lg bg-[#173b68] px-4 py-2 text-sm font-semibold text-white"
+              >
+                Browse universities
+              </a>
             </div>
           ) : (
-            <div className="mt-4 overflow-x-auto">
-              <table className="w-full min-w-[650px] text-sm">
+            <div className="mt-4">
+              <div className="grid gap-4 rounded-xl border border-slate-700 bg-[#111b2a]/70 p-4 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
+                <SearchSelect
+                  label="Compare programme"
+                  value={compareProgram || programFilter || "General overview"}
+                  options={comparisonProgramOptions}
+                  onChange={setCompareProgram}
+                />
+                <p className="text-xs leading-5 text-slate-400 md:max-w-64 md:pb-2">
+                  Costs stay pending when the same programme does not have a verified published total.
+                </p>
+              </div>
+
+              {lowestVerifiedComparisonCost && (
+                <div className="mt-4 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-emerald-500/25 bg-emerald-400/5 px-4 py-3 text-sm">
+                  <span className="text-slate-300">Lowest verified {comparisonSubject || "reference"} total</span>
+                  <b className="text-emerald-300">
+                    {lowestVerifiedComparisonCost.short} · {money(lowestVerifiedComparisonCost.totalCost!)}
+                  </b>
+                </div>
+              )}
+
+              <div className="mt-4 grid gap-4 md:hidden">
+                {chosen.map((u) => {
+                  const programmeAvailable =
+                    !comparisonSubject ||
+                    u.programs.some((name) =>
+                      programMatches(name, comparisonSubject),
+                    );
+                  return (
+                    <article key={u.id} className="surface-card rounded-2xl p-4">
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="flex min-w-0 items-start gap-3">
+                          <UniversityMark university={u} />
+                          <div className="min-w-0">
+                            <h3 className="font-bold leading-5 text-white">{u.name}</h3>
+                            <p className="mt-1 text-xs text-slate-400">{u.area ?? u.district}, {u.division}</p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => toggle(u.id)}
+                          className="shrink-0 rounded-md px-2 py-1 text-xs font-semibold text-rose-200 hover:bg-rose-400/10"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                      <div className="mt-4 grid grid-cols-2 gap-2">
+                        <Info label="Programme" value={comparisonSubject ? (programmeAvailable ? "Available" : "Not listed") : `${u.programs.length} listed`} />
+                        <Info label="Verified cost" value={u.totalCost === undefined ? "Pending" : money(u.totalCost)} />
+                        <Info label="Minimum GPA" value={u.minGpa === undefined ? "Pending" : u.minGpa.toFixed(1)} />
+                        <Info label="Scholarships" value={u.scholarships?.length ? `${u.scholarships.length} rules` : "Pending"} />
+                      </div>
+                      <div className="mt-4 flex items-center justify-between gap-3 border-t border-slate-700 pt-3">
+                        <span className={`text-xs font-semibold ${u.status === "Official" ? "text-emerald-300" : "text-amber-200"}`}>
+                          {u.status === "Official" ? `Checked ${u.verifiedAt}` : "Verification pending"}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setCompareOpen(false);
+                            setDirectProfile(true);
+                            setDetail(u);
+                          }}
+                          className="text-sm font-semibold text-blue-300 hover:text-blue-200"
+                        >
+                          View profile
+                        </button>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+
+              <div className="mt-4 hidden overflow-x-auto rounded-xl border border-slate-700 md:block">
+              <table className="w-full min-w-[720px] text-sm">
                 <thead>
-                  <tr>
-                    <th className="compare-cell text-left">Factor</th>
+                  <tr className="bg-[#111b2a]">
+                    <th className="compare-cell sticky left-0 z-10 bg-[#111b2a] text-left">Factor</th>
                     {chosen.map((u) => (
                       <th key={u.id} className="compare-cell text-left">
-                        {u.short}
+                        <div className="flex items-center justify-between gap-2">
+                          <span>{u.short}</span>
+                          <button type="button" onClick={() => toggle(u.id)} className="rounded px-2 py-1 text-xs font-semibold text-rose-200 hover:bg-rose-400/10">
+                            Remove
+                          </button>
+                        </div>
                       </th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
                   <Row label="University" values={chosen.map((u) => u.name)} />
-                  <Row
-                    label="Institution type"
-                    values={chosen.map((u) => `${u.institutionType ?? "Private"} university`)}
-                  />
                   <Row
                     label="Location"
                     values={chosen.map((u) =>
@@ -12072,12 +12222,12 @@ export default function Home() {
                         : "Catalogue pending",
                     )}
                   />
-                  {programFilter && (
+                  {comparisonSubject && (
                     <Row
-                      label={`${activeSubject} availability`}
+                      label={`${comparisonSubject} availability`}
                       values={chosen.map((u) =>
                         u.programs.some((name) =>
-                          programMatches(name, programFilter),
+                          programMatches(name, comparisonSubject),
                         )
                           ? "Listed by university"
                           : "Not listed",
@@ -12086,8 +12236,8 @@ export default function Home() {
                   )}
                   <Row
                     label={
-                      programFilter
-                        ? `${activeSubject} total cost`
+                      comparisonSubject
+                        ? `${comparisonSubject} total cost`
                         : "Published reference total"
                     }
                     values={chosen.map((u) =>
@@ -12097,7 +12247,7 @@ export default function Home() {
                     )}
                   />
                   <Row
-                    label={programFilter ? `${activeSubject} credits` : "Reference credits"}
+                    label={comparisonSubject ? `${comparisonSubject} credits` : "Reference credits"}
                     values={chosen.map((u) =>
                       u.credits === undefined
                         ? "Not yet verified"
@@ -12121,9 +12271,11 @@ export default function Home() {
                     )}
                   />
                   <Row
-                    label={`Your GPA (${gpa.toFixed(1)})`}
+                    label={useGpa ? `Your GPA (${gpa.toFixed(1)})` : "Your GPA"}
                     values={chosen.map((u) =>
-                      u.minGpa === undefined
+                      !useGpa
+                        ? "Not entered"
+                        : u.minGpa === undefined
                         ? "Requirement pending"
                         : gpa >= u.minGpa
                           ? "Requirement met"
@@ -12132,6 +12284,10 @@ export default function Home() {
                   />
                 </tbody>
               </table>
+              </div>
+              <p className="mt-4 text-xs leading-5 text-slate-500">
+                A lower cost or larger programme count does not automatically mean a better fit. Confirm the active intake with the linked official source before applying.
+              </p>
             </div>
           )}
         </DialogContent>
@@ -12273,8 +12429,8 @@ function Info({ label, value }: { label: string; value: string }) {
 }
 function Row({ label, values }: { label: string; values: string[] }) {
   return (
-    <tr>
-      <th className="compare-cell text-left">{label}</th>
+    <tr className="comparison-row">
+      <th className="compare-cell sticky left-0 z-[1] bg-[#152136] text-left">{label}</th>
       {values.map((v, i) => (
         <td className="compare-cell" key={i}>
           {v}
