@@ -2181,6 +2181,63 @@ Object.assign(
   },
 );
 Object.assign(
+  universities.find((u) => u.short === "TUB")!,
+  {
+    area: "Ruiya, Nabogram Road",
+    address: "Ruiya, Nabogram Road, Barishal 8200, Bangladesh",
+    minGpa: 2.5,
+    programs: [
+      "EEE",
+      "CSE",
+      "BBA",
+      "Economics & Banking",
+      "English",
+      "Biochemistry",
+    ],
+    programCatalogComplete: true,
+    programCosts: [
+      { name: "EEE", credits: 160.5, tuitionPerCredit: 2200, total: 419100 },
+      { name: "CSE", credits: 150, tuitionPerCredit: 2750, total: 478500 },
+      { name: "BBA", credits: 132, tuitionPerCredit: 2000, total: 322000 },
+      { name: "Economics & Banking", credits: 130, tuitionPerCredit: 2000, total: 318000 },
+      { name: "English", credits: 132, tuitionPerCredit: 2000, total: 322000 },
+      { name: "Biochemistry", credits: 148, tuitionPerCredit: 3500, total: 592000 },
+    ],
+    credits: 150,
+    totalCost: 478500,
+    publishedMinimumCost: 318000,
+    costLabel: "University-published Summer 2026 CSE total",
+    feeBreakdown: [
+      "CSE: Tk 4,78,500 before waiver — Tk 15,000 admission, Tk 4,12,500 tuition, Tk 48,000 exam/lab and Tk 3,000 certificate/marksheet",
+      "Published programme totals range from Tk 3,18,000 for Economics & Banking to Tk 5,92,000 for Biochemistry",
+      "Waiver columns on the official table publish reduced programme totals; UniVerse BD keeps the undiscounted total as the baseline",
+      "The CSE academic page states 140 curriculum credits while the Summer 2026 fee table states 150; the cost record follows the fee table and displays this conflict",
+    ],
+    scholarships: [
+      "SSC/HSC combined GPA below 8.00: published 50% tuition-waiver column",
+      "SSC/HSC combined GPA above 8.00: published 60% tuition-waiver column",
+      "SSC/HSC combined GPA above 9.00: published 70% tuition-waiver column",
+      "GPA 5.00 in both SSC and HSC: published 75% tuition-waiver column",
+      "Golden GPA 5.00 in both SSC and HSC: published 100% tuition-waiver column",
+      "The official page also states that female students and siblings receive special financial concessions",
+    ],
+    status: "Official",
+    facts: [
+      "The Summer 2026 official fee table lists six undergraduate programmes with credits, charge components and complete programme totals",
+      "CSE admission requires Science with Mathematics, normally GPA 2.50 separately in SSC and HSC and combined GPA 6.00",
+      "The current CSE academic page describes a four-year, eight-semester OBE curriculum",
+      "The fee-table and academic-page CSE credit counts conflict; students should confirm the applicable curriculum with admissions before payment",
+      "Campus: Ruiya, Nabogram Road, Barishal 8200",
+    ],
+    sources: [
+      { label: "Official Summer 2026 tuition and waiver table", url: "https://trustuniversity.edu.bd/tuition-fees" },
+      { label: "Official CSE curriculum and admission requirements", url: "https://trustuniversity.edu.bd/academics/cse" },
+      { label: "Official university website", url: "https://trustuniversity.edu.bd/" },
+    ],
+    verifiedAt: "19 September 2026",
+  },
+);
+Object.assign(
   universities.find((u) => u.short === "BUHS")!,
   {
     area: "Mirpur",
@@ -9065,7 +9122,6 @@ export default function Home() {
     [annualFeeIncrease, setAnnualFeeIncrease] = useState(5),
     [contingency, setContingency] = useState(8),
     [planningScholarship, setPlanningScholarship] = useState(0);
-  const [verificationUniversity, setVerificationUniversity] = useState("");
   const [readinessUniversity, setReadinessUniversity] = useState("");
   const [readinessProgram, setReadinessProgram] = useState("");
   const [readinessSsc, setReadinessSsc] = useState(4);
@@ -9160,12 +9216,6 @@ export default function Home() {
           },
         })
       : undefined;
-  const verificationProfile = universityCatalog.records.find(
-    (university) => universityOptionLabel(university) === verificationUniversity,
-  );
-  const pendingVerificationProfiles = universityCatalog.records.filter(
-    (university) => university.verificationState === "pending",
-  );
   const readinessProfile = universityCatalog.records.find(
     (university) => universityOptionLabel(university) === readinessUniversity,
   );
@@ -10305,11 +10355,8 @@ export default function Home() {
           <nav className="hidden gap-5 text-sm font-semibold text-slate-300 xl:flex">
             <a href="#universities">Universities</a>
             <a href="#shortlist">My shortlist</a>
-            <a href="#calculator">Cost calculator</a>
-            <a href="#living-cost">Living cost</a>
-            <a href="#scholarship">Funding opportunities</a>
-            <a href="#grades">Grade charts</a>
-            <a href="#verification">Data verification</a>
+            <a href="#living-cost">Cost plan</a>
+            <a href="#scholarship">Funding</a>
             <a href="#readiness">Admission readiness</a>
             <a href="#about">About</a>
           </nav>
@@ -10484,21 +10531,37 @@ export default function Home() {
 
       <nav aria-label="Page sections" className="border-b border-slate-700 bg-[#0d1522] xl:hidden">
         <div className="mx-auto max-w-7xl px-5 py-4 lg:px-8">
-          <p className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-400">Jump to what you need</p>
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+          <p className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-400">Start here</p>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
             {[
-              ["Results", "#universities"],
-              ["My shortlist", "#shortlist"],
-              ["Total budget", "#living-cost"],
-              ["Funding", "#scholarship"],
-              ["Admission check", "#readiness"],
-              ["Data sources", "#verification"],
+              ["1. Find", "#universities"],
+              ["2. Shortlist", "#shortlist"],
+              ["3. Plan costs", "#living-cost"],
+              ["4. Check admission", "#readiness"],
             ].map(([label, href]) => (
               <a key={href} href={href} className="flex min-h-11 items-center justify-center rounded-lg border border-slate-700 bg-[#172337] px-3 py-2 text-center text-sm font-semibold text-slate-200 hover:border-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
                 {label}
               </a>
             ))}
           </div>
+          <details className="group mt-2 rounded-lg border border-slate-800 bg-[#111b2a]/60">
+            <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between px-3 py-2 text-sm font-semibold text-slate-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
+              More tools
+              <span className="text-slate-500 transition group-open:rotate-180" aria-hidden="true">⌄</span>
+            </summary>
+            <div className="grid grid-cols-2 gap-2 border-t border-slate-800 p-2 sm:grid-cols-4">
+              {[
+                ["Funding", "#scholarship"],
+                ["Grade charts", "#grades"],
+                ["Data policy", "#about"],
+                ["About", "#about"],
+              ].map(([label, href]) => (
+                <a key={href} href={href} className="flex min-h-11 items-center justify-center rounded-md px-3 py-2 text-center text-sm font-semibold text-slate-300 hover:bg-slate-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
+                  {label}
+                </a>
+              ))}
+            </div>
+          </details>
         </div>
       </nav>
 
@@ -10519,32 +10582,22 @@ export default function Home() {
                 {money(budget)}
               </h2>
               <div
-                className="mt-3 flex flex-wrap gap-2 text-sm"
+                className="mt-3 text-sm"
                 aria-live="polite"
                 aria-atomic="true"
               >
-                <span className="rounded-full bg-emerald-400/10 px-3 py-1 text-emerald-300">
-                  {confirmedWithinBudget} verified cost
-                </span>
-                <span className="rounded-full bg-slate-700/60 px-3 py-1 text-slate-300">
-                  {pendingBudgetCheck} cost pending
-                </span>
-                <span className="rounded-full bg-blue-400/10 px-3 py-1 text-blue-300">
-                  {gpaEligible} GPA met
-                </span>
-                {gpaNotMet > 0 && (
-                  <span className="rounded-full bg-rose-400/10 px-3 py-1 text-rose-300">
-                    {gpaNotMet} GPA not met
-                  </span>
-                )}
-                {gpaPending > 0 && (
-                  <span className="rounded-full bg-amber-400/10 px-3 py-1 text-amber-200">
-                    {gpaPending} GPA pending
-                  </span>
-                )}
-                <span className="px-1 py-1 text-slate-500">
-                  {universities.length} universities indexed
-                </span>
+                <p className="text-slate-300">
+                  <b className="text-emerald-300">{confirmedWithinBudget} verified options</b>
+                  {pendingBudgetCheck > 0 && <> · {pendingBudgetCheck} costs still being checked</>}
+                </p>
+                <details className="mt-2 w-fit text-xs text-slate-400">
+                  <summary className="min-h-8 cursor-pointer py-1 font-semibold text-blue-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
+                    View eligibility summary
+                  </summary>
+                  <p className="mt-1 leading-5">
+                    {gpaEligible} GPA met · {gpaNotMet} not met · {gpaPending} pending · {universities.length} private universities indexed
+                  </p>
+                </details>
               </div>
             </div>
             <label className="ml-auto flex items-center gap-2 text-sm font-semibold text-slate-300">
@@ -10648,7 +10701,7 @@ export default function Home() {
           {sortedResults.slice(0, visible).map((u) => (
             <article
               key={u.id}
-              className="flex h-full flex-col rounded-xl border border-slate-700 bg-[#172337] p-5 shadow-sm transition hover:border-blue-500/70"
+              className="flex h-full flex-col rounded-xl border border-slate-700 bg-[#172337] p-4 shadow-sm transition hover:border-blue-500/70 sm:p-5"
             >
               <div className="flex items-start justify-between">
                 <UniversityMark university={u} />
@@ -10677,7 +10730,7 @@ export default function Home() {
                   )}
                 </div>
               </div>
-              <h3 className="mt-4 min-h-12 text-lg font-bold leading-6">
+              <h3 className="mt-4 text-lg font-bold leading-6 sm:min-h-12">
                 {u.name}
               </h3>
               <span className="mb-3 w-fit rounded-full bg-slate-700/70 px-2.5 py-1 text-xs font-semibold text-slate-300">
@@ -10694,25 +10747,22 @@ export default function Home() {
                   GPA requirement met · minimum {u.minGpa?.toFixed(1)}
                 </div>
               )}
-              <div className="mt-2 flex min-h-14 items-start gap-1.5 text-sm text-slate-400">
+              <div className="mt-2 flex items-start gap-1.5 text-sm text-slate-400 sm:min-h-8">
                 <MapPin size={14} className="mt-0.5 shrink-0" />
                 <span>
-                  <b className="block font-medium text-slate-300">
+                  <b className="font-medium text-slate-300">
                     {u.area ? `${u.area}, ${u.district}` : u.district}
                   </b>
-                  {u.address && (
-                    <small className="mt-1 block leading-4 text-slate-500">
-                      {u.address}
-                    </small>
-                  )}
+                  <span className="text-slate-500"> · {u.division} Division</span>
                 </span>
               </div>
               <div className="mt-4 flex min-h-7 flex-wrap gap-2">
                 {u.programs.length ? (
-                  [
+                  <>
+                  {[
                     ...(u.matchedProgram ? [u.matchedProgram] : []),
                     ...u.programs.filter((p) => p !== u.matchedProgram),
-                  ].slice(0, 4).map((p) => (
+                  ].slice(0, 2).map((p) => (
                     <span
                       key={p}
                       className={`rounded-md px-2 py-1 text-xs font-semibold ${p === u.matchedProgram ? "bg-blue-400/15 text-blue-200 ring-1 ring-blue-400/30" : "bg-slate-700/70 text-slate-300"}`}
@@ -10721,7 +10771,13 @@ export default function Home() {
                         ? `${p} · budget fit`
                         : p}
                     </span>
-                  ))
+                  ))}
+                  {u.programs.length > 2 && (
+                    <span className="rounded-md bg-slate-800 px-2 py-1 text-xs font-semibold text-slate-400">
+                      +{u.programs.length - 2} more
+                    </span>
+                  )}
+                  </>
                 ) : (
                   <span className="text-xs text-slate-500">
                     Program verification queued
@@ -10760,6 +10816,7 @@ export default function Home() {
               </div>
               <div className="mt-5 flex gap-2">
                 <button
+                  type="button"
                   onClick={() => {
                     setDirectProfile(false);
                     setDetail(u);
@@ -10788,10 +10845,11 @@ export default function Home() {
         {visible < sortedResults.length && (
           <div className="mt-8 text-center">
             <button
+              type="button"
               onClick={() => setVisible((v) => v + 9)}
-              className="rounded-lg border border-slate-600 bg-[#172337] px-5 py-2.5 text-sm font-semibold text-slate-200 hover:border-blue-400"
+              className="min-h-11 rounded-lg border border-slate-600 bg-[#172337] px-5 py-2.5 text-sm font-semibold text-slate-200 hover:border-blue-400"
             >
-              Show more universities
+              Show more · {sortedResults.length - visible} remaining
             </button>
           </div>
         )}
@@ -11560,102 +11618,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="verification" className="border-y border-slate-700 bg-[#121c2b]">
-        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 lg:grid-cols-[.72fr_1.28fr] lg:px-8">
-          <div>
-            <p className="text-sm font-bold text-blue-400">DATA VERIFICATION CENTRE</p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight">See what is verified before you decide.</h2>
-            <p className="mt-4 leading-7 text-slate-300">
-              Every profile separates published facts from pending information. Check source coverage, programme-cost completeness and the last review date before relying on a result.
-            </p>
-            <div className="mt-5 grid grid-cols-2 gap-3 text-sm">
-              <Info label="Directory profiles" value={String(universityCatalog.stats.total)} />
-              <Info label="Verified programme totals" value={String(dataQualityReport.verifiedProgrammeCount)} />
-              <Info label="Fully verified profiles" value={String(universityCatalog.stats.verified)} />
-              <Info label="Automated data flags" value={String(dataQualityReport.issues.length)} />
-            </div>
-            <div className="mt-5 rounded-xl border border-slate-600 bg-[#172337] p-4 text-sm leading-6">
-              <div className="flex items-center justify-between gap-3">
-                <span className="font-bold text-slate-100">Private verification progress</span>
-                <span className="rounded-full bg-emerald-400/10 px-2.5 py-1 font-semibold text-emerald-300">
-                  {universityCatalog.stats.total - universityCatalog.stats.pending}/{universityCatalog.stats.total} source-checked
-                </span>
-              </div>
-              <p className="mt-2 text-slate-300">
-                {universityCatalog.stats.verified} complete · {universityCatalog.stats.partial} partial · {universityCatalog.stats.pending} directory-only
-              </p>
-              {pendingVerificationProfiles.length > 0 && (
-                <details className="mt-2 border-t border-slate-600 pt-2 text-amber-200">
-                  <summary className="min-h-11 cursor-pointer py-2 font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
-                    View {pendingVerificationProfiles.length} directory-only profiles
-                  </summary>
-                  <p className="pb-1 text-slate-300">
-                    Still awaiting readable official publications: {pendingVerificationProfiles.map((university) => university.name).join(", ")}.
-                  </p>
-                </details>
-              )}
-            </div>
-          </div>
-          <div className="rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
-            <SearchSelect
-              label="Check a university profile"
-              placeholder="Search university…"
-              value={verificationUniversity}
-              options={directoryUniversityOptions}
-              onChange={setVerificationUniversity}
-            />
-            {verificationProfile ? (
-              <div className="mt-6" aria-live="polite">
-                <div className="flex flex-wrap items-start justify-between gap-4">
-                  <div>
-                    <h3 className="text-xl font-bold">{verificationProfile.name}</h3>
-                    <p className="mt-1 text-sm text-slate-400">
-                      Last checked: {verificationProfile.verifiedAt ?? "not yet verified"}
-                    </p>
-                  </div>
-                  <span className={`rounded-full px-3 py-1 text-sm font-semibold ${verificationProfile.verificationState === "verified" ? "bg-emerald-400/10 text-emerald-300" : verificationProfile.verificationState === "needs-refresh" ? "bg-rose-400/10 text-rose-200" : "bg-amber-400/10 text-amber-200"}`}>
-                    {verificationProfile.verificationState === "verified" ? "Verified" : verificationProfile.verificationState === "partially-verified" ? "Partially verified" : verificationProfile.verificationState === "needs-refresh" ? "Refresh required" : "Verification pending"}
-                  </span>
-                </div>
-                <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                  <Info label="Profile completeness" value={`${verificationProfile.profileCompleteness}%`} />
-                  <Info label="Verified costs" value={String(verificationProfile.verifiedProgrammeCount)} />
-                  <Info label="Pending costs" value={String(verificationProfile.pendingProgrammeCount)} />
-                </div>
-                <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                  {Object.entries(verificationProfile.sourceCoverage).map(([category, available]) => (
-                    <div key={category} className={`flex items-center gap-2 rounded-lg border px-3 py-3 text-sm ${available ? "border-emerald-500/20 bg-emerald-400/5 text-emerald-100" : "border-amber-400/20 bg-amber-300/5 text-amber-100"}`}>
-                      {available ? <Check size={16} aria-hidden="true" /> : <span aria-hidden="true">—</span>}
-                      <span className="capitalize">{category} source {available ? "available" : "pending"}</span>
-                    </div>
-                  ))}
-                </div>
-                {verificationProfile.sources?.length ? (
-                  <div className="mt-5 border-t border-slate-700 pt-4">
-                    <p className="text-sm font-bold text-slate-200">Official source register</p>
-                    <div className="mt-3 grid gap-2">
-                      {verificationProfile.sources.map((source) => (
-                        <a key={source.url} href={source.url} target="_blank" rel="noreferrer" className="flex items-center justify-between gap-3 rounded-lg bg-[#111b2a] px-4 py-3 text-sm font-semibold text-blue-300 hover:text-blue-200">
-                          <span>{source.label}</span><ExternalLink size={14} className="shrink-0" aria-hidden="true" />
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                ) : (
-                  <p className="mt-5 rounded-lg border border-amber-400/20 bg-amber-300/5 p-4 text-sm text-amber-100">Official sources are still being collected. No fee estimate is produced from directory-only data.</p>
-                )}
-              </div>
-            ) : (
-              <div className="mt-6 rounded-xl border border-dashed border-slate-600 bg-[#111b2a] p-7 text-center">
-                <ShieldCheck className="mx-auto text-slate-500" aria-hidden="true" />
-                <h3 className="mt-3 font-bold text-slate-200">Select a university to inspect its evidence</h3>
-                <p className="mt-2 text-sm text-slate-400">Nothing is selected by default.</p>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
       <section id="readiness" className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr]">
           <div>
@@ -11744,33 +11706,46 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="mx-auto max-w-7xl px-5 py-8 lg:px-8">
-        <div className="flex flex-col gap-4 rounded-xl border border-slate-700 bg-[#172337] p-5 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-start gap-4">
-            <div className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-cyan-200 sm:flex">
-              <BriefcaseBusiness size={20} />
+      <section id="about" className="border-t border-slate-700 bg-[#121c2b]">
+        <div className="mx-auto max-w-7xl px-5 py-10 lg:px-8">
+          <div className="grid gap-6 rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
+            <div className="flex items-start gap-4">
+              <div className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-cyan-200 sm:flex">
+                <BriefcaseBusiness size={20} aria-hidden="true" />
+              </div>
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[.14em] text-blue-300">About UniVerse BD</p>
+                <h2 className="mt-1 text-xl font-bold">Built by Md Iftee Raiyan</h2>
+                <p className="mt-2 max-w-xl text-sm leading-6 text-slate-300">
+                  A student-built guide that makes university programmes, costs and admission information easier to compare.
+                </p>
+                <a
+                  href="https://www.linkedin.com/in/md-iftee-raiyan-b20336386/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-4 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-600 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-blue-400"
+                >
+                  View LinkedIn <ExternalLink size={14} aria-hidden="true" />
+                </a>
+              </div>
             </div>
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[.14em] text-blue-300">
-                About UniVerse BD
-              </p>
-              <h2 className="mt-1 text-xl font-bold">Md Iftee Raiyan</h2>
-              <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-300">
-                A student-built guide for comparing university programmes, costs and official admission information in Bangladesh.
-              </p>
-              <p className="mt-2 text-xs text-slate-400">
-                {dataQualityReport.universityCount} universities · {dataQualityReport.verifiedProgrammeCount} verified programme totals · data checked against linked sources
-              </p>
+            <div className="rounded-xl border border-emerald-500/20 bg-emerald-400/5 p-4 sm:p-5">
+              <div className="flex items-start gap-3">
+                <ShieldCheck className="mt-0.5 shrink-0 text-emerald-300" size={20} aria-hidden="true" />
+                <div>
+                  <h3 className="font-bold text-emerald-100">Simple, source-checked information</h3>
+                  <p className="mt-1 text-sm leading-6 text-slate-300">
+                    Published facts link to official sources and show when they were checked. Missing fees or rules stay marked as pending—never guessed.
+                  </p>
+                </div>
+              </div>
+              <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold">
+                <span className="rounded-full bg-slate-900/50 px-3 py-1.5 text-slate-200">{dataQualityReport.universityCount} universities</span>
+                <span className="rounded-full bg-slate-900/50 px-3 py-1.5 text-slate-200">{dataQualityReport.verifiedProgrammeCount} verified programme totals</span>
+                <span className="rounded-full bg-slate-900/50 px-3 py-1.5 text-slate-200">{universityCatalog.stats.total - universityCatalog.stats.pending}/{universityCatalog.stats.total} profiles source-checked</span>
+              </div>
             </div>
           </div>
-          <a
-            href="https://www.linkedin.com/in/md-iftee-raiyan-b20336386/"
-            target="_blank"
-            rel="noreferrer"
-            className="flex shrink-0 items-center justify-center gap-2 rounded-lg border border-slate-600 px-4 py-2.5 text-sm font-semibold text-slate-200 transition hover:border-blue-400"
-          >
-            View LinkedIn <ExternalLink size={14} />
-          </a>
         </div>
       </section>
       <footer className="border-t border-slate-700 bg-[#0d1522]">
