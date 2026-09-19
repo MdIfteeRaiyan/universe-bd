@@ -23,6 +23,8 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(pageSource, /Golden GPA 5.00: 100% tuition scholarship/);
   assert.match(pageSource, /University-published Summer 2026 CSE total/);
   assert.match(pageSource, /fee-table and academic-page CSE credit counts conflict/);
+  assert.match(pageSource, /official bachelor catalogue lists eight current undergraduate programmes/);
+  assert.match(pageSource, /Readable official pages confirm undergraduate degree routes in business, English, law and agriculture/);
   assert.match(pageSource, /Feni University publishes this UGC-approved scale/);
   assert.match(html, /ADMISSION READINESS/);
   assert.match(pageSource, /Print checklist/);
@@ -33,8 +35,9 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(html, /Start here/);
   assert.match(html, /View eligibility summary/);
   assert.match(html, /Show more ·/);
-  assert.match(html, /More location filters/);
-  assert.match(html, /Institution type/);
+  assert.match(html, /Refine by GPA or exact location/);
+  assert.match(html, /Looking for public universities\? Open the separate guide/);
+  assert.doesNotMatch(html, /Search institution type/);
   assert.match(pageSource, /Bangladesh University of Engineering and Technology/);
 });
 

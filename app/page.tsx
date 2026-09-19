@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
 import {
   ArrowRight,
   BookmarkCheck,
@@ -2233,6 +2232,66 @@ Object.assign(
       { label: "Official Summer 2026 tuition and waiver table", url: "https://trustuniversity.edu.bd/tuition-fees" },
       { label: "Official CSE curriculum and admission requirements", url: "https://trustuniversity.edu.bd/academics/cse" },
       { label: "Official university website", url: "https://trustuniversity.edu.bd/" },
+    ],
+    verifiedAt: "19 September 2026",
+  },
+);
+Object.assign(
+  universities.find((u) => u.short === "FCUB")!,
+  {
+    area: "Alamdanga Road",
+    address: "University Building, Alamdanga Road, Chuadanga 7200, Bangladesh",
+    programs: [
+      "BBA",
+      "English",
+      "Sociology",
+      "Public Health",
+      "CSE",
+      "EEE",
+      "Agriculture",
+      "Law",
+    ],
+    programCatalogComplete: true,
+    scholarships: [
+      "The official university website states that tuition-fee waivers are available; current percentage bands and conditions remain pending verification",
+    ],
+    status: "Official",
+    facts: [
+      "The official bachelor catalogue lists eight current undergraduate programmes across five faculties",
+      "Current official pages describe cost-effective tuition, instalment options and tuition-fee waivers but do not publish dependable programme totals or waiver bands",
+      "No fee amount is inferred from promotional wording; every programme cost remains pending until an official current fee table is available",
+      "Campus: University Building, Alamdanga Road, Chuadanga 7200",
+    ],
+    sources: [
+      { label: "Official bachelor programme catalogue", url: "https://fcub.edu.bd/bachelor-programs/" },
+      { label: "Official university website", url: "https://fcub.edu.bd/" },
+      { label: "Official university introduction", url: "https://fcub.edu.bd/about/" },
+      { label: "Official campus contact", url: "https://fcub.edu.bd/contact/" },
+    ],
+    verifiedAt: "19 September 2026",
+  },
+);
+Object.assign(
+  universities.find((u) => u.short === "IIUB")!,
+  {
+    area: "Sholakia",
+    address: "461 Sholakia Road, Nilganj Road, Kishoreganj 2300, Bangladesh",
+    programs: ["BBA", "English", "Law", "Agriculture"],
+    programCatalogComplete: false,
+    scholarships: [
+      "The official university introduction lists merit, freedom-fighter-family, sibling, spouse and special-group waiver categories; current amounts and conditions remain pending verification",
+    ],
+    status: "Official",
+    facts: [
+      "Readable official pages confirm undergraduate degree routes in business, English, law and agriculture",
+      "The official site describes Spring, Summer and Fall academic terms and multiple tuition-waiver categories",
+      "The linked official tuition document is retained as a source, but no amount is shown until its current programme totals can be verified reliably",
+      "Campus: 461 Sholakia Road, Nilganj Road, Kishoreganj 2300",
+    ],
+    sources: [
+      { label: "Official university introduction", url: "https://www.ishakha.edu.bd/en/about-us/" },
+      { label: "Official programme and faculty directory", url: "https://www.ishakha.edu.bd/en/faculty-members-law/" },
+      { label: "Official tuition-fee document", url: "https://www.ishakha.edu.bd/pdf/IIUB%20Tuition%20fees.pdf" },
     ],
     verifiedAt: "19 September 2026",
   },
@@ -9080,9 +9139,7 @@ const universityCatalog = buildUniversityCatalog(universities);
 const dataQualityReport = validateUniversityData(universityCatalog.records);
 
 export default function Home() {
-  const router = useRouter();
   const [program, setProgram] = useState(""),
-    [institutionType, setInstitutionType] = useState(""),
     [division, setDivision] = useState(""),
     [district, setDistrict] = useState(""),
     [area, setArea] = useState(""),
@@ -9127,13 +9184,11 @@ export default function Home() {
   const [readinessSsc, setReadinessSsc] = useState(4);
   const [readinessHsc, setReadinessHsc] = useState(4);
   const programFilter = program === "All programmes" ? "" : program;
-  const institutionTypeFilter = institutionType === "All institution types" ? "" : institutionType;
   const divisionFilter = division === "All divisions" ? "" : division;
   const districtFilter = district === "All districts" ? "" : district;
   const areaFilter = area === "All areas" ? "" : area;
   const filtersChanged =
     Boolean(programFilter) ||
-    Boolean(institutionTypeFilter) ||
     Boolean(divisionFilter) ||
     Boolean(districtFilter) ||
     Boolean(areaFilter) ||
@@ -9142,7 +9197,6 @@ export default function Home() {
     sortBy !== "match";
   const resetFilters = () => {
     setProgram("");
-    setInstitutionType("");
     setDivision("");
     setDistrict("");
     setArea("");
@@ -9330,7 +9384,6 @@ export default function Home() {
           !programFilter ||
           u.programs.some((name) => programMatches(name, programFilter)),
       )
-      .filter((u) => !institutionTypeFilter || u.institutionType === institutionTypeFilter)
       .filter((u) => !divisionFilter || u.division === divisionFilter)
       .filter((u) => !districtFilter || u.district === districtFilter)
       .filter((u) => !areaFilter || u.area === areaFilter)
@@ -9408,7 +9461,7 @@ export default function Home() {
           Number(b.status === "Official") - Number(a.status === "Official") ||
           a.name.localeCompare(b.name),
       );
-  }, [programFilter, institutionTypeFilter, divisionFilter, districtFilter, areaFilter, budget, gpa]);
+  }, [programFilter, divisionFilter, districtFilter, areaFilter, budget, gpa]);
   const results = evaluatedResults.filter(
     (u) =>
       u.totalCost !== undefined && u.totalCost <= budget && u.gpaMet === true,
@@ -9444,7 +9497,6 @@ export default function Home() {
   const closestSuggestions = useMemo(() => {
     if (results.length) return [];
     return universities
-      .filter((u) => !institutionTypeFilter || u.institutionType === institutionTypeFilter)
       .map((u) => {
         const nearestVerifiedProgramme = !programFilter
           ? (u.programCosts ?? [])
@@ -9530,7 +9582,7 @@ export default function Home() {
           a.name.localeCompare(b.name),
       )
       .slice(0, 3);
-  }, [results.length, programFilter, institutionTypeFilter, divisionFilter, districtFilter, areaFilter, budget, gpa]);
+  }, [results.length, programFilter, divisionFilter, districtFilter, areaFilter, budget, gpa]);
   const confirmedWithinBudget = results.length;
   const pendingBudgetCheck = evaluatedResults.filter(
     (u) => u.totalCost === undefined,
@@ -10398,10 +10450,10 @@ export default function Home() {
               </span>
             </div>
           </div>
-          <div className="rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
+          <div className="surface-card rounded-2xl p-5 sm:p-7">
             <h2 className="text-xl font-bold">Tell us what you need</h2>
             <p className="mt-1 text-sm text-slate-400">
-              Your filters update the recommendations below.
+              Start with three choices. Refine only if you need to.
             </p>
             <div className="mt-6 grid gap-5 sm:grid-cols-2">
               <SearchSelect
@@ -10411,20 +10463,6 @@ export default function Home() {
                 options={["All programmes", ...programOptions]}
                 onChange={(value) => {
                   setProgram(value);
-                  setVisible(9);
-                }}
-              />
-              <SearchSelect
-                label="Institution type"
-                placeholder="Search institution type…"
-                value={institutionType}
-                options={["All institution types", "Public", "Private"]}
-                onChange={(value) => {
-                  if (value === "Public") {
-                    router.push("/public-universities");
-                    return;
-                  }
-                  setInstitutionType(value);
                   setVisible(9);
                 }}
               />
@@ -10470,19 +10508,11 @@ export default function Home() {
                   <span>৳20 lakh</span>
                 </span>
               </Field>
-              <ExactGpaField
-                label="Academic GPA"
-                value={gpa}
-                onChange={(value) => {
-                  setGpa(value);
-                  setVisible(9);
-                }}
-              />
               <details className="group rounded-xl border border-slate-700 bg-[#111b2a]/60 sm:col-span-2">
                 <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-semibold text-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
                   <span>
-                    More location filters
-                    {(districtFilter || areaFilter) && (
+                    Refine by GPA or exact location
+                    {(gpa !== 4 || districtFilter || areaFilter) && (
                       <small className="ml-2 rounded-full bg-blue-400/15 px-2 py-1 text-blue-200">
                         Active
                       </small>
@@ -10490,7 +10520,15 @@ export default function Home() {
                   </span>
                   <span className="text-slate-400 transition group-open:rotate-180" aria-hidden="true">⌄</span>
                 </summary>
-                <div className="grid gap-5 border-t border-slate-700 p-4 sm:grid-cols-2">
+                <div className="grid gap-5 border-t border-slate-700 p-4 sm:grid-cols-3">
+                  <ExactGpaField
+                    label="Academic GPA"
+                    value={gpa}
+                    onChange={(value) => {
+                      setGpa(value);
+                      setVisible(9);
+                    }}
+                  />
                   <SearchSelect
                     label="District"
                     placeholder="Search district…"
@@ -10515,7 +10553,14 @@ export default function Home() {
                 </div>
               </details>
             </div>
-            <div className="mt-5 flex items-center justify-end border-t border-slate-700/70 pt-4">
+            <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-slate-700/70 pt-4">
+              <a
+                href="/public-universities"
+                className="inline-flex min-h-11 items-center gap-1 text-sm font-semibold text-blue-300 hover:text-blue-200"
+              >
+                Looking for public universities? Open the separate guide
+                <ArrowRight size={15} aria-hidden="true" />
+              </a>
               <button
                 type="button"
                 onClick={resetFilters}
@@ -10549,11 +10594,10 @@ export default function Home() {
               More tools
               <span className="text-slate-500 transition group-open:rotate-180" aria-hidden="true">⌄</span>
             </summary>
-            <div className="grid grid-cols-2 gap-2 border-t border-slate-800 p-2 sm:grid-cols-4">
+            <div className="grid grid-cols-3 gap-2 border-t border-slate-800 p-2">
               {[
                 ["Funding", "#scholarship"],
                 ["Grade charts", "#grades"],
-                ["Data policy", "#about"],
                 ["About", "#about"],
               ].map(([label, href]) => (
                 <a key={href} href={href} className="flex min-h-11 items-center justify-center rounded-md px-3 py-2 text-center text-sm font-semibold text-slate-300 hover:bg-slate-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
@@ -10661,7 +10705,7 @@ export default function Home() {
                         setDirectProfile(false);
                         setDetail(u);
                       }}
-                      className="rounded-xl border border-slate-700 bg-[#172337] p-4 text-left transition hover:border-blue-400"
+                      className="surface-card rounded-xl p-4 text-left transition hover:-translate-y-0.5 hover:border-blue-400"
                     >
                       <div className="flex items-start gap-3">
                         <UniversityMark university={u} />
@@ -10701,7 +10745,7 @@ export default function Home() {
           {sortedResults.slice(0, visible).map((u) => (
             <article
               key={u.id}
-              className="flex h-full flex-col rounded-xl border border-slate-700 bg-[#172337] p-4 shadow-sm transition hover:border-blue-500/70 sm:p-5"
+              className="surface-card flex h-full flex-col rounded-2xl p-4 transition hover:-translate-y-0.5 hover:border-blue-500/70 sm:p-5"
             >
               <div className="flex items-start justify-between">
                 <UniversityMark university={u} />
