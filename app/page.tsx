@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
 import {
   ArrowRight,
   BookmarkCheck,
@@ -2292,6 +2293,97 @@ Object.assign(
       { label: "Official university introduction", url: "https://www.ishakha.edu.bd/en/about-us/" },
       { label: "Official programme and faculty directory", url: "https://www.ishakha.edu.bd/en/faculty-members-law/" },
       { label: "Official tuition-fee document", url: "https://www.ishakha.edu.bd/pdf/IIUB%20Tuition%20fees.pdf" },
+    ],
+    verifiedAt: "19 September 2026",
+  },
+);
+Object.assign(
+  universities.find((u) => u.short === "TUB-F")!,
+  {
+    area: "Faridpur",
+    programs: ["CSE", "BBA", "Law", "English", "Economics", "Social Work"],
+    programCatalogComplete: false,
+    status: "Official",
+    facts: [
+      "The official website identifies six undergraduate routes across computing, business, law and social sciences",
+      "The published admission policy normally requires GPA 2.50 in both SSC and HSC, or GPA 2.00 in one examination with a combined GPA of 6.00",
+      "Because the admission rule has alternative conditions, UniVerse BD does not reduce it to one potentially misleading minimum-GPA number",
+      "The official tuition-fee page does not expose readable current programme totals, so all costs remain pending",
+      "Times University describes itself as a UGC and Government-approved private university serving Faridpur and surrounding regions",
+    ],
+    sources: [
+      { label: "Official university and programme overview", url: "https://timesuniversitybd.com/" },
+      { label: "Official undergraduate admission policy", url: "https://timesuniversitybd.com/admission/undergraduate-admission/" },
+      { label: "Official bachelor-programme page", url: "https://timesuniversitybd.com/students-corner/bachelor-programs/" },
+      { label: "Official tuition-fee page", url: "https://timesuniversitybd.com/admission/tuition-fees/" },
+    ],
+    verifiedAt: "19 September 2026",
+  },
+);
+Object.assign(
+  universities.find((u) => u.short === "CUST")!,
+  {
+    area: "Mirpur",
+    address: "Plot 1/9, Road 2, Block D, Section 15, Mirpur, Dhaka 1216, Bangladesh",
+    programs: ["CSE", "BBA"],
+    programCatalogComplete: true,
+    programCosts: [
+      { name: "CSE", credits: 153.5, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "BBA", credits: 132, tuitionPerCredit: 0, total: 0, pending: true },
+    ],
+    status: "Official",
+    facts: [
+      "The official university profile lists CSE and BBA as its two current undergraduate programmes",
+      "The official programme catalogue publishes 153.5 credits for CSE and 132 credits for BBA",
+      "AI and Data Science, Digital Marketing, Hospitality and Tourism, and English are labelled proposed and are therefore excluded from the active programme list",
+      "No complete current official programme total was found, so both costs remain pending",
+      "Campus: Plot 1/9, Road 2, Block D, Section 15, Mirpur, Dhaka 1216",
+    ],
+    sources: [
+      { label: "Official current programme catalogue", url: "https://cust.ac.bd/" },
+      { label: "Official university profile", url: "https://cust.ac.bd/page/the-university" },
+      { label: "UGC university directory record", url: "https://www.ugc-universities.gov.bd/" },
+    ],
+    verifiedAt: "19 September 2026",
+  },
+);
+Object.assign(
+  universities.find((u) => u.short === "VUB")!,
+  {
+    area: "Panthapath",
+    address: "58/11/A, Panthapath, Dhaka, Bangladesh",
+    programs: ["B.Ed.", "English", "BBA", "CSE", "CSIT", "CSE / CSIT for Diploma Holders", "Tourism & Hospitality Management"],
+    programCatalogComplete: true,
+    programCosts: [
+      { name: "B.Ed.", credits: 126, semesters: 12, tuitionPerCredit: 1200, total: 192600 },
+      { name: "English", credits: 120, semesters: 12, tuitionPerCredit: 1600, total: 233400 },
+      { name: "BBA", credits: 126, semesters: 12, tuitionPerCredit: 2600, total: 369000 },
+      { name: "CSE", credits: 141, semesters: 12, tuitionPerCredit: 2500, total: 401100 },
+      { name: "CSIT", credits: 141, semesters: 12, tuitionPerCredit: 2500, total: 401100 },
+      { name: "CSE / CSIT for Diploma Holders", credits: 111, semesters: 9, tuitionPerCredit: 2500, total: 317700 },
+      { name: "Tourism & Hospitality Management", credits: 126, semesters: 12, tuitionPerCredit: 2600, total: 375000 },
+    ],
+    credits: 141,
+    publishedMinimumCost: 401100,
+    costLabel: "Published CSE / CSIT programme total",
+    feeBreakdown: [
+      "Official CSE / CSIT regular table total excluding admission: ৳3,86,100",
+      "Admission fee: ৳15,000",
+      "UniVerse BD planning total: ৳4,01,100",
+      "The official table also lists 12 semesters, 141 credits, ৳2,500 per credit, ৳600 lab fee and ৳200 library fee",
+    ],
+    status: "Official",
+    facts: [
+      "The official undergraduate catalogue lists education, English, business, computing and tourism routes",
+      "The official fee table publishes semesters, credits, admission fee, per-credit rate, lab or practical charges, library fee and a programme total",
+      "Victoria University labels its table total as excluding admission; UniVerse BD adds the separately published ৳15,000 admission fee to every planning total",
+      "The CSE and CSIT routes share one published regular fee row and are shown separately for subject search",
+      "Campus: 58/11/A, Panthapath, Dhaka",
+    ],
+    sources: [
+      { label: "Official undergraduate programme catalogue", url: "https://vub.edu.bd/" },
+      { label: "Official tuition-fee table", url: "https://vub.edu.bd/tuition-fees/" },
+      { label: "Official admission information", url: "https://vub.edu.bd/admission-information/" },
     ],
     verifiedAt: "19 September 2026",
   },
@@ -10377,10 +10469,7 @@ export default function Home() {
       <header className="sticky top-0 z-40 border-b border-slate-700/70 bg-[#101827]/95 backdrop-blur">
         <div className="mx-auto flex min-h-16 max-w-7xl flex-wrap items-center justify-between gap-2 px-5 py-2 lg:px-8">
           <a href="#top" className="flex items-center gap-3">
-            <span className="logo-mark" aria-hidden="true">
-              <i>U</i>
-              <em>BD</em>
-            </span>
+            <Image className="logo-mark" src="/logo-mark.svg" alt="" width={44} height={44} priority />
             <span>
               <b className="block leading-5">UniVerse BD</b>
               <small className="text-xs text-slate-400">
