@@ -2389,6 +2389,98 @@ Object.assign(
   },
 );
 Object.assign(
+  universities.find((u) => u.short === "RMU")!,
+  {
+    area: "Courtpara",
+    address: "97/71, Ram Chandra Roy Chowdhury Street, Courtpara, Kushtia 7000, Bangladesh",
+    programs: ["Bangla", "English", "Music", "Fine Arts", "Physical Education & Sports Science", "Agriculture", "Microbiology", "BBA", "CSE", "EEE", "ICT"],
+    programCatalogComplete: false,
+    programCosts: [
+      { name: "Bangla", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "English", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "Music", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "Fine Arts", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "Physical Education & Sports Science", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "Agriculture", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "Microbiology", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "BBA", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "CSE", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "EEE", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "ICT", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+    ],
+    scholarships: [
+      "The official website links waiver, scholarship and financial-aid sections; current award amounts and conditions remain pending verification",
+    ],
+    status: "Official",
+    facts: [
+      "The official university profile describes four UGC-approved faculties covering humanities and social sciences, science and engineering, business, and agriculture",
+      "The current department directory lists Bangla, English, Music, Fine Arts, Physical Education, Agriculture, Microbiology, Business Administration, CSE, EEE and ICT",
+      "The official site says RMU was established in 2015 and began its academic journey in 2017",
+      "No readable current fee table was available, so every programme cost remains pending rather than estimated",
+      "Campus: 97/71, Ram Chandra Roy Chowdhury Street, Courtpara, Kushtia 7000",
+    ],
+    sources: [
+      { label: "Official university and department directory", url: "https://rmu.ac.bd/" },
+      { label: "Official online-admission portal", url: "https://admission.rmu.ac.bd/" },
+    ],
+    verifiedAt: "20 September 2026",
+  },
+);
+Object.assign(
+  universities.find((u) => u.short === "KBAU")!,
+  {
+    name: "Khulna Khan Bahadur Ahsanullah University",
+    short: "KKBAU",
+    area: "Gollamari",
+    address: "145 & 145(Ka), M.A. Bari Road, Gollamari, Sonadanga, Khulna, Bangladesh",
+    programs: ["CSE", "EEE", "EEE for Diploma Holders", "BBA", "English", "Information Science & Library Management"],
+    programCatalogComplete: true,
+    programCosts: [
+      { name: "CSE", credits: 153.75, semesters: 8, tuitionPerCredit: 1800, total: 382250 },
+      { name: "EEE", credits: 156.25, semesters: 8, tuitionPerCredit: 1800, total: 381750 },
+      { name: "EEE for Diploma Holders", credits: 156.25, semesters: 7, tuitionPerCredit: 1800, total: 334500 },
+      { name: "BBA", credits: 141, semesters: 8, tuitionPerCredit: 1800, total: 354300 },
+      { name: "English", credits: 143, semesters: 8, tuitionPerCredit: 1400, total: 270700 },
+      { name: "Information Science & Library Management", credits: 140, semesters: 8, tuitionPerCredit: 1100, total: 224500 },
+    ],
+    credits: 153.75,
+    publishedMinimumCost: 382250,
+    costLabel: "Published CSE programme total",
+    feeBreakdown: [
+      "Official CSE fee-table total: ৳3,71,750",
+      "Undergraduate admission fee: ৳10,500",
+      "CampusChoice BD planning total: ৳3,82,250",
+      "The official total combines ৳2,76,750 tuition with ৳95,000 development fees before admission",
+    ],
+    scholarships: [
+      "Golden GPA 5.00 in both SSC and HSC: 100% tuition waiver",
+      "GPA 5.00 in HSC or equivalent: 60% tuition waiver",
+      "GPA 4.80–4.99: 50% tuition waiver",
+      "GPA 4.60–4.79: 40% tuition waiver",
+      "GPA 4.40–4.59: 30% tuition waiver",
+      "GPA 4.00–4.39: 20% tuition waiver",
+      "GPA 3.50–3.99: 15% tuition waiver",
+      "GPA 3.00–3.49: 10% tuition waiver",
+      "The official page also lists category-based waivers for freedom-fighter children, eligible poor and meritorious students, siblings, spouses, female and tribal students, and groups",
+    ],
+    status: "Official",
+    facts: [
+      "The official catalogue lists six undergraduate routes across engineering, business, English and information science",
+      "The published fee table provides programme semesters, credits, per-credit rates, tuition, development fees and totals",
+      "CampusChoice BD adds the separately published ৳10,500 undergraduate admission fee to each programme total",
+      "Admission normally requires GPA 2.50 in both SSC and HSC; if either is below 2.50, the combined GPA must be at least 6.00",
+      "Engineering applicants require HSC science with Mathematics, Physics and Chemistry",
+      "Campus: 145 & 145(Ka), M.A. Bari Road, Gollamari, Sonadanga, Khulna",
+    ],
+    sources: [
+      { label: "Official programme and university profile", url: "https://www.kkbau.ac.bd/" },
+      { label: "Official admission, fee and waiver table", url: "https://www.kkbau.ac.bd/admission-requirements/" },
+      { label: "Official department directory", url: "https://www.kkbau.ac.bd/departments/" },
+    ],
+    verifiedAt: "20 September 2026",
+  },
+);
+Object.assign(
   universities.find((u) => u.short === "BUHS")!,
   {
     area: "Mirpur",

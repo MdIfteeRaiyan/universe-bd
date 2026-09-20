@@ -5,6 +5,7 @@ import { publicUniversities } from "@/data/public-universities";
 export const metadata = {
   title: "Public Universities — CampusChoice BD",
   description: "A separate verified public-university admission guide for Bangladesh.",
+  alternates: { canonical: "/public-universities" },
 };
 
 export default function PublicUniversitiesPage() {

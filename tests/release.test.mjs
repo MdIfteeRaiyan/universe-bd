@@ -29,6 +29,12 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(pageSource, /AI and Data Science, Digital Marketing, Hospitality and Tourism, and English are labelled proposed/);
   assert.match(pageSource, /Victoria University labels its table total as excluding admission/);
   assert.match(pageSource, /Published CSE \/ CSIT programme total/);
+  assert.match(pageSource, /RMU was established in 2015 and began its academic journey in 2017/);
+  assert.match(pageSource, /every programme cost remains pending rather than estimated/);
+  assert.match(pageSource, /Khulna Khan Bahadur Ahsanullah University/);
+  assert.match(pageSource, /Official CSE fee-table total: ৳3,71,750/);
+  assert.match(pageSource, /Golden GPA 5\.00 in both SSC and HSC: 100% tuition waiver/);
+  assert.match(pageSource, /combined GPA must be at least 6\.00/);
   assert.match(pageSource, /Feni University publishes this UGC-approved scale/);
   assert.match(html, /ADMISSION READINESS/);
   assert.match(pageSource, /Print checklist/);
@@ -62,6 +68,18 @@ test("ships the CampusChoice BD browser and header identity", async () => {
   assert.match(favicon, /aria-label="CampusChoice BD"/);
   assert.match(logo, /aria-label="CampusChoice BD logo"/);
   assert.equal(JSON.parse(manifest).name, "CampusChoice BD");
+});
+
+test("ships public-launch discovery metadata", async () => {
+  const layoutSource = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
+  const robotsSource = await readFile(new URL("../app/robots.ts", import.meta.url), "utf8");
+  const sitemapSource = await readFile(new URL("../app/sitemap.ts", import.meta.url), "utf8");
+  const socialImageSource = await readFile(new URL("../app/opengraph-image.tsx", import.meta.url), "utf8");
+  assert.match(layoutSource, /metadataBase: new URL\("https:\/\/campuschoice-bd\.vercel\.app"\)/);
+  assert.match(layoutSource, /summary_large_image/);
+  assert.match(robotsSource, /sitemap\.xml/);
+  assert.match(sitemapSource, /public-universities/);
+  assert.match(socialImageSource, /Choose your university with clearer facts/);
 });
 
 test("keeps public universities in a separate admission experience", async () => {
