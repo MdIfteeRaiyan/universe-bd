@@ -1,6 +1,6 @@
-# UniVerse BD
+# CampusChoice BD
 
-UniVerse BD is a responsive university discovery and comparison website for students in Bangladesh. It helps users explore programmes, divisions, districts, budgets, university profiles, costs, and comparison options.
+CampusChoice BD is a responsive university discovery and comparison website for students in Bangladesh. It helps users explore programmes, divisions, districts, budgets, university profiles, costs, and comparison options.
 
 ## Local development
 

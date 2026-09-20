@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  applicationName: "UniVerse BD",
-  title: "UniVerse BD — Find Your University Fit",
+  applicationName: "CampusChoice BD",
+  title: "CampusChoice BD — Find Your University Fit",
   description: "Compare verified private-university programmes, costs and admission information in Bangladesh, with a separate guide for public universities.",
   icons: {
     icon: "/favicon.svg",

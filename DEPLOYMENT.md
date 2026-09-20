@@ -1,8 +1,8 @@
-# UniVerse BD deployment
+# CampusChoice BD deployment
 
 ## 1. Extract and open the project
 
-Extract `UniVerse-BD-Vercel-ready.zip`, open the extracted folder, then right-click inside the folder and choose **Open in Terminal**. Confirm PowerShell is selected.
+Extract `CampusChoice-BD-Vercel-ready.zip`, open the extracted folder, then right-click inside the folder and choose **Open in Terminal**. Confirm PowerShell is selected.
 
 ## 2. Check the site locally
 
@@ -21,7 +21,7 @@ Create an empty GitHub repository without a README, licence, or `.gitignore`. Th
 ```powershell
 git init
 git add .
-git commit -m "Release UniVerse BD"
+git commit -m "Release CampusChoice BD"
 git branch -M main
 git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
 git push -u origin main
@@ -35,7 +35,7 @@ If the repository is already connected, use:
 
 ```powershell
 git add .
-git commit -m "Update UniVerse BD"
+git commit -m "Update CampusChoice BD"
 git push origin main
 ```
 

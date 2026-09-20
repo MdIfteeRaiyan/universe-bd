@@ -1511,7 +1511,7 @@ const universities: University[] = [
     status: "Official",
     facts: [
       "All ten undergraduate programmes on the central official catalogue and fee table are included",
-      "The fee table does not publish programme-by-programme semester counts; UniVerse BD leaves that field pending rather than guessing",
+      "The fee table does not publish programme-by-programme semester counts; CampusChoice BD leaves that field pending rather than guessing",
       "General entry: GPA 2.50 in both SSC and HSC, or combined GPA 6.00 with neither below 2.00",
       "Engineering applicants require Mathematics and Physics under the central policy",
       "Central fee-table credits conflict with some older department curricula; central published totals and fee-basis credits are preserved",
@@ -2168,7 +2168,7 @@ Object.assign(
       "The official catalogue currently lists undergraduate routes across design, engineering, business, humanities, social sciences and performing arts",
       "The official fee page publishes programme credits, duration, admission fee, session fee, tuition rate and complete total",
       "Product Design is listed in the official programme catalogue, but no matching row was found in the readable fee table, so its cost remains pending",
-      "The fee page contains more than one table; UniVerse BD uses the first table presented and keeps the source link visible for intake confirmation",
+      "The fee page contains more than one table; CampusChoice BD uses the first table presented and keeps the source link visible for intake confirmation",
       "Permanent campus: Plot 06, Road/Avenue 06, Sector 17/H-1, Uttara, Dhaka 1230",
     ],
     sources: [
@@ -2210,7 +2210,7 @@ Object.assign(
     feeBreakdown: [
       "CSE: Tk 4,78,500 before waiver — Tk 15,000 admission, Tk 4,12,500 tuition, Tk 48,000 exam/lab and Tk 3,000 certificate/marksheet",
       "Published programme totals range from Tk 3,18,000 for Economics & Banking to Tk 5,92,000 for Biochemistry",
-      "Waiver columns on the official table publish reduced programme totals; UniVerse BD keeps the undiscounted total as the baseline",
+      "Waiver columns on the official table publish reduced programme totals; CampusChoice BD keeps the undiscounted total as the baseline",
       "The CSE academic page states 140 curriculum credits while the Summer 2026 fee table states 150; the cost record follows the fee table and displays this conflict",
     ],
     scholarships: [
@@ -2307,7 +2307,7 @@ Object.assign(
     facts: [
       "The official website identifies six undergraduate routes across computing, business, law and social sciences",
       "The published admission policy normally requires GPA 2.50 in both SSC and HSC, or GPA 2.00 in one examination with a combined GPA of 6.00",
-      "Because the admission rule has alternative conditions, UniVerse BD does not reduce it to one potentially misleading minimum-GPA number",
+      "Because the admission rule has alternative conditions, CampusChoice BD does not reduce it to one potentially misleading minimum-GPA number",
       "The official tuition-fee page does not expose readable current programme totals, so all costs remain pending",
       "Times University describes itself as a UGC and Government-approved private university serving Faridpur and surrounding regions",
     ],
@@ -2369,14 +2369,14 @@ Object.assign(
     feeBreakdown: [
       "Official CSE / CSIT regular table total excluding admission: ৳3,86,100",
       "Admission fee: ৳15,000",
-      "UniVerse BD planning total: ৳4,01,100",
+      "CampusChoice BD planning total: ৳4,01,100",
       "The official table also lists 12 semesters, 141 credits, ৳2,500 per credit, ৳600 lab fee and ৳200 library fee",
     ],
     status: "Official",
     facts: [
       "The official undergraduate catalogue lists education, English, business, computing and tourism routes",
       "The official fee table publishes semesters, credits, admission fee, per-credit rate, lab or practical charges, library fee and a programme total",
-      "Victoria University labels its table total as excluding admission; UniVerse BD adds the separately published ৳15,000 admission fee to every planning total",
+      "Victoria University labels its table total as excluding admission; CampusChoice BD adds the separately published ৳15,000 admission fee to every planning total",
       "The CSE and CSIT routes share one published regular fee row and are shown separately for subject search",
       "Campus: 58/11/A, Panthapath, Dhaka",
     ],
@@ -6109,7 +6109,7 @@ Object.assign(
     scholarships: [
       "BU publishes programme-specific tuition totals based on combined SSC and HSC GPA",
       "For regular CSE, published tuition falls from ৳5,17,599 to ৳1,00,000 across the displayed result bands",
-      "The current official CSE table does not display a 7.00–7.99 row; UniVerse BD does not estimate it",
+      "The current official CSE table does not display a 7.00–7.99 row; CampusChoice BD does not estimate it",
       "Tuition is payable in three instalments per semester under the published notes",
     ],
     status: "Official",
@@ -6157,7 +6157,7 @@ Object.assign(
       "Undergraduate admission and other fee: ৳16,700 at admission",
       "The current Spring 2026 fee-structure PDF is linked for direct checking",
       "No CSE whole-program total is entered because the university's current table could not be extracted and reconciled reliably",
-      "UniVerse BD will not convert an admission-fair discount into a standard programme price",
+      "CampusChoice BD will not convert an admission-fair discount into a standard programme price",
     ],
     scholarships: [
       "Result-based tuition waiver up to 70% is advertised for admission and early semesters",
@@ -8158,7 +8158,7 @@ Object.assign(
       "Six currently evidenced undergraduate programmes are included, including the later-added Demography and Public Health degree",
       "General undergraduate entry requires GPA 2.50 in both SSC and HSC, or combined GPA 6.00 when one result is at least 2.00",
       "Fashion Design alternatively permits GPA 2.00 in both SSC and HSC; recognised diploma applicants may apply with GPA 2.00",
-      "The current fee page publishes gross totals alongside 2021-only discounted totals; UniVerse BD uses the gross totals",
+      "The current fee page publishes gross totals alongside 2021-only discounted totals; CampusChoice BD uses the gross totals",
       "A current complete numerical grading table has not been verified, so RTM-AKTU remains pending in Grade Charts",
       "Campus: RTM Point, East Shahi Eidgah, TB Gate, Sylhet 3100",
     ],
@@ -9038,7 +9038,7 @@ universities.push(
     costLabel: "Current programme costs pending verification",
     facts: [
       "RUET's official site identifies it as a public engineering university",
-      "The official department directory is searchable through UniVerse BD",
+      "The official department directory is searchable through CampusChoice BD",
       "No cost estimate is produced without a current official programme fee source",
     ],
     sources: [
@@ -10428,7 +10428,7 @@ export default function Home() {
   useEffect(() => {
     const timer = window.setTimeout(() => {
       try {
-        const saved = window.localStorage.getItem("universe-bd-shortlist");
+        const saved = window.localStorage.getItem("campuschoice-bd-shortlist") ?? window.localStorage.getItem("universe-bd-shortlist");
         if (saved) {
           const parsed = JSON.parse(saved) as {
             ids?: number[];
@@ -10453,7 +10453,7 @@ export default function Home() {
   useEffect(() => {
     if (!shortlistLoaded) return;
     window.localStorage.setItem(
-      "universe-bd-shortlist",
+      "campuschoice-bd-shortlist",
       JSON.stringify({ ids: compare, stages: shortlistStages }),
     );
   }, [compare, shortlistLoaded, shortlistStages]);
@@ -10471,7 +10471,7 @@ export default function Home() {
           <a href="#top" className="flex items-center gap-3">
             <Image className="logo-mark" src="/logo-mark.svg" alt="" width={44} height={44} priority />
             <span>
-              <b className="block leading-5">UniVerse BD</b>
+              <b className="block leading-5">CampusChoice BD</b>
               <small className="text-xs text-slate-400">
                 University decision guide
               </small>
@@ -11911,7 +11911,7 @@ export default function Home() {
                 <BriefcaseBusiness size={20} aria-hidden="true" />
               </div>
               <div>
-                <p className="text-xs font-bold uppercase tracking-[.14em] text-blue-300">About UniVerse BD</p>
+                <p className="text-xs font-bold uppercase tracking-[.14em] text-blue-300">About CampusChoice BD</p>
                 <h2 className="mt-1 text-xl font-bold">Built by Md Iftee Raiyan</h2>
                 <p className="mt-2 max-w-xl text-sm leading-6 text-slate-300">
                   A student-built guide that makes university programmes, costs and admission information easier to compare.
@@ -11947,7 +11947,7 @@ export default function Home() {
       </section>
       <footer className="border-t border-slate-700 bg-[#0d1522]">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-7 text-sm text-slate-400 sm:flex-row sm:justify-between lg:px-8">
-          <b className="text-slate-100">UniVerse BD</b>
+          <b className="text-slate-100">CampusChoice BD</b>
           <span>Not the best university. The best fit for you.</span>
           <span>Data build · 2026</span>
         </div>

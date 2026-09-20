@@ -33,7 +33,7 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(html, /ADMISSION READINESS/);
   assert.match(pageSource, /Print checklist/);
   assert.match(html, /MY SHORTLIST/);
-  assert.match(pageSource, /universe-bd-shortlist/);
+  assert.match(pageSource, /campuschoice-bd-shortlist/);
   assert.match(pageSource, /Compare the same programme and scan only the facts that matter/);
   assert.match(pageSource, /Lowest verified/);
   assert.match(pageSource, /Remove one saved university before adding another/);
@@ -50,18 +50,18 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(pageSource, /Bangladesh University of Engineering and Technology/);
 });
 
-test("ships the UniVerse BD browser and header identity", async () => {
+test("ships the CampusChoice BD browser and header identity", async () => {
   const layoutSource = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
   const pageSource = await readFile(pageSourcePath, "utf8");
   const favicon = await readFile(new URL("../public/favicon.svg", import.meta.url), "utf8");
   const logo = await readFile(new URL("../public/logo-mark.svg", import.meta.url), "utf8");
   const manifest = await readFile(new URL("../public/site.webmanifest", import.meta.url), "utf8");
-  assert.match(layoutSource, /applicationName: "UniVerse BD"/);
+  assert.match(layoutSource, /applicationName: "CampusChoice BD"/);
   assert.match(layoutSource, /manifest: "\/site.webmanifest"/);
   assert.match(pageSource, /src="\/logo-mark.svg"/);
-  assert.match(favicon, /aria-label="UniVerse BD"/);
-  assert.match(logo, /aria-label="UniVerse BD logo"/);
-  assert.equal(JSON.parse(manifest).name, "UniVerse BD");
+  assert.match(favicon, /aria-label="CampusChoice BD"/);
+  assert.match(logo, /aria-label="CampusChoice BD logo"/);
+  assert.equal(JSON.parse(manifest).name, "CampusChoice BD");
 });
 
 test("keeps public universities in a separate admission experience", async () => {

@@ -1,6 +1,6 @@
 {
-  "name": "UniVerse BD",
-  "short_name": "UniVerse BD",
+  "name": "CampusChoice BD",
+  "short_name": "CampusChoice",
   "description": "A source-checked university decision guide for Bangladesh.",
   "start_url": "/",
   "display": "standalone",

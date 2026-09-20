@@ -3,7 +3,7 @@ import { ArrowLeft, ExternalLink, GraduationCap, ShieldCheck } from "lucide-reac
 import { publicUniversities } from "@/data/public-universities";
 
 export const metadata = {
-  title: "Public Universities — UniVerse BD",
+  title: "Public Universities — CampusChoice BD",
   description: "A separate verified public-university admission guide for Bangladesh.",
 };
 
@@ -13,7 +13,7 @@ export default function PublicUniversitiesPage() {
       <header className="border-b border-slate-700">
         <div className="mx-auto flex min-h-16 max-w-7xl items-center justify-between gap-4 px-5 lg:px-8">
           <Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold text-blue-300"><ArrowLeft size={16} /> Private university guide</Link>
-          <b>UniVerse BD</b>
+          <b>CampusChoice BD</b>
         </div>
       </header>
       <section className="border-b border-slate-700 bg-[#121c2b]">
