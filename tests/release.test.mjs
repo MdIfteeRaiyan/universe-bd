@@ -35,6 +35,13 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(pageSource, /Official CSE fee-table total: ৳3,71,750/);
   assert.match(pageSource, /Golden GPA 5\.00 in both SSC and HSC: 100% tuition waiver/);
   assert.match(pageSource, /combined GPA must be at least 6\.00/);
+  assert.match(pageSource, /HSC GPA 3\.50 or above and combined SSC\+HSC GPA 8\.00 or above/);
+  assert.match(pageSource, /Official Fall 2026 engineering admission qualifications/);
+  assert.match(pageSource, /Admission test:.*confirm on the official page/);
+  assert.match(pageSource, /Official admission rules/);
+  assert.match(pageSource, /Combined SSC\+HSC GPA 8\.00 or above, with at least GPA 3\.50 in each examination/);
+  assert.match(pageSource, /HSC\/equivalent requires B grade in Physics and Mathematics/);
+  assert.match(pageSource, /Minimum aggregate GPA 8\.00, no GPA below 3\.50 in SSC and HSC/);
   assert.match(pageSource, /Feni University publishes this UGC-approved scale/);
   assert.match(html, /ADMISSION READINESS/);
   assert.match(pageSource, /Print checklist/);

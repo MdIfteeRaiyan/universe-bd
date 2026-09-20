@@ -677,6 +677,25 @@ const universities: University[] = [
       "Recipients of 50% or 75% tuition waiver must maintain CGPA 3.00",
       "An undergraduate aid recipient must register at least 24 credits across three consecutive semesters",
     ],
+    admissionRules: {
+      generalRule: "Combined SSC+HSC GPA 8.00 or above, with at least GPA 3.50 in each examination",
+      sourceUrl: "https://admissions.northsouth.edu/undergraduate_requirement",
+      minimumSscGpa: 3.5,
+      minimumHscGpa: 3.5,
+      minimumCombinedGpa: 8,
+      programmeRules: [
+        {
+          programmes: ["CSE", "EEE", "Civil & Environmental Engineering"],
+          summary: "The official programme requirements include additional Mathematics and Physics grade conditions",
+          requiredSubjects: ["Mathematics", "Physics"],
+        },
+        {
+          programmes: ["Pharmacy"],
+          summary: "BPharm follows separate subject-grade requirements and must be selected as the first choice",
+          requiredSubjects: ["Chemistry", "Biology", "Mathematics", "Physics"],
+        },
+      ],
+    },
     status: "Official",
     facts: [
       "All twenty-eight undergraduate routes on NSU's current admissions catalogue are individually searchable with structured published-minimum records",
@@ -906,6 +925,56 @@ const universities: University[] = [
       "Residential Semester and admission-test-assigned extra courses can materially change the payable amount",
       "Campus: Kha 224, Bir Uttam Rafiqul Islam Avenue, Merul Badda, Dhaka 1212",
     ],
+    admissionRules: {
+      generalRule: "Minimum GPA 3.50 separately in SSC/equivalent and HSC/equivalent (except Bachelor of Pharmacy)",
+      sourceUrl: "https://www.bracu.ac.bd/admissions/undergraduate",
+      minimumSscGpa: 3.5,
+      minimumHscGpa: 3.5,
+      programmeRules: [
+        {
+          programmes: ["Pharmacy"],
+          summary: "Minimum aggregate GPA 8.00, no GPA below 3.50 in SSC and HSC, Chemistry and Biology GPA 3.50, and Mathematics and Physics GPA 3.00",
+          minimumSscGpa: 3.5,
+          minimumHscGpa: 3.5,
+          minimumCombinedGpa: 8,
+          requiredSubjects: ["Chemistry", "Biology", "Mathematics", "Physics"],
+          admissionTest: "English, Mathematics, Biology and Chemistry",
+        },
+        {
+          programmes: ["CSE", "EEE", "Electronic & Communication Engineering", "Applied Physics & Electronics", "Physics"],
+          summary: "HSC/equivalent requires B grade in Physics and Mathematics",
+          requiredSubjects: ["Physics", "Mathematics"],
+          admissionTest: "English, Mathematics, Higher Mathematics and Physics",
+        },
+        {
+          programmes: ["Computer Science", "Mathematics"],
+          summary: "HSC/equivalent requires B grade in Mathematics",
+          requiredSubjects: ["Mathematics"],
+          admissionTest: "English, Mathematics, Higher Mathematics and Physics",
+        },
+        {
+          programmes: ["Biotechnology", "Microbiology"],
+          summary: "HSC/equivalent requires at least C grade in Biology and Chemistry; students without Mathematics take a remedial Mathematics course",
+          requiredSubjects: ["Biology", "Chemistry"],
+          admissionTest: "English, Mathematics, Biology and Chemistry",
+        },
+        {
+          programmes: ["Architecture"],
+          summary: "Architecture applicants sit a programme-specific drawing assessment",
+          admissionTest: "English, Mathematics and Drawing",
+        },
+        {
+          programmes: ["BBA", "Economics"],
+          summary: "The published admission test includes English and Mathematics",
+          admissionTest: "English and Mathematics",
+        },
+        {
+          programmes: ["Anthropology", "English", "Law", "Applied English Language Studies", "Disaster Management"],
+          summary: "The published admission test assesses English",
+          admissionTest: "English",
+        },
+      ],
+    },
     sources: [
       {
         label:
@@ -993,7 +1062,7 @@ const universities: University[] = [
         url: "https://engineering.bracu.ac.bd/scholarships-financial-aid-for-prospective-students",
       },
     ],
-    verifiedAt: "13 September 2026",
+    verifiedAt: "20 September 2026",
   },
   {
     id: 3,
@@ -3457,11 +3526,33 @@ Object.assign(
       "One sibling or spouse may receive 50% tuition waiver when both study at AUST, subject to application",
       "Distressed Students Welfare Fund assistance is also listed",
     ],
+    admissionRules: {
+      generalRule: "HSC GPA 3.50 or above and combined SSC+HSC GPA 8.00 or above",
+      sourceUrl: "https://admission.aust.edu/ug-admission-engg/#qualifications",
+      minimumHscGpa: 3.5,
+      minimumCombinedGpa: 8,
+      programmeRules: [
+        {
+          programmes: ["Civil Engineering", "CSE", "EEE", "Textile Engineering", "Industrial & Production Engineering", "Mechanical Engineering"],
+          summary: "HSC Science must include Mathematics, Physics and Chemistry",
+          requiredSubjects: ["Mathematics", "Physics", "Chemistry"],
+          admissionTest: "Mathematics, Physics, Chemistry and English",
+        },
+        {
+          programmes: ["Architecture"],
+          summary: "HSC Science must include Mathematics, Physics and Chemistry; Architecture also requires the drawing test",
+          requiredSubjects: ["Mathematics", "Physics", "Chemistry"],
+          admissionTest: "Mathematics, Physics, Chemistry, English and Drawing",
+        },
+      ],
+    },
     status: "Official",
     facts: [
       "All seven programmes in AUST's current engineering and architecture fee table are searchable with programme-specific totals",
       "CSE, CE, EEE, TE, IPE and ME run for 4 years and 8 semesters; Architecture runs for 5 years and 10 semesters",
       "Budget matching includes the compulsory transport charge instead of showing only the lower academic-fee total",
+      "Fall 2026 engineering applicants need HSC Science with Mathematics, Physics and Chemistry, HSC GPA 3.50 and combined SSC-HSC GPA 8.00",
+      "The engineering admission test covers Mathematics, Physics, Chemistry and English; Architecture also includes Drawing",
     ],
     sources: [
       {
@@ -3471,6 +3562,10 @@ Object.assign(
       {
         label: "Official financial assistance rules",
         url: "https://admission.aust.edu/financial-assistance/",
+      },
+      {
+        label: "Official Fall 2026 engineering admission qualifications",
+        url: "https://admission.aust.edu/ug-admission-engg/#qualifications",
       },
     ],
     verifiedAt: "9 September 2026",
@@ -9466,6 +9561,9 @@ export default function Home() {
   const readinessProgrammeCost = readinessProfile
     ? matchingProgramCost(readinessProfile, readinessProgram)
     : undefined;
+  const readinessProgrammeRule = readinessProfile?.admissionRules?.programmeRules?.find(
+    (rule) => rule.programmes.some((programme) => programMatches(programme, readinessProgram)),
+  );
   const readinessResult =
     readinessProfile && readinessProgram
       ? evaluateAdmissionReadiness({
@@ -9476,6 +9574,18 @@ export default function Home() {
           ),
           programmeCatalogComplete: Boolean(readinessProfile.programCatalogComplete),
           minimumGpa: readinessProfile.minGpa,
+          minimumSscGpa:
+            readinessProgrammeRule?.minimumSscGpa ??
+            readinessProfile.admissionRules?.minimumSscGpa,
+          minimumHscGpa:
+            readinessProgrammeRule?.minimumHscGpa ??
+            readinessProfile.admissionRules?.minimumHscGpa,
+          minimumCombinedGpa:
+            readinessProgrammeRule?.minimumCombinedGpa ??
+            readinessProfile.admissionRules?.minimumCombinedGpa,
+          generalGpaRule: readinessProgrammeRule?.minimumCombinedGpa
+            ? `${readinessProfile.admissionRules?.generalRule}. ${readinessProgrammeRule.summary}.`
+            : readinessProfile.admissionRules?.generalRule,
           sscGpa: readinessSsc,
           hscGpa: readinessHsc,
           hasVerifiedCost: Boolean(
@@ -9488,6 +9598,9 @@ export default function Home() {
           requiresScienceReview: /engineering|cse|computer|pharmacy|science|biology|biochemistry|microbiology|mathematics|physics|chemistry|architecture/i.test(
             readinessProgram,
           ),
+          programmeSubjectRule: readinessProgrammeRule
+            ? `${readinessProgrammeRule.summary}. Admission test: ${readinessProgrammeRule.admissionTest ?? "confirm on the official page"}.`
+            : undefined,
         })
       : undefined;
   const programOptions = useMemo(
@@ -11979,9 +12092,16 @@ export default function Home() {
                 </div>
                 <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-slate-700 pt-4">
                   <p className="text-xs text-slate-400">Print or save as PDF from your browser for a personal application checklist.</p>
-                  <button type="button" onClick={() => window.print()} className="inline-flex items-center gap-2 rounded-lg border border-blue-400/40 bg-blue-400/10 px-4 py-2 text-sm font-semibold text-blue-200 hover:bg-blue-400/20">
-                    <Printer size={16} aria-hidden="true" /> Print checklist
-                  </button>
+                  <div className="flex flex-wrap gap-2">
+                    {readinessProfile.admissionRules?.sourceUrl && (
+                      <a href={readinessProfile.admissionRules.sourceUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-lg border border-slate-600 px-4 py-2 text-sm font-semibold text-slate-200 hover:border-blue-400">
+                        Official admission rules <ExternalLink size={14} aria-hidden="true" />
+                      </a>
+                    )}
+                    <button type="button" onClick={() => window.print()} className="inline-flex items-center gap-2 rounded-lg border border-blue-400/40 bg-blue-400/10 px-4 py-2 text-sm font-semibold text-blue-200 hover:bg-blue-400/20">
+                      <Printer size={16} aria-hidden="true" /> Print checklist
+                    </button>
+                  </div>
                 </div>
               </div>
             ) : (

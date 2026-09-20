@@ -14,6 +14,25 @@ export type UniversitySource = {
   url: string;
 };
 
+export type ProgrammeAdmissionRule = {
+  programmes: string[];
+  summary: string;
+  minimumSscGpa?: number;
+  minimumHscGpa?: number;
+  minimumCombinedGpa?: number;
+  requiredSubjects?: string[];
+  admissionTest?: string;
+};
+
+export type UniversityAdmissionRules = {
+  generalRule: string;
+  sourceUrl: string;
+  minimumSscGpa?: number;
+  minimumHscGpa?: number;
+  minimumCombinedGpa?: number;
+  programmeRules?: ProgrammeAdmissionRule[];
+};
+
 export type University = {
   id: number;
   name: string;
@@ -42,6 +61,7 @@ export type University = {
   status: "Official" | "Directory";
   facts?: string[];
   sources?: UniversitySource[];
+  admissionRules?: UniversityAdmissionRules;
   verifiedAt?: string;
 };
 

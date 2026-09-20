@@ -4,22 +4,34 @@ export type AdmissionReadinessInput = {
   programmeAvailable: boolean;
   programmeCatalogComplete: boolean;
   minimumGpa?: number;
+  minimumSscGpa?: number;
+  minimumHscGpa?: number;
+  minimumCombinedGpa?: number;
+  generalGpaRule?: string;
   sscGpa: number;
   hscGpa: number;
   hasVerifiedCost: boolean;
   hasAdmissionSource: boolean;
   hasScholarshipSource: boolean;
   requiresScienceReview: boolean;
+  programmeSubjectRule?: string;
 };
 
 export type ReadinessStatus = "ready-to-review" | "needs-attention" | "not-listed";
 
 export function evaluateAdmissionReadiness(input: AdmissionReadinessInput) {
-  const gpaKnown = input.minimumGpa !== undefined;
+  const minimumSscGpa = input.minimumSscGpa ?? input.minimumGpa;
+  const minimumHscGpa = input.minimumHscGpa ?? input.minimumGpa;
+  const gpaKnown =
+    minimumSscGpa !== undefined ||
+    minimumHscGpa !== undefined ||
+    input.minimumCombinedGpa !== undefined;
   const generalGpaMet =
     gpaKnown &&
-    input.sscGpa >= input.minimumGpa! &&
-    input.hscGpa >= input.minimumGpa!;
+    (minimumSscGpa === undefined || input.sscGpa >= minimumSscGpa) &&
+    (minimumHscGpa === undefined || input.hscGpa >= minimumHscGpa) &&
+    (input.minimumCombinedGpa === undefined ||
+      input.sscGpa + input.hscGpa >= input.minimumCombinedGpa);
 
   const status: ReadinessStatus =
     !input.programmeAvailable && input.programmeCatalogComplete
@@ -44,14 +56,20 @@ export function evaluateAdmissionReadiness(input: AdmissionReadinessInput) {
       note: !gpaKnown
         ? "A general minimum GPA has not been verified."
         : generalGpaMet
-          ? `Both results meet the published ${input.minimumGpa!.toFixed(2)} reference.`
-          : `At least one result is below the published ${input.minimumGpa!.toFixed(2)} reference.`,
+          ? input.generalGpaRule ?? "The entered results meet the published GPA reference."
+          : `The entered results do not meet the published requirement: ${input.generalGpaRule ?? "review the official GPA rule"}`,
     },
     {
       label: "Programme-specific subject rules",
-      state: input.requiresScienceReview ? "review" : "complete",
-      note: input.requiresScienceReview
-        ? "Confirm Mathematics, Physics, Chemistry or Biology grade requirements on the official admission page."
+      state: input.programmeSubjectRule
+        ? "complete"
+        : input.requiresScienceReview
+          ? "review"
+          : "complete",
+      note: input.programmeSubjectRule
+        ? input.programmeSubjectRule
+        : input.requiresScienceReview
+          ? "Confirm Mathematics, Physics, Chemistry or Biology grade requirements on the official admission page."
         : "No additional science-subject warning is inferred for this programme.",
     },
     {
