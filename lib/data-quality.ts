@@ -18,6 +18,8 @@ export type DataQualityIssue = {
     | "invalid-verification-date"
     | "future-verification-date"
     | "stale-verification"
+    | "invalid-review-date"
+    | "review-due"
     | "incomplete-catalogue";
 };
 
@@ -96,6 +98,14 @@ export function validateUniversityData(
         addIssue(university.name, "verifiedAt", "Verification date is unexpectedly in the future", "error", "future-verification-date");
       } else if (checkedAt < staleBefore) {
         addIssue(university.name, "verifiedAt", "Official profile is due for source review", "warning", "stale-verification");
+      }
+    }
+    if (university.dataContext?.reviewDue) {
+      const reviewDue = Date.parse(`${university.dataContext.reviewDue}T23:59:59Z`);
+      if (Number.isNaN(reviewDue)) {
+        addIssue(university.name, "dataContext.reviewDue", "Structured review date is invalid", "error", "invalid-review-date");
+      } else if (reviewDue < now.getTime()) {
+        addIssue(university.name, "dataContext.reviewDue", "Scheduled source review is due", "warning", "review-due");
       }
     }
     if (university.status === "Official" && !university.programCatalogComplete) {

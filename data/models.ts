@@ -72,6 +72,11 @@ export type University = {
   sources?: UniversitySource[];
   admissionRules?: UniversityAdmissionRules;
   verifiedAt?: string;
+  dataContext?: {
+    intake?: string;
+    reviewDue?: string;
+    note?: string;
+  };
 };
 
 export type GradeChart = {

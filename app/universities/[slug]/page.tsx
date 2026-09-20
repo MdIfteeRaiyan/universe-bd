@@ -119,7 +119,10 @@ export default async function UniversityProfilePage({ params }: ProfilePageProps
               <ProfileFact label="Programme catalogue" value={university.programCatalogComplete ? "Complete" : "In progress"} />
               <ProfileFact label="Verified programme totals" value={String(verifiedCosts.length)} />
               <ProfileFact label="Last checked" value={university.verifiedAt ?? "Pending"} />
+              <ProfileFact label="Applicable intake" value={university.dataContext?.intake ?? "Not specified by source"} />
+              <ProfileFact label="Next review" value={university.dataContext?.reviewDue ?? "Scheduled through catalogue audit"} />
             </dl>
+            {university.dataContext?.note ? <p className="mt-4 rounded-lg bg-blue-400/5 p-3 text-xs leading-5 text-blue-100">{university.dataContext.note}</p> : null}
           </ProfileSection>
 
           <ProfileSection title="Official sources">

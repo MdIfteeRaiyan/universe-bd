@@ -10,6 +10,8 @@ test("catalogue audit separates blocking errors from review warnings", async () 
   assert.match(source, /stale-verification/);
   assert.match(source, /duplicate-programme/);
   assert.match(source, /Duplicate official source link/);
+  assert.match(source, /invalid-review-date/);
+  assert.match(source, /review-due/);
   assert.match(source, /Credits and tuition rates cannot be negative/);
 });
 

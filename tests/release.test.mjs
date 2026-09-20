@@ -29,6 +29,18 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(privateData, /Official 2026 undergraduate fee table/);
   assert.match(privateData, /Golden GPA 5.00: 100% tuition scholarship/);
   assert.match(privateData, /University-published Summer 2026 CSE total/);
+  assert.match(privateData, /Official Fall 2026 CSE total/);
+  assert.match(privateData, /visible component columns do not fully reconcile/);
+  assert.match(privateData, /reviewDue: "2026-10-15"/);
+  assert.match(privateData, /Fall 2026 CSE published minimum/);
+  assert.match(privateData, /Transparent CSE minimum from the current official table: ৳3,48,500/);
+  assert.match(privateData, /minimum GPA follows university policy without publishing a numerical threshold/);
+  assert.match(privateData, /Current official CSE total/);
+  assert.match(privateData, /promotional after-waiver figures are not treated as guaranteed payable costs/);
+  assert.match(privateData, /Applicants must have passed Physics and Mathematics at HSC or A-Level/);
+  assert.match(privateData, /name: "Brahmaputra International University"/);
+  assert.match(privateData, /Official CSE total: ৳2,64,000 for 160 credits/);
+  assert.match(privateData, /formerly listed as Sheikh Fazilatunnesa Mujib University/);
   assert.match(privateData, /fee-table and academic-page CSE credit counts conflict/);
   assert.match(privateData, /official bachelor catalogue lists eight current undergraduate programmes/);
   assert.match(privateData, /Readable official pages confirm undergraduate degree routes in business, English, law and agriculture/);
