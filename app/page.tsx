@@ -14,6 +14,7 @@ import {
   House,
   MapPin,
   Printer,
+  Share2,
   ShieldCheck,
   WalletCards,
 } from "lucide-react";
@@ -43,6 +44,12 @@ import { validateUniversityData } from "@/lib/data-quality";
 import { buildUniversityCatalog } from "@/data/catalog";
 import { createFinancialPlan } from "@/lib/financial-planner";
 import { evaluateAdmissionReadiness } from "@/lib/admission-readiness";
+import { universityProfilePath } from "@/lib/university-profile";
+import {
+  createSharedShortlistUrl,
+  createDecisionReportUrl,
+  parseSharedShortlist,
+} from "@/lib/shortlist-share";
 
 import { gradeCharts } from "@/data/grade-charts";
 import { privateUniversities } from "@/data/private-universities";
@@ -216,6 +223,7 @@ export default function Home() {
     [calcProgram, setCalcProgram] = useState("");
   const [shortlistStages, setShortlistStages] = useState<Record<number, "researching" | "ready" | "applied">>({});
   const [shortlistLoaded, setShortlistLoaded] = useState(false);
+  const [shortlistMessage, setShortlistMessage] = useState("");
   const [aidUniversity, setAidUniversity] = useState(""),
     [aidProgram, setAidProgram] = useState(""),
     [gradeUniversity, setGradeUniversity] = useState(""),
@@ -1419,6 +1427,19 @@ export default function Home() {
   useEffect(() => {
     const timer = window.setTimeout(() => {
       try {
+        const shared = parseSharedShortlist(
+          window.location.search,
+          new Set(universities.map((university) => university.id)),
+        );
+        if (shared) {
+          setCompare(shared.ids);
+          if (shared.programme) setCompareProgram(shared.programme);
+          setShortlistMessage(
+            `${shared.ids.length} shared ${shared.ids.length === 1 ? "choice" : "choices"} loaded.`,
+          );
+          setShortlistLoaded(true);
+          return;
+        }
         const saved = window.localStorage.getItem("campuschoice-bd-shortlist") ?? window.localStorage.getItem("universe-bd-shortlist");
         if (saved) {
           const parsed = JSON.parse(saved) as {
@@ -1448,6 +1469,22 @@ export default function Home() {
       JSON.stringify({ ids: compare, stages: shortlistStages }),
     );
   }, [compare, shortlistLoaded, shortlistStages]);
+
+  const shareShortlist = async () => {
+    if (!compare.length) return;
+    const url = createSharedShortlistUrl(
+      window.location.href,
+      compare,
+      compareProgram || programFilter,
+    );
+    try {
+      await window.navigator.clipboard.writeText(url);
+      setShortlistMessage("Share link copied. Application stages stay private.");
+    } catch {
+      window.prompt("Copy this shortlist link", url);
+      setShortlistMessage("Share link created. Application stages stay private.");
+    }
+  };
 
   return (
     <main className="soft-dark min-h-screen bg-[#101827] text-slate-100">
@@ -2053,12 +2090,27 @@ export default function Home() {
                 Save up to three universities for comparison and track whether you are researching, ready to apply or already applied. This shortlist stays in this browser.
               </p>
             </div>
-            {compare.length >= 2 && (
-              <button type="button" onClick={() => setCompareOpen(true)} className="inline-flex items-center gap-2 rounded-lg bg-[#173b68] px-4 py-2.5 text-sm font-semibold text-white">
-                <GitCompareArrows size={16} aria-hidden="true" /> Compare saved choices
-              </button>
+            {compare.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                <button type="button" onClick={shareShortlist} className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-blue-400/40 bg-blue-400/10 px-4 py-2.5 text-sm font-semibold text-blue-100 hover:bg-blue-400/20">
+                  <Share2 size={16} aria-hidden="true" /> Share shortlist
+                </button>
+                {compare.length >= 2 && (
+                  <>
+                    <button type="button" onClick={() => setCompareOpen(true)} className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-[#173b68] px-4 py-2.5 text-sm font-semibold text-white">
+                      <GitCompareArrows size={16} aria-hidden="true" /> Compare saved choices
+                    </button>
+                    <a href={createDecisionReportUrl("https://campuschoice-bd.vercel.app", compare, compareProgram || programFilter)} className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-slate-600 px-4 py-2.5 text-sm font-semibold text-slate-200 hover:border-blue-400">
+                      <Printer size={16} aria-hidden="true" /> Decision report
+                    </a>
+                  </>
+                )}
+              </div>
             )}
           </div>
+          <p className="mt-3 min-h-5 text-sm font-medium text-emerald-300" aria-live="polite">
+            {shortlistMessage}
+          </p>
           {compare.length ? (
             <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {compare.map((id) => universities.find((university) => university.id === id)).filter((university): university is University => Boolean(university)).map((university) => (
@@ -2096,7 +2148,7 @@ export default function Home() {
               <p className="mt-2 text-sm text-slate-400">Use the comparison button on a university card to save it here.</p>
             </div>
           )}
-          <p className="mt-4 text-xs leading-5 text-slate-500">Shortlist information is stored only in this browser. Clearing browser data or using another device will remove it.</p>
+          <p className="mt-4 text-xs leading-5 text-slate-500">Your shortlist and application stages are stored in this browser. A share link includes only university choices and the selected comparison programme—never your application stages.</p>
         </div>
       </section>
 
@@ -3161,6 +3213,9 @@ export default function Home() {
                       ))}
                     </div>
                   </div>
+                  <a href={universityProfilePath(detail)} className="mt-4 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-blue-400/40 bg-blue-400/10 px-4 py-2.5 text-sm font-semibold text-blue-100 hover:bg-blue-400/20">
+                    Open permanent university profile <ArrowRight size={15} aria-hidden="true" />
+                  </a>
                 </>
               )}
             </>

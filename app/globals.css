@@ -35,6 +35,22 @@
     border-color: #cbd5e1 !important;
     box-shadow: none !important;
   }
+
+  main.decision-report > section {
+    display: block !important;
+  }
+
+  main.decision-report,
+  main.decision-report * {
+    color: #111827 !important;
+    background: white !important;
+    border-color: #cbd5e1 !important;
+    box-shadow: none !important;
+  }
+
+  main.decision-report article {
+    break-inside: avoid;
+  }
 }
 @theme inline{
   --color-background:var(--background);--color-foreground:var(--foreground);--color-card:var(--card);--color-card-foreground:var(--card-foreground);

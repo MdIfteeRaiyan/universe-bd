@@ -7,6 +7,7 @@ const pageSourcePath = new URL("../app/page.tsx", import.meta.url);
 const privateDataPath = new URL("../data/private-universities.ts", import.meta.url);
 const gradeDataPath = new URL("../data/grade-charts.ts", import.meta.url);
 const publicHtmlPath = new URL("../.next/server/app/public-universities.html", import.meta.url);
+const reportHtmlPath = new URL("../.next/server/app/decision-report.html", import.meta.url);
 
 test("renders the verified catalogue and complete financial planner", async () => {
   const html = await readFile(htmlPath, "utf8");
@@ -61,6 +62,9 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(pageSource, /Print checklist/);
   assert.match(html, /MY SHORTLIST/);
   assert.match(pageSource, /campuschoice-bd-shortlist/);
+  assert.match(pageSource, /Share shortlist/);
+  assert.match(pageSource, /Application stages stay private/);
+  assert.match(pageSource, /parseSharedShortlist/);
   assert.match(pageSource, /Compare the same programme and scan only the facts that matter/);
   assert.match(pageSource, /Lowest verified/);
   assert.match(pageSource, /Remove one saved university before adding another/);
@@ -100,7 +104,19 @@ test("ships public-launch discovery metadata", async () => {
   assert.match(layoutSource, /summary_large_image/);
   assert.match(robotsSource, /sitemap\.xml/);
   assert.match(sitemapSource, /public-universities/);
+  assert.match(sitemapSource, /universityProfilePath/);
   assert.match(socialImageSource, /Choose your university with clearer facts/);
+});
+
+test("generates permanent source-rich university profiles", async () => {
+  const profileSource = await readFile(new URL("../app/universities/[slug]/page.tsx", import.meta.url), "utf8");
+  const profileHelpers = await readFile(new URL("../lib/university-profile.ts", import.meta.url), "utf8");
+  assert.match(profileSource, /generateStaticParams/);
+  assert.match(profileSource, /generateMetadata/);
+  assert.match(profileSource, /Published programme costs/);
+  assert.match(profileSource, /Official sources/);
+  assert.match(profileSource, /CampusChoice BD does not estimate it/);
+  assert.match(profileHelpers, /universityProfileSlug/);
 });
 
 test("keeps public universities in a separate admission experience", async () => {
@@ -129,4 +145,15 @@ test("keeps uncertainty and verification disclosures visible", async () => {
   assert.match(html, /Hall availability and seat allocation must be confirmed/);
   assert.match(html, /Tuition split required/);
   assert.match(html, /Official sources linked/);
+});
+
+test("ships a private, printable shortlist decision report", async () => {
+  const html = await readFile(reportHtmlPath, "utf8");
+  const source = await readFile(new URL("../app/decision-report/report.tsx", import.meta.url), "utf8");
+  const metadata = await readFile(new URL("../app/decision-report/page.tsx", import.meta.url), "utf8");
+  assert.match(html, /Preparing report/);
+  assert.match(source, /Print or save PDF/);
+  assert.match(source, /Pending information is never estimated/);
+  assert.match(source, /parseSharedShortlist/);
+  assert.match(metadata, /index: false, follow: false/);
 });
