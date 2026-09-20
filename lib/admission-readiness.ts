@@ -8,6 +8,12 @@ export type AdmissionReadinessInput = {
   minimumHscGpa?: number;
   minimumCombinedGpa?: number;
   generalGpaRule?: string;
+  gpaPaths?: Array<{
+    label: string;
+    minimumSscGpa?: number;
+    minimumHscGpa?: number;
+    minimumCombinedGpa?: number;
+  }>;
   sscGpa: number;
   hscGpa: number;
   hasVerifiedCost: boolean;
@@ -22,16 +28,28 @@ export type ReadinessStatus = "ready-to-review" | "needs-attention" | "not-liste
 export function evaluateAdmissionReadiness(input: AdmissionReadinessInput) {
   const minimumSscGpa = input.minimumSscGpa ?? input.minimumGpa;
   const minimumHscGpa = input.minimumHscGpa ?? input.minimumGpa;
+  const meetsThresholds = (rule: {
+    minimumSscGpa?: number;
+    minimumHscGpa?: number;
+    minimumCombinedGpa?: number;
+  }) =>
+    (rule.minimumSscGpa === undefined || input.sscGpa >= rule.minimumSscGpa) &&
+    (rule.minimumHscGpa === undefined || input.hscGpa >= rule.minimumHscGpa) &&
+    (rule.minimumCombinedGpa === undefined ||
+      input.sscGpa + input.hscGpa >= rule.minimumCombinedGpa);
   const gpaKnown =
+    Boolean(input.gpaPaths?.length) ||
     minimumSscGpa !== undefined ||
     minimumHscGpa !== undefined ||
     input.minimumCombinedGpa !== undefined;
-  const generalGpaMet =
-    gpaKnown &&
-    (minimumSscGpa === undefined || input.sscGpa >= minimumSscGpa) &&
-    (minimumHscGpa === undefined || input.hscGpa >= minimumHscGpa) &&
-    (input.minimumCombinedGpa === undefined ||
-      input.sscGpa + input.hscGpa >= input.minimumCombinedGpa);
+  const generalGpaMet = gpaKnown &&
+    (input.gpaPaths?.length
+      ? input.gpaPaths.some((path) => meetsThresholds(path))
+      : meetsThresholds({
+          minimumSscGpa,
+          minimumHscGpa,
+          minimumCombinedGpa: input.minimumCombinedGpa,
+        }));
 
   const status: ReadinessStatus =
     !input.programmeAvailable && input.programmeCatalogComplete

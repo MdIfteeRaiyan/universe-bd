@@ -1227,6 +1227,19 @@ const universities: University[] = [
       "CSE, ICE and EEE require Mathematics and Physics at HSC or equivalent level",
       "Campus: A/2, Jahurul Islam Avenue, Jahurul Islam City, Aftabnagar, Dhaka 1212",
     ],
+    admissionRules: {
+      generalRule: "Minimum GPA 3.00 separately in SSC/equivalent and HSC/equivalent for most undergraduate programmes",
+      sourceUrl: "https://ewubd.edu/undergraduate-programs",
+      minimumSscGpa: 3,
+      minimumHscGpa: 3,
+      programmeRules: [
+        {
+          programmes: ["CSE", "Information & Communication Engineering", "EEE"],
+          summary: "Mathematics and Physics are required at HSC/equivalent level",
+          requiredSubjects: ["Mathematics", "Physics"],
+        },
+      ],
+    },
     sources: [
       {
         label:
@@ -1239,7 +1252,7 @@ const universities: University[] = [
         url: "https://ewubd.edu/undergraduate-programs",
       },
     ],
-    verifiedAt: "6 September 2026",
+    verifiedAt: "20 September 2026",
   },
   {
     id: 4,
@@ -1707,6 +1720,31 @@ const universities: University[] = [
       "From the second semester: top 3% receive 100%, next 6% receive 50%, and next 10% receive 25% tuition waiver",
       "Merit continuation requires CGPA 3.50, full prescribed credits, no F grade and no disciplinary disqualification",
     ],
+    admissionRules: {
+      generalRule: "GPA 2.50 in both SSC and HSC, or GPA 2.00 in one examination with combined GPA 6.00",
+      sourceUrl: "https://www.uap-bd.edu/admission_requirment_undergraduate.php",
+      gpaPaths: [
+        {
+          label: "GPA 2.50 or above in both SSC and HSC",
+          minimumSscGpa: 2.5,
+          minimumHscGpa: 2.5,
+        },
+        {
+          label: "At least GPA 2.00 in each and combined GPA 6.00",
+          minimumSscGpa: 2,
+          minimumHscGpa: 2,
+          minimumCombinedGpa: 6,
+        },
+      ],
+      programmeRules: [
+        {
+          programmes: ["Architecture", "Pharmacy"],
+          summary: "These programmes require at least GPA 3.50 separately in SSC and HSC",
+          minimumSscGpa: 3.5,
+          minimumHscGpa: 3.5,
+        },
+      ],
+    },
     status: "Official",
     facts: [
       "All eight undergraduate programmes in UAP's current central fee table are included",
@@ -3067,6 +3105,7 @@ Object.assign(
       "Computer Engineering",
       "Pharmacy",
       "Biochemistry & Molecular Biology",
+      "Microbiology",
       "CSE",
       "Data Science",
       "Computer Networks & Cyber Security",
@@ -3154,6 +3193,7 @@ Object.assign(
         minimum: true,
       },
       { name: "Biochemistry & Molecular Biology", credits: 0, tuitionPerCredit: 7000, total: 0, pending: true },
+      { name: "Microbiology", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
       {
         name: "CSE",
         credits: 148,
@@ -3205,9 +3245,36 @@ Object.assign(
       "Incoming students must pass AIUB's competitive scholarship examination; full or partial tuition-waiver slots are limited",
       "Scholarship is a tuition-fee waiver and is not guaranteed by reaching the minimum criteria",
     ],
+    admissionRules: {
+      generalRule: "Combined SSC+HSC GPA 5.00 or above, with at least GPA 2.50 in each examination",
+      sourceUrl: "https://www.aiub.edu/admission",
+      minimumSscGpa: 2.5,
+      minimumHscGpa: 2.5,
+      minimumCombinedGpa: 5,
+      programmeRules: [
+        {
+          programmes: ["Pharmacy"],
+          summary: "Science applicants need combined GPA 8.00, GPA 3.50 in each examination, Chemistry and Biology GPA 3.50, and Physics and Mathematics GPA 3.00 at HSC level",
+          minimumSscGpa: 3.5,
+          minimumHscGpa: 3.5,
+          minimumCombinedGpa: 8,
+          requiredSubjects: ["Chemistry", "Biology", "Physics", "Mathematics"],
+        },
+        {
+          programmes: ["Biochemistry & Molecular Biology", "Microbiology"],
+          summary: "Science applicants need Physics, Chemistry, Biology and Mathematics at pre-university level; students without Mathematics take an additional course",
+          requiredSubjects: ["Physics", "Chemistry", "Biology", "Mathematics"],
+        },
+        {
+          programmes: ["Architecture", "EEE", "Industrial & Production Engineering", "Computer Engineering", "CSE", "Data Science", "Computer Networks & Cyber Security"],
+          summary: "Science background is required and Mathematics must be included at HSC level",
+          requiredSubjects: ["Mathematics"],
+        },
+      ],
+    },
     status: "Official",
     facts: [
-      "All fourteen undergraduate degrees on AIUB's current central Fall 2026–27 fee table are included",
+      "All fourteen undergraduate degrees on AIUB's current central Fall 2026–27 fee table are included; Microbiology is additionally listed on the current admission page with its cost kept pending",
       "CSE applicants need a combined SSC and HSC GPA of 5.00, with at least 2.50 in each examination",
       "Mathematics is required at HSC level for CSE",
       "BSc in CSE: 148 credits",
@@ -3289,7 +3356,7 @@ Object.assign(
         url: "https://www.aiub.edu/academic-regulations/grading-system",
       },
     ],
-    verifiedAt: "13 September 2026",
+    verifiedAt: "20 September 2026",
   },
 );
 Object.assign(
@@ -3413,6 +3480,12 @@ Object.assign(
       "3% of admitted students may receive 100% tuition and other-fee waiver under the meritorious and poor category",
       "Admission, ID/caution and retake fees remain payable under the published full-waiver notices",
     ],
+    admissionRules: {
+      generalRule: "Minimum GPA 2.50 separately in SSC/equivalent and HSC/equivalent",
+      sourceUrl: "https://www.uiu.ac.bd/admission/admission-requirements/",
+      minimumSscGpa: 2.5,
+      minimumHscGpa: 2.5,
+    },
     status: "Official",
     facts: [
       "All eight undergraduate subjects in UIU's current official tuition table are included",
@@ -3443,7 +3516,7 @@ Object.assign(
         url: "https://www.uiu.ac.bd/notice/list-of-selected-candidates-1st-admission-test-for-fall-2026-trimester/",
       },
     ],
-    verifiedAt: "6 September 2026",
+    verifiedAt: "20 September 2026",
   },
 );
 Object.assign(
@@ -3945,11 +4018,38 @@ Object.assign(
       "15% tuition waiver: average SSC/HSC GPA 4.00–4.49",
       "10% tuition waiver for female students; non-100% awards are capped at 40%",
     ],
+    admissionRules: {
+      generalRule: "GPA 2.50 in both SSC and HSC, or GPA 2.00 in one examination with combined GPA 6.00",
+      sourceUrl: "https://admissions.ulab.edu.bd/undergraduate-programs/admissions-requirements",
+      gpaPaths: [
+        {
+          label: "GPA 2.50 or above in both SSC and HSC",
+          minimumSscGpa: 2.5,
+          minimumHscGpa: 2.5,
+        },
+        {
+          label: "At least GPA 2.00 in each and combined GPA 6.00",
+          minimumSscGpa: 2,
+          minimumHscGpa: 2,
+          minimumCombinedGpa: 6,
+        },
+      ],
+      programmeRules: [
+        {
+          programmes: ["CSE", "EEE", "Environmental Science"],
+          summary: "Science background is required in both SSC and HSC/equivalent for science, technology and engineering programmes",
+          admissionTest: "Written admission test and viva; SAT Math plus Critical Reading score 1100 or above may waive the written test",
+        },
+      ],
+    },
     status: "Official",
     facts: [
       "All seven undergraduate subjects on ULAB's official catalogue are included",
       "Science background is required for science, technology and engineering programmes",
       "An acceptable ULAB admission-test score is required",
+      "The written admission test may be waived for SAT Math plus Critical Reading score 1100 or above, although an interview may still be required",
+      "Application documents include three photographs, board marksheets and certificates, and NID copies for the student and one parent",
+      "Freedom-fighter children have a separate published combined-GPA route that requires supporting documents and is not applied to general applicants",
       "BSc in CSE: 140 credits",
     ],
     sources: [
@@ -3971,14 +4071,40 @@ Object.assign(
         url: "https://ulab.edu.bd/where-is-ulab",
       },
     ],
-    verifiedAt: "6 September 2026",
+    verifiedAt: "20 September 2026",
   },
 );
 Object.assign(
   universities.find((u) => u.short === "GUB")!,
   {
     district: "Narayanganj",
-    programs: ["CSE", "BBA", "EEE", "English"],
+    area: "Purbachal American City, Kanchan",
+    address: "Purbachal American City, Kanchan, Rupganj, Narayanganj 1461",
+    programs: [
+      "CSE",
+      "Software Engineering",
+      "Artificial Intelligence & Data Science",
+      "EEE",
+      "Textile Engineering",
+      "BBA",
+      "English",
+      "Journalism & Media Communication",
+      "Law",
+      "Sociology & Anthropology",
+    ],
+    programCatalogComplete: true,
+    programCosts: [
+      { name: "CSE", credits: 144, semesters: 12, tuitionPerCredit: 4000, total: 728750 },
+      { name: "Software Engineering", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "Artificial Intelligence & Data Science", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "EEE", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "Textile Engineering", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "BBA", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "English", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "Journalism & Media Communication", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "Law", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "Sociology & Anthropology", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+    ],
     credits: 144,
     minGpa: 2.5,
     totalCost: 728750,
@@ -3997,10 +4123,50 @@ Object.assign(
       "HSC GPA 5.00 with all A+: ৳6,20,750",
       "SSC and HSC GPA 5.00 with all A+: ৳1,88,750",
     ],
+    admissionRules: {
+      generalRule: "GPA 2.50 in both SSC and HSC, or at least GPA 2.00 in each with combined GPA 6.00",
+      sourceUrl: "https://green.edu.bd/admission-req-local-students",
+      gpaPaths: [
+        {
+          label: "GPA 2.50 or above in both SSC and HSC",
+          minimumSscGpa: 2.5,
+          minimumHscGpa: 2.5,
+        },
+        {
+          label: "At least GPA 2.00 in each and combined GPA 6.00",
+          minimumSscGpa: 2,
+          minimumHscGpa: 2,
+          minimumCombinedGpa: 6,
+        },
+      ],
+      programmeRules: [
+        {
+          programmes: ["Law"],
+          summary: "LLB (Hons) requires combined SSC and HSC GPA 7.00 or above",
+          minimumCombinedGpa: 7,
+          admissionTest: "English, Mathematics and General Knowledge unless eligible for the published test waiver",
+        },
+        {
+          programmes: ["CSE", "Software Engineering", "Artificial Intelligence & Data Science", "EEE", "Textile Engineering"],
+          summary: "Science background with Physics, Chemistry and Mathematics at HSC/A-Level/equivalent is required; missing Mathematics leads to testing and a remedial course if selected",
+          requiredSubjects: ["Physics", "Chemistry", "Mathematics"],
+          admissionTest: "English, General Knowledge, Mathematics, Physics and Chemistry; combined SSC+HSC GPA 7.00 or above is exempt from the written test",
+        },
+        {
+          programmes: ["BBA", "English", "Journalism & Media Communication", "Sociology & Anthropology"],
+          summary: "The published admission assessment covers English, Mathematics and General Knowledge",
+          admissionTest: "English, Mathematics and General Knowledge; combined SSC+HSC GPA 7.00 or above is exempt from the written test",
+        },
+      ],
+    },
     status: "Official",
     facts: [
+      "All ten undergraduate department routes linked by Green University's current official admission page are searchable",
       "BSc in CSE: 144 credits over 12 semesters",
       "Minimum GPA 2.50 in SSC and HSC; an alternative combined-GPA rule applies when one result is at least 2.00",
+      "Applicants below combined GPA 7.00 sit a 50-mark written test and successful candidates proceed to a 50-mark viva",
+      "Science and engineering applicants are tested in English, General Knowledge, Mathematics, Physics and Chemistry",
+      "The current official address is Purbachal American City, Kanchan, Rupganj, Narayanganj 1461",
     ],
     sources: [
       {
@@ -4012,7 +4178,7 @@ Object.assign(
         url: "https://green.edu.bd/admission-req-local-students",
       },
     ],
-    verifiedAt: "5 September 2026",
+    verifiedAt: "20 September 2026",
   },
 );
 Object.assign(
@@ -9573,7 +9739,9 @@ export default function Home() {
             programMatches(name, readinessProgram),
           ),
           programmeCatalogComplete: Boolean(readinessProfile.programCatalogComplete),
-          minimumGpa: readinessProfile.minGpa,
+          minimumGpa: readinessProfile.admissionRules
+            ? undefined
+            : readinessProfile.minGpa,
           minimumSscGpa:
             readinessProgrammeRule?.minimumSscGpa ??
             readinessProfile.admissionRules?.minimumSscGpa,
@@ -9583,7 +9751,16 @@ export default function Home() {
           minimumCombinedGpa:
             readinessProgrammeRule?.minimumCombinedGpa ??
             readinessProfile.admissionRules?.minimumCombinedGpa,
-          generalGpaRule: readinessProgrammeRule?.minimumCombinedGpa
+          gpaPaths: readinessProgrammeRule?.gpaPaths ??
+            (readinessProgrammeRule?.minimumSscGpa !== undefined ||
+            readinessProgrammeRule?.minimumHscGpa !== undefined ||
+            readinessProgrammeRule?.minimumCombinedGpa !== undefined
+              ? undefined
+              : readinessProfile.admissionRules?.gpaPaths),
+          generalGpaRule:
+            readinessProgrammeRule?.minimumSscGpa !== undefined ||
+            readinessProgrammeRule?.minimumHscGpa !== undefined ||
+            readinessProgrammeRule?.minimumCombinedGpa !== undefined
             ? `${readinessProfile.admissionRules?.generalRule}. ${readinessProgrammeRule.summary}.`
             : readinessProfile.admissionRules?.generalRule,
           sscGpa: readinessSsc,

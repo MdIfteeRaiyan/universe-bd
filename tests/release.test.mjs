@@ -42,6 +42,14 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(pageSource, /Combined SSC\+HSC GPA 8\.00 or above, with at least GPA 3\.50 in each examination/);
   assert.match(pageSource, /HSC\/equivalent requires B grade in Physics and Mathematics/);
   assert.match(pageSource, /Minimum aggregate GPA 8\.00, no GPA below 3\.50 in SSC and HSC/);
+  assert.match(pageSource, /Microbiology is additionally listed on the current admission page with its cost kept pending/);
+  assert.match(pageSource, /Science applicants need combined GPA 8\.00, GPA 3\.50 in each examination/);
+  assert.match(pageSource, /Mathematics and Physics are required at HSC\/equivalent level/);
+  assert.match(pageSource, /At least GPA 2\.00 in each and combined GPA 6\.00/);
+  assert.match(pageSource, /All ten undergraduate department routes linked by Green University's current official admission page are searchable/);
+  assert.match(pageSource, /English, General Knowledge, Mathematics, Physics and Chemistry/);
+  assert.match(pageSource, /SAT Math plus Critical Reading score 1100 or above/);
+  assert.match(pageSource, /Freedom-fighter children have a separate published combined-GPA route/);
   assert.match(pageSource, /Feni University publishes this UGC-approved scale/);
   assert.match(html, /ADMISSION READINESS/);
   assert.match(pageSource, /Print checklist/);
@@ -91,9 +99,23 @@ test("ships public-launch discovery metadata", async () => {
 
 test("keeps public universities in a separate admission experience", async () => {
   const publicHtml = await readFile(publicHtmlPath, "utf8");
+  const publicSource = await readFile(new URL("../app/public-universities/public-directory.tsx", import.meta.url), "utf8");
   assert.match(publicHtml, /PUBLIC UNIVERSITY GUIDE/);
   assert.match(publicHtml, /Bangladesh University of Engineering and Technology/);
-  assert.match(publicHtml, /No academic cost, deadline, seat count or eligibility rule/);
+  assert.match(publicHtml, /Current-session costs, deadlines, seats and eligibility remain pending/);
+  assert.match(publicSource, /Search university or programme/);
+  assert.match(publicSource, /Search division\.\.\./);
+  assert.match(publicSource, /aria-live="polite"/);
+  assert.match(publicSource, /View all \{university\.programs\.length\} programmes/);
+});
+
+test("ships baseline production security headers", async () => {
+  const config = await readFile(new URL("../next.config.ts", import.meta.url), "utf8");
+  assert.match(config, /poweredByHeader: false/);
+  assert.match(config, /X-Content-Type-Options/);
+  assert.match(config, /X-Frame-Options/);
+  assert.match(config, /Permissions-Policy/);
+  assert.match(config, /Referrer-Policy/);
 });
 
 test("keeps uncertainty and verification disclosures visible", async () => {

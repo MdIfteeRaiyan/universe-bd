@@ -22,6 +22,14 @@ export type ProgrammeAdmissionRule = {
   minimumCombinedGpa?: number;
   requiredSubjects?: string[];
   admissionTest?: string;
+  gpaPaths?: AdmissionGpaPath[];
+};
+
+export type AdmissionGpaPath = {
+  label: string;
+  minimumSscGpa?: number;
+  minimumHscGpa?: number;
+  minimumCombinedGpa?: number;
 };
 
 export type UniversityAdmissionRules = {
@@ -30,6 +38,7 @@ export type UniversityAdmissionRules = {
   minimumSscGpa?: number;
   minimumHscGpa?: number;
   minimumCombinedGpa?: number;
+  gpaPaths?: AdmissionGpaPath[];
   programmeRules?: ProgrammeAdmissionRule[];
 };
 
