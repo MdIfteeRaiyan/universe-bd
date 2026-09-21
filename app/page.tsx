@@ -1566,14 +1566,16 @@ export default function Home() {
         </div>
       </header>
 
-      <section id="main-content" tabIndex={-1} className="border-b border-slate-700/70 bg-[#121c2b] outline-none">
-        <div className="mx-auto grid max-w-7xl gap-9 px-5 py-12 lg:grid-cols-[.85fr_1.15fr] lg:px-8 lg:py-16">
-          <div className="flex flex-col justify-center">
-            <p className="text-sm font-bold text-blue-400">
+      <section id="main-content" tabIndex={-1} className="hero-zone border-b border-slate-700/70 bg-[#121c2b] outline-none">
+        <span className="hero-orbit hero-orbit-one" aria-hidden="true" />
+        <span className="hero-orbit hero-orbit-two" aria-hidden="true" />
+        <div className="relative z-[1] mx-auto grid max-w-7xl gap-9 px-5 py-12 lg:grid-cols-[.85fr_1.15fr] lg:px-8 lg:py-16">
+          <div className="hero-copy flex flex-col justify-center">
+            <p className="hero-eyebrow text-sm font-bold text-blue-300">
               PRIVATE UNIVERSITY FINDER
             </p>
             <h1 className="mt-3 max-w-xl text-3xl font-bold leading-tight tracking-[-.035em] sm:text-5xl">
-              Find a university with less confusion.
+              Find your best fit with <span className="hero-gradient-text">less confusion.</span>
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-8 text-slate-300">
               Official-source facts, clear verification dates and no hidden
@@ -1589,8 +1591,22 @@ export default function Home() {
                 Only published fees shown
               </span>
             </div>
+            <div className="mt-7 grid max-w-xl grid-cols-3 overflow-hidden rounded-xl border border-slate-700/80 bg-slate-950/25 backdrop-blur-sm">
+              <div className="hero-proof px-3 py-3 sm:px-4">
+                <b className="block text-lg text-white">{dataQualityReport.universityCount}</b>
+                <span className="text-xs text-slate-400">universities</span>
+              </div>
+              <div className="hero-proof border-x border-slate-700/80 px-3 py-3 sm:px-4">
+                <b className="block text-lg text-emerald-300">{dataQualityReport.verifiedProgrammeCount}</b>
+                <span className="text-xs text-slate-400">verified totals</span>
+              </div>
+              <div className="hero-proof px-3 py-3 sm:px-4">
+                <b className="block text-lg text-blue-300">0</b>
+                <span className="text-xs text-slate-400">hidden guesses</span>
+              </div>
+            </div>
           </div>
-          <div className="surface-card rounded-2xl p-5 sm:p-7">
+          <div className="hero-panel surface-card rounded-2xl p-5 sm:p-7">
             <h2 className="text-xl font-bold">Tell us what you need</h2>
             <p className="mt-1 text-sm text-slate-400">
               Start with three choices. Refine only if you need to.
@@ -2738,6 +2754,101 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="readiness" className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr]">
+          <div>
+            <p className="text-sm font-bold text-blue-400">ADMISSION READINESS</p>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight">Check the next steps before applying.</h2>
+            <p className="mt-4 leading-7 text-slate-300">
+              Review programme availability, the university’s general GPA reference, programme costs, subject requirements and official admission sources in one checklist.
+            </p>
+            <div className="mt-5 rounded-lg border border-amber-400/20 bg-amber-300/5 p-4 text-sm leading-6 text-amber-100">
+              This planner is a preparation aid, not an admission decision. Department-specific subject grades, passing years, admission tests, quotas and intake rules must be confirmed on the official page.
+            </div>
+          </div>
+          <div className="rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
+            <div className="grid gap-5 sm:grid-cols-2">
+              <SearchSelect
+                label="University"
+                placeholder="Search university…"
+                value={readinessUniversity}
+                options={directoryUniversityOptions}
+                onChange={(value) => {
+                  setReadinessUniversity(value);
+                  setReadinessProgram("");
+                }}
+              />
+              {readinessPrograms.length ? (
+                <SearchSelect
+                  label="Programme"
+                  placeholder="Search programme…"
+                  value={readinessProgram}
+                  options={readinessPrograms}
+                  onChange={setReadinessProgram}
+                />
+              ) : (
+                <Info label="Programme" value="Select a university" />
+              )}
+              <ExactGpaField label="SSC GPA" value={readinessSsc} onChange={setReadinessSsc} />
+              <ExactGpaField label="HSC GPA" value={readinessHsc} onChange={setReadinessHsc} />
+            </div>
+            {readinessResult && readinessProfile ? (
+              <div className="mt-6" aria-live="polite">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-700 pt-5">
+                  <div>
+                    <p className="text-sm text-slate-400">Readiness summary</p>
+                    <p className="mt-1 text-xl font-bold text-slate-100">
+                      {readinessResult.status === "not-listed"
+                        ? "Programme not found in verified catalogue"
+                        : readinessResult.status === "needs-attention"
+                          ? "Important requirement needs attention"
+                          : "Ready for final official review"}
+                    </p>
+                  </div>
+                  <span className="rounded-full bg-blue-400/10 px-3 py-1 text-sm font-semibold text-blue-200">
+                    {readinessResult.completedChecks}/{readinessResult.checks.length} checks complete
+                  </span>
+                </div>
+                <div className="mt-4 grid gap-2">
+                  {readinessResult.checks.map((check) => (
+                    <div key={check.label} className={`rounded-lg border p-4 ${check.state === "complete" ? "border-emerald-500/20 bg-emerald-400/5" : check.state === "attention" ? "border-rose-400/20 bg-rose-400/5" : "border-amber-400/20 bg-amber-300/5"}`}>
+                      <div className="flex items-start gap-3">
+                        <span className={`mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full text-xs ${check.state === "complete" ? "bg-emerald-400/20 text-emerald-200" : check.state === "attention" ? "bg-rose-400/20 text-rose-200" : "bg-amber-400/20 text-amber-100"}`} aria-hidden="true">
+                          {check.state === "complete" ? "✓" : "!"}
+                        </span>
+                        <div>
+                          <p className="font-semibold text-slate-100">{check.label}</p>
+                          <p className="mt-1 text-sm leading-6 text-slate-400">{check.note}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-slate-700 pt-4">
+                  <p className="text-xs text-slate-400">Print or save as PDF from your browser for a personal application checklist.</p>
+                  <div className="flex flex-wrap gap-2">
+                    {readinessProfile.admissionRules?.sourceUrl && (
+                      <a href={readinessProfile.admissionRules.sourceUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-lg border border-slate-600 px-4 py-2 text-sm font-semibold text-slate-200 hover:border-blue-400">
+                        Official admission rules <ExternalLink size={14} aria-hidden="true" />
+                      </a>
+                    )}
+                    <button type="button" onClick={() => window.print()} className="inline-flex items-center gap-2 rounded-lg border border-blue-400/40 bg-blue-400/10 px-4 py-2 text-sm font-semibold text-blue-200 hover:bg-blue-400/20">
+                      <Printer size={16} aria-hidden="true" /> Print checklist
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="mt-6 rounded-xl border border-dashed border-slate-600 bg-[#111b2a] p-7 text-center">
+                <Check className="mx-auto text-slate-500" aria-hidden="true" />
+                <h3 className="mt-3 font-bold text-slate-200">Select a university and programme</h3>
+                <p className="mt-2 text-sm text-slate-400">Your readiness checklist will appear here.</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
       <section id="grades" className="border-y border-slate-700 bg-[#121c2b]">
         <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr]">
@@ -2749,9 +2860,9 @@ export default function Home() {
                 Understand the scale before comparing CGPAs.
               </h2>
               <p className="mt-4 leading-7 text-slate-300">
-                Select any university in the directory. A chart appears only
-                when its current official grading policy has been checked—never
-                copied from another university.
+                After choosing a university, review its own grading scale. A
+                chart appears only when the current official policy has been
+                checked—never copied from another university.
               </p>
               <div className="mt-5 rounded-lg border border-emerald-500/20 bg-emerald-400/5 p-4 text-sm leading-6 text-emerald-100">
                 <b>{Object.keys(gradeCharts).length} charts verified.</b> All {universities.length}{" "}
@@ -2862,101 +2973,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="readiness" className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr]">
-          <div>
-            <p className="text-sm font-bold text-blue-400">ADMISSION READINESS</p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight">Check the next steps before applying.</h2>
-            <p className="mt-4 leading-7 text-slate-300">
-              Review programme availability, the university’s general GPA reference, programme costs, subject requirements and official admission sources in one checklist.
-            </p>
-            <div className="mt-5 rounded-lg border border-amber-400/20 bg-amber-300/5 p-4 text-sm leading-6 text-amber-100">
-              This planner is a preparation aid, not an admission decision. Department-specific subject grades, passing years, admission tests, quotas and intake rules must be confirmed on the official page.
-            </div>
-          </div>
-          <div className="rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
-            <div className="grid gap-5 sm:grid-cols-2">
-              <SearchSelect
-                label="University"
-                placeholder="Search university…"
-                value={readinessUniversity}
-                options={directoryUniversityOptions}
-                onChange={(value) => {
-                  setReadinessUniversity(value);
-                  setReadinessProgram("");
-                }}
-              />
-              {readinessPrograms.length ? (
-                <SearchSelect
-                  label="Programme"
-                  placeholder="Search programme…"
-                  value={readinessProgram}
-                  options={readinessPrograms}
-                  onChange={setReadinessProgram}
-                />
-              ) : (
-                <Info label="Programme" value="Select a university" />
-              )}
-              <ExactGpaField label="SSC GPA" value={readinessSsc} onChange={setReadinessSsc} />
-              <ExactGpaField label="HSC GPA" value={readinessHsc} onChange={setReadinessHsc} />
-            </div>
-            {readinessResult && readinessProfile ? (
-              <div className="mt-6" aria-live="polite">
-                <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-700 pt-5">
-                  <div>
-                    <p className="text-sm text-slate-400">Readiness summary</p>
-                    <p className="mt-1 text-xl font-bold text-slate-100">
-                      {readinessResult.status === "not-listed"
-                        ? "Programme not found in verified catalogue"
-                        : readinessResult.status === "needs-attention"
-                          ? "Important requirement needs attention"
-                          : "Ready for final official review"}
-                    </p>
-                  </div>
-                  <span className="rounded-full bg-blue-400/10 px-3 py-1 text-sm font-semibold text-blue-200">
-                    {readinessResult.completedChecks}/{readinessResult.checks.length} checks complete
-                  </span>
-                </div>
-                <div className="mt-4 grid gap-2">
-                  {readinessResult.checks.map((check) => (
-                    <div key={check.label} className={`rounded-lg border p-4 ${check.state === "complete" ? "border-emerald-500/20 bg-emerald-400/5" : check.state === "attention" ? "border-rose-400/20 bg-rose-400/5" : "border-amber-400/20 bg-amber-300/5"}`}>
-                      <div className="flex items-start gap-3">
-                        <span className={`mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full text-xs ${check.state === "complete" ? "bg-emerald-400/20 text-emerald-200" : check.state === "attention" ? "bg-rose-400/20 text-rose-200" : "bg-amber-400/20 text-amber-100"}`} aria-hidden="true">
-                          {check.state === "complete" ? "✓" : "!"}
-                        </span>
-                        <div>
-                          <p className="font-semibold text-slate-100">{check.label}</p>
-                          <p className="mt-1 text-sm leading-6 text-slate-400">{check.note}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-slate-700 pt-4">
-                  <p className="text-xs text-slate-400">Print or save as PDF from your browser for a personal application checklist.</p>
-                  <div className="flex flex-wrap gap-2">
-                    {readinessProfile.admissionRules?.sourceUrl && (
-                      <a href={readinessProfile.admissionRules.sourceUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-lg border border-slate-600 px-4 py-2 text-sm font-semibold text-slate-200 hover:border-blue-400">
-                        Official admission rules <ExternalLink size={14} aria-hidden="true" />
-                      </a>
-                    )}
-                    <button type="button" onClick={() => window.print()} className="inline-flex items-center gap-2 rounded-lg border border-blue-400/40 bg-blue-400/10 px-4 py-2 text-sm font-semibold text-blue-200 hover:bg-blue-400/20">
-                      <Printer size={16} aria-hidden="true" /> Print checklist
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="mt-6 rounded-xl border border-dashed border-slate-600 bg-[#111b2a] p-7 text-center">
-                <Check className="mx-auto text-slate-500" aria-hidden="true" />
-                <h3 className="mt-3 font-bold text-slate-200">Select a university and programme</h3>
-                <p className="mt-2 text-sm text-slate-400">Your readiness checklist will appear here.</p>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
       <section id="about" className="border-t border-slate-700 bg-[#121c2b]">
         <div className="mx-auto max-w-7xl px-5 py-10 lg:px-8">
           <div className="grid gap-6 rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
@@ -3002,11 +3018,38 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <footer className="border-t border-slate-700 bg-[#0d1522]">
-        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-7 text-sm text-slate-400 sm:flex-row sm:justify-between lg:px-8">
-          <b className="text-slate-100">CampusChoice BD</b>
-          <span>Not the best university. The best fit for you.</span>
-          <span>Data build · 2026</span>
+      <footer className="border-t border-slate-700 bg-[#0b1421]">
+        <div className="mx-auto max-w-7xl px-5 py-8 lg:px-8">
+          <div className="grid gap-7 md:grid-cols-[1.2fr_.8fr] md:items-start">
+            <div>
+              <a href="#top" className="inline-flex items-center gap-3">
+                <Image src="/logo-mark.svg" alt="" width={36} height={36} />
+                <span>
+                  <b className="block text-slate-100">CampusChoice BD</b>
+                  <span className="text-xs text-slate-400">
+                    A clearer way to compare university choices.
+                  </span>
+                </span>
+              </a>
+              <p className="mt-4 max-w-lg text-sm leading-6 text-slate-400">
+                A student-built decision guide using linked official sources.
+                Always confirm final fees, eligibility and deadlines with the
+                university before applying.
+              </p>
+            </div>
+            <nav aria-label="Footer navigation" className="grid grid-cols-2 gap-x-5 gap-y-3 text-sm sm:grid-cols-3 md:justify-self-end">
+              <a href="#main-content" className="text-slate-300 transition hover:text-blue-300">University finder</a>
+              <a href="#shortlist" className="text-slate-300 transition hover:text-blue-300">Compare shortlist</a>
+              <a href="#living-cost" className="text-slate-300 transition hover:text-blue-300">Living costs</a>
+              <a href="#readiness" className="text-slate-300 transition hover:text-blue-300">Admission readiness</a>
+              <a href="#grades" className="text-slate-300 transition hover:text-blue-300">Grade charts</a>
+              <a href="/public-universities" className="text-slate-300 transition hover:text-blue-300">Public universities</a>
+            </nav>
+          </div>
+          <div className="mt-7 flex flex-col gap-2 border-t border-slate-800 pt-5 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+            <span>© 2026 CampusChoice BD</span>
+            <span>{dataQualityReport.verifiedProgrammeCount} programme totals source-checked · Data build 2026</span>
+          </div>
         </div>
       </footer>
 
