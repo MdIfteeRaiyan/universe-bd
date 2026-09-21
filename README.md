@@ -11,6 +11,16 @@ npm run dev
 
 Open `http://localhost:3000`.
 
+## Daily official-source monitoring
+
+The scheduled GitHub workflow checks official programme, fee, admission and scholarship pages every day. It detects page changes, broken sources and overdue university reviews, then creates a GitHub review issue. It never publishes changed financial data automatically.
+
+Run the same audit locally with:
+
+```bash
+npm run audit:sources
+```
+
 ## Production checks
 
 ```bash

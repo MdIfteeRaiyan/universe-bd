@@ -1553,25 +1553,16 @@ export default function Home() {
               </ComboboxContent>
             </Combobox>
           </div>
-          <nav className="hidden gap-5 text-sm font-semibold text-slate-300 xl:flex">
-            <a href="#universities">Universities</a>
-            <a href="#shortlist">My shortlist</a>
-            <a href="#living-cost">Cost plan</a>
-            <a href="#scholarship">Funding</a>
-            <a href="#readiness">Admission readiness</a>
-            <a href="#about">About</a>
-          </nav>
-          <button
-            type="button"
-            onClick={() => setCompareOpen(true)}
-            aria-label={`Open comparison with ${compare.length} selected ${compare.length === 1 ? "university" : "universities"}`}
+          <a
+            href="#shortlist"
+            aria-label={`Open shortlist with ${compare.length} saved ${compare.length === 1 ? "university" : "universities"}`}
             className="flex items-center gap-2 rounded-lg border border-slate-600 bg-[#172337] px-3 py-2 text-sm font-semibold text-slate-200 hover:border-blue-400"
           >
-            <GitCompareArrows size={16} /> Compare{" "}
+            <BookmarkCheck size={16} /> Shortlist{" "}
             <span className="rounded-full bg-blue-500/20 px-2 py-0.5 text-xs text-blue-300">
               {compare.length}
             </span>
-          </button>
+          </a>
         </div>
       </header>
 
@@ -1746,9 +1737,9 @@ export default function Home() {
         </div>
       </section>
 
-      <nav aria-label="Page sections" className="border-b border-slate-700 bg-[#0d1522] xl:hidden">
+      <nav aria-label="Your university decision path" className="border-b border-slate-700 bg-[#0d1522]">
         <div className="mx-auto max-w-7xl px-5 py-4 lg:px-8">
-          <p className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-400">Start here</p>
+          <p className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-400">Your simple decision path</p>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
             {[
               ["1. Find", "#universities"],
@@ -1761,7 +1752,7 @@ export default function Home() {
               </a>
             ))}
           </div>
-          <details className="group mt-2 rounded-lg border border-slate-800 bg-[#111b2a]/60">
+          <details className="group mt-2 rounded-lg border border-slate-800 bg-[#111b2a]/60 xl:hidden">
             <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between px-3 py-2 text-sm font-semibold text-slate-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
               More tools
               <span className="text-slate-500 transition group-open:rotate-180" aria-hidden="true">⌄</span>
@@ -2037,30 +2028,30 @@ export default function Home() {
                   </span>
                 )}
               </div>
-              <div className="mt-5 flex gap-2">
+              <div className="mt-5 grid grid-cols-[1fr_auto] gap-2">
                 <button
                   type="button"
                   onClick={() => {
                     setDirectProfile(false);
                     setDetail(u);
                   }}
-                  className="flex flex-1 items-center justify-center gap-1 rounded-lg bg-[#173b68] px-3 py-2.5 text-sm font-semibold text-white"
+                  className="flex min-h-11 items-center justify-center gap-1 rounded-lg bg-[#173b68] px-3 py-2.5 text-sm font-semibold text-white"
                 >
                   View details <ArrowRight size={15} />
                 </button>
                 <button
                   type="button"
                   onClick={() => toggle(u.id)}
-                  aria-label={`${compare.includes(u.id) ? "Remove" : "Add"} ${u.name} ${compare.includes(u.id) ? "from" : "to"} comparison`}
+                  aria-label={`${compare.includes(u.id) ? "Remove" : "Save"} ${u.name} ${compare.includes(u.id) ? "from" : "to"} shortlist`}
                   aria-pressed={compare.includes(u.id)}
                   disabled={compare.length >= 3 && !compare.includes(u.id)}
-                  title={compare.length >= 3 && !compare.includes(u.id) ? "Remove one saved university before adding another" : undefined}
-                  className={`grid size-11 place-items-center rounded-lg border transition disabled:cursor-not-allowed disabled:opacity-35 ${compare.includes(u.id) ? "border-blue-400 bg-blue-400/15 text-blue-200" : "border-slate-600 text-slate-300 hover:border-blue-400 hover:text-blue-200"}`}
+                  title={compare.length >= 3 && !compare.includes(u.id) ? "Remove one university before saving another" : undefined}
+                  className={`flex min-h-11 min-w-[5.5rem] items-center justify-center gap-1.5 rounded-lg border px-3 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-35 ${compare.includes(u.id) ? "border-blue-400 bg-blue-400/15 text-blue-200" : "border-slate-600 text-slate-300 hover:border-blue-400 hover:text-blue-200"}`}
                 >
                   {compare.includes(u.id) ? (
-                    <Check size={17} />
+                    <><Check size={17} /> Saved</>
                   ) : (
-                    <GitCompareArrows size={17} />
+                    <><BookmarkCheck size={17} /> Save</>
                   )}
                 </button>
               </div>
@@ -2145,7 +2136,7 @@ export default function Home() {
             <div className="mt-6 rounded-xl border border-dashed border-slate-600 bg-[#111b2a] p-8 text-center">
               <BookmarkCheck className="mx-auto text-slate-500" aria-hidden="true" />
               <h3 className="mt-3 font-bold text-slate-200">Your shortlist is empty</h3>
-              <p className="mt-2 text-sm text-slate-400">Use the comparison button on a university card to save it here.</p>
+              <p className="mt-2 text-sm text-slate-400">Use the Save button on a university card to keep it here.</p>
             </div>
           )}
           <p className="mt-4 text-xs leading-5 text-slate-500">Your shortlist and application stages are stored in this browser. A share link includes only university choices and the selected comparison programme—never your application stages.</p>

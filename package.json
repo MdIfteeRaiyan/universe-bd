@@ -10,7 +10,8 @@
     "build": "next build",
     "start": "next start",
     "test": "next build && node --test tests/*.test.mjs",
-    "lint": "eslint . --ignore-pattern .next"
+    "lint": "eslint . --ignore-pattern .next",
+    "audit:sources": "node --experimental-strip-types scripts/audit-official-sources.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

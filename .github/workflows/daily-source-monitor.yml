@@ -1,0 +1,95 @@
+name: Daily official-source monitor
+
+on:
+  schedule:
+    - cron: "20 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Restore previous source fingerprints
+        uses: actions/cache/restore@v4
+        with:
+          path: .source-monitor-cache
+          key: source-monitor-${{ github.run_id }}
+          restore-keys: source-monitor-
+      - name: Check official university sources
+        id: monitor
+        run: npm run audit:sources
+      - name: Save source fingerprints
+        uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: .source-monitor-cache
+          key: source-monitor-${{ github.run_id }}
+      - name: Upload audit report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: official-source-report-${{ github.run_number }}
+          path: reports/source-monitor.md
+      - name: Create review issue when attention is needed
+        if: steps.monitor.outputs.needs_review == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = "Official university sources need review";
+            try {
+              await github.rest.issues.getLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: "data-monitor",
+              });
+            } catch (error) {
+              if (error.status !== 404) throw error;
+              await github.rest.issues.createLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: "data-monitor",
+                color: "0969da",
+                description: "Automated official university source review",
+              });
+            }
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open",
+              labels: "data-monitor",
+            });
+            const body = [
+              "The daily CampusChoice BD source monitor found changed, unavailable, or overdue official data.",
+              "",
+              `Open the workflow run and download **official-source-report-${context.runNumber}** for details:`,
+              `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              "",
+              "Do not publish changed fees automatically; verify each item against its official source first.",
+            ].join("\n");
+            const existing = issues.find((issue) => issue.title === title);
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ["data-monitor"],
+              });
+            }
