@@ -82,7 +82,7 @@ export default async function UniversityProfilePage({ params }: ProfilePageProps
       </section>
 
       <section className="mx-auto grid max-w-6xl gap-6 px-5 py-10 lg:grid-cols-[1.35fr_.65fr]">
-        <div className="space-y-6">
+        <div className="motion-cluster space-y-6">
           <ProfileSection title="Undergraduate programmes" note={university.programCatalogComplete ? "Complete official catalogue" : "Catalogue verification is still in progress"}>
             {university.programs.length ? (
               <div className="flex flex-wrap gap-2">
@@ -112,7 +112,7 @@ export default async function UniversityProfilePage({ params }: ProfilePageProps
           </ProfileSection>
         </div>
 
-        <aside className="space-y-6">
+        <aside className="motion-cluster space-y-6">
           <ProfileSection title="Verification summary">
             <dl className="grid gap-3 text-sm">
               <ProfileFact label="Profile stage" value={university.status === "Official" ? "Official sources checked" : "Directory identity only"} />

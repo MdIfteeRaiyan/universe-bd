@@ -14,12 +14,15 @@ export function InterfaceMotion() {
     ).matches;
     const targets = Array.from(
       document.querySelectorAll<HTMLElement>(
-        "main > header, main > nav, main > section, main > footer",
+        "main > header, main > nav, main > section, main > footer, .motion-cluster > *",
       ),
     );
 
     root.classList.add("motion-ready");
-    targets.forEach((target) => target.classList.add("interface-reveal"));
+    targets.forEach((target, index) => {
+      target.classList.add("interface-reveal");
+      target.style.setProperty("--reveal-delay", `${Math.min(index % 4, 3) * 55}ms`);
+    });
 
     const observer = reducedMotion
       ? null
@@ -62,9 +65,10 @@ export function InterfaceMotion() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (frame) window.cancelAnimationFrame(frame);
-      targets.forEach((target) =>
-        target.classList.remove("interface-reveal", "is-visible"),
-      );
+      targets.forEach((target) => {
+        target.classList.remove("interface-reveal", "is-visible");
+        target.style.removeProperty("--reveal-delay");
+      });
     };
   }, [pathname]);
 

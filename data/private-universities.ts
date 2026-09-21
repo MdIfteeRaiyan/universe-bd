@@ -109,7 +109,7 @@ const universities: University[] = [
         {
           programmes: ["Pharmacy"],
           summary: "BPharm follows separate subject-grade requirements and must be selected as the first choice",
-          requiredSubjects: ["Chemistry", "Biology", "Mathematics", "Physics"],
+          requiredSubjects: ["Chemistry", "Biology", "Mathematics"],
         },
       ],
     },
@@ -7037,6 +7037,10 @@ Object.assign(
       "Female students receive an additional 10% tuition waiver under the published policy",
       "Children of freedom fighters: 100% tuition waiver within the published quota",
       "National-team players and national-prize-winning artists: 75%; divisional-level: 50%",
+      "Tribal, physically disabled and acid-victim students each have a published additional 10% tuition-waiver route",
+      "One concurrently enrolled sibling or spouse may receive an additional 10% tuition waiver under the published conditions",
+      "Poor and meritorious rural students with at least CGPA 3.00 may apply for the published 100% financial-aid route",
+      "Eastern University states that cumulative undergraduate waivers normally cannot exceed 50% outside the separately stated categories",
     ],
     status: "Official",
     facts: [
@@ -7068,7 +7072,51 @@ Object.assign(
         url: "https://www.easternuni.edu.bd/campus/transports",
       },
     ],
-    verifiedAt: "8 September 2026",
+    admissionRules: {
+      generalRule:
+        "Applicants need GPA 2.50 in both SSC and HSC or equivalent. If one result is GPA 2.00, the combined GPA must be at least 6.00; an acceptable Eastern University admission-test score is also required.",
+      sourceUrl: "https://easternuni.edu.bd/admission/admission-eligibility",
+      minimumSscGpa: 2.5,
+      minimumHscGpa: 2.5,
+      gpaPaths: [
+        {
+          label: "Standard route",
+          minimumSscGpa: 2.5,
+          minimumHscGpa: 2.5,
+        },
+        {
+          label: "Combined-GPA alternative",
+          minimumSscGpa: 2,
+          minimumHscGpa: 2,
+          minimumCombinedGpa: 6,
+        },
+      ],
+      programmeRules: [
+        {
+          programmes: ["Civil Engineering", "CSE", "EEE"],
+          summary:
+            "Engineering applicants must meet the general GPA route and have Physics and Mathematics at HSC, A-Level or equivalent level.",
+          requiredSubjects: ["Physics", "Mathematics"],
+          admissionTest: "Acceptable score in the Eastern University admission test",
+        },
+        {
+          programmes: ["Pharmacy"],
+          summary:
+            "Pharmacy applicants need combined SSC and HSC GPA 8.00 with neither result below 3.50, plus the published Chemistry, Biology, Physics and Mathematics grades. Students without Mathematics must complete the stated additional three-credit Mathematics course.",
+          minimumSscGpa: 3.5,
+          minimumHscGpa: 3.5,
+          minimumCombinedGpa: 8,
+          requiredSubjects: ["Chemistry", "Biology", "Physics"],
+          admissionTest: "Acceptable score in the Eastern University admission test",
+        },
+      ],
+    },
+    verifiedAt: "21 September 2026",
+    dataContext: {
+      intake: "Current published admission pages",
+      reviewDue: "2027-03-21",
+      note: "Programme and waiver rules are transcribed from Eastern University's current pages. Native-student fee amounts remain pending because the official page exposes the figures as an image that has not been reconciled safely.",
+    },
   },
 );
 Object.assign(
@@ -7548,17 +7596,56 @@ Object.assign(
       "ASA Tower, 23/3 Bir Uttam A. N. M. Nuruzzaman Sarak, Shyamoli, Mohammadpur, Dhaka 1207, Bangladesh",
     programs: ["BBA", "Law", "English", "Applied Sociology", "Pharmacy"],
     programCatalogComplete: true,
-    costLabel: "No CSE programme; published subject costs vary",
+    programCosts: [
+      {
+        name: "BBA",
+        credits: 0,
+        tuitionPerCredit: 2040,
+        total: 399680,
+      },
+      {
+        name: "Law",
+        credits: 0,
+        tuitionPerCredit: 1750,
+        total: 450000,
+      },
+      {
+        name: "English",
+        credits: 0,
+        tuitionPerCredit: 1912,
+        total: 281000,
+      },
+      {
+        name: "Applied Sociology",
+        credits: 0,
+        tuitionPerCredit: 720,
+        total: 199750,
+      },
+      {
+        name: "Pharmacy",
+        credits: 0,
+        tuitionPerCredit: 2950,
+        total: 621950,
+      },
+    ],
+    publishedMinimumCost: 399680,
+    costLabel: "Published BBA programme total",
     feeBreakdown: [
       "Published BBA programme total: ৳3,99,680",
+      "Published Law programme total: ৳4,50,000",
+      "Published English programme total: ৳2,81,000",
+      "Published Applied Sociology programme total: ৳1,99,750",
+      "Published Pharmacy programme total: ৳6,21,950",
       "The official fee table publishes programme-specific admission, registration, tuition and other charges",
       "ASAUB does not currently list CSE among its active undergraduate programmes, so no CSE cost is shown",
-      "Only totals that can be read unambiguously from the current official table are reproduced",
+      "Published totals are before any tuition waiver and remain subject to the university's revision policy",
     ],
     scholarships: [
-      "Programme-specific waivers are listed in ASAUB's official financial-information table",
+      "English applicants with GPA 5.00 in both SSC and HSC without the fourth subject have a published 100% tuition-waiver route; continuation requires CGPA 3.75 or above",
+      "The English waiver table publishes entry bands of 50%, 40%, 30%, 20% and 15% below the top award, each with its own continuation CGPA",
+      "Published special categories include freedom-fighter, ASA or ASAUB staff, tribal, disabled, ASA-member, other microfinance-member, sibling or spouse, and female-student routes, subject to their stated conditions",
       "ASAUB reports providing more than ৳76 crore in student financial aid",
-      "Applicants should confirm the exact intake waiver against their selected programme before payment",
+      "The detailed numeric waiver table is programme-specific; applicants must confirm the active award for their selected programme before payment",
     ],
     status: "Official",
     facts: [
@@ -7566,7 +7653,8 @@ Object.assign(
       "ASAUB currently offers BBA, Law, English, Applied Sociology and Pharmacy at undergraduate level",
       "CSE, EEE and Agro-Technology are not presented as active programmes; the university website describes them as proposed additions",
       "Campus: ASA Tower, 23/3 Bir Uttam A. N. M. Nuruzzaman Sarak, Shyamoli, Mohammadpur, Dhaka 1207",
-      "The general minimum GPA remains pending until the official eligibility page exposes the complete current rule unambiguously",
+      "BBA, Law, English and Applied Sociology applicants need GPA 2.50 in both SSC and HSC or the published equivalent qualification",
+      "Pharmacy has a separate science eligibility route with combined GPA 6.50, at least GPA 3.00 in each examination and subject-specific conditions",
     ],
     sources: [
       {
@@ -7582,11 +7670,38 @@ Object.assign(
         url: "https://www.asaub.edu.bd/admission_ifo.php",
       },
       {
+        label: "Official English tuition-waiver policy and continuation rules",
+        url: "https://www.asaub.edu.bd/tuition_fee_waiver_english.php",
+      },
+      {
         label: "Official campus contact address",
         url: "https://www.asaub.edu.bd/contact_content.php",
       },
     ],
-    verifiedAt: "8 September 2026",
+    admissionRules: {
+      generalRule:
+        "BBA, Law, English and Applied Sociology applicants need at least GPA 2.50 in both SSC and HSC or equivalent; programme-specific rules still apply.",
+      sourceUrl: "https://www.asaub.edu.bd/admission_ifo.php",
+      minimumSscGpa: 2.5,
+      minimumHscGpa: 2.5,
+      programmeRules: [
+        {
+          programmes: ["Pharmacy"],
+          summary:
+            "Pharmacy applicants need a combined SSC and HSC GPA of at least 6.50, at least GPA 3.00 in each examination, and the published science-subject grades. Applicants without Mathematics must take the stated additional Mathematics course.",
+          minimumSscGpa: 3,
+          minimumHscGpa: 3,
+          minimumCombinedGpa: 6.5,
+          requiredSubjects: ["Chemistry", "Biology", "Mathematics", "Physics"],
+        },
+      ],
+    },
+    verifiedAt: "21 September 2026",
+    dataContext: {
+      intake: "Current published fee and eligibility pages",
+      reviewDue: "2027-03-21",
+      note: "Programme totals are copied from ASAUB's official financial-information table before waiver. Credits are shown as not separated because the source publishes complete totals without a single reconciled credit figure in the same table.",
+    },
   },
 );
 Object.assign(

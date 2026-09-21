@@ -7,6 +7,8 @@ test("catalogue audit separates blocking errors from review warnings", async () 
   assert.match(source, /severity: "error" \| "warning"/);
   assert.match(source, /releaseReady: errors\.length === 0/);
   assert.match(source, /future-verification-date/);
+  assert.match(source, /missing-programme-cost-state/);
+  assert.match(source, /orphan-programme-cost/);
   assert.match(source, /stale-verification/);
   assert.match(source, /duplicate-programme/);
   assert.match(source, /Duplicate official source link/);

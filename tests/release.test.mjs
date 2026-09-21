@@ -87,6 +87,11 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(privateData, /Khulna Khan Bahadur Ahsanullah University/);
   assert.match(privateData, /Official CSE fee-table total: ৳3,71,750/);
   assert.match(privateData, /Golden GPA 5\.00 in both SSC and HSC: 100% tuition waiver/);
+  assert.match(privateData, /Published Pharmacy programme total: ৳6,21,950/);
+  assert.match(privateData, /English applicants with GPA 5\.00 in both SSC and HSC without the fourth subject/);
+  assert.match(privateData, /Pharmacy applicants need a combined SSC and HSC GPA of at least 6\.50/);
+  assert.match(privateData, /Poor and meritorious rural students with at least CGPA 3\.00/);
+  assert.match(privateData, /Pharmacy applicants need combined SSC and HSC GPA 8\.00/);
   assert.match(privateData, /combined GPA must be at least 6\.00/);
   assert.match(privateData, /HSC GPA 3\.50 or above and combined SSC\+HSC GPA 8\.00 or above/);
   assert.match(privateData, /Official Fall 2026 engineering admission qualifications/);
@@ -166,6 +171,8 @@ test("ships shared smooth interface motion across public pages", async () => {
   assert.match(motion, /IntersectionObserver/);
   assert.match(motion, /requestAnimationFrame/);
   assert.match(motion, /prefers-reduced-motion/);
+  assert.match(motion, /\.motion-cluster > \*/);
+  assert.match(motion, /--reveal-delay/);
   assert.match(styles, /\.page-progress/);
   assert.match(styles, /\.interface-reveal\.is-visible/);
 });

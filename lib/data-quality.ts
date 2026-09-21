@@ -10,6 +10,8 @@ export type DataQualityIssue = {
     | "duplicate-short-name"
     | "duplicate-programme"
     | "duplicate-programme-cost"
+    | "missing-programme-cost-state"
+    | "orphan-programme-cost"
     | "invalid-cost"
     | "missing-source"
     | "invalid-source"
@@ -82,6 +84,31 @@ export function validateUniversityData(
       }
       if (!programme.discounted && programme.tuitionPerCredit > 0 && programme.credits > 0 && programme.total < programme.tuitionPerCredit * programme.credits) {
         addIssue(university.name, programme.name, "Total is below published tuition alone", "error", "invalid-cost");
+      }
+    }
+
+    for (const programme of university.programs) {
+      const key = programme.trim().toLocaleLowerCase();
+      if (!programmeNames.has(key)) {
+        addIssue(
+          university.name,
+          programme,
+          "Listed programme has neither a verified cost nor an explicit pending cost state",
+          "error",
+          "missing-programme-cost-state",
+        );
+      }
+    }
+    for (const programme of university.programCosts ?? []) {
+      const key = programme.name.trim().toLocaleLowerCase();
+      if (!listedProgrammeNames.has(key)) {
+        addIssue(
+          university.name,
+          programme.name,
+          "Programme cost record is not present in the searchable catalogue",
+          "error",
+          "orphan-programme-cost",
+        );
       }
     }
 
