@@ -9,8 +9,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "next build && node --test tests/*.test.mjs",
+    "test": "npm run validate:data && next build && node --test tests/*.test.mjs",
     "lint": "eslint . --ignore-pattern .next",
+    "validate:data": "node --experimental-strip-types scripts/validate-catalogue.mjs",
     "audit:sources": "node --experimental-strip-types scripts/audit-official-sources.mjs"
   },
   "dependencies": {

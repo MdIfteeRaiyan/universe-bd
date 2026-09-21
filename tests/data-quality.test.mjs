@@ -20,3 +20,17 @@ test("catalogue refresh checks use the actual build date", async () => {
   assert.match(source, /now = new Date\(\)/);
   assert.doesNotMatch(source, /2026-09-16T00:00:00Z/);
 });
+
+test("release tests execute the catalogue validation gate", async () => {
+  const packageJson = JSON.parse(
+    await readFile(new URL("../package.json", import.meta.url), "utf8"),
+  );
+  const gate = await readFile(
+    new URL("../scripts/validate-catalogue.mjs", import.meta.url),
+    "utf8",
+  );
+  assert.match(packageJson.scripts.test, /npm run validate:data/);
+  assert.match(gate, /validateUniversityData/);
+  assert.match(gate, /duplicate-source/);
+  assert.match(gate, /process\.exitCode = 1/);
+});

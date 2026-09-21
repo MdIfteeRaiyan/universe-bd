@@ -3425,10 +3425,6 @@ Object.assign(
         url: "https://iub.ac.bd/academics/undergraduate-programs/bsc-in-computer-science-and-engineering-cse",
       },
       {
-        label: "Official programme catalogue and individual curriculum credits",
-        url: "https://iub.ac.bd/academics/undergraduate-programs",
-      },
-      {
         label: "Official uniform grading notification",
         url: "https://iub.ac.bd/document/notification-regarding-summer-2024-trimester-grade-submission-fe91bb9d-5633-4a0a-b336-ecd597dedcd0.pdf",
       },
@@ -8191,14 +8187,18 @@ const campus = (
   source: string,
 ) => {
   const u = universities.find((x) => x.short === short)!;
+  const existingSources = u.sources ?? [];
+  const normalizedCampusSource = source.replace(/\/$/, "");
+  const hasCampusSource = existingSources.some(
+    (item) => item.url.replace(/\/$/, "") === normalizedCampusSource,
+  );
   Object.assign(u, {
     area,
     address,
     logo,
-    sources: [
-      { label: "Official campus address", url: source },
-      ...(u.sources ?? []),
-    ],
+    sources: hasCampusSource
+      ? existingSources
+      : [{ label: "Official campus address", url: source }, ...existingSources],
   });
 };
 campus(

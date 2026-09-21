@@ -2973,83 +2973,38 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="border-t border-slate-700 bg-[#121c2b]">
-        <div className="mx-auto max-w-7xl px-5 py-10 lg:px-8">
-          <div className="grid gap-6 rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
-            <div className="flex items-start gap-4">
-              <div className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-cyan-200 sm:flex">
-                <BriefcaseBusiness size={20} aria-hidden="true" />
-              </div>
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[.14em] text-blue-300">About CampusChoice BD</p>
-                <h2 className="mt-1 text-xl font-bold">Built by Md Iftee Raiyan</h2>
-                <p className="mt-2 max-w-xl text-sm leading-6 text-slate-300">
-                  A student-built guide that makes university programmes, costs and admission information easier to compare.
-                </p>
-                <a
-                  href="https://www.linkedin.com/in/md-iftee-raiyan-b20336386/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-4 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-600 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-blue-400"
-                >
-                  View LinkedIn <ExternalLink size={14} aria-hidden="true" />
-                </a>
-              </div>
-            </div>
-            <div className="rounded-xl border border-emerald-500/20 bg-emerald-400/5 p-4 sm:p-5">
-              <div className="flex items-start gap-3">
-                <ShieldCheck className="mt-0.5 shrink-0 text-emerald-300" size={20} aria-hidden="true" />
-                <div>
-                  <h3 className="font-bold text-emerald-100">Simple, source-checked information</h3>
-                  <p className="mt-1 text-sm leading-6 text-slate-300">
-                    Published facts link to official sources and show when they were checked. Missing fees or rules stay marked as pending—never guessed.
-                  </p>
-                </div>
-              </div>
-              <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold">
-                <span className="rounded-full bg-slate-900/50 px-3 py-1.5 text-slate-200">{dataQualityReport.universityCount} universities</span>
-                <span className="rounded-full bg-slate-900/50 px-3 py-1.5 text-slate-200">{dataQualityReport.verifiedProgrammeCount} verified programme totals</span>
-                <span className="rounded-full bg-slate-900/50 px-3 py-1.5 text-slate-200">{universityCatalog.stats.total - universityCatalog.stats.pending}/{universityCatalog.stats.total} profiles source-checked</span>
-                <span className={`rounded-full px-3 py-1.5 ${dataQualityReport.releaseReady ? "bg-emerald-400/10 text-emerald-200" : "bg-amber-400/10 text-amber-200"}`}>
-                  {dataQualityReport.releaseReady ? "Catalogue checks passed" : "Data review in progress"}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <footer className="border-t border-slate-700 bg-[#0b1421]">
-        <div className="mx-auto max-w-7xl px-5 py-8 lg:px-8">
-          <div className="grid gap-7 md:grid-cols-[1.2fr_.8fr] md:items-start">
-            <div>
-              <a href="#top" className="inline-flex items-center gap-3">
-                <Image src="/logo-mark.svg" alt="" width={36} height={36} />
-                <span>
-                  <b className="block text-slate-100">CampusChoice BD</b>
-                  <span className="text-xs text-slate-400">
-                    A clearer way to compare university choices.
-                  </span>
-                </span>
+      <footer id="about" className="border-t border-slate-700 bg-[#0b1421]">
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-4 px-5 py-6 text-center sm:flex-row sm:justify-between sm:text-left lg:px-8">
+          <a href="#top" className="inline-flex items-center gap-3">
+            <Image src="/logo-mark.svg" alt="" width={34} height={34} />
+            <b className="text-slate-100">CampusChoice BD</b>
+          </a>
+          <div>
+            <p className="text-sm text-slate-300">
+              Built by <b className="text-slate-100">Md Iftee Raiyan</b>
+            </p>
+            <div className="mt-2 flex justify-center gap-4 sm:justify-start">
+              <a
+                href="https://www.linkedin.com/in/md-iftee-raiyan-b20336386/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex min-h-10 items-center gap-1.5 text-sm font-semibold text-blue-300 transition hover:text-blue-200"
+              >
+                LinkedIn <ExternalLink size={14} aria-hidden="true" />
               </a>
-              <p className="mt-4 max-w-lg text-sm leading-6 text-slate-400">
-                A student-built decision guide using linked official sources.
-                Always confirm final fees, eligibility and deadlines with the
-                university before applying.
-              </p>
+              <a
+                href="https://github.com/MdIfteeRaiyan/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex min-h-10 items-center gap-1.5 text-sm font-semibold text-blue-300 transition hover:text-blue-200"
+              >
+                GitHub <ExternalLink size={14} aria-hidden="true" />
+              </a>
             </div>
-            <nav aria-label="Footer navigation" className="grid grid-cols-2 gap-x-5 gap-y-3 text-sm sm:grid-cols-3 md:justify-self-end">
-              <a href="#main-content" className="text-slate-300 transition hover:text-blue-300">University finder</a>
-              <a href="#shortlist" className="text-slate-300 transition hover:text-blue-300">Compare shortlist</a>
-              <a href="#living-cost" className="text-slate-300 transition hover:text-blue-300">Living costs</a>
-              <a href="#readiness" className="text-slate-300 transition hover:text-blue-300">Admission readiness</a>
-              <a href="#grades" className="text-slate-300 transition hover:text-blue-300">Grade charts</a>
-              <a href="/public-universities" className="text-slate-300 transition hover:text-blue-300">Public universities</a>
-            </nav>
           </div>
-          <div className="mt-7 flex flex-col gap-2 border-t border-slate-800 pt-5 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-            <span>© 2026 CampusChoice BD</span>
-            <span>{dataQualityReport.verifiedProgrammeCount} programme totals source-checked · Data build 2026</span>
-          </div>
+          <p className="max-w-xs text-xs leading-5 text-slate-500 sm:text-right">
+            Source-checked guidance. Confirm final details with the university.
+          </p>
         </div>
       </footer>
 

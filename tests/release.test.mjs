@@ -23,9 +23,10 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(html, /Safety allowance/);
   assert.match(pageSource, /Year-by-year planning schedule/);
   assert.doesNotMatch(html, /DATA VERIFICATION CENTRE/);
-  assert.match(html, /Simple, source-checked information/);
-  assert.match(html, /Catalogue checks passed/);
-  assert.match(html, /Missing fees or rules stay marked as pending—never guessed/);
+  assert.match(html, /Built by/);
+  assert.match(html, /Md Iftee Raiyan/);
+  assert.match(html, /github\.com\/MdIfteeRaiyan/);
+  assert.match(html, /Confirm final details with the university/);
   assert.match(privateData, /UODA's official introduction states that the university was established in 2002/);
   assert.match(privateData, /Official 2026 undergraduate fee table/);
   assert.match(privateData, /Golden GPA 5.00: 100% tuition scholarship/);
@@ -113,7 +114,7 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(pageSource, /Compare the same programme and scan only the facts that matter/);
   assert.match(pageSource, /Lowest verified/);
   assert.match(pageSource, /Remove one university before saving another/);
-  assert.match(html, /A student-built guide that makes university programmes/);
+  assert.match(html, /Source-checked guidance/);
   assert.match(html, /PRIVATE UNIVERSITY FINDER/);
   assert.match(html, /Your simple decision path/);
   assert.match(html, /View eligibility summary/);
@@ -162,6 +163,17 @@ test("ships public-launch discovery metadata", async () => {
   assert.match(sitemapSource, /public-universities/);
   assert.match(sitemapSource, /universityProfilePath/);
   assert.match(socialImageSource, /Choose your university with clearer facts/);
+});
+
+test("ships a branded recovery page for broken links", async () => {
+  const source = await readFile(
+    new URL("../app/not-found.tsx", import.meta.url),
+    "utf8",
+  );
+  assert.match(source, /This university link may have changed/);
+  assert.match(source, /href="\/"/);
+  assert.match(source, /href="\/public-universities"/);
+  assert.match(source, /saved shortlist.*remain available/);
 });
 
 test("generates permanent source-rich university profiles", async () => {
