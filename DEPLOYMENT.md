@@ -1,22 +1,8 @@
 # CampusChoice BD deployment
 
-## 1. Extract and open the project
+## Push with PowerShell
 
-Extract `CampusChoice-BD-Vercel-ready.zip`, open the extracted folder, then right-click inside the folder and choose **Open in Terminal**. Confirm PowerShell is selected.
-
-## 2. Check the site locally
-
-```powershell
-npm install
-npm run build
-npm run dev
-```
-
-Open `http://localhost:3000`. Press `Ctrl+C` in PowerShell when the check is finished.
-
-## 3. Push to a new GitHub repository
-
-Create an empty GitHub repository without a README, licence, or `.gitignore`. Then run:
+Open the extracted project folder, right-click inside it, choose **Open in Terminal**, then run:
 
 ```powershell
 git init
@@ -27,30 +13,42 @@ git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
 git push -u origin main
 ```
 
-Replace the example repository address with the HTTPS address copied from GitHub.
+Replace the example repository address with the HTTPS address copied from your GitHub repository.
 
-## 4. Update an existing GitHub repository
-
-If the repository is already connected, use:
+If the repository is already connected, use this shorter update flow:
 
 ```powershell
 git add .
 git commit -m "Update CampusChoice BD"
-git push origin main
+git push
 ```
 
-If PowerShell says there is nothing to commit, the same version is already committed.
+If `origin` already exists but points to the wrong repository:
 
-## 5. Deploy on Vercel
+```powershell
+git remote set-url origin https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
+git push -u origin main
+```
 
-1. Sign in to Vercel and choose **Add New > Project**.
-2. Import the GitHub repository.
+## Deploy on Vercel
+
+1. Sign in to Vercel and select **Add New → Project**.
+2. Import the GitHub repository you pushed.
 3. Keep **Framework Preset: Next.js**.
-4. Leave Root Directory as `./` and do not add environment variables.
+4. Leave Root Directory as `./` and keep the default build settings.
 5. Select **Deploy**.
 
-Future pushes to the `main` branch will automatically create a new Vercel deployment.
+No environment variables are required for this release. Later GitHub pushes will trigger Vercel deployments automatically.
 
-## 6. If Vercel still shows an older version
+## Verify before publishing
 
-Open the Vercel project, select **Deployments**, open the newest deployment, and confirm its Git commit matches the latest GitHub commit. If necessary, use **Redeploy** on that newest deployment without using the previous build cache.
+```powershell
+npm install
+npm run release:check
+```
+
+The GitHub workflow also runs the same release checks after every push and pull request.
+
+## If Vercel shows an older version
+
+Open the Vercel project and select **Deployments**. The newest deployment should show the same commit message as GitHub. If it does not, open the newest GitHub-connected deployment and select **Redeploy** without using the previous build cache.

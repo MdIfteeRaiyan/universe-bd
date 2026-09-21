@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { InterfaceMotion } from "@/components/interface-motion";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -41,7 +42,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-BD">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <InterfaceMotion />
+        {children}
+      </body>
     </html>
   );
 }

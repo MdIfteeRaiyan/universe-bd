@@ -152,6 +152,33 @@ test("ships a responsive accessible decision trail", async () => {
   assert.match(styles, /animation:none!important/);
 });
 
+test("ships shared smooth interface motion across public pages", async () => {
+  const layout = await readFile(
+    new URL("../app/layout.tsx", import.meta.url),
+    "utf8",
+  );
+  const motion = await readFile(
+    new URL("../components/interface-motion.tsx", import.meta.url),
+    "utf8",
+  );
+  const styles = await readFile(globalStylesPath, "utf8");
+  assert.match(layout, /<InterfaceMotion \/>/);
+  assert.match(motion, /IntersectionObserver/);
+  assert.match(motion, /requestAnimationFrame/);
+  assert.match(motion, /prefers-reduced-motion/);
+  assert.match(styles, /\.page-progress/);
+  assert.match(styles, /\.interface-reveal\.is-visible/);
+});
+
+test("ships graceful loading and error recovery", async () => {
+  const loading = await readFile(new URL("../app/loading.tsx", import.meta.url), "utf8");
+  const error = await readFile(new URL("../app/error.tsx", import.meta.url), "utf8");
+  assert.match(loading, /aria-busy="true"/);
+  assert.match(loading, /Preparing your university guide/);
+  assert.match(error, /onClick={reset}/);
+  assert.match(error, /Your saved choices are still safe/);
+});
+
 test("ships public-launch discovery metadata", async () => {
   const layoutSource = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
   const robotsSource = await readFile(new URL("../app/robots.ts", import.meta.url), "utf8");

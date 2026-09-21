@@ -78,7 +78,7 @@ export default function DecisionReport() {
             const cost = programmeCost(university, programme);
             const available = !programme || university.programs.some((item) => programMatches(item, programme));
             return (
-              <article key={university.id} className="rounded-2xl border border-slate-700 bg-[#172337] p-5">
+              <article key={university.id} className="surface-card rounded-2xl p-5">
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <p className="text-xs font-bold text-blue-300">{university.short}</p>

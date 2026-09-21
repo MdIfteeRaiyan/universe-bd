@@ -11,6 +11,7 @@
     "start": "next start",
     "test": "npm run validate:data && next build && node --test tests/*.test.mjs",
     "lint": "eslint . --ignore-pattern .next",
+    "release:check": "npm run lint && npm test",
     "validate:data": "node --experimental-strip-types scripts/validate-catalogue.mjs",
     "audit:sources": "node --experimental-strip-types scripts/audit-official-sources.mjs"
   },

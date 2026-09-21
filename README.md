@@ -24,10 +24,13 @@ npm run audit:sources
 ## Production checks
 
 ```bash
-npm run lint
-npm run build
+npm run release:check
 ```
+
+This runs linting, the catalogue validation gate, a production build and all automated tests. GitHub repeats the same check after every push and pull request.
 
 ## Deploy on Vercel
 
 Import this GitHub repository into Vercel. Vercel will detect Next.js automatically; no environment variables or custom build settings are required for the current release.
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for the complete PowerShell push and Vercel deployment steps.

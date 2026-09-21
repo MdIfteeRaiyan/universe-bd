@@ -137,7 +137,7 @@ export default async function UniversityProfilePage({ params }: ProfilePageProps
 }
 
 function ProfileSection({ title, note, children }: { title: string; note?: string; children: React.ReactNode }) {
-  return <section className="rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-6"><h2 className="text-xl font-bold">{title}</h2>{note ? <p className="mt-1 text-sm leading-6 text-slate-400">{note}</p> : null}<div className="mt-5">{children}</div></section>;
+  return <section className="surface-card rounded-2xl p-5 sm:p-6"><h2 className="text-xl font-bold">{title}</h2>{note ? <p className="mt-1 text-sm leading-6 text-slate-400">{note}</p> : null}<div className="mt-5">{children}</div></section>;
 }
 function ProfileMetric({ label, value }: { label: string; value: string }) { return <div><b className="block text-xl text-blue-200">{value}</b><span className="text-xs text-slate-400">{label}</span></div>; }
 function ProfileFact({ label, value }: { label: string; value: string }) { return <div className="flex justify-between gap-4 border-b border-slate-700 pb-2"><dt className="text-slate-400">{label}</dt><dd className="text-right font-semibold">{value}</dd></div>; }
