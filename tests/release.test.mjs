@@ -4,6 +4,7 @@ import test from "node:test";
 
 const htmlPath = new URL("../.next/server/app/index.html", import.meta.url);
 const pageSourcePath = new URL("../app/page.tsx", import.meta.url);
+const globalStylesPath = new URL("../app/globals.css", import.meta.url);
 const privateDataPath = new URL("../data/private-universities.ts", import.meta.url);
 const gradeDataPath = new URL("../data/grade-charts.ts", import.meta.url);
 const publicHtmlPath = new URL("../.next/server/app/public-universities.html", import.meta.url);
@@ -23,7 +24,7 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(pageSource, /Year-by-year planning schedule/);
   assert.doesNotMatch(html, /DATA VERIFICATION CENTRE/);
   assert.match(html, /Simple, source-checked information/);
-  assert.match(html, /blocking data issues/);
+  assert.match(html, /Catalogue checks passed/);
   assert.match(html, /Missing fees or rules stay marked as pending—never guessed/);
   assert.match(privateData, /UODA's official introduction states that the university was established in 2002/);
   assert.match(privateData, /Official 2026 undergraduate fee table/);
@@ -137,6 +138,17 @@ test("ships the CampusChoice BD browser and header identity", async () => {
   assert.match(favicon, /aria-label="CampusChoice BD"/);
   assert.match(logo, /aria-label="CampusChoice BD logo"/);
   assert.equal(JSON.parse(manifest).name, "CampusChoice BD");
+});
+
+test("ships a responsive accessible decision trail", async () => {
+  const pageSource = await readFile(pageSourcePath, "utf8");
+  const styles = await readFile(globalStylesPath, "utf8");
+  assert.match(pageSource, /Decision trail/);
+  assert.match(pageSource, /options in view/);
+  assert.match(pageSource, /aria-label="Your university decision path"/);
+  assert.match(styles, /@media\(min-width:640px\)\{\.decision-rail\{display:block\}\}/);
+  assert.match(styles, /@media\(prefers-reduced-motion:reduce\)/);
+  assert.match(styles, /animation:none!important/);
 });
 
 test("ships public-launch discovery metadata", async () => {

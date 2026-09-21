@@ -1739,16 +1739,29 @@ export default function Home() {
 
       <nav aria-label="Your university decision path" className="border-b border-slate-700 bg-[#0d1522]">
         <div className="mx-auto max-w-7xl px-5 py-4 lg:px-8">
-          <p className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-400">Your simple decision path</p>
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+          <div className="mb-3 flex flex-wrap items-end justify-between gap-2">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[.16em] text-blue-300">Decision trail</p>
+              <p className="mt-1 text-sm text-slate-400">Your simple decision path—from search to application.</p>
+            </div>
+            <span className="rounded-full border border-slate-700 bg-slate-900/40 px-3 py-1 text-xs font-semibold text-slate-300" aria-live="polite">
+              {sortedResults.length} options in view · {compare.length}/3 saved
+            </span>
+          </div>
+          <div className="decision-path relative grid grid-cols-2 gap-2 sm:grid-cols-4">
+            <span className="decision-rail" aria-hidden="true"><span /></span>
             {[
-              ["1. Find", "#universities"],
-              ["2. Shortlist", "#shortlist"],
-              ["3. Plan costs", "#living-cost"],
-              ["4. Check admission", "#readiness"],
-            ].map(([label, href]) => (
-              <a key={href} href={href} className="flex min-h-11 items-center justify-center rounded-lg border border-slate-700 bg-[#172337] px-3 py-2 text-center text-sm font-semibold text-slate-200 hover:border-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
-                {label}
+              ["1", "Find", `${sortedResults.length} options`, "#universities", true],
+              ["2", "Shortlist", compare.length ? `${compare.length} saved` : "Save up to 3", "#shortlist", compare.length > 0],
+              ["3", "Plan costs", "Tuition + living", "#living-cost", false],
+              ["4", "Check admission", "Rules + checklist", "#readiness", false],
+            ].map(([number, label, detail, href, active]) => (
+              <a key={String(href)} href={String(href)} className={`decision-step relative z-[1] flex min-h-[4.25rem] items-center gap-3 rounded-xl border px-3 py-2.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 ${active ? "is-active border-blue-400/60 bg-blue-400/10" : "border-slate-700 bg-[#172337]"}`}>
+                <span className="decision-number" aria-hidden="true">{number}</span>
+                <span className="min-w-0">
+                  <b className="block text-sm text-slate-100">{label}</b>
+                  <small className="mt-0.5 block truncate text-xs text-slate-400">{detail}</small>
+                </span>
               </a>
             ))}
           </div>
@@ -1911,7 +1924,7 @@ export default function Home() {
           {sortedResults.slice(0, visible).map((u) => (
             <article
               key={u.id}
-              className="surface-card flex h-full flex-col rounded-2xl p-4 transition hover:-translate-y-0.5 hover:border-blue-500/70 sm:p-5"
+              className="university-card surface-card flex h-full flex-col rounded-2xl p-4 transition hover:-translate-y-0.5 hover:border-blue-500/70 sm:p-5"
             >
               <div className="flex items-start justify-between">
                 <UniversityMark university={u} />
@@ -2981,7 +2994,9 @@ export default function Home() {
                 <span className="rounded-full bg-slate-900/50 px-3 py-1.5 text-slate-200">{dataQualityReport.universityCount} universities</span>
                 <span className="rounded-full bg-slate-900/50 px-3 py-1.5 text-slate-200">{dataQualityReport.verifiedProgrammeCount} verified programme totals</span>
                 <span className="rounded-full bg-slate-900/50 px-3 py-1.5 text-slate-200">{universityCatalog.stats.total - universityCatalog.stats.pending}/{universityCatalog.stats.total} profiles source-checked</span>
-                <span className={`rounded-full px-3 py-1.5 ${dataQualityReport.releaseReady ? "bg-emerald-400/10 text-emerald-200" : "bg-rose-400/10 text-rose-200"}`}>{dataQualityReport.issueCounts.errors} blocking data issues</span>
+                <span className={`rounded-full px-3 py-1.5 ${dataQualityReport.releaseReady ? "bg-emerald-400/10 text-emerald-200" : "bg-amber-400/10 text-amber-200"}`}>
+                  {dataQualityReport.releaseReady ? "Catalogue checks passed" : "Data review in progress"}
+                </span>
               </div>
             </div>
           </div>
