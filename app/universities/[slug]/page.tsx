@@ -51,8 +51,8 @@ export default async function UniversityProfilePage({ params }: ProfilePageProps
       <a href="#profile-content" className="skip-link">Skip to university profile</a>
       <header className="premium-header border-b border-slate-700 bg-[#101827]/95">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
-          <Link href="/" className="flex items-center gap-3">
-            <Image src="/logo-mark.svg" alt="" width={42} height={42} priority />
+          <Link href="/" className="brand-lockup flex items-center gap-3">
+            <span className="brand-mark-wrap"><Image src="/logo-mark.svg" alt="" width={42} height={42} priority /></span>
             <span><b className="block">CampusChoice BD</b><small className="text-slate-400">Private university profile</small></span>
           </Link>
           <Link href="/#universities" className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-slate-600 px-4 py-2 text-sm font-semibold hover:border-blue-400">
@@ -61,7 +61,7 @@ export default async function UniversityProfilePage({ params }: ProfilePageProps
         </div>
       </header>
 
-      <section className="subpage-hero border-b border-slate-700 bg-gradient-to-br from-[#172337] to-[#101827]">
+      <section className="profile-hero subpage-hero border-b border-slate-700 bg-gradient-to-br from-[#172337] to-[#101827]">
         <div className="mx-auto max-w-6xl px-5 py-10 sm:py-14">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
             <div>
@@ -71,7 +71,7 @@ export default async function UniversityProfilePage({ params }: ProfilePageProps
                   <ShieldCheck size={14} aria-hidden="true" /> {university.status === "Official" ? `Checked ${university.verifiedAt}` : "Verification pending"}
                 </span>
               </div>
-              <h1 className="mt-4 max-w-4xl text-3xl font-bold tracking-tight sm:text-5xl">{university.name}</h1>
+              <h1 className="editorial-title mt-4 max-w-4xl text-3xl font-bold tracking-tight sm:text-5xl">{university.name}</h1>
               <p className="mt-4 flex items-start gap-2 text-slate-300"><MapPin size={18} className="mt-0.5 shrink-0 text-blue-300" aria-hidden="true" /> {university.address ?? [university.area, university.district, university.division].filter(Boolean).join(", ")}</p>
             </div>
             <div className="grid min-w-52 grid-cols-2 gap-2 rounded-xl border border-slate-700 bg-[#111b2a] p-4 text-center">
@@ -94,7 +94,7 @@ export default async function UniversityProfilePage({ params }: ProfilePageProps
 
           <ProfileSection title="Published programme costs" note="Totals are shown only when a complete official amount can be supported">
             {verifiedCosts.length ? (
-              <div className="overflow-x-auto rounded-xl border border-slate-700">
+              <div className="overflow-x-auto rounded-xl border border-slate-700" role="region" aria-label="Published programme costs" tabIndex={0}>
                 <table className="w-full min-w-[620px] text-left text-sm">
                   <thead className="bg-[#111b2a] text-slate-300"><tr><th className="p-3">Programme</th><th className="p-3">Credits</th><th className="p-3">Semesters</th><th className="p-3">Published total</th></tr></thead>
                   <tbody>{verifiedCosts.map((programme) => <tr key={programme.name} className="border-t border-slate-700"><td className="p-3 font-semibold">{programme.name}</td><td className="p-3 text-slate-300">{programme.credits || "Not separated"}</td><td className="p-3 text-slate-300">{programme.semesters ?? "Not published"}</td><td className="p-3 font-bold text-blue-300">{money(programme.total)}{programme.minimum ? "+" : ""}</td></tr>)}</tbody>
@@ -138,7 +138,7 @@ export default async function UniversityProfilePage({ params }: ProfilePageProps
 }
 
 function ProfileSection({ title, note, children }: { title: string; note?: string; children: React.ReactNode }) {
-  return <section className="surface-card rounded-2xl p-5 sm:p-6"><h2 className="text-xl font-bold">{title}</h2>{note ? <p className="mt-1 text-sm leading-6 text-slate-400">{note}</p> : null}<div className="mt-5">{children}</div></section>;
+  return <section className="profile-section surface-card rounded-2xl p-5 sm:p-6"><h2 className="text-xl font-bold">{title}</h2>{note ? <p className="mt-1 text-sm leading-6 text-slate-400">{note}</p> : null}<div className="mt-5">{children}</div></section>;
 }
 function ProfileMetric({ label, value }: { label: string; value: string }) { return <div><b className="block text-xl text-blue-200">{value}</b><span className="text-xs text-slate-400">{label}</span></div>; }
 function ProfileFact({ label, value }: { label: string; value: string }) { return <div className="flex justify-between gap-4 border-b border-slate-700 pb-2"><dt className="text-slate-400">{label}</dt><dd className="text-right font-semibold">{value}</dd></div>; }

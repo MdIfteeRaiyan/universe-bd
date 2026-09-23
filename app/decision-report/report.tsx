@@ -53,8 +53,8 @@ export default function DecisionReport() {
       <a href="#decision-report-content" className="skip-link">Skip to decision report</a>
       <header className="premium-header border-b border-slate-700 bg-[#101827]">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-5 py-5">
-          <Link href="/" className="flex items-center gap-3">
-            <Image src="/logo-mark.svg" alt="" width={42} height={42} />
+          <Link href="/" className="brand-lockup flex items-center gap-3">
+            <span className="brand-mark-wrap"><Image src="/logo-mark.svg" alt="" width={42} height={42} /></span>
             <span><b className="block">CampusChoice BD</b><small className="text-slate-400">University decision report</small></span>
           </Link>
           <div className="flex gap-2">
@@ -68,7 +68,7 @@ export default function DecisionReport() {
         <p className="text-sm font-bold tracking-wide text-blue-400">PERSONAL DECISION REPORT</p>
         <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Compare your shortlisted universities.</h1>
+            <h1 className="editorial-title text-3xl font-bold tracking-tight sm:text-4xl">Compare your shortlisted universities.</h1>
             <p className="mt-3 text-slate-300">Programme: <b className="text-white">{programme || "General overview"}</b></p>
           </div>
           <p className="text-sm text-slate-400">Prepared {generatedOn}</p>
@@ -79,7 +79,7 @@ export default function DecisionReport() {
             const cost = programmeCost(university, programme);
             const available = !programme || university.programs.some((item) => programMatches(item, programme));
             return (
-              <article key={university.id} className="surface-card rounded-2xl p-5">
+              <article key={university.id} className="report-card surface-card rounded-2xl p-5">
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <p className="text-xs font-bold text-blue-300">{university.short}</p>

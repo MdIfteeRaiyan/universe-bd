@@ -1496,8 +1496,8 @@ export default function Home() {
       </a>
       <header className="premium-header sticky top-0 z-40 border-b border-slate-700/70 bg-[#101827]/95 backdrop-blur">
         <div className="mx-auto flex min-h-16 max-w-7xl flex-wrap items-center justify-between gap-2 px-5 py-2 lg:px-8">
-          <a href="#top" className="flex items-center gap-3">
-            <Image className="logo-mark" src="/logo-mark.svg" alt="" width={44} height={44} priority />
+          <a href="#top" className="brand-lockup flex items-center gap-3">
+            <span className="brand-mark-wrap"><Image className="logo-mark" src="/logo-mark.svg" alt="" width={44} height={44} priority /></span>
             <span>
               <b className="block leading-5">CampusChoice BD</b>
               <small className="text-xs text-slate-400">
@@ -1556,7 +1556,7 @@ export default function Home() {
           <a
             href="#shortlist"
             aria-label={`Open shortlist with ${compare.length} saved ${compare.length === 1 ? "university" : "universities"}`}
-            className="flex items-center gap-2 rounded-lg border border-slate-600 bg-[#172337] px-3 py-2 text-sm font-semibold text-slate-200 hover:border-blue-400"
+            className="shortlist-button flex items-center gap-2 rounded-full border border-slate-600 bg-[#172337] px-4 py-2 text-sm font-semibold text-slate-200 hover:border-blue-400"
           >
             <BookmarkCheck size={16} /> Shortlist{" "}
             <span className="rounded-full bg-blue-500/20 px-2 py-0.5 text-xs text-blue-300">
@@ -1569,18 +1569,24 @@ export default function Home() {
       <section id="main-content" tabIndex={-1} className="hero-zone border-b border-slate-700/70 bg-[#121c2b] outline-none">
         <span className="hero-orbit hero-orbit-one" aria-hidden="true" />
         <span className="hero-orbit hero-orbit-two" aria-hidden="true" />
+        <span className="hero-doodle hero-doodle-a" aria-hidden="true">✦</span>
+        <span className="hero-doodle hero-doodle-b" aria-hidden="true">↗</span>
         <div className="relative z-[1] mx-auto grid max-w-7xl gap-9 px-5 py-12 lg:grid-cols-[.85fr_1.15fr] lg:px-8 lg:py-16">
           <div className="hero-copy flex flex-col justify-center">
             <p className="hero-eyebrow text-sm font-bold text-blue-300">
-              PRIVATE UNIVERSITY FINDER
+              YOUR NEXT CHAPTER STARTS HERE
             </p>
-            <h1 className="mt-3 max-w-xl text-3xl font-bold leading-tight tracking-[-.035em] sm:text-5xl">
-              Find your best fit with <span className="hero-gradient-text">less confusion.</span>
+            <h1 className="hero-title mt-3 max-w-xl text-4xl font-bold leading-[.98] tracking-[-.045em] sm:text-6xl">
+              Choose your campus with <span className="hero-gradient-text">a clearer head.</span>
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-8 text-slate-300">
               Official-source facts, clear verification dates and no hidden
               guesses—built to make a stressful decision easier.
             </p>
+            <div className="campus-note mt-6" aria-label="CampusChoice promise">
+              <span aria-hidden="true">CC</span>
+              <p><b>Not a ranking.</b> A calmer way to find what fits your life.</p>
+            </div>
             <div className="mt-6 flex flex-wrap gap-4 text-sm text-slate-300">
               <span className="flex items-center gap-2">
                 <ShieldCheck size={17} className="text-blue-400" />
@@ -1606,8 +1612,9 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="hero-panel surface-card rounded-2xl p-5 sm:p-7">
-            <h2 className="text-xl font-bold">Tell us what you need</h2>
+          <div className="hero-panel surface-card rounded-[1.6rem] p-5 sm:p-7">
+            <div className="choice-desk-label" aria-hidden="true">START HERE</div>
+            <h2 className="text-xl font-bold">Build your first shortlist</h2>
             <p className="mt-1 text-sm text-slate-400">
               Start with three choices. Refine only if you need to.
             </p>
@@ -1751,9 +1758,15 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <div className="hero-ribbon" aria-hidden="true">
+          <div>
+            <span>COMPARE CLEARLY</span><i>✦</i><span>PLAN THE REAL COST</span><i>✦</i><span>CHECK THE SOURCE</span><i>✦</i><span>CHOOSE WITH CONFIDENCE</span><i>✦</i>
+            <span>COMPARE CLEARLY</span><i>✦</i><span>PLAN THE REAL COST</span><i>✦</i><span>CHECK THE SOURCE</span><i>✦</i><span>CHOOSE WITH CONFIDENCE</span><i>✦</i>
+          </div>
+        </div>
       </section>
 
-      <nav aria-label="Your university decision path" className="border-b border-slate-700 bg-[#0d1522]">
+      <nav aria-label="Your university decision path" className="decision-nav border-b border-slate-700 bg-[#0d1522]">
         <div className="mx-auto max-w-7xl px-5 py-4 lg:px-8">
           <div className="mb-3 flex flex-wrap items-end justify-between gap-2">
             <div>
@@ -1803,7 +1816,7 @@ export default function Home() {
 
       <section
         id="universities"
-        className="mx-auto max-w-7xl px-5 py-14 lg:px-8"
+        className="experience-section mx-auto max-w-7xl px-5 py-14 lg:px-8"
       >
         <div>
           <div className="flex flex-wrap items-end justify-between gap-5">
@@ -1940,7 +1953,7 @@ export default function Home() {
           {sortedResults.slice(0, visible).map((u) => (
             <article
               key={u.id}
-              className="university-card content-defer surface-card flex h-full flex-col rounded-2xl p-4 transition hover:-translate-y-0.5 hover:border-blue-500/70 sm:p-5"
+              className="university-card content-defer surface-card flex h-full flex-col rounded-[1.35rem] p-4 transition hover:-translate-y-0.5 hover:border-blue-500/70 sm:p-5"
             >
               <div className="flex items-start justify-between">
                 <UniversityMark university={u} />
@@ -2100,7 +2113,7 @@ export default function Home() {
         )}
       </section>
 
-      <section id="shortlist" className="border-y border-slate-700 bg-[#121c2b]">
+      <section id="shortlist" className="experience-section border-y border-slate-700 bg-[#121c2b]">
         <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -2134,7 +2147,7 @@ export default function Home() {
           {compare.length ? (
             <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {compare.map((id) => universities.find((university) => university.id === id)).filter((university): university is University => Boolean(university)).map((university) => (
-                <article key={university.id} className="rounded-xl border border-slate-700 bg-[#172337] p-5">
+                <article key={university.id} className="shortlist-card rounded-xl border border-slate-700 bg-[#172337] p-5">
                   <div className="flex items-start gap-3">
                     <UniversityMark university={university} />
                     <div className="min-w-0">
@@ -2174,7 +2187,7 @@ export default function Home() {
 
       <section
         id="calculator"
-        className="border-y border-slate-700 bg-[#121c2b]"
+        className="experience-section border-y border-slate-700 bg-[#121c2b]"
       >
         <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 lg:grid-cols-[.7fr_1.3fr] lg:px-8">
           <div>
@@ -2196,7 +2209,7 @@ export default function Home() {
               marked pending.
             </p>
           </div>
-          <div className="rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
+          <div className="tool-panel rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               <SearchSelect
                 label="University"
@@ -2325,7 +2338,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="living-cost" className="border-y border-slate-700 bg-[#121c2b]">
+      <section id="living-cost" className="experience-section border-y border-slate-700 bg-[#121c2b]">
         <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr]">
             <div>
@@ -2340,7 +2353,7 @@ export default function Home() {
                 Hall availability and seat allocation must be confirmed by the university. Selecting “University hall” estimates cost only; it does not claim that a hall or seat is available.
               </div>
             </div>
-            <div className="rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
+            <div className="tool-panel rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
               <div className="grid gap-5 sm:grid-cols-2">
                 <SearchSelect
                   label="University"
@@ -2482,7 +2495,7 @@ export default function Home() {
                     Planning estimate checked {livingCostChecked}. Scholarship, annual increase and safety allowance are user-selected scenarios—not university promises. Actual rent, meals, utilities, transport, deposits and lifestyle costs vary by campus area and room sharing. Confirm halls and awarded waivers directly before relying on the plan.
                   </p>
                   {completeFinancialPlan && (
-                    <div className="mt-6 overflow-x-auto rounded-xl border border-slate-700">
+                    <div className="mt-6 overflow-x-auto rounded-xl border border-slate-700" role="region" aria-label="Year-by-year financial plan" tabIndex={0}>
                       <table className="w-full min-w-[640px] text-left text-sm">
                         <caption className="bg-[#111b2a] px-4 py-3 text-left font-bold text-slate-100">
                           Year-by-year planning schedule
@@ -2525,7 +2538,7 @@ export default function Home() {
 
       <section
         id="scholarship"
-        className="mx-auto max-w-7xl px-5 py-14 lg:px-8"
+        className="experience-section mx-auto max-w-7xl px-5 py-14 lg:px-8"
       >
         <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr]">
           <div>
@@ -2564,7 +2577,7 @@ export default function Home() {
               its result bands and fee components are verified.
             </div>
           </div>
-          <div className="rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
+          <div className="tool-panel rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
             <div className="grid gap-5 sm:grid-cols-2">
               <SearchSelect
                 label="University"
@@ -2754,7 +2767,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="readiness" className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
+      <section id="readiness" className="experience-section mx-auto max-w-7xl px-5 py-14 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr]">
           <div>
             <p className="text-sm font-bold text-blue-400">ADMISSION READINESS</p>
@@ -2766,7 +2779,7 @@ export default function Home() {
               This planner is a preparation aid, not an admission decision. Department-specific subject grades, passing years, admission tests, quotas and intake rules must be confirmed on the official page.
             </div>
           </div>
-          <div className="rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
+          <div className="tool-panel rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
             <div className="grid gap-5 sm:grid-cols-2">
               <SearchSelect
                 label="University"
@@ -2849,7 +2862,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="grades" className="border-y border-slate-700 bg-[#121c2b]">
+      <section id="grades" className="experience-section border-y border-slate-700 bg-[#121c2b]">
         <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr]">
             <div>
@@ -2887,7 +2900,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
+            <div className="tool-panel rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
               <SearchSelect
                 label="University"
                 value={
@@ -2929,7 +2942,7 @@ export default function Home() {
                       Official grading policy <ExternalLink size={14} />
                     </a>
                   </div>
-                  <div className="overflow-x-auto rounded-xl border border-slate-700">
+                  <div className="overflow-x-auto rounded-xl border border-slate-700" role="region" aria-label={`${gradeUniversity} official grade chart`} tabIndex={0}>
                     <table className="w-full min-w-[420px] text-sm">
                       <thead className="bg-[#111b2a] text-left text-slate-300">
                         <tr>
@@ -3244,7 +3257,7 @@ export default function Home() {
         </DialogContent>
       </Dialog>
       <Dialog open={compareOpen} onOpenChange={setCompareOpen}>
-        <DialogContent className="max-h-[92vh] overflow-y-auto border-slate-700 bg-[#172337] text-slate-100 sm:max-w-5xl">
+        <DialogContent className="comparison-workspace max-h-[92vh] overflow-y-auto border-slate-700 bg-[#172337] text-slate-100 sm:max-w-5xl">
           <DialogHeader>
             <DialogTitle className="text-2xl text-white">
               Compare your shortlist

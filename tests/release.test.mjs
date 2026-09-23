@@ -122,7 +122,7 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(pageSource, /Lowest verified/);
   assert.match(pageSource, /Remove one university before saving another/);
   assert.match(html, /Source-checked guidance/);
-  assert.match(html, /PRIVATE UNIVERSITY FINDER/);
+  assert.match(html, /YOUR NEXT CHAPTER STARTS HERE/);
   assert.match(html, /Your simple decision path/);
   assert.match(html, /View eligibility summary/);
   assert.match(html, /Show more ·/);
@@ -183,6 +183,26 @@ test("ships shared smooth interface motion across public pages", async () => {
   assert.match(styles, /\.content-defer/);
   assert.match(styles, /prefers-contrast:more/);
   assert.match(styles, /forced-colors:active/);
+});
+
+test("ships the cohesive final-release experience across every decision surface", async () => {
+  const home = await readFile(pageSourcePath, "utf8");
+  const styles = await readFile(globalStylesPath, "utf8");
+  const profile = await readFile(new URL("../app/universities/[slug]/page.tsx", import.meta.url), "utf8");
+  const publicDirectory = await readFile(new URL("../app/public-universities/public-directory.tsx", import.meta.url), "utf8");
+  const report = await readFile(new URL("../app/decision-report/report.tsx", import.meta.url), "utf8");
+  assert.match(home, /className="comparison-workspace/);
+  assert.match(home, /className="tool-panel/);
+  assert.match(home, /className="shortlist-card/);
+  assert.match(home, /aria-label="Year-by-year financial plan" tabIndex={0}/);
+  assert.match(profile, /className="profile-section/);
+  assert.match(profile, /aria-label="Published programme costs" tabIndex={0}/);
+  assert.match(publicDirectory, /className="public-university-card/);
+  assert.match(publicDirectory, /Show the full directory/);
+  assert.match(report, /className="report-card/);
+  assert.match(styles, /prefers-reduced-motion:reduce/);
+  assert.match(styles, /\.comparison-workspace/);
+  assert.match(styles, /\.public-filter-bar/);
 });
 
 test("ships consistent keyboard skip navigation on secondary pages", async () => {
