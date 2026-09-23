@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink, MapPin, ShieldCheck } from "lucide-react";
+import { ReportUpdate } from "@/components/report-update";
 import { privateUniversities } from "@/data/private-universities";
 import {
   universityFromProfileSlug,
@@ -45,9 +46,19 @@ export default async function UniversityProfilePage({ params }: ProfilePageProps
   const pendingCosts = university.programCosts?.filter(
     (programme) => programme.pending || programme.total <= 0,
   ) ?? [];
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollegeOrUniversity",
+    name: university.name,
+    alternateName: university.short,
+    address: university.address ?? [university.area, university.district, university.division, "Bangladesh"].filter(Boolean).join(", "),
+    url: university.sources?.[0]?.url,
+    subjectOf: `https://campuschoice-bd.vercel.app/universities/${universityProfileSlug(university)}`,
+  };
 
   return (
     <main className="site-shell min-h-screen bg-[#101827] text-slate-100">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <a href="#profile-content" className="skip-link">Skip to university profile</a>
       <header className="premium-header border-b border-slate-700 bg-[#101827]/95">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
@@ -128,6 +139,10 @@ export default async function UniversityProfilePage({ params }: ProfilePageProps
 
           <ProfileSection title="Official sources">
             {university.sources?.length ? <div className="grid gap-2">{university.sources.map((source) => <a key={source.url} href={source.url} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center justify-between gap-3 rounded-lg border border-slate-700 px-3 py-2 text-sm font-semibold text-blue-300 hover:border-blue-400">{source.label}<ExternalLink size={14} className="shrink-0" aria-hidden="true" /></a>)}</div> : <PendingMessage text="Official source links are still being collected." />}
+          </ProfileSection>
+
+          <ProfileSection title="Help keep this profile current" note="Reports never change published information automatically">
+            <ReportUpdate university={university.name} />
           </ProfileSection>
 
           {university.facts?.length ? <ProfileSection title="Source-checked notes"><ul className="grid gap-3 text-sm leading-6 text-slate-300">{university.facts.map((fact) => <li key={fact} className="border-l-2 border-blue-400 pl-3">{fact}</li>)}</ul></ProfileSection> : null}

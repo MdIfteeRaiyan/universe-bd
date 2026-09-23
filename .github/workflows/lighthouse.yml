@@ -1,0 +1,26 @@
+name: Live Lighthouse audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "45 4 * * 2"
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit the production site against release targets
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://campuschoice-bd.vercel.app/
+            https://campuschoice-bd.vercel.app/public-universities
+            https://campuschoice-bd.vercel.app/my-decision
+          configPath: ./lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: false

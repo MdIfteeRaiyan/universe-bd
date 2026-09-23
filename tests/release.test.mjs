@@ -205,6 +205,27 @@ test("ships the cohesive final-release experience across every decision surface"
   assert.match(styles, /\.public-filter-bar/);
 });
 
+test("ships sustainable discovery, trust, feedback and monitoring foundations", async () => {
+  const layout = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
+  const sitemap = await readFile(new URL("../app/sitemap.ts", import.meta.url), "utf8");
+  const decision = await readFile(new URL("../app/my-decision/workspace.tsx", import.meta.url), "utf8");
+  const feedback = await readFile(new URL("../components/report-update.tsx", import.meta.url), "utf8");
+  const monitor = await readFile(new URL("../.github/workflows/daily-source-monitor.yml", import.meta.url), "utf8");
+  const lighthouse = await readFile(new URL("../lighthouserc.json", import.meta.url), "utf8");
+  assert.match(layout, /<Analytics \/>/);
+  assert.match(layout, /<SpeedInsights sampleRate={0\.5} \/>/);
+  assert.match(layout, /NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION/);
+  assert.match(sitemap, /programmeDirectory/);
+  assert.match(sitemap, /districtDirectory/);
+  assert.match(sitemap, /my-decision/);
+  assert.match(decision, /there is no hidden ranking/);
+  assert.match(decision, /Academic \+ living \+ 8% safety allowance/);
+  assert.match(feedback, /Nothing was submitted automatically/);
+  assert.match(feedback, /NEXT_PUBLIC_FEEDBACK_EMAIL/);
+  assert.match(monitor, /Do not publish changed fees automatically/);
+  assert.equal(JSON.parse(lighthouse).ci.assert.assertions["categories:performance"][1].minScore, 0.9);
+});
+
 test("ships consistent keyboard skip navigation on secondary pages", async () => {
   const profile = await readFile(new URL("../app/universities/[slug]/page.tsx", import.meta.url), "utf8");
   const publicDirectory = await readFile(new URL("../app/public-universities/public-directory.tsx", import.meta.url), "utf8");
@@ -312,10 +333,10 @@ test("ships a private, printable shortlist decision report", async () => {
   assert.match(metadata, /index: false, follow: false/);
 });
 
-test("ships a safe daily official-source monitor", async () => {
+test("ships a safe weekly official-source monitor", async () => {
   const workflow = await readFile(new URL("../.github/workflows/daily-source-monitor.yml", import.meta.url), "utf8");
   const monitor = await readFile(new URL("../scripts/audit-official-sources.mjs", import.meta.url), "utf8");
-  assert.match(workflow, /cron: "20 1 \* \* \*"/);
+  assert.match(workflow, /cron: "20 3 \* \* 1"/);
   assert.match(workflow, /Official university sources need review/);
   assert.match(monitor, /A detected change is a review signal only/);
   assert.match(monitor, /privateUniversities/);

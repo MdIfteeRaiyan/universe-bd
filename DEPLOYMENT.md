@@ -37,8 +37,14 @@ git push -u origin main
 3. Keep **Framework Preset: Next.js**.
 4. Leave Root Directory as `./` and keep the default build settings.
 5. Select **Deploy**.
+6. After the first deployment, open the Vercel project and enable **Web Analytics** and **Speed Insights**.
 
-No environment variables are required for this release. Later GitHub pushes will trigger Vercel deployments automatically.
+No environment variables are required for the site to work. These optional variables enable launch services:
+
+- `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`: verification token supplied by Google Search Console.
+- `NEXT_PUBLIC_FEEDBACK_EMAIL`: destination used by the profile correction form. If omitted, reports are copied locally instead of sent.
+
+Later GitHub pushes will trigger Vercel deployments automatically.
 
 ## Verify before publishing
 

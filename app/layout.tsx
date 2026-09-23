@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { InterfaceMotion } from "@/components/interface-motion";
+import { AnalyticsEvents } from "@/components/analytics-events";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -28,6 +31,9 @@ export const metadata: Metadata = {
     shortcut: "/favicon.svg",
   },
   manifest: "/site.webmanifest",
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+    : undefined,
 };
 
 export const viewport: Viewport = {
@@ -44,7 +50,10 @@ export default function RootLayout({
     <html lang="en-BD">
       <body className="antialiased">
         <InterfaceMotion />
+        <AnalyticsEvents />
         {children}
+        <Analytics />
+        <SpeedInsights sampleRate={0.5} />
       </body>
     </html>
   );

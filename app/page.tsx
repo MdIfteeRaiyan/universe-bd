@@ -45,6 +45,7 @@ import { buildUniversityCatalog } from "@/data/catalog";
 import { createFinancialPlan } from "@/lib/financial-planner";
 import { evaluateAdmissionReadiness } from "@/lib/admission-readiness";
 import { universityProfilePath } from "@/lib/university-profile";
+import { trackPrivacyEvent } from "@/lib/privacy-analytics";
 import {
   createSharedShortlistUrl,
   createDecisionReportUrl,
@@ -694,6 +695,18 @@ export default function Home() {
   const publishedSubjectTotals = evaluatedResults.filter(
     (u) => u.totalCost !== undefined,
   ).length;
+  useEffect(() => {
+    if (!filtersChanged || displayResults.length > 0) return;
+    const timer = window.setTimeout(
+      () => trackPrivacyEvent("search_no_results", {
+        programmeSelected: Boolean(programFilter),
+        locationSelected: Boolean(divisionFilter || districtFilter || areaFilter),
+        gpaEnabled: useGpa,
+      }),
+      600,
+    );
+    return () => window.clearTimeout(timer);
+  }, [areaFilter, displayResults.length, districtFilter, divisionFilter, filtersChanged, programFilter, useGpa]);
   useEffect(() => {
     if (!detail) return;
     const matchingFilteredProgram = programFilter
@@ -1587,6 +1600,9 @@ export default function Home() {
               <span aria-hidden="true">CC</span>
               <p><b>Not a ranking.</b> A calmer way to find what fits your life.</p>
             </div>
+            <a href="/my-decision" className="decision-cta mt-6 inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-slate-600 px-4 py-2 text-sm font-bold text-slate-100">
+              Try My Decision <ArrowRight size={16} aria-hidden="true" />
+            </a>
             <div className="mt-6 flex flex-wrap gap-4 text-sm text-slate-300">
               <span className="flex items-center gap-2">
                 <ShieldCheck size={17} className="text-blue-400" />
@@ -1627,6 +1643,9 @@ export default function Home() {
                 onChange={(value) => {
                   setProgram(value);
                   setVisible(9);
+                  if (value && value !== "All programmes") {
+                    trackPrivacyEvent("programme_selected", { programme: value });
+                  }
                 }}
               />
               <SearchSelect
@@ -1756,12 +1775,6 @@ export default function Home() {
                 Reset all filters
               </button>
             </div>
-          </div>
-        </div>
-        <div className="hero-ribbon" aria-hidden="true">
-          <div>
-            <span>COMPARE CLEARLY</span><i>✦</i><span>PLAN THE REAL COST</span><i>✦</i><span>CHECK THE SOURCE</span><i>✦</i><span>CHOOSE WITH CONFIDENCE</span><i>✦</i>
-            <span>COMPARE CLEARLY</span><i>✦</i><span>PLAN THE REAL COST</span><i>✦</i><span>CHECK THE SOURCE</span><i>✦</i><span>CHOOSE WITH CONFIDENCE</span><i>✦</i>
           </div>
         </div>
       </section>
@@ -2113,7 +2126,7 @@ export default function Home() {
         )}
       </section>
 
-      <section id="shortlist" className="experience-section border-y border-slate-700 bg-[#121c2b]">
+      <section id="shortlist" data-analytics="shortlist_used" className="experience-section border-y border-slate-700 bg-[#121c2b]">
         <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -2125,15 +2138,15 @@ export default function Home() {
             </div>
             {compare.length > 0 && (
               <div className="flex flex-wrap gap-2">
-                <button type="button" onClick={shareShortlist} className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-blue-400/40 bg-blue-400/10 px-4 py-2.5 text-sm font-semibold text-blue-100 hover:bg-blue-400/20">
+                <button type="button" data-analytics="shortlist_shared" onClick={shareShortlist} className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-blue-400/40 bg-blue-400/10 px-4 py-2.5 text-sm font-semibold text-blue-100 hover:bg-blue-400/20">
                   <Share2 size={16} aria-hidden="true" /> Share shortlist
                 </button>
                 {compare.length >= 2 && (
                   <>
-                    <button type="button" onClick={() => setCompareOpen(true)} className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-[#173b68] px-4 py-2.5 text-sm font-semibold text-white">
+                    <button type="button" data-analytics="comparison_opened" onClick={() => setCompareOpen(true)} className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-[#173b68] px-4 py-2.5 text-sm font-semibold text-white">
                       <GitCompareArrows size={16} aria-hidden="true" /> Compare saved choices
                     </button>
-                    <a href={createDecisionReportUrl("https://campuschoice-bd.vercel.app", compare, compareProgram || programFilter)} className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-slate-600 px-4 py-2.5 text-sm font-semibold text-slate-200 hover:border-blue-400">
+                    <a data-analytics="decision_report_opened" href={createDecisionReportUrl("https://campuschoice-bd.vercel.app", compare, compareProgram || programFilter)} className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-slate-600 px-4 py-2.5 text-sm font-semibold text-slate-200 hover:border-blue-400">
                       <Printer size={16} aria-hidden="true" /> Decision report
                     </a>
                   </>
@@ -2187,6 +2200,7 @@ export default function Home() {
 
       <section
         id="calculator"
+        data-analytics="cost_planner_used"
         className="experience-section border-y border-slate-700 bg-[#121c2b]"
       >
         <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 lg:grid-cols-[.7fr_1.3fr] lg:px-8">
@@ -2338,7 +2352,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="living-cost" className="experience-section border-y border-slate-700 bg-[#121c2b]">
+      <section id="living-cost" data-analytics="complete_budget_used" className="experience-section border-y border-slate-700 bg-[#121c2b]">
         <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr]">
             <div>
@@ -3034,6 +3048,13 @@ export default function Home() {
           </div>
           <p className="max-w-xs text-xs leading-5 text-slate-500 sm:text-right">
             Source-checked guidance. Confirm final details with the university.
+            <span className="mt-2 flex flex-wrap justify-center gap-x-3 gap-y-1 sm:justify-end">
+              <a href="/methodology" className="hover:text-slate-300">Methodology</a>
+              <a href="/my-decision" className="hover:text-slate-300">My Decision</a>
+              <a href="/privacy" className="hover:text-slate-300">Privacy</a>
+              <a href="/terms" className="hover:text-slate-300">Terms</a>
+              <a href="/disclaimer" className="hover:text-slate-300">Disclaimer</a>
+            </span>
           </p>
         </div>
       </footer>
