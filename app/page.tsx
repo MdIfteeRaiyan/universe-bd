@@ -1487,14 +1487,14 @@ export default function Home() {
   };
 
   return (
-    <main className="soft-dark min-h-screen bg-[#101827] text-slate-100">
+    <main className="site-shell soft-dark min-h-screen bg-[#101827] text-slate-100">
       <a
         href="#main-content"
-        className="sr-only z-50 rounded-md bg-white px-4 py-2 font-semibold text-slate-950 focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+        className="skip-link"
       >
         Skip to main content
       </a>
-      <header className="sticky top-0 z-40 border-b border-slate-700/70 bg-[#101827]/95 backdrop-blur">
+      <header className="premium-header sticky top-0 z-40 border-b border-slate-700/70 bg-[#101827]/95 backdrop-blur">
         <div className="mx-auto flex min-h-16 max-w-7xl flex-wrap items-center justify-between gap-2 px-5 py-2 lg:px-8">
           <a href="#top" className="flex items-center gap-3">
             <Image className="logo-mark" src="/logo-mark.svg" alt="" width={44} height={44} priority />
@@ -1940,7 +1940,7 @@ export default function Home() {
           {sortedResults.slice(0, visible).map((u) => (
             <article
               key={u.id}
-              className="university-card surface-card flex h-full flex-col rounded-2xl p-4 transition hover:-translate-y-0.5 hover:border-blue-500/70 sm:p-5"
+              className="university-card content-defer surface-card flex h-full flex-col rounded-2xl p-4 transition hover:-translate-y-0.5 hover:border-blue-500/70 sm:p-5"
             >
               <div className="flex items-start justify-between">
                 <UniversityMark university={u} />

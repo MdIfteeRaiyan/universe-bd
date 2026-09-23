@@ -47,8 +47,9 @@ export default async function UniversityProfilePage({ params }: ProfilePageProps
   ) ?? [];
 
   return (
-    <main className="min-h-screen bg-[#101827] text-slate-100">
-      <header className="border-b border-slate-700 bg-[#101827]/95">
+    <main className="site-shell min-h-screen bg-[#101827] text-slate-100">
+      <a href="#profile-content" className="skip-link">Skip to university profile</a>
+      <header className="premium-header border-b border-slate-700 bg-[#101827]/95">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
           <Link href="/" className="flex items-center gap-3">
             <Image src="/logo-mark.svg" alt="" width={42} height={42} priority />
@@ -60,7 +61,7 @@ export default async function UniversityProfilePage({ params }: ProfilePageProps
         </div>
       </header>
 
-      <section className="border-b border-slate-700 bg-gradient-to-br from-[#172337] to-[#101827]">
+      <section className="subpage-hero border-b border-slate-700 bg-gradient-to-br from-[#172337] to-[#101827]">
         <div className="mx-auto max-w-6xl px-5 py-10 sm:py-14">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
             <div>
@@ -81,7 +82,7 @@ export default async function UniversityProfilePage({ params }: ProfilePageProps
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-6xl gap-6 px-5 py-10 lg:grid-cols-[1.35fr_.65fr]">
+      <section id="profile-content" tabIndex={-1} className="mx-auto grid max-w-6xl gap-6 px-5 py-10 outline-none lg:grid-cols-[1.35fr_.65fr]">
         <div className="motion-cluster space-y-6">
           <ProfileSection title="Undergraduate programmes" note={university.programCatalogComplete ? "Complete official catalogue" : "Catalogue verification is still in progress"}>
             {university.programs.length ? (

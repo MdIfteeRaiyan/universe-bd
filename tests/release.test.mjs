@@ -92,6 +92,8 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(privateData, /Pharmacy applicants need a combined SSC and HSC GPA of at least 6\.50/);
   assert.match(privateData, /Poor and meritorious rural students with at least CGPA 3\.00/);
   assert.match(privateData, /Pharmacy applicants need combined SSC and HSC GPA 8\.00/);
+  assert.match(privateData, /Nine current undergraduate routes are reconciled across BUBT/);
+  assert.match(privateData, /Civil Engineering requires GPA 3\.00 in both SSC and HSC/);
   assert.match(privateData, /combined GPA must be at least 6\.00/);
   assert.match(privateData, /HSC GPA 3\.50 or above and combined SSC\+HSC GPA 8\.00 or above/);
   assert.match(privateData, /Official Fall 2026 engineering admission qualifications/);
@@ -175,6 +177,23 @@ test("ships shared smooth interface motion across public pages", async () => {
   assert.match(motion, /--reveal-delay/);
   assert.match(styles, /\.page-progress/);
   assert.match(styles, /\.interface-reveal\.is-visible/);
+  assert.match(styles, /@media\(hover:hover\) and \(pointer:fine\)/);
+  assert.match(styles, /\.site-shell/);
+  assert.match(styles, /\.premium-header/);
+  assert.match(styles, /\.content-defer/);
+  assert.match(styles, /prefers-contrast:more/);
+  assert.match(styles, /forced-colors:active/);
+});
+
+test("ships consistent keyboard skip navigation on secondary pages", async () => {
+  const profile = await readFile(new URL("../app/universities/[slug]/page.tsx", import.meta.url), "utf8");
+  const publicDirectory = await readFile(new URL("../app/public-universities/public-directory.tsx", import.meta.url), "utf8");
+  const report = await readFile(new URL("../app/decision-report/report.tsx", import.meta.url), "utf8");
+  assert.match(profile, /className="skip-link"/);
+  assert.match(publicDirectory, /className="skip-link"/);
+  assert.match(report, /className="skip-link"/);
+  assert.match(profile, /id="profile-content" tabIndex={-1}/);
+  assert.match(report, /id="decision-report-content" tabIndex={-1}/);
 });
 
 test("ships graceful loading and error recovery", async () => {

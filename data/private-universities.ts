@@ -6649,6 +6649,7 @@ Object.assign(
     programs: [
       "BBA",
       "CSE",
+      "Data Science",
       "EEE",
       "Textile Engineering",
       "Civil Engineering",
@@ -6665,6 +6666,17 @@ Object.assign(
       "The first-semester amount may be paid in full or through the university's published instalment process",
       "No complete programme total is displayed until BUBT publishes an unambiguous credit-and-fee total",
     ],
+    programCosts: [
+      { name: "BBA", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "CSE", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "Data Science", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "EEE", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "Textile Engineering", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "Civil Engineering", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "Law", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "English", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "Economics", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+    ],
     scholarships: [
       "25%–100% first-semester tuition waiver based on SSC and HSC results",
       "25%–100% tuition waiver based on semester results at BUBT",
@@ -6675,7 +6687,7 @@ Object.assign(
     ],
     status: "Official",
     facts: [
-      "All eight regular undergraduate programmes shown on BUBT's Fall 2026 admission portal are included",
+      "Nine current undergraduate routes are reconciled across BUBT's Fall 2026 admission information and current department directory, including Data Science",
       "Most programmes require GPA 2.50 in both SSC and HSC, or GPA 2.00 in one with combined GPA 6.00",
       "CSE requires a science background with Mathematics and Physics at HSC or equivalent level",
       "EEE and Textile Engineering require the stated science subjects; programme-specific rules must be checked before applying",
@@ -6694,10 +6706,60 @@ Object.assign(
       },
       {
         label: "Official scholarships and waiver policy",
-        url: "https://classic.bubt.edu.bd/Home/page_details/Scholarships_Waiver",
+        url: "https://www.bubt.edu.bd/page/scholarship",
+      },
+      {
+        label: "Official current department and programme directory",
+        url: "https://www.bubt.edu.bd/departments",
       },
     ],
-    verifiedAt: "8 September 2026",
+    admissionRules: {
+      generalRule:
+        "Most undergraduate applicants need GPA 2.50 in both SSC and HSC or equivalent. If one result is GPA 2.00, the combined GPA must be at least 6.00; programme-specific science rules apply separately.",
+      sourceUrl: "https://admission.bubt.edu.bd/",
+      minimumSscGpa: 2.5,
+      minimumHscGpa: 2.5,
+      gpaPaths: [
+        {
+          label: "Standard route",
+          minimumSscGpa: 2.5,
+          minimumHscGpa: 2.5,
+        },
+        {
+          label: "Combined-GPA alternative",
+          minimumSscGpa: 2,
+          minimumHscGpa: 2,
+          minimumCombinedGpa: 6,
+        },
+      ],
+      programmeRules: [
+        {
+          programmes: ["CSE"],
+          summary:
+            "CSE applicants must come from a science background and have Mathematics and Physics at HSC or equivalent level.",
+          requiredSubjects: ["Mathematics", "Physics"],
+        },
+        {
+          programmes: ["Civil Engineering"],
+          summary:
+            "Civil Engineering requires GPA 3.00 in both SSC and HSC plus a science background with Mathematics, Physics and Chemistry.",
+          minimumSscGpa: 3,
+          minimumHscGpa: 3,
+          requiredSubjects: ["Mathematics", "Physics", "Chemistry"],
+        },
+        {
+          programmes: ["Data Science", "EEE", "Textile Engineering"],
+          summary:
+            "These science and engineering routes have programme-specific subject conditions; applicants should confirm the active Fall 2026 rule with BUBT admissions before applying.",
+        },
+      ],
+    },
+    verifiedAt: "23 September 2026",
+    dataContext: {
+      intake: "Fall 2026 admission information",
+      reviewDue: "2027-03-23",
+      note: "The programme directory, entry rules, scholarship policy and payment procedure are source-linked. Complete programme totals remain pending because the current official fee page publishes payment rules without a reconciled all-programme total table.",
+    },
   },
 );
 Object.assign(

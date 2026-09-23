@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Loading() {
   return (
     <main
-      className="grid min-h-screen place-items-center bg-[#101827] px-5 py-12 text-slate-100"
+      className="site-shell grid min-h-screen place-items-center bg-[#101827] px-5 py-12 text-slate-100"
       aria-busy="true"
       aria-live="polite"
     >

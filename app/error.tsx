@@ -16,7 +16,7 @@ export default function ErrorPage({
   }, [error]);
 
   return (
-    <main className="grid min-h-screen place-items-center bg-[#101827] px-5 py-12 text-slate-100">
+    <main className="site-shell grid min-h-screen place-items-center bg-[#101827] px-5 py-12 text-slate-100">
       <section className="surface-card w-full max-w-xl rounded-2xl p-6 text-center sm:p-10">
         <Image className="mx-auto" src="/logo-mark.svg" alt="" width={52} height={52} priority />
         <p className="mt-6 text-sm font-bold uppercase tracking-[.14em] text-amber-300">

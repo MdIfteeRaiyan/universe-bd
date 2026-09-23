@@ -21,15 +21,15 @@ export default function PublicDirectory() {
   const hasFilters = Boolean(query || division);
 
   return (
-    <main className="min-h-screen bg-[#101827] text-slate-100">
-      <a href="#public-directory" className="sr-only fixed left-4 top-4 z-50 rounded-lg bg-blue-500 px-4 py-3 font-semibold text-white focus:not-sr-only">Skip to public university directory</a>
-      <header className="border-b border-slate-700">
+    <main className="site-shell min-h-screen bg-[#101827] text-slate-100">
+      <a href="#public-directory" className="skip-link">Skip to public university directory</a>
+      <header className="premium-header border-b border-slate-700">
         <div className="mx-auto flex min-h-16 max-w-7xl items-center justify-between gap-4 px-5 lg:px-8">
           <Link href="/" className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-blue-300 hover:text-blue-200"><ArrowLeft size={16} aria-hidden="true" /> Private university guide</Link>
           <b>CampusChoice BD</b>
         </div>
       </header>
-      <section className="border-b border-slate-700 bg-[#121c2b]">
+      <section className="subpage-hero border-b border-slate-700 bg-[#121c2b]">
         <div className="mx-auto max-w-7xl px-5 py-10 lg:px-8 lg:py-14">
           <p className="text-sm font-bold text-blue-400">PUBLIC UNIVERSITY GUIDE</p>
           <h1 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight sm:text-5xl">A separate, simpler public admission path.</h1>
@@ -47,7 +47,7 @@ export default function PublicDirectory() {
         </div>
         <div className="mt-8 flex items-end justify-between gap-4"><div><p className="text-sm font-bold text-blue-400">ENGINEERING BATCH</p><h2 className="mt-2 text-2xl font-bold">Verified directory</h2></div><span className="text-sm text-slate-400" role="status" aria-live="polite">{filtered.length} of {publicUniversities.length} profiles</span></div>
         {filtered.length ? <div className="mt-6 grid gap-5 md:grid-cols-2">{filtered.map((university) => (
-          <article key={university.id} className="surface-card rounded-2xl p-5 sm:p-6">
+          <article key={university.id} className="content-defer surface-card rounded-2xl p-5 sm:p-6">
             <div className="flex items-start justify-between gap-4"><div><span className="inline-flex items-center gap-2 rounded-full bg-blue-400/10 px-3 py-1 text-xs font-semibold text-blue-200"><GraduationCap size={14} aria-hidden="true" /> Public engineering</span><h3 className="mt-3 text-xl font-bold">{university.name}</h3><p className="mt-1 text-sm text-slate-400">{university.area}, {university.district}</p></div><b className="rounded-lg bg-[#111b2a] px-3 py-2 text-blue-300">{university.short}</b></div>
             <div className="mt-5 grid grid-cols-2 gap-3 text-sm"><div className="rounded-lg bg-[#111b2a] p-3"><span className="block text-xs text-slate-400">Programmes listed</span><b>{university.programs.length}</b></div><div className="rounded-lg bg-[#111b2a] p-3"><span className="block text-xs text-slate-400">Session details</span><b className="text-amber-200">Pending circular</b></div></div>
             <div className="mt-4 flex items-center gap-2 text-xs text-emerald-300"><ShieldCheck size={14} aria-hidden="true" /> Sources checked {university.verifiedAt}</div>

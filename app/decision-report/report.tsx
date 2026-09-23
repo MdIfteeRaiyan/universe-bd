@@ -49,8 +49,9 @@ export default function DecisionReport() {
   }
 
   return (
-    <main className="decision-report min-h-screen bg-[#101827] text-slate-100">
-      <header className="border-b border-slate-700 bg-[#101827]">
+    <main className="site-shell decision-report min-h-screen bg-[#101827] text-slate-100">
+      <a href="#decision-report-content" className="skip-link">Skip to decision report</a>
+      <header className="premium-header border-b border-slate-700 bg-[#101827]">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-5 py-5">
           <Link href="/" className="flex items-center gap-3">
             <Image src="/logo-mark.svg" alt="" width={42} height={42} />
@@ -63,7 +64,7 @@ export default function DecisionReport() {
         </div>
       </header>
 
-      <section className="mx-auto max-w-6xl px-5 py-10">
+      <section id="decision-report-content" tabIndex={-1} className="mx-auto max-w-6xl px-5 py-10 outline-none">
         <p className="text-sm font-bold tracking-wide text-blue-400">PERSONAL DECISION REPORT</p>
         <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
           <div>
