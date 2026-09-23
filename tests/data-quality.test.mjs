@@ -36,3 +36,27 @@ test("release tests execute the catalogue validation gate", async () => {
   assert.match(gate, /duplicate-source/);
   assert.match(gate, /process\.exitCode = 1/);
 });
+
+test("newly completed catalogues retain explicit review context", async () => {
+  const source = await readFile(
+    new URL("../data/private-universities.ts", import.meta.url),
+    "utf8",
+  );
+  for (const short of ["SMUCT", "IIUB", "TUB-F", "RMU"]) {
+    const start = source.indexOf(`u.short === "${short}"`);
+    assert.notEqual(start, -1, `${short} profile should exist`);
+    const profile = source.slice(start, source.indexOf("Object.assign(", start + 20));
+    assert.match(profile, /programCatalogComplete: true/);
+    assert.match(profile, /reviewDue: "2026-12-15"/);
+  }
+});
+
+test("all private programme catalogues are now explicitly complete", async () => {
+  const gate = await import("../lib/data-quality.ts");
+  const data = await import("../data/private-universities.ts");
+  const report = gate.validateUniversityData(data.privateUniversities, new Date());
+  assert.equal(
+    report.warnings.filter((issue) => issue.code === "incomplete-catalogue").length,
+    0,
+  );
+});

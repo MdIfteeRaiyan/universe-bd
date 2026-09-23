@@ -196,6 +196,19 @@ test("ships consistent keyboard skip navigation on secondary pages", async () =>
   assert.match(report, /id="decision-report-content" tabIndex={-1}/);
 });
 
+test("search controls expose named accessible touch targets", async () => {
+  const combobox = await readFile(
+    new URL("../components/ui/combobox.tsx", import.meta.url),
+    "utf8",
+  );
+  const home = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  assert.match(combobox, /aria-label="Open options"/);
+  assert.match(combobox, /aria-label="Clear selection"/);
+  assert.match(combobox, /min-h-11 min-w-11/);
+  assert.match(home, /This count covers grading policies—not university profiles/);
+  assert.match(home, /role="progressbar"/);
+});
+
 test("ships graceful loading and error recovery", async () => {
   const loading = await readFile(new URL("../app/loading.tsx", import.meta.url), "utf8");
   const error = await readFile(new URL("../app/error.tsx", import.meta.url), "utf8");

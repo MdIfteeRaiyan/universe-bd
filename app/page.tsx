@@ -2865,9 +2865,26 @@ export default function Home() {
                 checked—never copied from another university.
               </p>
               <div className="mt-5 rounded-lg border border-emerald-500/20 bg-emerald-400/5 p-4 text-sm leading-6 text-emerald-100">
-                <b>{Object.keys(gradeCharts).length} charts verified.</b> All {universities.length}{" "}
-                universities remain selectable; unchecked charts stay pending
-                until an official policy is available.
+                <div className="flex items-center justify-between gap-3">
+                  <b>{Object.keys(gradeCharts).length} of {universities.length} grading policies verified</b>
+                  <span className="text-xs text-emerald-200">{universities.length - Object.keys(gradeCharts).length} pending</span>
+                </div>
+                <div
+                  className="mt-3 h-1.5 overflow-hidden rounded-full bg-slate-800"
+                  role="progressbar"
+                  aria-label="Official university grading policies verified"
+                  aria-valuemin={0}
+                  aria-valuemax={universities.length}
+                  aria-valuenow={Object.keys(gradeCharts).length}
+                >
+                  <span
+                    className="block h-full rounded-full bg-gradient-to-r from-emerald-400 to-cyan-300"
+                    style={{ width: `${(Object.keys(gradeCharts).length / universities.length) * 100}%` }}
+                  />
+                </div>
+                <p className="mt-3 text-emerald-100">
+                  This count covers grading policies—not university profiles or programme data. Every university remains searchable; an unverified scale stays hidden until its own official policy is available.
+                </p>
               </div>
             </div>
             <div className="rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">

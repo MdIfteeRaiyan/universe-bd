@@ -1656,7 +1656,7 @@ Object.assign(
       "Music",
       "Dance",
     ],
-    programCatalogComplete: false,
+    programCatalogComplete: true,
     programCosts: [
       { name: "Fashion Design & Technology", credits: 146, semesters: 8, tuitionPerCredit: 3500, total: 592000 },
       { name: "Apparel Manufacturing Management & Technology", credits: 140, semesters: 8, tuitionPerCredit: 3500, total: 571000 },
@@ -1701,7 +1701,12 @@ Object.assign(
       { label: "Official scholarship and waiver policy", url: "https://smuct.ac.bd/scholarship-and-waiver/" },
       { label: "Official permanent-campus contact", url: "https://smuct.ac.bd/contact/" },
     ],
-    verifiedAt: "19 September 2026",
+    verifiedAt: "23 September 2026",
+    dataContext: {
+      intake: "Current undergraduate catalogue and published fee tables",
+      reviewDue: "2026-12-15",
+      note: "The undergraduate catalogue is complete; Product Design remains cost-pending until a matching official fee row is published.",
+    },
   },
 );
 Object.assign(
@@ -1802,7 +1807,7 @@ Object.assign(
     area: "Sholakia",
     address: "461 Sholakia Road, Nilganj Road, Kishoreganj 2300, Bangladesh",
     programs: ["BBA", "English", "Law", "Agriculture"],
-    programCatalogComplete: false,
+    programCatalogComplete: true,
     scholarships: [
       "The official university introduction lists merit, freedom-fighter-family, sibling, spouse and special-group waiver categories; current amounts and conditions remain pending verification",
     ],
@@ -1818,7 +1823,12 @@ Object.assign(
       { label: "Official programme and faculty directory", url: "https://www.ishakha.edu.bd/en/faculty-members-law/" },
       { label: "Official tuition-fee document", url: "https://www.ishakha.edu.bd/pdf/IIUB%20Tuition%20fees.pdf" },
     ],
-    verifiedAt: "19 September 2026",
+    verifiedAt: "23 September 2026",
+    dataContext: {
+      intake: "Current official programme directory",
+      reviewDue: "2026-12-15",
+      note: "All four active bachelor routes shown by the official programme directory are included; postgraduate, diploma and proposed routes are excluded.",
+    },
   },
 );
 Object.assign(
@@ -1826,7 +1836,7 @@ Object.assign(
   {
     area: "Faridpur",
     programs: ["CSE", "BBA", "Law", "English", "Economics", "Social Work"],
-    programCatalogComplete: false,
+    programCatalogComplete: true,
     status: "Official",
     facts: [
       "The official website identifies six undergraduate routes across computing, business, law and social sciences",
@@ -1841,7 +1851,12 @@ Object.assign(
       { label: "Official bachelor-programme page", url: "https://timesuniversitybd.com/students-corner/bachelor-programs/" },
       { label: "Official tuition-fee page", url: "https://timesuniversitybd.com/admission/tuition-fees/" },
     ],
-    verifiedAt: "19 September 2026",
+    verifiedAt: "23 September 2026",
+    dataContext: {
+      intake: "Current official bachelor-programme directory",
+      reviewDue: "2026-12-15",
+      note: "All six bachelor routes on the official directory are included; programme totals remain pending until a readable current fee table is published.",
+    },
   },
 );
 Object.assign(
@@ -1918,7 +1933,7 @@ Object.assign(
     area: "Courtpara",
     address: "97/71, Ram Chandra Roy Chowdhury Street, Courtpara, Kushtia 7000, Bangladesh",
     programs: ["Bangla", "English", "Music", "Fine Arts", "Physical Education & Sports Science", "Agriculture", "Microbiology", "BBA", "CSE", "EEE", "ICT"],
-    programCatalogComplete: false,
+    programCatalogComplete: true,
     programCosts: [
       { name: "Bangla", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
       { name: "English", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
@@ -1947,7 +1962,12 @@ Object.assign(
       { label: "Official university and department directory", url: "https://rmu.ac.bd/" },
       { label: "Official online-admission portal", url: "https://admission.rmu.ac.bd/" },
     ],
-    verifiedAt: "20 September 2026",
+    verifiedAt: "23 September 2026",
+    dataContext: {
+      intake: "Current official department directory",
+      reviewDue: "2026-12-15",
+      note: "All eleven undergraduate departments in the current directory are included; programme totals remain pending rather than estimated.",
+    },
   },
 );
 Object.assign(
@@ -4462,10 +4482,12 @@ Object.assign(
     programs: [
       "BBA",
       "CSE",
+      "Pharmacy",
       "English",
       "Law",
       "Journalism & Media Studies",
     ],
+    programCatalogComplete: true,
     costLabel: "Programme costs verification pending",
     feeBreakdown: [
       "The current official and university-operated pages do not expose a complete readable programme-fee table",
@@ -4477,7 +4499,7 @@ Object.assign(
     ],
     status: "Official",
     facts: [
-      "Five undergraduate routes are confirmed from the current university-operated academic pages: BBA, CSE, English, Law, and Journalism & Media Studies",
+      "Six active undergraduate routes are confirmed from current university-operated pages and 2026 notices: BBA, CSE, Pharmacy, English, Law, and Journalism & Media Studies",
       "The published admission route requires GPA 2.50 in both SSC and HSC, or a combined GPA of 6.00 with neither result below 2.00",
       "The official syllabus publishes BBA at 123 credits, English at 126 credits, Law across eight semesters, and Journalism & Media Studies at 126 credits",
       "The university also lists Public Health as a department, but no undergraduate degree is added until its current degree level is confirmed",
@@ -4506,11 +4528,20 @@ Object.assign(
         url: "https://bgctub.com/in-brief-3/",
       },
       {
+        label: "Official current programme and Pharmacy notices",
+        url: "https://bgctub-edu.net/php_files/contents/contents.php?cmd=notice&ntype=General",
+      },
+      {
         label: "Official campus contact information",
         url: "https://bgctub.com/contact-us/",
       },
     ],
-    verifiedAt: "10 September 2026",
+    verifiedAt: "23 September 2026",
+    dataContext: {
+      intake: "Current university-operated programme pages and Summer 2026 notices",
+      reviewDue: "2026-12-15",
+      note: "All six active bachelor routes are included. Public Health remains excluded because no current undergraduate degree route was confirmed.",
+    },
   },
 );
 Object.assign(
@@ -5265,10 +5296,26 @@ Object.assign(
   {
     area: "Dhanmondi",
     address: "80 Satmosjid Road, Dhanmondi, Dhaka 1209, Bangladesh",
+    programs: [
+      "Bangla",
+      "BBA",
+      "Fine Arts",
+      "Biotechnology & Genetic Engineering",
+      "Communication & Media Studies",
+      "CSE",
+      "Electronics & Telecommunication Engineering",
+      "English",
+      "Law & Human Rights",
+      "Molecular Medicine & Bioinformatics",
+      "Music",
+      "Mathematics",
+      "Pharmacy",
+    ],
+    programCatalogComplete: true,
     status: "Official",
     facts: [
       "UODA's official introduction states that the university was established in 2002",
-      "The university reports six faculties and undergraduate courses in more than 14 subjects",
+      "All thirteen four-year bachelor programmes on the current official honours catalogue are included",
       "Administrative office: 80 Satmosjid Road, Dhanmondi, Dhaka 1209",
       "The official site exposes a tuition-fee route, but a current programme-by-programme amount table was not readable during this verification pass",
       "Programme names, costs, admission rules, scholarships and grading remain pending rather than being inferred from third-party summaries",
@@ -5282,8 +5329,17 @@ Object.assign(
         label: "Official tuition-fee route",
         url: "https://uoda.edu.bd/admission/tuition-fees/",
       },
+      {
+        label: "Official four-year honours programme catalogue",
+        url: "https://uoda.edu.bd/admission/honors-programme?print=1",
+      },
     ],
-    verifiedAt: "16 September 2026",
+    verifiedAt: "23 September 2026",
+    dataContext: {
+      intake: "Current official four-year honours catalogue",
+      reviewDue: "2026-12-15",
+      note: "Programme coverage is complete. Costs remain pending because the official fee route does not expose a dependable current programme table.",
+    },
   },
 );
 Object.assign(
@@ -8311,8 +8367,14 @@ Object.assign(
       "Civil Engineering",
       "Pharmacy",
       "English",
+      "Sociology",
       "Economics",
+      "Political Science",
+      "Biochemistry & Molecular Biology",
+      "Microbiology",
+      "Development Studies",
     ],
+    programCatalogComplete: true,
     programCosts: [
       { name: "Law", credits: 144, tuitionPerCredit: 0, total: 800000 },
       { name: "BBA", credits: 141, tuitionPerCredit: 0, total: 530000 },
@@ -8326,7 +8388,12 @@ Object.assign(
       },
       { name: "Pharmacy", credits: 165, tuitionPerCredit: 0, total: 800000 },
       { name: "English", credits: 141, tuitionPerCredit: 0, total: 400000 },
+      { name: "Sociology", credits: 120, tuitionPerCredit: 0, total: 370000 },
       { name: "Economics", credits: 120, tuitionPerCredit: 0, total: 370000 },
+      { name: "Political Science", credits: 120, tuitionPerCredit: 0, total: 370000 },
+      { name: "Biochemistry & Molecular Biology", credits: 157, tuitionPerCredit: 0, total: 500000 },
+      { name: "Microbiology", credits: 157, tuitionPerCredit: 0, total: 500000 },
+      { name: "Development Studies", credits: 157, tuitionPerCredit: 0, total: 470000 },
     ],
     credits: 148,
     totalCost: 700000,
@@ -8339,9 +8406,9 @@ Object.assign(
     ],
     status: "Official",
     facts: [
-      "Eight undergraduate programme totals are reproduced from the current official fee table",
+      "All thirteen bachelor programme totals are reproduced from the current official admission fee table",
       "Dhaka International University is kept distinct from Daffodil International University throughout the site",
-      "Programmes without a clear current official total remain pending",
+      "Postgraduate degrees and schedule-only variants are excluded from the bachelor comparison catalogue",
     ],
     sources: [
       {
@@ -8353,7 +8420,12 @@ Object.assign(
         url: "https://admission.diu.ac/course-fee-calculation",
       },
     ],
-    verifiedAt: "9 September 2026",
+    verifiedAt: "23 September 2026",
+    dataContext: {
+      intake: "Current 2026 official admission fee table",
+      reviewDue: "2026-12-15",
+      note: "All thirteen four-year bachelor routes and their published totals are included; postgraduate routes are excluded.",
+    },
   },
 );
 const campus = (
@@ -9778,7 +9850,7 @@ universities.push(
       "Nanomaterials & Ceramic Engineering", "Naval Architecture & Marine Engineering",
       "Urban & Regional Planning", "Water Resources Engineering",
     ],
-    programCatalogComplete: false,
+    programCatalogComplete: true,
     status: "Official",
     costLabel: "Current programme costs pending verification",
     facts: [
@@ -10110,7 +10182,7 @@ Object.assign(
     area: "Foujdari Moor",
     address: "Foujdari Moor, Jamalpur 2000, Bangladesh",
     programs: ["CSE", "EEE", "BBA", "Law", "English", "Economics", "Political Science"],
-    programCatalogComplete: false,
+    programCatalogComplete: true,
     programCosts: [
       { name: "CSE", credits: 160, semesters: 8, tuitionPerCredit: 0, total: 264000 },
       { name: "EEE", credits: 166, semesters: 8, tuitionPerCredit: 0, total: 259000 },
@@ -10139,7 +10211,7 @@ Object.assign(
       "The institution formerly listed as Sheikh Fazilatunnesa Mujib University now operates as Brahmaputra International University (BRIU)",
       "The official local-student fee table lists seven four-year bachelor programmes and one separate one-year diploma",
       "The diploma in Library Management and Information Science is excluded from the bachelor comparison catalogue",
-      "The official department directory also names Fine Arts, but no matching current bachelor programme and fee row is published; catalogue completeness therefore remains partial",
+      "Fine Arts is listed as a department but is not presented as a bachelor route because the current programmes-and-fees table publishes no matching degree",
       "Numerical SSC/HSC and programme-specific admission thresholds remain pending because the current official application instructions page contains no readable eligibility rules",
       "Permanent campus: Foujdari Moor, Jamalpur 2000",
     ],
@@ -10150,11 +10222,11 @@ Object.assign(
       { label: "Official department directory", url: "https://briu.ac.bd/homes/getAllDepartment" },
       { label: "Official campus contact", url: "https://briu.ac.bd/homes/getContactInfo" },
     ],
-    verifiedAt: "20 September 2026",
+    verifiedAt: "23 September 2026",
     dataContext: {
       intake: "Current 2026 fee table; Winter and Summer academic cycles",
       reviewDue: "2026-12-15",
-      note: "Recheck before the next Winter intake or sooner if BRIU publishes complete admission and scholarship eligibility tables.",
+      note: "All seven bachelor routes in the current local-student programme table are included. Recheck sooner if Fine Arts publishes a bachelor programme row.",
     },
   },
 );
