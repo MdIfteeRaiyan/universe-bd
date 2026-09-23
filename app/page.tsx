@@ -3055,6 +3055,9 @@ export default function Home() {
               <a href="/terms" className="hover:text-slate-300">Terms</a>
               <a href="/disclaimer" className="hover:text-slate-300">Disclaimer</a>
             </span>
+            <span className="mt-2 block text-[11px] tracking-wide text-slate-600">
+              Release 2026.09.24 · Sustainable launch
+            </span>
           </p>
         </div>
       </footer>
