@@ -3018,12 +3018,12 @@ export default function Home() {
       </section>
 
       <footer id="about" className="border-t border-slate-700 bg-[#0b1421]">
-        <div className="mx-auto flex max-w-7xl flex-col items-center gap-4 px-5 py-6 text-center sm:flex-row sm:justify-between sm:text-left lg:px-8">
-          <a href="#top" className="inline-flex items-center gap-3">
+        <div className="mx-auto grid max-w-7xl gap-6 px-5 py-7 text-center sm:grid-cols-[1fr_auto_1fr] sm:items-center sm:text-left lg:px-8">
+          <a href="#top" className="inline-flex items-center justify-self-center gap-3 sm:justify-self-start">
             <Image src="/logo-mark.svg" alt="" width={34} height={34} />
             <b className="text-slate-100">CampusChoice BD</b>
           </a>
-          <div>
+          <div className="justify-self-center">
             <p className="text-sm text-slate-300">
               Built by <b className="text-slate-100">Md Iftee Raiyan</b>
             </p>
@@ -3046,19 +3046,21 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <p className="max-w-xs text-xs leading-5 text-slate-500 sm:text-right">
-            Source-checked guidance. Confirm final details with the university.
-            <span className="mt-2 flex flex-wrap justify-center gap-x-3 gap-y-1 sm:justify-end">
-              <a href="/methodology" className="hover:text-slate-300">Methodology</a>
-              <a href="/my-decision" className="hover:text-slate-300">My Decision</a>
-              <a href="/privacy" className="hover:text-slate-300">Privacy</a>
-              <a href="/terms" className="hover:text-slate-300">Terms</a>
-              <a href="/disclaimer" className="hover:text-slate-300">Disclaimer</a>
+          <div className="w-full max-w-md justify-self-center sm:justify-self-end sm:text-right">
+            <p className="text-sm leading-6 text-slate-400">
+              Source-checked guidance. Confirm final details with the university.
+            </p>
+            <nav aria-label="Footer" className="mt-2 flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs font-medium text-slate-300 sm:justify-end">
+              <a href="/methodology" className="transition hover:text-white">Methodology</a>
+              <a href="/my-decision" className="transition hover:text-white">My Decision</a>
+              <a href="/privacy" className="transition hover:text-white">Privacy</a>
+              <a href="/terms" className="transition hover:text-white">Terms</a>
+              <a href="/disclaimer" className="transition hover:text-white">Disclaimer</a>
+            </nav>
+            <span className="mt-3 inline-flex rounded-full border border-slate-700/80 bg-slate-900/60 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500">
+              Release 2026.09.24
             </span>
-            <span className="mt-2 block text-[11px] tracking-wide text-slate-600">
-              Release 2026.09.24 · Sustainable launch
-            </span>
-          </p>
+          </div>
         </div>
       </footer>
 
