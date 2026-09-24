@@ -127,6 +127,11 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(pageSource, /budget-summary-grid/);
   assert.match(pageSource, /year-plan-table/);
   assert.match(styles, /Swipe to view all columns/);
+  assert.doesNotMatch(pageSource, /hero-doodle/);
+  assert.match(styles, /-webkit-text-fill-color:currentColor/);
+  assert.match(pageSource, /max-w-7xl items-center gap-9/);
+  assert.match(pageSource, /data-section-link="universities"/);
+  assert.match(styles, /mobile-decision-dock a\.is-current/);
   assert.match(pageSource, /Application stages stay private/);
   assert.match(pageSource, /parseSharedShortlist/);
   assert.match(pageSource, /Compare the same programme and scan only the facts that matter/);
@@ -182,6 +187,8 @@ test("ships shared smooth interface motion across public pages", async () => {
   const styles = await readFile(globalStylesPath, "utf8");
   assert.match(layout, /<InterfaceMotion \/>/);
   assert.match(motion, /IntersectionObserver/);
+  assert.match(motion, /aria-current/);
+  assert.match(motion, /data-section-link/);
   assert.match(motion, /requestAnimationFrame/);
   assert.match(motion, /prefers-reduced-motion/);
   assert.match(motion, /\.motion-cluster > \*/);

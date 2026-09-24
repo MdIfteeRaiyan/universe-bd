@@ -1520,10 +1520,10 @@ export default function Home() {
             </span>
           </a>
           <nav className="desktop-primary-nav hidden items-center gap-1 xl:flex" aria-label="Primary navigation">
-            <a href="#universities">Explore</a>
-            <a href="#shortlist">Compare</a>
-            <a href="#living-cost">Plan costs</a>
-            <a href="#readiness">Admissions</a>
+            <a href="#universities" data-section-link="universities">Explore</a>
+            <a href="#shortlist" data-section-link="shortlist">Compare</a>
+            <a href="#living-cost" data-section-link="living-cost">Plan costs</a>
+            <a href="#readiness" data-section-link="readiness">Admissions</a>
           </nav>
           <div className="order-3 w-full md:order-none md:w-72 lg:w-80">
             <Combobox
@@ -1589,9 +1589,7 @@ export default function Home() {
       <section id="main-content" tabIndex={-1} className="hero-zone border-b border-slate-700/70 bg-[#121c2b] outline-none">
         <span className="hero-orbit hero-orbit-one" aria-hidden="true" />
         <span className="hero-orbit hero-orbit-two" aria-hidden="true" />
-        <span className="hero-doodle hero-doodle-a" aria-hidden="true">✦</span>
-        <span className="hero-doodle hero-doodle-b" aria-hidden="true">↗</span>
-        <div className="relative z-[1] mx-auto grid max-w-7xl gap-9 px-5 py-12 lg:grid-cols-[.85fr_1.15fr] lg:px-8 lg:py-16">
+        <div className="relative z-[1] mx-auto grid max-w-7xl items-center gap-9 px-5 py-12 lg:grid-cols-[.85fr_1.15fr] lg:px-8 lg:py-16">
           <div className="hero-copy flex flex-col justify-center">
             <p className="hero-eyebrow text-sm font-bold text-blue-300">
               YOUR NEXT CHAPTER STARTS HERE
@@ -1810,7 +1808,7 @@ export default function Home() {
               ["3", "Plan costs", "Tuition + living", "#living-cost", false],
               ["4", "Check admission", "Rules + checklist", "#readiness", false],
             ].map(([number, label, detail, href, active]) => (
-              <a key={String(href)} href={String(href)} className={`decision-step relative z-[1] flex min-h-[4.25rem] items-center gap-3 rounded-xl border px-3 py-2.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 ${active ? "is-active border-blue-400/60 bg-blue-400/10" : "border-slate-700 bg-[#172337]"}`}>
+              <a key={String(href)} href={String(href)} data-section-link={String(href).slice(1)} className={`decision-step relative z-[1] flex min-h-[4.25rem] items-center gap-3 rounded-xl border px-3 py-2.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 ${active ? "is-active border-blue-400/60 bg-blue-400/10" : "border-slate-700 bg-[#172337]"}`}>
                 <span className="decision-number" aria-hidden="true">{number}</span>
                 <span className="min-w-0">
                   <b className="block text-sm text-slate-100">{label}</b>
@@ -3078,13 +3076,13 @@ export default function Home() {
       </footer>
 
       <nav className="mobile-decision-dock" aria-label="Quick decision navigation">
-        <a href="#universities"><Building2 size={18} aria-hidden="true" /><span>Browse</span></a>
-        <a href="#shortlist">
+        <a href="#universities" data-section-link="universities"><Building2 size={18} aria-hidden="true" /><span>Browse</span></a>
+        <a href="#shortlist" data-section-link="shortlist">
           <BookmarkCheck size={18} aria-hidden="true" /><span>Saved</span>
           {compare.length > 0 && <b aria-label={`${compare.length} saved`}>{compare.length}</b>}
         </a>
-        <a href="#living-cost"><WalletCards size={18} aria-hidden="true" /><span>Costs</span></a>
-        <a href="#readiness"><ShieldCheck size={18} aria-hidden="true" /><span>Apply</span></a>
+        <a href="#living-cost" data-section-link="living-cost"><WalletCards size={18} aria-hidden="true" /><span>Costs</span></a>
+        <a href="#readiness" data-section-link="readiness"><ShieldCheck size={18} aria-hidden="true" /><span>Apply</span></a>
       </nav>
 
       <Dialog open={!!detail} onOpenChange={(o) => !o && setDetail(null)}>

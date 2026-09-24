@@ -43,6 +43,32 @@ export function InterfaceMotion() {
       else observer?.observe(target);
     });
 
+    const sectionLinks = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-section-link]"),
+    );
+    const trackedSections = ["universities", "shortlist", "living-cost", "readiness"]
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => Boolean(section));
+    const setCurrentSection = (id: string) => {
+      sectionLinks.forEach((link) => {
+        const current = link.dataset.sectionLink === id;
+        link.classList.toggle("is-current", current);
+        if (current) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+    };
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target.id) setCurrentSection(visible.target.id);
+      },
+      { rootMargin: "-18% 0px -62% 0px", threshold: [0, 0.15, 0.35] },
+    );
+    trackedSections.forEach((section) => sectionObserver.observe(section));
+    if (trackedSections.length) setCurrentSection(trackedSections[0].id);
+
     let frame = 0;
     const updateProgress = () => {
       frame = 0;
@@ -62,12 +88,17 @@ export function InterfaceMotion() {
 
     return () => {
       observer?.disconnect();
+      sectionObserver.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (frame) window.cancelAnimationFrame(frame);
       targets.forEach((target) => {
         target.classList.remove("interface-reveal", "is-visible");
         target.style.removeProperty("--reveal-delay");
+      });
+      sectionLinks.forEach((link) => {
+        link.classList.remove("is-current");
+        link.removeAttribute("aria-current");
       });
     };
   }, [pathname]);

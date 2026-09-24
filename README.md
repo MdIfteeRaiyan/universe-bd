@@ -2,6 +2,8 @@
 
 CampusChoice BD is a responsive university discovery and comparison website for students in Bangladesh. It helps users explore programmes, divisions, districts, budgets, university profiles, costs, comparison options and source-checked admission dates.
 
+Version 1.0 is the public-release baseline. It includes the verified university catalogue, programme discovery pages, separate public-university experience, shortlist comparison, complete financial planner, admission-readiness tools and accessible responsive navigation.
+
 The public admission calendar expires old dates automatically and links every published event to its official source. A private review-queue generator prioritises pending costs, missing source coverage and expired admission events without publishing any change automatically.
 
 ## Local development
