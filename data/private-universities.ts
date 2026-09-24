@@ -209,9 +209,9 @@ const universities: University[] = [
         name: "Architecture",
         credits: 207,
         semesters: 15,
-        tuitionPerCredit: 0,
-        total: 0,
-        pending: true,
+        tuitionPerCredit: 8250,
+        total: 2065700,
+        minimum: true,
       },
       {
         name: "BBA",
@@ -320,7 +320,8 @@ const universities: University[] = [
       "Economics published fixed minimum: ৳11,14,400 from 120 credits plus admission, library and Residential Semester fees, before recurring semester fees",
       "Law published fixed minimum: ৳14,18,000 from 147 curriculum credits at ৳8,800 per credit plus admission, library and Residential Semester fees, before recurring semester fees",
       "Anthropology published fixed minimum: ৳11,96,900 from 130 credits at ৳8,250 plus admission, library and Residential Semester fees, before recurring semester fees",
-      "Architecture is a 207-credit, 15-semester programme; its total remains pending because BRAC publishes different studio and lecture rates without a complete programme-wide fee split",
+      "Architecture published minimum: ৳20,65,700 across 15 semesters, using the ten required Design studios (81 credits) at ৳8,800, the remaining 126 credits at the lower ৳8,250 lecture rate, plus published admission, library, Residential Semester and recurring semester fees",
+      "The Architecture figure is a lower-bound planning total: additional courses and any other curriculum credits billed at the studio rate will increase the payable amount",
       "A single guaranteed programme total is not shown because enrolled semesters and assigned courses can vary",
     ],
     scholarships: [
@@ -335,7 +336,7 @@ const universities: University[] = [
     status: "Official",
     facts: [
       "All eighteen undergraduate programme panels present on BRAC University's current Fall 2026 domestic-admissions page are included",
-      "Seventeen programmes now have structured published-minimum records; Architecture remains cost-pending because its studio-versus-lecture credit split cannot be converted into one responsible total from the published fee table",
+      "All eighteen programmes now have structured published-minimum records; Architecture is presented as a conservative lower-bound because BRAC publishes separate studio and lecture rates",
       "General minimum: GPA 3.50 separately in SSC and HSC; Pharmacy follows stricter aggregate and subject-grade rules",
       "EEE, ECE, CSE, Applied Physics & Electronics and Physics require the published Physics and Mathematics grades",
       "Biotechnology and Microbiology require the published Biology and Chemistry grades",
@@ -479,7 +480,7 @@ const universities: University[] = [
         url: "https://engineering.bracu.ac.bd/scholarships-financial-aid-for-prospective-students",
       },
     ],
-    verifiedAt: "20 September 2026",
+    verifiedAt: "24 September 2026",
   },
   {
     id: 3,
@@ -2711,8 +2712,8 @@ Object.assign(
         total: 1487000,
         minimum: true,
       },
-      { name: "Biochemistry & Molecular Biology", credits: 0, tuitionPerCredit: 7000, total: 0, pending: true },
-      { name: "Microbiology", credits: 0, tuitionPerCredit: 0, total: 0, pending: true },
+      { name: "Biochemistry & Molecular Biology", credits: 140, semesters: 8, tuitionPerCredit: 7000, total: 1107000, minimum: true },
+      { name: "Microbiology", credits: 140, semesters: 8, tuitionPerCredit: 5500, total: 897000, minimum: true },
       {
         name: "CSE",
         credits: 148,
@@ -2755,6 +2756,8 @@ Object.assign(
       "Per-credit rates: English ৳6,500; Journalism ৳5,000; Economics ৳5,500; Law ৳8,500; BBA ৳8,000",
       "Per-credit rates: Architecture ৳6,500; EEE ৳7,500; IPE ৳6,500; Computer Engineering ৳6,000",
       "Per-credit rates: Pharmacy ৳8,500; Biochemistry & Molecular Biology ৳7,000; CSE, Data Science and Computer Networks & Cyber Security ৳8,500",
+      "Biochemistry & Molecular Biology published minimum: ৳11,07,000 from 140 credits, admission, verification and eight standard semester fees, before curriculum-dependent lab fees",
+      "Microbiology published minimum: ৳8,97,000 from 140 credits, admission, verification and eight standard semester fees, before curriculum-dependent lab fees",
       "A guaranteed all-in total is not shown because recurring semesters and applicable lab or studio courses vary",
     ],
     scholarships: [
@@ -2793,14 +2796,14 @@ Object.assign(
     },
     status: "Official",
     facts: [
-      "All fourteen undergraduate degrees on AIUB's current central Fall 2026–27 fee table are included; Microbiology is additionally listed on the current admission page with its cost kept pending",
+      "All fifteen undergraduate degrees on AIUB's current Fall 2026–27 programme and fee sources are included",
       "CSE applicants need a combined SSC and HSC GPA of 5.00, with at least 2.50 in each examination",
       "Mathematics is required at HSC level for CSE",
       "BSc in CSE: 148 credits",
       "BSc in EEE: 148 credits across 8 semesters",
       "BBA: 140 credits under the Fall 2024–25 onward curriculum",
-      "Thirteen programmes now have structured published-minimum records for filtering, comparison and the cost calculator, including Journalism, Computer Engineering and Pharmacy",
-      "Biochemistry & Molecular Biology retains its official per-credit rate but remains total-pending until AIUB publishes a complete current curriculum-credit total",
+      "All fifteen programmes now have structured published-minimum records for filtering, comparison and the cost calculator",
+      "The current AIUB curriculum pages publish 140 credits for both Biochemistry & Molecular Biology and Microbiology",
       "The central fee table controls current rates; individual curriculum pages control programme credits",
       "Final payable cost varies with applicable laboratory or studio courses and actual enrolled semesters",
       "Campus: 408/1 (Old KA 66/1), Kuratoli, Khilkhet, Dhaka 1229",
@@ -2867,6 +2870,14 @@ Object.assign(
         url: "https://www.aiub.edu/faculties/fhls/programs/under-graduate/b-pharm",
       },
       {
+        label: "Official Biochemistry & Molecular Biology curriculum and 140-credit total",
+        url: "https://vpaa.aiub.edu/faculties/fhls/programs/under-graduate/bsc-in-biochemistry-and-molecular-biology",
+      },
+      {
+        label: "Official Microbiology curriculum and 140-credit total",
+        url: "https://vpaa.aiub.edu/faculties/fhls/programs/under-graduate/bsc-in-microbiology-curriculum",
+      },
+      {
         label: "Official scholarship policy",
         url: "https://www.aiub.edu/academic-scholarship",
       },
@@ -2875,7 +2886,7 @@ Object.assign(
         url: "https://www.aiub.edu/academic-regulations/grading-system",
       },
     ],
-    verifiedAt: "20 September 2026",
+    verifiedAt: "24 September 2026",
   },
 );
 Object.assign(

@@ -1501,7 +1501,7 @@ export default function Home() {
   };
 
   return (
-    <main className="site-shell soft-dark min-h-screen bg-[#101827] text-slate-100">
+    <main id="top" className="site-shell soft-dark min-h-screen bg-[#101827] text-slate-100">
       <a
         href="#main-content"
         className="skip-link"

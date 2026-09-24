@@ -60,3 +60,33 @@ test("all private programme catalogues are now explicitly complete", async () =>
     0,
   );
 });
+
+test("AIUB health-science minimums use current official credits and rates", async () => {
+  const { privateUniversities } = await import("../data/private-universities.ts");
+  const aiub = privateUniversities.find((university) => university.short === "AIUB");
+  assert.ok(aiub);
+  const bmb = aiub.programCosts?.find((programme) => programme.name === "Biochemistry & Molecular Biology");
+  const microbiology = aiub.programCosts?.find((programme) => programme.name === "Microbiology");
+  assert.deepEqual(
+    { credits: bmb?.credits, tuitionPerCredit: bmb?.tuitionPerCredit, total: bmb?.total, minimum: bmb?.minimum, pending: bmb?.pending },
+    { credits: 140, tuitionPerCredit: 7000, total: 1107000, minimum: true, pending: undefined },
+  );
+  assert.deepEqual(
+    { credits: microbiology?.credits, tuitionPerCredit: microbiology?.tuitionPerCredit, total: microbiology?.total, minimum: microbiology?.minimum, pending: microbiology?.pending },
+    { credits: 140, tuitionPerCredit: 5500, total: 897000, minimum: true, pending: undefined },
+  );
+});
+
+test("BRAC Architecture uses a transparent official-source lower bound", async () => {
+  const { privateUniversities } = await import("../data/private-universities.ts");
+  const bracu = privateUniversities.find((university) => university.short === "BRACU");
+  const architecture = bracu?.programCosts.find((programme) => programme.name === "Architecture");
+
+  assert.equal(architecture?.credits, 207);
+  assert.equal(architecture?.semesters, 15);
+  assert.equal(architecture?.tuitionPerCredit, 8250);
+  assert.equal(architecture?.total, 2065700);
+  assert.equal(architecture?.minimum, true);
+  assert.equal(architecture?.pending, undefined);
+  assert.match(bracu?.feeBreakdown.join(" ") ?? "", /ten required Design studios \(81 credits\)/);
+});

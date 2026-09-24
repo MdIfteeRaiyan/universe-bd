@@ -9,11 +9,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "npm run validate:data && next build && node --test tests/*.test.mjs",
+    "test": "npm run validate:data && next build && npm run audit:built && node --test tests/*.test.mjs",
     "lint": "eslint . --ignore-pattern .next",
     "release:check": "npm run lint && npm test",
     "validate:data": "node --experimental-strip-types scripts/validate-catalogue.mjs",
     "audit:sources": "node --experimental-strip-types scripts/audit-official-sources.mjs",
+    "audit:built": "node scripts/audit-built-site.mjs",
     "review:queue": "node --experimental-strip-types scripts/build-review-queue.mjs"
   },
   "dependencies": {

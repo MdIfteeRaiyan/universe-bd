@@ -102,7 +102,8 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(privateData, /Combined SSC\+HSC GPA 8\.00 or above, with at least GPA 3\.50 in each examination/);
   assert.match(privateData, /HSC\/equivalent requires B grade in Physics and Mathematics/);
   assert.match(privateData, /Minimum aggregate GPA 8\.00, no GPA below 3\.50 in SSC and HSC/);
-  assert.match(privateData, /Microbiology is additionally listed on the current admission page with its cost kept pending/);
+  assert.match(privateData, /All fifteen programmes now have structured published-minimum records/);
+  assert.match(privateData, /All eighteen programmes now have structured published-minimum records/);
   assert.match(privateData, /Science applicants need combined GPA 8\.00, GPA 3\.50 in each examination/);
   assert.match(privateData, /Mathematics and Physics are required at HSC\/equivalent level/);
   assert.match(privateData, /At least GPA 2\.00 in each and combined GPA 6\.00/);
@@ -283,6 +284,23 @@ test("ships a restrained accessible premium interaction layer", async () => {
   assert.match(decision, /resultsRef\.current\?\.focus\(\)/);
   assert.match(decision, /aria-valuetext=/);
   assert.match(decision, /aria-live="polite"/);
+});
+
+test("audits every generated page before release", async () => {
+  const packageJson = await readFile(new URL("../package.json", import.meta.url), "utf8");
+  const audit = await readFile(new URL("../scripts/audit-built-site.mjs", import.meta.url), "utf8");
+  assert.match(packageJson, /next build && npm run audit:built && node --test/);
+  assert.match(audit, /missing responsive viewport metadata/);
+  assert.match(audit, /duplicate id/);
+  assert.match(audit, /broken same-page anchor/);
+  assert.match(audit, /new-tab link is missing noreferrer\/noopener/);
+  assert.match(audit, /internal route not generated/);
+});
+
+test("gives combobox inputs and trigger buttons distinct identifiers", async () => {
+  const combobox = await readFile(new URL("../components/ui/combobox.tsx", import.meta.url), "utf8");
+  assert.match(combobox, /const triggerId = React\.useId\(\)/);
+  assert.match(combobox, /<ComboboxTrigger id=\{`\$\{triggerId\}-trigger`\}/);
 });
 
 test("search controls expose named accessible touch targets", async () => {

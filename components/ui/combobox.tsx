@@ -65,6 +65,7 @@ function ComboboxInput({
   showTrigger?: boolean
   showClear?: boolean
 }) {
+  const triggerId = React.useId()
   return (
     <InputGroup className={cn("w-auto", className)}>
       <ComboboxPrimitive.Input
@@ -81,7 +82,7 @@ function ComboboxInput({
             className="min-h-11 min-w-11 group-has-data-[slot=combobox-clear]/input-group:hidden data-pressed:bg-transparent"
             disabled={disabled}
           >
-            <ComboboxTrigger />
+            <ComboboxTrigger id={`${triggerId}-trigger`} />
           </InputGroupButton>
         )}
         {showClear && <ComboboxClear disabled={disabled} />}
