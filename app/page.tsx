@@ -7,6 +7,7 @@ import {
   BookmarkCheck,
   BriefcaseBusiness,
   Building2,
+  CalendarDays,
   Check,
   CircleDollarSign,
   ExternalLink,
@@ -1600,9 +1601,14 @@ export default function Home() {
               <span aria-hidden="true">CC</span>
               <p><b>Not a ranking.</b> A calmer way to find what fits your life.</p>
             </div>
-            <a href="/my-decision" className="decision-cta mt-6 inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-slate-600 px-4 py-2 text-sm font-bold text-slate-100">
-              Try My Decision <ArrowRight size={16} aria-hidden="true" />
-            </a>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href="/my-decision" className="decision-cta inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-slate-600 px-4 py-2 text-sm font-bold text-slate-100">
+                Try My Decision <ArrowRight size={16} aria-hidden="true" />
+              </a>
+              <a href="/admission-calendar" className="inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-slate-600 bg-slate-950/20 px-4 py-2 text-sm font-bold text-slate-200 transition hover:border-blue-400 hover:text-white">
+                Admission dates <CalendarDays size={16} aria-hidden="true" />
+              </a>
+            </div>
             <div className="mt-6 flex flex-wrap gap-4 text-sm text-slate-300">
               <span className="flex items-center gap-2">
                 <ShieldCheck size={17} className="text-blue-400" />
@@ -3053,6 +3059,7 @@ export default function Home() {
             <nav aria-label="Footer" className="mt-2 flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs font-medium text-slate-300 sm:justify-end">
               <a href="/methodology" className="transition hover:text-white">Methodology</a>
               <a href="/my-decision" className="transition hover:text-white">My Decision</a>
+              <a href="/admission-calendar" className="transition hover:text-white">Deadlines</a>
               <a href="/privacy" className="transition hover:text-white">Privacy</a>
               <a href="/terms" className="transition hover:text-white">Terms</a>
               <a href="/disclaimer" className="transition hover:text-white">Disclaimer</a>

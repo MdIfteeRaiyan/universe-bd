@@ -29,6 +29,9 @@ jobs:
       - name: Check official university sources
         id: monitor
         run: npm run audit:sources
+      - name: Build human review queue
+        if: always()
+        run: npm run review:queue
       - name: Save source fingerprints
         uses: actions/cache/save@v4
         if: always()
@@ -40,7 +43,10 @@ jobs:
         if: always()
         with:
           name: official-source-report-${{ github.run_number }}
-          path: reports/source-monitor.md
+          path: |
+            reports/source-monitor.md
+            reports/data-review-queue.md
+            reports/data-review-queue.json
           retention-days: 90
       - name: Create review issue when attention is needed
         if: steps.monitor.outputs.needs_review == 'true'

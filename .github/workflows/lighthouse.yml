@@ -21,6 +21,7 @@ jobs:
             https://campuschoice-bd.vercel.app/
             https://campuschoice-bd.vercel.app/public-universities
             https://campuschoice-bd.vercel.app/my-decision
+            https://campuschoice-bd.vercel.app/admission-calendar
           configPath: ./lighthouserc.json
           uploadArtifacts: true
           temporaryPublicStorage: false

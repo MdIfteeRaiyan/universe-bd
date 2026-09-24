@@ -1,6 +1,8 @@
 # CampusChoice BD
 
-CampusChoice BD is a responsive university discovery and comparison website for students in Bangladesh. It helps users explore programmes, divisions, districts, budgets, university profiles, costs, and comparison options.
+CampusChoice BD is a responsive university discovery and comparison website for students in Bangladesh. It helps users explore programmes, divisions, districts, budgets, university profiles, costs, comparison options and source-checked admission dates.
+
+The public admission calendar expires old dates automatically and links every published event to its official source. A private review-queue generator prioritises pending costs, missing source coverage and expired admission events without publishing any change automatically.
 
 ## Local development
 
@@ -19,6 +21,12 @@ Run the same audit locally with:
 
 ```bash
 npm run audit:sources
+```
+
+Build the private human-review queue with:
+
+```bash
+npm run review:queue
 ```
 
 ## Production checks

@@ -14,7 +14,7 @@
   .page-progress,
   .site-shell::before,
   header,
-  main > section:not(#readiness),
+  main:not(.decision-report) > section:not(#readiness),
   #readiness > div > div:first-child,
   #readiness button {
     display: none !important;
@@ -40,6 +40,13 @@
 
   main.decision-report > section {
     display: block !important;
+    position: static !important;
+    width: auto !important;
+    max-width: none !important;
+    padding: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
   }
 
   main.decision-report,
@@ -48,10 +55,21 @@
     background: white !important;
     border-color: #cbd5e1 !important;
     box-shadow: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
   }
 
   main.decision-report article {
     break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
   }
 }
 @theme inline{

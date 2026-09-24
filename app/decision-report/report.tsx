@@ -36,6 +36,18 @@ export default function DecisionReport() {
     year: "numeric",
   }).format(new Date());
 
+  const printReport = () => {
+    document.documentElement.classList.add("printing-decision-report");
+    const cleanup = () => {
+      document.documentElement.classList.remove("printing-decision-report");
+      window.removeEventListener("afterprint", cleanup);
+    };
+    window.addEventListener("afterprint", cleanup);
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => window.print());
+    });
+  };
+
   if (choices.length < 2) {
     return (
       <main className="grid min-h-screen place-items-center bg-[#101827] px-5 text-slate-100">
@@ -59,7 +71,7 @@ export default function DecisionReport() {
           </Link>
           <div className="flex gap-2">
             <Link href={`/?${searchParams.toString()}#shortlist`} className="inline-flex min-h-11 items-center rounded-lg border border-slate-600 px-4 py-2 text-sm font-semibold">Edit shortlist</Link>
-            <button type="button" onClick={() => window.print()} className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white"><Printer size={17} aria-hidden="true" /> Print or save PDF</button>
+            <button type="button" onClick={printReport} className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white"><Printer size={17} aria-hidden="true" /> Print or save PDF</button>
           </div>
         </div>
       </header>

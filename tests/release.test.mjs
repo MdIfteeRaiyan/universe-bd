@@ -226,6 +226,19 @@ test("ships sustainable discovery, trust, feedback and monitoring foundations", 
   assert.equal(JSON.parse(lighthouse).ci.assert.assertions["categories:performance"][1].minScore, 0.9);
 });
 
+test("ships a source-checked admission calendar and private review queue", async () => {
+  const calendarHtml = await readFile(new URL("../.next/server/app/admission-calendar.html", import.meta.url), "utf8");
+  const calendarData = await readFile(new URL("../data/admission-calendar.ts", import.meta.url), "utf8");
+  const reviewScript = await readFile(new URL("../scripts/build-review-queue.mjs", import.meta.url), "utf8");
+  const monitor = await readFile(new URL("../.github/workflows/daily-source-monitor.yml", import.meta.url), "utf8");
+  assert.match(calendarHtml, /Deadlines without the guesswork/);
+  assert.match(calendarHtml, /Review-first calendar/);
+  assert.match(calendarData, /Dates are added only when an official university page publishes them/);
+  assert.match(reviewScript, /Human review required; never publish automatically/);
+  assert.match(monitor, /Build human review queue/);
+  assert.match(monitor, /data-review-queue\.json/);
+});
+
 test("ships consistent keyboard skip navigation on secondary pages", async () => {
   const profile = await readFile(new URL("../app/universities/[slug]/page.tsx", import.meta.url), "utf8");
   const publicDirectory = await readFile(new URL("../app/public-universities/public-directory.tsx", import.meta.url), "utf8");
@@ -235,6 +248,17 @@ test("ships consistent keyboard skip navigation on secondary pages", async () =>
   assert.match(report, /className="skip-link"/);
   assert.match(profile, /id="profile-content" tabIndex={-1}/);
   assert.match(report, /id="decision-report-content" tabIndex={-1}/);
+});
+
+test("keeps the decision report visible in browser print and PDF output", async () => {
+  const styles = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const report = await readFile(new URL("../app/decision-report/report.tsx", import.meta.url), "utf8");
+  assert.match(styles, /main:not\(\.decision-report\) > section:not\(#readiness\)/);
+  assert.match(styles, /main\.decision-report > section[\s\S]*display: block !important/);
+  assert.match(styles, /main\.decision-report,[\s\S]*visibility: visible !important/);
+  assert.match(report, /const printReport = \(\) =>/);
+  assert.match(report, /requestAnimationFrame\(\(\) => window\.print\(\)\)/);
+  assert.match(report, /onClick=\{printReport\}/);
 });
 
 test("search controls expose named accessible touch targets", async () => {
