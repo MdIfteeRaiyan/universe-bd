@@ -1519,6 +1519,12 @@ export default function Home() {
               </small>
             </span>
           </a>
+          <nav className="desktop-primary-nav hidden items-center gap-1 xl:flex" aria-label="Primary navigation">
+            <a href="#universities">Explore</a>
+            <a href="#shortlist">Compare</a>
+            <a href="#living-cost">Plan costs</a>
+            <a href="#readiness">Admissions</a>
+          </nav>
           <div className="order-3 w-full md:order-none md:w-72 lg:w-80">
             <Combobox
               items={universitySearchResults.map(
@@ -1974,7 +1980,7 @@ export default function Home() {
               key={u.id}
               className="university-card content-defer surface-card flex h-full flex-col rounded-[1.35rem] p-4 transition hover:-translate-y-0.5 hover:border-blue-500/70 sm:p-5"
             >
-              <div className="flex items-start justify-between">
+              <div className="university-card-head flex items-start justify-between gap-3">
                 <UniversityMark university={u} />
                 <div className="text-right">
                   {useGpa && u.gpaMet === false ? (
@@ -2031,7 +2037,7 @@ export default function Home() {
                   <span className="text-slate-500"> · {u.division} Division</span>
                 </span>
               </div>
-              <div className="mt-4 flex min-h-7 flex-wrap gap-2">
+              <div className="university-programmes mt-4 flex min-h-7 flex-wrap gap-2">
                 {u.programs.length ? (
                   <>
                   {[
@@ -2059,7 +2065,7 @@ export default function Home() {
                   </span>
                 )}
               </div>
-              <div className="mt-auto border-t border-slate-700 pt-4">
+              <div className="university-cost mt-auto border-t border-slate-700 pt-4">
                 <span className="text-xs text-slate-400">
                   {u.totalCost !== undefined
                     ? (u.costLabel ?? `Verified ${activeSubject} total`)
@@ -2089,7 +2095,7 @@ export default function Home() {
                   </span>
                 )}
               </div>
-              <div className="mt-5 grid grid-cols-[1fr_auto] gap-2">
+              <div className="university-card-actions mt-5 grid grid-cols-[1fr_auto] gap-2">
                 <button
                   type="button"
                   onClick={() => {
@@ -2132,7 +2138,7 @@ export default function Home() {
         )}
       </section>
 
-      <section id="shortlist" data-analytics="shortlist_used" className="experience-section border-y border-slate-700 bg-[#121c2b]">
+      <section id="shortlist" data-analytics="shortlist_used" className="shortlist-section experience-section border-y border-slate-700 bg-[#121c2b]">
         <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -2229,7 +2235,7 @@ export default function Home() {
               marked pending.
             </p>
           </div>
-          <div className="tool-panel rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
+          <div className="cost-planner-panel tool-panel rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               <SearchSelect
                 label="University"
@@ -2311,7 +2317,7 @@ export default function Home() {
                 }
               />
             </div>
-            <div className="mt-6 flex flex-col gap-3 border-t border-slate-700 pt-5 sm:flex-row sm:items-end sm:justify-between">
+            <div className="cost-total-line mt-6 flex flex-col gap-3 border-t border-slate-700 pt-5 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="text-sm text-slate-400">
                   {selected && calcProgram
@@ -2373,7 +2379,7 @@ export default function Home() {
                 Hall availability and seat allocation must be confirmed by the university. Selecting “University hall” estimates cost only; it does not claim that a hall or seat is available.
               </div>
             </div>
-            <div className="tool-panel rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
+            <div className="living-planner-panel tool-panel rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
               <div className="grid gap-5 sm:grid-cols-2">
                 <SearchSelect
                   label="University"
@@ -2461,22 +2467,22 @@ export default function Home() {
 
               {livingProfile ? (
                 <div className="mt-6" aria-live="polite">
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    <div className="rounded-xl border border-blue-500/30 bg-blue-400/10 p-5">
+                  <div className="budget-summary-grid grid gap-3 sm:grid-cols-2">
+                    <div className="budget-stat budget-stat-monthly rounded-xl border border-blue-500/30 bg-blue-400/10 p-5">
                       <WalletCards className="text-blue-300" aria-hidden="true" />
                       <p className="mt-3 text-sm text-blue-200">Probable monthly living cost</p>
                       <p className="mt-1 text-2xl font-bold text-blue-100">
                         {money(livingMonthlyLow)}–{money(livingMonthlyHigh)}
                       </p>
                     </div>
-                    <div className="rounded-xl border border-emerald-500/30 bg-emerald-400/10 p-5">
+                    <div className="budget-stat budget-stat-living rounded-xl border border-emerald-500/30 bg-emerald-400/10 p-5">
                       {accommodationMode === "hall" ? <Building2 className="text-emerald-300" aria-hidden="true" /> : <House className="text-emerald-300" aria-hidden="true" />}
                       <p className="mt-3 text-sm text-emerald-200">Estimated {studyMonths}-month living total</p>
                       <p className="mt-1 text-2xl font-bold text-emerald-100">
                         {money(livingMonthlyLow * studyMonths)}–{money(livingMonthlyHigh * studyMonths)}
                       </p>
                     </div>
-                    <div className="rounded-xl border border-slate-600 bg-[#111b2a] p-5">
+                    <div className="budget-stat budget-stat-academic rounded-xl border border-slate-600 bg-[#111b2a] p-5">
                       <CircleDollarSign className="text-slate-300" aria-hidden="true" />
                       <p className="mt-3 text-sm text-slate-300">Verified academic cost</p>
                       <p className="mt-1 text-2xl font-bold text-slate-100">
@@ -2492,7 +2498,7 @@ export default function Home() {
                         </p>
                       )}
                     </div>
-                    <div className="rounded-xl border border-violet-500/30 bg-violet-400/10 p-5">
+                    <div className="budget-stat budget-stat-complete rounded-xl border border-violet-500/30 bg-violet-400/10 p-5">
                       <WalletCards className="text-violet-300" aria-hidden="true" />
                       <p className="mt-3 text-sm text-violet-200">Academic + living plan</p>
                       <p className="mt-1 text-2xl font-bold text-violet-100">
@@ -2515,7 +2521,7 @@ export default function Home() {
                     Planning estimate checked {livingCostChecked}. Scholarship, annual increase and safety allowance are user-selected scenarios—not university promises. Actual rent, meals, utilities, transport, deposits and lifestyle costs vary by campus area and room sharing. Confirm halls and awarded waivers directly before relying on the plan.
                   </p>
                   {completeFinancialPlan && (
-                    <div className="mt-6 overflow-x-auto rounded-xl border border-slate-700" role="region" aria-label="Year-by-year financial plan" tabIndex={0}>
+                    <div className="year-plan-table mt-6 overflow-x-auto rounded-xl border border-slate-700" role="region" aria-label="Year-by-year financial plan" tabIndex={0}>
                       <table className="w-full min-w-[640px] text-left text-sm">
                         <caption className="bg-[#111b2a] px-4 py-3 text-left font-bold text-slate-100">
                           Year-by-year planning schedule
@@ -3071,8 +3077,18 @@ export default function Home() {
         </div>
       </footer>
 
+      <nav className="mobile-decision-dock" aria-label="Quick decision navigation">
+        <a href="#universities"><Building2 size={18} aria-hidden="true" /><span>Browse</span></a>
+        <a href="#shortlist">
+          <BookmarkCheck size={18} aria-hidden="true" /><span>Saved</span>
+          {compare.length > 0 && <b aria-label={`${compare.length} saved`}>{compare.length}</b>}
+        </a>
+        <a href="#living-cost"><WalletCards size={18} aria-hidden="true" /><span>Costs</span></a>
+        <a href="#readiness"><ShieldCheck size={18} aria-hidden="true" /><span>Apply</span></a>
+      </nav>
+
       <Dialog open={!!detail} onOpenChange={(o) => !o && setDetail(null)}>
-        <DialogContent className="max-h-[90vh] overflow-y-auto border-slate-700 bg-[#172337] text-slate-100 sm:max-w-2xl">
+        <DialogContent className="profile-dialog max-h-[90vh] overflow-y-auto border-slate-700 bg-[#172337] text-slate-100 sm:max-w-2xl">
           {detail && (
             <>
               <DialogHeader>
@@ -3123,7 +3139,7 @@ export default function Home() {
                 </div>
               ) : (
                 <>
-                  <div className="mt-4 rounded-xl border border-blue-500/30 bg-blue-400/10 p-5">
+                  <div className="profile-cost-spotlight mt-4 rounded-xl border border-blue-500/30 bg-blue-400/10 p-5">
                     <p className="text-xs font-semibold uppercase tracking-wide text-blue-200">
                       {selectedDetailTotal !== undefined
                         ? `Published ${selectedDetailProgram} total`
@@ -3152,7 +3168,7 @@ export default function Home() {
                           : "Verification in progress"}
                       </span>
                     </div>
-                    <div className="mt-3 flex flex-wrap gap-2">
+                    <div className="programme-chip-scroller mt-3 flex flex-wrap gap-2">
                       {detail.programs.map((p) => (
                         <button
                           key={p}
@@ -3264,7 +3280,7 @@ export default function Home() {
                       ))}
                     </div>
                   </section>
-                  <div className="mt-5 rounded-lg border border-emerald-500/30 bg-emerald-400/10 p-4 text-sm text-emerald-100">
+                  <div className="official-sources-panel mt-5 rounded-lg border border-emerald-500/30 bg-emerald-400/10 p-4 text-sm text-emerald-100">
                     <b>Official sources</b>
                     <div className="mt-2 grid gap-2">
                       {detail.sources?.map((s) => (

@@ -13,6 +13,7 @@ const reportHtmlPath = new URL("../.next/server/app/decision-report.html", impor
 test("renders the verified catalogue and complete financial planner", async () => {
   const html = await readFile(htmlPath, "utf8");
   const pageSource = await readFile(pageSourcePath, "utf8");
+  const styles = await readFile(globalStylesPath, "utf8");
   const privateData = await readFile(privateDataPath, "utf8");
   const gradeData = await readFile(gradeDataPath, "utf8");
   const projectSource = `${pageSource}\n${privateData}`;
@@ -117,6 +118,15 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(html, /MY SHORTLIST/);
   assert.match(pageSource, /campuschoice-bd-shortlist/);
   assert.match(pageSource, /Share shortlist/);
+  assert.match(pageSource, /desktop-primary-nav/);
+  assert.match(pageSource, /mobile-decision-dock/);
+  assert.match(styles, /--lime:#d6f36a/);
+  assert.match(pageSource, /profile-dialog/);
+  assert.match(pageSource, /programme-chip-scroller/);
+  assert.match(styles, /height:100dvh/);
+  assert.match(pageSource, /budget-summary-grid/);
+  assert.match(pageSource, /year-plan-table/);
+  assert.match(styles, /Swipe to view all columns/);
   assert.match(pageSource, /Application stages stay private/);
   assert.match(pageSource, /parseSharedShortlist/);
   assert.match(pageSource, /Compare the same programme and scan only the facts that matter/);
