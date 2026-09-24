@@ -138,7 +138,7 @@ export default async function UniversityProfilePage({ params }: ProfilePageProps
           </ProfileSection>
 
           <ProfileSection title="Official sources">
-            {university.sources?.length ? <div className="grid gap-2">{university.sources.map((source) => <a key={source.url} href={source.url} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center justify-between gap-3 rounded-lg border border-slate-700 px-3 py-2 text-sm font-semibold text-blue-300 hover:border-blue-400">{source.label}<ExternalLink size={14} className="shrink-0" aria-hidden="true" /></a>)}</div> : <PendingMessage text="Official source links are still being collected." />}
+            {university.sources?.length ? <div className="grid gap-2">{university.sources.map((source) => <a key={source.url} href={source.url} target="_blank" rel="noreferrer" className="quiet-action inline-flex min-h-11 min-w-0 items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm font-semibold text-blue-300"><span className="min-w-0 break-words">{source.label}</span><ExternalLink size={14} className="shrink-0" aria-hidden="true" /></a>)}</div> : <PendingMessage text="Official source links are still being collected." />}
           </ProfileSection>
 
           <ProfileSection title="Help keep this profile current" note="Reports never change published information automatically">

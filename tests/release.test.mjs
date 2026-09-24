@@ -261,6 +261,30 @@ test("keeps the decision report visible in browser print and PDF output", async 
   assert.match(report, /onClick=\{printReport\}/);
 });
 
+test("keeps leading search icons clear of text on desktop and mobile", async () => {
+  const styles = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const calendar = await readFile(new URL("../app/admission-calendar/admission-calendar.tsx", import.meta.url), "utf8");
+  const publicDirectory = await readFile(new URL("../app/public-universities/public-directory.tsx", import.meta.url), "utf8");
+  assert.match(styles, /\.field-with-leading-icon\{padding-left:2\.75rem!important\}/);
+  assert.match(styles, /\.field,\.search-select input\{font-size:16px\}/);
+  assert.match(calendar, /className="field field-with-leading-icon min-h-12"/);
+  assert.match(publicDirectory, /className="field field-with-leading-icon min-h-12"/);
+  assert.match(calendar, /type="search" inputMode="search"/);
+});
+
+test("ships a restrained accessible premium interaction layer", async () => {
+  const styles = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const home = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const decision = await readFile(new URL("../app/my-decision/workspace.tsx", import.meta.url), "utf8");
+  assert.match(styles, /\.premium-action\{/);
+  assert.match(styles, /\.quiet-action\{/);
+  assert.match(styles, /text-wrap:balance/);
+  assert.match(home, /decision-cta premium-action/);
+  assert.match(decision, /resultsRef\.current\?\.focus\(\)/);
+  assert.match(decision, /aria-valuetext=/);
+  assert.match(decision, /aria-live="polite"/);
+});
+
 test("search controls expose named accessible touch targets", async () => {
   const combobox = await readFile(
     new URL("../components/ui/combobox.tsx", import.meta.url),

@@ -1602,10 +1602,10 @@ export default function Home() {
               <p><b>Not a ranking.</b> A calmer way to find what fits your life.</p>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
-              <a href="/my-decision" className="decision-cta inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-slate-600 px-4 py-2 text-sm font-bold text-slate-100">
+              <a href="/my-decision" className="decision-cta premium-action inline-flex min-h-11 w-fit items-center gap-2 rounded-full px-4 py-2 text-sm font-bold text-white">
                 Try My Decision <ArrowRight size={16} aria-hidden="true" />
               </a>
-              <a href="/admission-calendar" className="inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-slate-600 bg-slate-950/20 px-4 py-2 text-sm font-bold text-slate-200 transition hover:border-blue-400 hover:text-white">
+              <a href="/admission-calendar" className="quiet-action inline-flex min-h-11 w-fit items-center gap-2 rounded-full px-4 py-2 text-sm font-bold text-slate-200">
                 Admission dates <CalendarDays size={16} aria-hidden="true" />
               </a>
             </div>
@@ -1818,7 +1818,7 @@ export default function Home() {
               More tools
               <span className="text-slate-500 transition group-open:rotate-180" aria-hidden="true">⌄</span>
             </summary>
-            <div className="grid grid-cols-3 gap-2 border-t border-slate-800 p-2">
+            <div className="grid gap-2 border-t border-slate-800 p-2 sm:grid-cols-3">
               {[
                 ["Funding", "#scholarship"],
                 ["Grade charts", "#grades"],
