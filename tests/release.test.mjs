@@ -290,6 +290,23 @@ test("keeps leading search icons clear of text on desktop and mobile", async () 
   assert.match(calendar, /type="search" inputMode="search"/);
 });
 
+test("ships an iPhone and Android safe responsive contract", async () => {
+  const styles = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const layout = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
+  const motion = await readFile(new URL("../components/interface-motion.tsx", import.meta.url), "utf8");
+  const workflow = await readFile(new URL("../.github/workflows/lighthouse.yml", import.meta.url), "utf8");
+  const lighthouse = JSON.parse(await readFile(new URL("../lighthouserc.json", import.meta.url), "utf8"));
+  assert.match(layout, /viewportFit: "cover"/);
+  assert.match(styles, /env\(safe-area-inset-bottom\)/);
+  assert.match(styles, /input,select,textarea\{font-size:16px!important\}/);
+  assert.match(styles, /a,button,summary,select,input\[type="checkbox"\],input\[type="radio"\]\{min-height:44px\}/);
+  assert.match(styles, /@media\(max-width:374px\)/);
+  assert.doesNotMatch(motion, /main > header, main > nav/);
+  assert.match(workflow, /actions\/checkout@v5/);
+  assert.equal(lighthouse.ci.assert.assertions["categories:performance"][1].minScore, 0.9);
+  assert.equal(lighthouse.ci.assert.assertions["largest-contentful-paint"][0], "warn");
+});
+
 test("ships a restrained accessible premium interaction layer", async () => {
   const styles = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   const home = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");

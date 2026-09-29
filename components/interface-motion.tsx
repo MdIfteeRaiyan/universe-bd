@@ -14,7 +14,7 @@ export function InterfaceMotion() {
     ).matches;
     const targets = Array.from(
       document.querySelectorAll<HTMLElement>(
-        "main > header, main > nav, main > section, main > footer, .motion-cluster > *",
+        "main > section:not(:first-of-type), main > footer, .motion-cluster > *",
       ),
     );
 
