@@ -10,6 +10,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/public-universities`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/my-decision`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.85 },
     { url: `${baseUrl}/admission-calendar`, lastModified: new Date(), changeFrequency: "daily", priority: 0.9 },
+    { url: `${baseUrl}/tools`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.75 },
+    { url: `${baseUrl}/living-costs`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.75 },
+    { url: `${baseUrl}/grade-scales`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     ...["methodology", "privacy", "terms", "disclaimer"].map((path) => ({ url: `${baseUrl}/${path}`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.3 })),
   ];
   const universityPages: MetadataRoute.Sitemap = privateUniversities.map((university) => ({

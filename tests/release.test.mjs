@@ -307,6 +307,26 @@ test("ships an iPhone and Android safe responsive contract", async () => {
   assert.equal(lighthouse.ci.assert.assertions["largest-contentful-paint"][0], "warn");
 });
 
+test("keeps mobile browsing light with focused decision pages", async () => {
+  const home = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const styles = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const tools = await readFile(new URL("../app/tools/page.tsx", import.meta.url), "utf8");
+  const grades = await readFile(new URL("../app/grade-scales/tool.tsx", import.meta.url), "utf8");
+  const living = await readFile(new URL("../app/living-costs/tool.tsx", import.meta.url), "utf8");
+  const sitemap = await readFile(new URL("../app/sitemap.ts", import.meta.url), "utf8");
+  assert.match(home, /href="\/living-costs"/);
+  assert.match(home, /href="\/tools"/);
+  assert.match(home, /home-heavy-tool/);
+  assert.match(styles, /\.home-heavy-tool\{display:none!important\}/);
+  assert.match(styles, /content-visibility:visible!important/);
+  assert.match(styles, /\.premium-header,\.mobile-decision-dock\{backdrop-filter:none!important/);
+  assert.match(tools, /One decision at a time/);
+  assert.match(grades, /Official policy/);
+  assert.match(living, /accommodationLabels/);
+  assert.match(sitemap, /grade-scales/);
+  assert.match(sitemap, /living-costs/);
+});
+
 test("ships a restrained accessible premium interaction layer", async () => {
   const styles = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   const home = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");

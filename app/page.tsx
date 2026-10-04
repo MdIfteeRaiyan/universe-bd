@@ -1521,9 +1521,9 @@ export default function Home() {
           </a>
           <nav className="desktop-primary-nav hidden items-center gap-1 xl:flex" aria-label="Primary navigation">
             <a href="#universities" data-section-link="universities">Explore</a>
-            <a href="#shortlist" data-section-link="shortlist">Compare</a>
-            <a href="#living-cost" data-section-link="living-cost">Plan costs</a>
-            <a href="#readiness" data-section-link="readiness">Admissions</a>
+            <a href="/tools">Tools</a>
+            <a href="/living-costs">Plan costs</a>
+            <a href="/admission-calendar">Admissions</a>
           </nav>
           <div className="order-3 w-full md:order-none md:w-72 lg:w-80">
             <Combobox
@@ -1574,7 +1574,7 @@ export default function Home() {
             </Combobox>
           </div>
           <a
-            href="#shortlist"
+            href="/tools"
             aria-label={`Open shortlist with ${compare.length} saved ${compare.length === 1 ? "university" : "universities"}`}
             className="shortlist-button flex items-center gap-2 rounded-full border border-slate-600 bg-[#172337] px-4 py-2 text-sm font-semibold text-slate-200 hover:border-blue-400"
           >
@@ -1804,11 +1804,11 @@ export default function Home() {
             <span className="decision-rail" aria-hidden="true"><span /></span>
             {[
               ["1", "Find", `${sortedResults.length} options`, "#universities", true],
-              ["2", "Shortlist", compare.length ? `${compare.length} saved` : "Save up to 3", "#shortlist", compare.length > 0],
-              ["3", "Plan costs", "Tuition + living", "#living-cost", false],
-              ["4", "Check admission", "Rules + checklist", "#readiness", false],
+              ["2", "Decision tools", compare.length ? `${compare.length} saved` : "Focused pages", "/tools", compare.length > 0],
+              ["3", "Plan costs", "Living budget", "/living-costs", false],
+              ["4", "Check dates", "Official calendar", "/admission-calendar", false],
             ].map(([number, label, detail, href, active]) => (
-              <a key={String(href)} href={String(href)} data-section-link={String(href).slice(1)} className={`decision-step relative z-[1] flex min-h-[4.25rem] items-center gap-3 rounded-xl border px-3 py-2.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 ${active ? "is-active border-blue-400/60 bg-blue-400/10" : "border-slate-700 bg-[#172337]"}`}>
+              <a key={String(href)} href={String(href)} className={`decision-step relative z-[1] flex min-h-[4.25rem] items-center gap-3 rounded-xl border px-3 py-2.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 ${active ? "is-active border-blue-400/60 bg-blue-400/10" : "border-slate-700 bg-[#172337]"}`}>
                 <span className="decision-number" aria-hidden="true">{number}</span>
                 <span className="min-w-0">
                   <b className="block text-sm text-slate-100">{label}</b>
@@ -1824,8 +1824,8 @@ export default function Home() {
             </summary>
             <div className="grid gap-2 border-t border-slate-800 p-2 sm:grid-cols-3">
               {[
-                ["Funding", "#scholarship"],
-                ["Grade charts", "#grades"],
+                ["All tools", "/tools"],
+                ["Grade charts", "/grade-scales"],
                 ["About", "#about"],
               ].map(([label, href]) => (
                 <a key={href} href={href} className="flex min-h-11 items-center justify-center rounded-md px-3 py-2 text-center text-sm font-semibold text-slate-300 hover:bg-slate-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
@@ -2136,7 +2136,7 @@ export default function Home() {
         )}
       </section>
 
-      <section id="shortlist" data-analytics="shortlist_used" className="shortlist-section experience-section border-y border-slate-700 bg-[#121c2b]">
+      <section id="shortlist" data-analytics="shortlist_used" className="home-heavy-tool shortlist-section experience-section border-y border-slate-700 bg-[#121c2b]">
         <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -2211,7 +2211,7 @@ export default function Home() {
       <section
         id="calculator"
         data-analytics="cost_planner_used"
-        className="experience-section border-y border-slate-700 bg-[#121c2b]"
+        className="home-heavy-tool experience-section border-y border-slate-700 bg-[#121c2b]"
       >
         <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 lg:grid-cols-[.7fr_1.3fr] lg:px-8">
           <div>
@@ -2362,7 +2362,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="living-cost" data-analytics="complete_budget_used" className="experience-section border-y border-slate-700 bg-[#121c2b]">
+      <section id="living-cost" data-analytics="complete_budget_used" className="home-heavy-tool experience-section border-y border-slate-700 bg-[#121c2b]">
         <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr]">
             <div>
@@ -2562,7 +2562,7 @@ export default function Home() {
 
       <section
         id="scholarship"
-        className="experience-section mx-auto max-w-7xl px-5 py-14 lg:px-8"
+        className="home-heavy-tool experience-section mx-auto max-w-7xl px-5 py-14 lg:px-8"
       >
         <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr]">
           <div>
@@ -2791,7 +2791,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="readiness" className="experience-section mx-auto max-w-7xl px-5 py-14 lg:px-8">
+      <section id="readiness" className="home-heavy-tool experience-section mx-auto max-w-7xl px-5 py-14 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr]">
           <div>
             <p className="text-sm font-bold text-blue-400">ADMISSION READINESS</p>
@@ -2886,7 +2886,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="grades" className="experience-section border-y border-slate-700 bg-[#121c2b]">
+      <section id="grades" className="home-heavy-tool experience-section border-y border-slate-700 bg-[#121c2b]">
         <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr]">
             <div>
@@ -3077,12 +3077,12 @@ export default function Home() {
 
       <nav className="mobile-decision-dock" aria-label="Quick decision navigation">
         <a href="#universities" data-section-link="universities"><Building2 size={18} aria-hidden="true" /><span>Browse</span></a>
-        <a href="#shortlist" data-section-link="shortlist">
+        <a href="/tools">
           <BookmarkCheck size={18} aria-hidden="true" /><span>Saved</span>
           {compare.length > 0 && <b aria-label={`${compare.length} saved`}>{compare.length}</b>}
         </a>
-        <a href="#living-cost" data-section-link="living-cost"><WalletCards size={18} aria-hidden="true" /><span>Costs</span></a>
-        <a href="#readiness" data-section-link="readiness"><ShieldCheck size={18} aria-hidden="true" /><span>Apply</span></a>
+        <a href="/living-costs"><WalletCards size={18} aria-hidden="true" /><span>Costs</span></a>
+        <a href="/admission-calendar"><ShieldCheck size={18} aria-hidden="true" /><span>Apply</span></a>
       </nav>
 
       <Dialog open={!!detail} onOpenChange={(o) => !o && setDetail(null)}>

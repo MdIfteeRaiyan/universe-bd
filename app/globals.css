@@ -170,6 +170,10 @@ input[type="range"]{accent-color:var(--mint)}
   .field,.search-select{max-width:100%}
   .mobile-decision-dock{right:max(.7rem,env(safe-area-inset-right));left:max(.7rem,env(safe-area-inset-left))}
   [role="dialog"]{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+  .content-defer,.soft-dark>section[id]:not(#main-content){content-visibility:visible!important;contain-intrinsic-size:none!important}
+  .premium-header,.mobile-decision-dock{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+  .mobile-decision-dock{background:#0c1422!important}
+  .home-heavy-tool{display:none!important}
 }
 @media(max-width:374px){
   .premium-header>div{padding-inline:.7rem}
@@ -185,6 +189,19 @@ input[type="range"]{accent-color:var(--mint)}
   .premium-header>div{max-width:100%;padding-inline:1.25rem}
   .hero-zone>div{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:2rem}
 }
+
+/* Focused decision pages: fewer choices, clearer hierarchy, lighter motion. */
+.focused-tool-page{background:radial-gradient(circle at 88% 5%,rgba(104,99,231,.16),transparent 28rem),linear-gradient(180deg,#10182a,#0d1625)}
+.focused-tool-hero{position:relative;overflow:hidden;background:radial-gradient(circle at 82% 12%,rgba(214,243,106,.08),transparent 22rem),#121b2d}
+.focused-tool-hero::after{content:"";position:absolute;right:-7rem;bottom:-9rem;width:20rem;height:20rem;border:1px solid rgba(187,183,255,.13);border-radius:43% 57% 52% 48%;pointer-events:none;animation:tool-orbit 16s ease-in-out infinite}
+.focused-tool-card{transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease;animation:tool-card-in .45s calc(var(--tool-index,0) * 60ms) ease-out both}
+.focused-tool-card:hover{transform:translateY(-4px);border-color:rgba(214,243,106,.42);box-shadow:0 28px 70px rgba(2,8,23,.34)}
+.focused-tool-card span:last-child svg{transition:transform .2s ease}.focused-tool-card:hover span:last-child svg{transform:translateX(4px)}
+.living-cost-row{transition:border-color .2s ease,transform .2s ease}.living-cost-row:hover{transform:translateY(-2px);border-color:rgba(187,183,255,.45)}
+@keyframes tool-card-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes tool-orbit{50%{transform:translate(-18px,-10px) rotate(12deg)}}
+@media(max-width:767px){.focused-tool-page{padding-bottom:env(safe-area-inset-bottom)}.focused-tool-hero::after{right:-12rem;opacity:.65}.focused-tool-card{min-height:12.5rem}.focused-tool-card:hover,.living-cost-row:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){.focused-tool-card,.focused-tool-hero::after{animation:none}.focused-tool-card:hover,.focused-tool-card:hover span:last-child svg,.living-cost-row:hover{transform:none}}
 
 /* Final release experience layer */
 .editorial-title{font-family:Georgia,"Times New Roman",serif;letter-spacing:-.035em;line-height:1.04;text-wrap:balance}.section-intro{text-wrap:pretty}
