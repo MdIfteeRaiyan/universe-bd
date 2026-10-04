@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 test("keeps university and grading data outside the interactive page", async () => {
-  const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const page = await readFile(new URL("../app/explore/page.tsx", import.meta.url), "utf8");
   const catalogue = await readFile(new URL("../data/private-universities.ts", import.meta.url), "utf8");
   const grades = await readFile(new URL("../data/grade-charts.ts", import.meta.url), "utf8");
 

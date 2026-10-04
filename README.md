@@ -6,6 +6,8 @@ Version 1.0 is the public-release baseline. It includes the verified university 
 
 Version 1.1 introduces a mobile-first focused-tool architecture. University browsing remains on the homepage while grade scales, living costs, admission dates, public universities and transparent decision planning open on dedicated pages.
 
+Version 1.2 separates the experience completely: the homepage is a concise gateway, `/explore` is dedicated to university discovery, `/shortlist` holds saved choices, and each planning tool has its own focused route.
+
 The public admission calendar expires old dates automatically and links every published event to its official source. A private review-queue generator prioritises pending costs, missing source coverage and expired admission events without publishing any change automatically.
 
 ## Local development

@@ -3,7 +3,8 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const htmlPath = new URL("../.next/server/app/index.html", import.meta.url);
-const pageSourcePath = new URL("../app/page.tsx", import.meta.url);
+const exploreHtmlPath = new URL("../.next/server/app/explore.html", import.meta.url);
+const pageSourcePath = new URL("../app/explore/page.tsx", import.meta.url);
 const globalStylesPath = new URL("../app/globals.css", import.meta.url);
 const privateDataPath = new URL("../data/private-universities.ts", import.meta.url);
 const gradeDataPath = new URL("../data/grade-charts.ts", import.meta.url);
@@ -11,7 +12,7 @@ const publicHtmlPath = new URL("../.next/server/app/public-universities.html", i
 const reportHtmlPath = new URL("../.next/server/app/decision-report.html", import.meta.url);
 
 test("renders the verified catalogue and complete financial planner", async () => {
-  const html = await readFile(htmlPath, "utf8");
+  const html = await readFile(exploreHtmlPath, "utf8");
   const pageSource = await readFile(pageSourcePath, "utf8");
   const styles = await readFile(globalStylesPath, "utf8");
   const privateData = await readFile(privateDataPath, "utf8");
@@ -308,7 +309,7 @@ test("ships an iPhone and Android safe responsive contract", async () => {
 });
 
 test("keeps mobile browsing light with focused decision pages", async () => {
-  const home = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const home = await readFile(new URL("../app/explore/page.tsx", import.meta.url), "utf8");
   const styles = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   const tools = await readFile(new URL("../app/tools/page.tsx", import.meta.url), "utf8");
   const grades = await readFile(new URL("../app/grade-scales/tool.tsx", import.meta.url), "utf8");
@@ -327,9 +328,26 @@ test("keeps mobile browsing light with focused decision pages", async () => {
   assert.match(sitemap, /living-costs/);
 });
 
+test("ships a concise gateway instead of an all-in-one homepage", async () => {
+  const landing = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const explorer = await readFile(new URL("../app/explore/page.tsx", import.meta.url), "utf8");
+  const shortlist = await readFile(new URL("../app/shortlist/workspace.tsx", import.meta.url), "utf8");
+  const styles = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const sitemap = await readFile(new URL("../app/sitemap.ts", import.meta.url), "utf8");
+  assert.match(landing, /One clear place for your/);
+  assert.match(landing, /href="\/explore"/);
+  assert.match(landing, /href: "\/shortlist"/);
+  assert.doesNotMatch(landing, /id="calculator"/);
+  assert.match(explorer, /id="universities"/);
+  assert.match(shortlist, /campuschoice-bd-shortlist/);
+  assert.match(styles, /\.home-heavy-tool\{display:none!important\}/);
+  assert.match(sitemap, /\/explore/);
+  assert.match(sitemap, /\/shortlist/);
+});
+
 test("ships a restrained accessible premium interaction layer", async () => {
   const styles = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
-  const home = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const home = await readFile(new URL("../app/explore/page.tsx", import.meta.url), "utf8");
   const decision = await readFile(new URL("../app/my-decision/workspace.tsx", import.meta.url), "utf8");
   assert.match(styles, /\.premium-action\{/);
   assert.match(styles, /\.quiet-action\{/);
@@ -362,7 +380,7 @@ test("search controls expose named accessible touch targets", async () => {
     new URL("../components/ui/combobox.tsx", import.meta.url),
     "utf8",
   );
-  const home = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const home = await readFile(new URL("../app/explore/page.tsx", import.meta.url), "utf8");
   assert.match(combobox, /aria-label="Open options"/);
   assert.match(combobox, /aria-label="Clear selection"/);
   assert.match(combobox, /min-h-11 min-w-11/);
@@ -436,7 +454,7 @@ test("ships baseline production security headers", async () => {
 });
 
 test("keeps uncertainty and verification disclosures visible", async () => {
-  const html = await readFile(htmlPath, "utf8");
+  const html = await readFile(exploreHtmlPath, "utf8");
   assert.match(html, /Hall availability and seat allocation must be confirmed/);
   assert.match(html, /Tuition split required/);
   assert.match(html, /Official sources linked/);
