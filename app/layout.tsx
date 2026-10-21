@@ -3,12 +3,14 @@ import { InterfaceMotion } from "@/components/interface-motion";
 import { AnalyticsEvents } from "@/components/analytics-events";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { AppNavigation } from "@/components/app-navigation";
+import { AppFooter } from "@/components/app-footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://campuschoice-bd.vercel.app"),
   applicationName: "CampusChoice BD",
-  title: "CampusChoice BD — Find Your University Fit",
+  title: { default: "CampusChoice BD — University Decisions Made Clear", template: "%s | CampusChoice BD" },
   description: "Compare verified private-university programmes, costs and admission information in Bangladesh, with a separate guide for public universities.",
   alternates: { canonical: "/" },
   openGraph: {
@@ -29,10 +31,11 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
+    apple: "/icon-192.png",
   },
   manifest: "/site.webmanifest",
   other: {
-    "campuschoice-release": "2026.10.04",
+    "campuschoice-release": "2026.10.21",
   },
   verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
     ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
@@ -57,7 +60,9 @@ export default function RootLayout({
       <body className="antialiased">
         <InterfaceMotion />
         <AnalyticsEvents />
+        <AppNavigation />
         {children}
+        <AppFooter />
         <Analytics />
         <SpeedInsights sampleRate={0.5} />
       </body>

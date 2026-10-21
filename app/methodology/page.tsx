@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { TrustPage } from "@/components/trust-page";
 
-export const metadata: Metadata = { title: "Data Methodology | CampusChoice BD", alternates: { canonical: "/methodology" } };
+export const metadata: Metadata = { title: "Data Methodology", description: "How CampusChoice BD verifies university programmes, fees, admissions and scholarship information.", alternates: { canonical: "/methodology" } };
 export default function MethodologyPage() {
   return <TrustPage eyebrow="DATA METHODOLOGY" title="Published facts, visible uncertainty." intro="Every profile separates verified information from fields that still need an official source.">
     <h2>Source priority</h2><p>University fee tables, admission circulars, academic catalogues and policy pages are preferred. UGC records support institutional identity. Search snippets and third-party summaries are not used as final evidence.</p>

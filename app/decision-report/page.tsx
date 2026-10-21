@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import DecisionReport from "./report";
 
 export const metadata: Metadata = {
-  title: "University Decision Report — CampusChoice BD",
+  title: "University Decision Report",
   description: "A printable comparison of shortlisted private universities and source-checked programme information.",
   robots: { index: false, follow: false },
 };

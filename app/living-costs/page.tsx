@@ -3,7 +3,8 @@ import { FocusedToolShell } from "@/components/focused-tool-shell";
 import { LivingCostTool } from "./tool";
 
 export const metadata: Metadata = {
-  title: "Student Living Cost Planner | CampusChoice BD",
+  title: "Student Living Cost Planner",
+  alternates: { canonical: "/living-costs" },
   description: "Estimate student living costs for university hall, hostel, mess or family accommodation.",
 };
 

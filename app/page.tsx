@@ -94,7 +94,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <footer className="landing-footer border-t border-slate-800"><div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-7 text-sm text-slate-500 lg:px-8"><b className="text-slate-300">CampusChoice BD</b><span>Independent, source-checked guidance for Bangladesh.</span><nav className="flex gap-4"><Link href="/methodology">Methodology</Link><Link href="/privacy">Privacy</Link><Link href="/disclaimer">Disclaimer</Link></nav></div></footer>
     </main>
   );
 }

@@ -54,7 +54,7 @@ export default function DecisionReport() {
         <div className="max-w-lg rounded-2xl border border-slate-700 bg-[#172337] p-8 text-center">
           <h1 className="text-2xl font-bold">Choose at least two universities</h1>
           <p className="mt-3 leading-7 text-slate-300">Create a shortlist first, then open its decision report.</p>
-          <Link href="/#universities" className="mt-6 inline-flex min-h-11 items-center rounded-lg bg-blue-600 px-5 py-2.5 font-semibold text-white">Build my shortlist</Link>
+          <Link href="/explore#universities" className="mt-6 inline-flex min-h-11 items-center rounded-lg bg-blue-600 px-5 py-2.5 font-semibold text-white">Build my shortlist</Link>
         </div>
       </main>
     );

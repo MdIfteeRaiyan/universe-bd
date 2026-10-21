@@ -1,5 +1,9 @@
 # CampusChoice BD
 
+## Optional public contact details
+
+Set `NEXT_PUBLIC_FEEDBACK_EMAIL` and `NEXT_PUBLIC_CONTACT_PHONE` in Vercel to show clickable email and phone actions. They remain hidden when unset, so the release never publishes invented contact details.
+
 CampusChoice BD is a responsive university discovery and comparison website for students in Bangladesh. It helps users explore programmes, divisions, districts, budgets, university profiles, costs, comparison options and source-checked admission dates.
 
 Version 1.0 is the public-release baseline. It includes the verified university catalogue, programme discovery pages, separate public-university experience, shortlist comparison, complete financial planner, admission-readiness tools and accessible responsive navigation.

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { TrustPage } from "@/components/trust-page";
 
-export const metadata: Metadata = { title: "Disclaimer | CampusChoice BD", alternates: { canonical: "/disclaimer" } };
+export const metadata: Metadata = { title: "Disclaimer", description: "Important limits and independent status of CampusChoice BD university guidance.", alternates: { canonical: "/disclaimer" } };
 export default function DisclaimerPage() {
   return <TrustPage eyebrow="DISCLAIMER" title="Independent guidance for students." intro="CampusChoice BD is an independent student-built project and is not an official service of UGC or any listed university.">
     <h2>Independent status</h2><p>University names, abbreviations and linked materials belong to their respective institutions. Inclusion does not imply endorsement, partnership or affiliation.</p>

@@ -2,7 +2,6 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-const htmlPath = new URL("../.next/server/app/index.html", import.meta.url);
 const exploreHtmlPath = new URL("../.next/server/app/explore.html", import.meta.url);
 const pageSourcePath = new URL("../app/explore/page.tsx", import.meta.url);
 const globalStylesPath = new URL("../app/globals.css", import.meta.url);
@@ -120,7 +119,7 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(pageSource, /campuschoice-bd-shortlist/);
   assert.match(pageSource, /Share shortlist/);
   assert.match(pageSource, /desktop-primary-nav/);
-  assert.match(pageSource, /mobile-decision-dock/);
+  assert.doesNotMatch(pageSource, /mobile-decision-dock/);
   assert.match(styles, /--lime:#d6f36a/);
   assert.match(pageSource, /profile-dialog/);
   assert.match(pageSource, /programme-chip-scroller/);
@@ -345,6 +344,22 @@ test("ships a concise gateway instead of an all-in-one homepage", async () => {
   assert.match(sitemap, /\/shortlist/);
 });
 
+test("ships the app-release navigation and metadata contract", async () => {
+  const navigation = await readFile(new URL("../components/app-navigation.tsx", import.meta.url), "utf8");
+  const footer = await readFile(new URL("../components/app-footer.tsx", import.meta.url), "utf8");
+  const layout = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
+  const styles = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const manifest = await readFile(new URL("../public/site.webmanifest", import.meta.url), "utf8");
+  assert.match(navigation, /Open navigation menu/);
+  assert.match(navigation, /aria-current/);
+  assert.match(footer, /new Date\(\)\.getFullYear\(\)/);
+  assert.match(footer, /href="\/privacy"/);
+  assert.match(layout, /title: \{ default:/);
+  assert.match(layout, /favicon\.svg/);
+  assert.match(styles, /overflow-x:clip/);
+  assert.match(manifest, /"display": "standalone"/);
+});
+
 test("ships a restrained accessible premium interaction layer", async () => {
   const styles = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   const home = await readFile(new URL("../app/explore/page.tsx", import.meta.url), "utf8");
@@ -416,7 +431,7 @@ test("ships a branded recovery page for broken links", async () => {
     "utf8",
   );
   assert.match(source, /This university link may have changed/);
-  assert.match(source, /href="\/"/);
+  assert.match(source, /href="\/explore"/);
   assert.match(source, /href="\/public-universities"/);
   assert.match(source, /saved shortlist.*remain available/);
 });

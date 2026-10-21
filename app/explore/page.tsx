@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   ArrowRight,
   BookmarkCheck,
@@ -1510,7 +1511,7 @@ export default function Home() {
       </a>
       <header className="premium-header sticky top-0 z-40 border-b border-slate-700/70 bg-[#101827]/95 backdrop-blur">
         <div className="mx-auto flex min-h-16 max-w-7xl flex-wrap items-center justify-between gap-2 px-5 py-2 lg:px-8">
-          <a href="#top" className="brand-lockup flex items-center gap-3">
+          <Link href="/" className="brand-lockup flex items-center gap-3">
             <span className="brand-mark-wrap"><Image className="logo-mark" src="/logo-mark.svg" alt="" width={44} height={44} priority /></span>
             <span>
               <b className="block leading-5">CampusChoice BD</b>
@@ -1518,7 +1519,7 @@ export default function Home() {
                 University decision guide
               </small>
             </span>
-          </a>
+          </Link>
           <nav className="desktop-primary-nav hidden items-center gap-1 xl:flex" aria-label="Primary navigation">
             <a href="#universities" data-section-link="universities">Explore</a>
             <a href="/tools">Tools</a>
@@ -1826,7 +1827,7 @@ export default function Home() {
               {[
                 ["All tools", "/tools"],
                 ["Grade charts", "/grade-scales"],
-                ["About", "#about"],
+                ["Methodology", "/methodology"],
               ].map(([label, href]) => (
                 <a key={href} href={href} className="flex min-h-11 items-center justify-center rounded-md px-3 py-2 text-center text-sm font-semibold text-slate-300 hover:bg-slate-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
                   {label}
@@ -3026,64 +3027,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <footer id="about" className="border-t border-slate-700 bg-[#0b1421]">
-        <div className="mx-auto grid max-w-7xl gap-6 px-5 py-7 text-center sm:grid-cols-[1fr_auto_1fr] sm:items-center sm:text-left lg:px-8">
-          <a href="#top" className="inline-flex items-center justify-self-center gap-3 sm:justify-self-start">
-            <Image src="/logo-mark.svg" alt="" width={34} height={34} />
-            <b className="text-slate-100">CampusChoice BD</b>
-          </a>
-          <div className="justify-self-center">
-            <p className="text-sm text-slate-300">
-              Built by <b className="text-slate-100">Md Iftee Raiyan</b>
-            </p>
-            <div className="mt-2 flex justify-center gap-4 sm:justify-start">
-              <a
-                href="https://www.linkedin.com/in/md-iftee-raiyan-b20336386/"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex min-h-10 items-center gap-1.5 text-sm font-semibold text-blue-300 transition hover:text-blue-200"
-              >
-                LinkedIn <ExternalLink size={14} aria-hidden="true" />
-              </a>
-              <a
-                href="https://github.com/MdIfteeRaiyan/"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex min-h-10 items-center gap-1.5 text-sm font-semibold text-blue-300 transition hover:text-blue-200"
-              >
-                GitHub <ExternalLink size={14} aria-hidden="true" />
-              </a>
-            </div>
-          </div>
-          <div className="w-full max-w-md justify-self-center sm:justify-self-end sm:text-right">
-            <p className="text-sm leading-6 text-slate-400">
-              Source-checked guidance. Confirm final details with the university.
-            </p>
-            <nav aria-label="Footer" className="mt-2 flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs font-medium text-slate-300 sm:justify-end">
-              <a href="/methodology" className="transition hover:text-white">Methodology</a>
-              <a href="/my-decision" className="transition hover:text-white">My Decision</a>
-              <a href="/admission-calendar" className="transition hover:text-white">Deadlines</a>
-              <a href="/privacy" className="transition hover:text-white">Privacy</a>
-              <a href="/terms" className="transition hover:text-white">Terms</a>
-              <a href="/disclaimer" className="transition hover:text-white">Disclaimer</a>
-            </nav>
-            <span className="mt-3 inline-flex rounded-full border border-slate-700/80 bg-slate-900/60 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500">
-              Release 2026.09.24
-            </span>
-          </div>
-        </div>
-      </footer>
-
-      <nav className="mobile-decision-dock" aria-label="Quick decision navigation">
-        <a href="#universities" data-section-link="universities"><Building2 size={18} aria-hidden="true" /><span>Browse</span></a>
-        <a href="/shortlist">
-          <BookmarkCheck size={18} aria-hidden="true" /><span>Saved</span>
-          {compare.length > 0 && <b aria-label={`${compare.length} saved`}>{compare.length}</b>}
-        </a>
-        <a href="/living-costs"><WalletCards size={18} aria-hidden="true" /><span>Costs</span></a>
-        <a href="/admission-calendar"><ShieldCheck size={18} aria-hidden="true" /><span>Apply</span></a>
-      </nav>
 
       <Dialog open={!!detail} onOpenChange={(o) => !o && setDetail(null)}>
         <DialogContent className="profile-dialog max-h-[90vh] overflow-y-auto border-slate-700 bg-[#172337] text-slate-100 sm:max-w-2xl">

@@ -37,7 +37,7 @@ export default function ErrorPage({
             Try again
           </button>
           <Link
-            href="/"
+            href="/explore"
             className="inline-flex min-h-11 items-center justify-center rounded-lg border border-slate-600 px-5 py-2.5 font-semibold text-slate-200 transition hover:border-blue-400 hover:text-white"
           >
             Return to finder

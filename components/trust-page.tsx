@@ -34,7 +34,7 @@ export function TrustPage({
       </section>
       <article id="trust-content" tabIndex={-1} className="trust-copy mx-auto max-w-4xl px-5 py-12 outline-none">
         {children}
-        <p className="mt-10 border-t border-slate-700 pt-6 text-sm text-slate-400">Last updated: 23 September 2026</p>
+        <p className="mt-10 border-t border-slate-700 pt-6 text-sm text-slate-400">Last updated: 21 October 2026</p>
       </article>
     </main>
   );

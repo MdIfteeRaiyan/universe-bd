@@ -25,10 +25,10 @@ export default function NotFound() {
         </p>
         <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
           <Link
-            href="/"
+            href="/explore"
             className="inline-flex min-h-11 items-center justify-center rounded-lg bg-blue-500 px-5 py-2.5 font-semibold text-white transition hover:bg-blue-400"
           >
-            Open private finder
+            Find universities
           </Link>
           <Link
             href="/public-universities"

@@ -5,8 +5,9 @@ import { ArrowRight, CalendarDays, ChartNoAxesCombined, GraduationCap, House, Sp
 import { FocusedToolShell } from "@/components/focused-tool-shell";
 
 export const metadata: Metadata = {
-  title: "Student Tools | CampusChoice BD",
+  title: "Student Decision Tools",
   description: "Open one focused university decision tool at a time.",
+  alternates: { canonical: "/tools" },
 };
 
 const tools = [

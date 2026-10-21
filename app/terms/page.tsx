@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { TrustPage } from "@/components/trust-page";
 
-export const metadata: Metadata = { title: "Terms | CampusChoice BD", alternates: { canonical: "/terms" } };
+export const metadata: Metadata = { title: "Terms of Use", description: "Terms for using CampusChoice BD as an independent university decision aid.", alternates: { canonical: "/terms" } };
 export default function TermsPage() {
   return <TrustPage eyebrow="TERMS" title="Use the guide as a decision aid." intro="CampusChoice BD helps students compare published information; it does not replace an official admission decision.">
     <h2>Permitted use</h2><p>You may use the website for personal education planning and share links to its public pages. Automated copying, resale or presentation of the database as your own work is not permitted.</p>

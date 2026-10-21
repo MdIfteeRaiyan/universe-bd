@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { TrustPage } from "@/components/trust-page";
 
-export const metadata: Metadata = { title: "Privacy | CampusChoice BD", alternates: { canonical: "/privacy" } };
+export const metadata: Metadata = { title: "Privacy", description: "How CampusChoice BD protects shortlist, planner and correction-report data.", alternates: { canonical: "/privacy" } };
 export default function PrivacyPage() {
   return <TrustPage eyebrow="PRIVACY" title="Simple tools, minimal data." intro="CampusChoice BD is designed to work without student accounts or hidden personal profiles.">
     <h2>What stays on your device</h2><p>Your shortlist and application stages are stored in your browser. They are not uploaded by CampusChoice BD. A shortlist link contains only selected university identifiers and an optional programme—not your application stage.</p>

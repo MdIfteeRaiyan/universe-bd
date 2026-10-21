@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: ProfilePageProps): Promise<Me
   if (!university) return {};
   const description = `Review ${university.name} programmes, published costs, admission information, scholarships and official sources on CampusChoice BD.`;
   return {
-    title: `${university.name} — Programmes and Costs | CampusChoice BD`,
+    title: `${university.name} — Programmes and Costs`,
     description,
     alternates: { canonical: `/universities/${universityProfileSlug(university)}` },
     openGraph: { title: `${university.name} | CampusChoice BD`, description },
@@ -66,7 +66,7 @@ export default async function UniversityProfilePage({ params }: ProfilePageProps
             <span className="brand-mark-wrap"><Image src="/logo-mark.svg" alt="" width={42} height={42} priority /></span>
             <span><b className="block">CampusChoice BD</b><small className="text-slate-400">Private university profile</small></span>
           </Link>
-          <Link href="/#universities" className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-slate-600 px-4 py-2 text-sm font-semibold hover:border-blue-400">
+          <Link href="/explore#universities" className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-slate-600 px-4 py-2 text-sm font-semibold hover:border-blue-400">
             <ArrowLeft size={16} aria-hidden="true" /> <span className="hidden sm:inline">University finder</span><span className="sm:hidden">Back</span>
           </Link>
         </div>

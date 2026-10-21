@@ -23,13 +23,16 @@ const statusLabels = {
 export function AdmissionCalendar({ events }: { events: AdmissionCalendarEvent[] }) {
   const [query, setQuery] = useState("");
   const [kind, setKind] = useState<AdmissionEventKind | "all">("all");
+  const [showPast, setShowPast] = useState(false);
   const filtered = useMemo(() => {
     const normalized = query.trim().toLocaleLowerCase();
     return sortAdmissionEvents(events).filter((event) =>
+      (showPast || admissionEventStatus(event.date) !== "closed") &&
       (kind === "all" || event.kind === kind) &&
       (!normalized || `${event.university} ${event.short} ${event.intake} ${event.title}`.toLocaleLowerCase().includes(normalized)),
     );
-  }, [events, kind, query]);
+  }, [events, kind, query, showPast]);
+  const latestCheck = events.map((event) => event.checkedAt).sort().at(-1);
 
   return (
     <main id="top" className="min-h-screen bg-[#101827] text-slate-100">
@@ -54,10 +57,11 @@ export function AdmissionCalendar({ events }: { events: AdmissionCalendarEvent[]
         <div className="grid gap-3 rounded-2xl border border-slate-700 bg-[#172337] p-4 sm:grid-cols-[1fr_220px]">
           <label className="relative block"><span className="sr-only">Search university or intake</span><Search className="pointer-events-none absolute left-3 top-1/2 z-10 -translate-y-1/2 text-slate-400" size={18} aria-hidden="true" /><input type="search" inputMode="search" autoComplete="off" className="field field-with-leading-icon min-h-12" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search university or intake..." /></label>
           <label><span className="sr-only">Filter by event type</span><select className="field min-h-12" value={kind} onChange={(event) => setKind(event.target.value as AdmissionEventKind | "all")}><option value="all">All date types</option>{Object.entries(kindLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
+          <label className="flex min-h-11 cursor-pointer items-center gap-3 text-sm text-slate-300 sm:col-span-2"><input type="checkbox" checked={showPast} onChange={(event) => setShowPast(event.target.checked)} className="h-5 w-5 accent-blue-500" /> Show past dates</label>
         </div>
 
         <div id="calendar-results" className="mt-7 outline-none" tabIndex={-1}>
-          <div className="flex flex-wrap items-end justify-between gap-3"><div><p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Published timeline</p><h2 className="mt-2 text-2xl font-bold">{filtered.length} source-checked {filtered.length === 1 ? "date" : "dates"}</h2></div><p className="text-sm text-slate-400">Bangladesh time · checked 23 Sep 2026</p></div>
+          <div className="flex flex-wrap items-end justify-between gap-3"><div><p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Published timeline</p><h2 className="mt-2 text-2xl font-bold">{filtered.length} source-checked {filtered.length === 1 ? "date" : "dates"}</h2></div><p className="text-sm text-slate-400">Bangladesh time{latestCheck ? ` · last source check ${formatAdmissionDate(latestCheck)}` : ""}</p></div>
           {filtered.length ? <div className="mt-5 grid gap-4 md:grid-cols-2">{filtered.map((event) => {
             const status = admissionEventStatus(event.date);
             return <article key={event.id} className="surface-card rounded-2xl p-5 sm:p-6">
@@ -66,7 +70,7 @@ export function AdmissionCalendar({ events }: { events: AdmissionCalendarEvent[]
               <p className="mt-4 text-sm leading-6 text-slate-300">{event.scope}</p>{event.note ? <p className="mt-3 rounded-xl border border-amber-400/20 bg-amber-300/5 p-3 text-xs leading-5 text-amber-100">{event.note}</p> : null}
               <a href={event.sourceUrl} target="_blank" rel="noreferrer" className="mt-5 inline-flex min-h-11 max-w-full items-center gap-2 rounded-lg border border-slate-600 px-4 py-2 text-sm font-semibold text-blue-300 hover:border-blue-400 hover:text-blue-200"><span className="min-w-0 break-words">{event.sourceLabel}</span><ExternalLink className="shrink-0" size={14} aria-hidden="true" /></a>
             </article>;
-          })}</div> : <div className="mt-5 rounded-2xl border border-dashed border-slate-600 p-10 text-center"><CalendarDays className="mx-auto text-slate-500" aria-hidden="true" /><h3 className="mt-3 font-bold">No matching verified date</h3><p className="mt-2 text-sm text-slate-400">Try another university, intake or date type.</p></div>}
+          })}</div> : <div className="mt-5 rounded-2xl border border-dashed border-slate-600 p-10 text-center"><CalendarDays className="mx-auto text-slate-500" aria-hidden="true" /><h3 className="mt-3 font-bold">{showPast || query || kind !== "all" ? "No matching verified date" : "No current verified deadline"}</h3><p className="mt-2 text-sm text-slate-400">{showPast || query || kind !== "all" ? "Try another university, intake or date type." : "Past dates are hidden to prevent accidental use. Turn on Show past dates for reference."}</p></div>}
         </div>
       </section>
     </main>

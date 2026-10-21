@@ -3,7 +3,8 @@ import { FocusedToolShell } from "@/components/focused-tool-shell";
 import { GradeScaleTool } from "./tool";
 
 export const metadata: Metadata = {
-  title: "Official University Grade Scales | CampusChoice BD",
+  title: "Official University Grade Scales",
+  alternates: { canonical: "/grade-scales" },
   description: "Compare source-checked university grading policies without assuming one common scale.",
 };
 
