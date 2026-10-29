@@ -1,6 +1,6 @@
 # CampusChoice BD — app release audit
 
-Audited 21 October 2026.
+Audited 29 October 2026.
 
 ## Completed
 
@@ -16,6 +16,11 @@ Audited 21 October 2026.
 - Hid expired admission dates by default; historical dates remain available on request.
 - Confirmed there are no dummy Lorem Ipsum/TODO placeholders. Search-field hints remain because they improve usability.
 - Existing visual assets are compact SVGs; the two generated PNG app icons are optimized and under 120 KB combined.
+- Replaced expired admission-calendar entries with official Spring 2027 dates for NSU, BRACU, EWU and VU.
+- Applied BRAC University's current Spring 2027 fee schedule across all structured programme records.
+- Reconciled six current Sonargaon University programme totals and marked seven unreconciled routes pending instead of retaining stale figures.
+- Rechecked VU, NUBTK and ADUST records and cleared every overdue source-review warning.
+- Reviewed all 20 official pages flagged by the source monitor; corrected Pundra's Civil diploma-entry total and refreshed BUFT's current waiver illustrations.
 
 ## Verification
 
@@ -23,11 +28,12 @@ Audited 21 October 2026.
 - 346 generated pages audited.
 - 7,606 internal links audited.
 - 913 rendered image references audited.
-- 88 university profiles, 751 verified programme totals, 0 blocking data errors.
+- 88 university profiles, 744 verified programme totals, 170 intentionally pending totals, 0 blocking data errors and 0 review warnings.
+- 315 official source URLs checked; 42 university-hosted pages rejected or timed out during the final automated pass and remain queued for human checking.
 
 ## Data still requiring official review
 
-The app intentionally keeps 163 programme totals pending rather than estimating them. The generated `reports/data-review-queue.md` records 38 high-priority and 84 medium-priority review tasks. Expired admission dates and three due source-review dates are also flagged. These are content-maintenance items, not broken application functionality.
+The app intentionally keeps 170 programme totals pending rather than estimating them. The generated `reports/data-review-queue.md` is the current private maintenance queue. Official pages that reject automated checks are reported as unavailable and are never treated as evidence that a published fact has disappeared.
 
 ## Optional Vercel settings
 

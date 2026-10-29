@@ -34,7 +34,7 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(privateData, /University-published Summer 2026 CSE total/);
   assert.match(privateData, /Official Fall 2026 CSE total/);
   assert.match(privateData, /visible component columns do not fully reconcile/);
-  assert.match(privateData, /reviewDue: "2026-10-15"/);
+  assert.match(privateData, /reviewDue: "2027-01-15"/);
   assert.match(privateData, /Fall 2026 CSE published minimum/);
   assert.match(privateData, /Transparent CSE minimum from the current official table: ৳3,48,500/);
   assert.match(privateData, /minimum GPA follows university policy without publishing a numerical threshold/);
@@ -68,7 +68,7 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(privateData, /All twelve bachelor routes have official standard totals in the Fall 2026 admission brochure/);
   assert.match(privateData, /Top five admission-test scorers with at least 75%: 25% first-semester tuition waiver/);
   assert.match(privateData, /Combined SSC and HSC GPA 6\.50 with at least GPA 3\.00 in each/);
-  assert.match(privateData, /Credits are source-linked, but local-student totals and waiver bands remain pending/);
+  assert.match(privateData, /Six current tri-semester programme totals are verified/);
   assert.match(privateData, /One of two concurrently admitted siblings or spouses may receive a 25% waiver/);
   assert.match(privateData, /Average SSC and HSC GPA 2\.50; if either result is GPA 2\.00/);
   assert.match(privateData, /Official Fall 2026 CSE standard total/);

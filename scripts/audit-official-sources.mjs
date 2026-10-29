@@ -8,6 +8,7 @@ const reportPath = process.env.SOURCE_MONITOR_REPORT ?? "reports/source-monitor.
 const checkedAt = new Date();
 const timeoutMs = 10_000;
 const concurrency = 16;
+const acceptReviewedChanges = process.env.SOURCE_MONITOR_ACCEPT_CHANGES === "1";
 const monitoredLabel = /fee|tuition|cost|admission|eligib|requirement|scholarship|waiver|programme|program/i;
 
 const normalize = (value) =>
@@ -92,9 +93,16 @@ async function inspectAll(items) {
 const previous = await loadPreviousState();
 const results = await inspectAll(uniqueSources);
 const firstRun = Object.keys(previous.sources ?? {}).length === 0;
-const changed = results.filter(
-  (result) => result.ok && previous.sources?.[result.url]?.hash && previous.sources[result.url].hash !== result.hash,
-);
+// Dynamic university pages often rotate view counters, notices or anti-bot text.
+// Require the same new fingerprint on two consecutive runs before raising a
+// change alert. A maintainer can explicitly accept reviewed pages as the new
+// baseline with SOURCE_MONITOR_ACCEPT_CHANGES=1.
+const changed = acceptReviewedChanges
+  ? []
+  : results.filter((result) => {
+      const prior = previous.sources?.[result.url];
+      return result.ok && prior?.hash && prior.hash !== result.hash && prior.candidateHash === result.hash;
+    });
 const unavailable = results.filter((result) => !result.ok);
 const newlyUnavailable = unavailable.filter((result) => previous.sources?.[result.url]?.status !== result.status);
 const today = checkedAt.toISOString().slice(0, 10);
@@ -108,14 +116,26 @@ const nextState = {
   checkedAt: checkedAt.toISOString(),
   overdue: overdue.map((university) => university.short),
   sources: Object.fromEntries(
-    results.map((result) => [
-      result.url,
-      {
-        hash: result.hash ?? previous.sources?.[result.url]?.hash,
-        status: result.status,
-        checkedAt: result.checkedAt,
-      },
-    ]),
+    results.map((result) => {
+      const prior = previous.sources?.[result.url] ?? {};
+      const establishBaseline = firstRun || acceptReviewedChanges || !prior.hash;
+      const returnedToBaseline = result.ok && result.hash === prior.hash;
+      const repeatedCandidate = result.ok && result.hash !== prior.hash && prior.candidateHash === result.hash;
+      return [
+        result.url,
+        {
+          hash: establishBaseline && result.hash ? result.hash : (prior.hash ?? result.hash),
+          status: result.status,
+          checkedAt: result.checkedAt,
+          ...(!establishBaseline && !returnedToBaseline && result.hash
+            ? {
+                candidateHash: result.hash,
+                candidateCount: repeatedCandidate ? (prior.candidateCount ?? 1) + 1 : 1,
+              }
+            : {}),
+        },
+      ];
+    }),
   ),
 };
 
@@ -131,6 +151,7 @@ const lines = [
 ];
 
 if (firstRun) lines.push("This was the baseline run. Page-change alerts begin with the next scheduled run.", "");
+if (acceptReviewedChanges) lines.push("Reviewed page fingerprints were accepted as the new monitoring baseline.", "");
 if (changed.length) {
   lines.push("## Changed official pages", "");
   for (const item of changed) lines.push(`- **${item.short}** — [${item.label}](${item.url})`);

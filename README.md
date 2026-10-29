@@ -12,6 +12,8 @@ Version 1.1 introduces a mobile-first focused-tool architecture. University brow
 
 Version 1.2 separates the experience completely: the homepage is a concise gateway, `/explore` is dedicated to university discovery, `/shortlist` holds saved choices, and each planning tool has its own focused route.
 
+Version 1.4 refreshes the live information layer for 29 October 2026. It adds source-checked Spring 2027 admission dates, applies BRAC University's current fee schedule, reconciles six current Sonargaon University programme totals and moves unreconciled figures back to clearly marked pending status. The release contains 744 verified programme totals, 170 pending totals, no blocking catalogue errors and no overdue review warnings.
+
 The public admission calendar expires old dates automatically and links every published event to its official source. A private review-queue generator prioritises pending costs, missing source coverage and expired admission events without publishing any change automatically.
 
 ## Local development

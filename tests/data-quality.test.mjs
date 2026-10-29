@@ -85,7 +85,7 @@ test("BRAC Architecture uses a transparent official-source lower bound", async (
   assert.equal(architecture?.credits, 207);
   assert.equal(architecture?.semesters, 15);
   assert.equal(architecture?.tuitionPerCredit, 8250);
-  assert.equal(architecture?.total, 2065700);
+  assert.equal(architecture?.total, 2091325);
   assert.equal(architecture?.minimum, true);
   assert.equal(architecture?.pending, undefined);
   assert.match(bracu?.feeBreakdown.join(" ") ?? "", /ten required Design studios \(81 credits\)/);
