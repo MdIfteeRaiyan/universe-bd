@@ -9,11 +9,11 @@ import { useEffect, useState } from "react";
 const links = [
   ["Explore", "/explore"],
   ["My Decision", "/my-decision"],
-  ["Saved", "/shortlist"],
   ["Living Costs", "/living-costs"],
   ["Grade Scales", "/grade-scales"],
   ["Admissions", "/admission-calendar"],
   ["Public Universities", "/public-universities"],
+  ["Saved", "/shortlist"],
 ] as const;
 
 export function AppNavigation() {

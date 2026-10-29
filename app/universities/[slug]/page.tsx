@@ -105,12 +105,17 @@ export default async function UniversityProfilePage({ params }: ProfilePageProps
 
           <ProfileSection title="Published programme costs" note="Totals are shown only when a complete official amount can be supported">
             {verifiedCosts.length ? (
-              <div className="overflow-x-auto rounded-xl border border-slate-700" role="region" aria-label="Published programme costs" tabIndex={0}>
-                <table className="w-full min-w-[620px] text-left text-sm">
-                  <thead className="bg-[#111b2a] text-slate-300"><tr><th className="p-3">Programme</th><th className="p-3">Credits</th><th className="p-3">Semesters</th><th className="p-3">Published total</th></tr></thead>
-                  <tbody>{verifiedCosts.map((programme) => <tr key={programme.name} className="border-t border-slate-700"><td className="p-3 font-semibold">{programme.name}</td><td className="p-3 text-slate-300">{programme.credits || "Not separated"}</td><td className="p-3 text-slate-300">{programme.semesters ?? "Not published"}</td><td className="p-3 font-bold text-blue-300">{money(programme.total)}{programme.minimum ? "+" : ""}</td></tr>)}</tbody>
-                </table>
-              </div>
+              <>
+                <div className="grid gap-3 md:hidden" aria-label="Published programme costs">
+                  {verifiedCosts.map((programme) => <article key={programme.name} className="min-w-0 rounded-xl border border-slate-700 bg-[#111b2a] p-4"><h3 className="break-words font-bold text-slate-100">{programme.name}</h3><dl className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2 text-sm"><dt className="text-slate-400">Credits</dt><dd className="text-right text-slate-200">{programme.credits || "Not separated"}</dd><dt className="text-slate-400">Semesters</dt><dd className="text-right text-slate-200">{programme.semesters ?? "Not published"}</dd><dt className="text-slate-400">Published total</dt><dd className="text-right font-bold text-blue-300">{money(programme.total)}{programme.minimum ? "+" : ""}</dd></dl></article>)}
+                </div>
+                <div className="hidden overflow-x-auto rounded-xl border border-slate-700 md:block" role="region" aria-label="Published programme costs" tabIndex={0}>
+                  <table className="w-full min-w-[620px] text-left text-sm">
+                    <thead className="bg-[#111b2a] text-slate-300"><tr><th className="p-3">Programme</th><th className="p-3">Credits</th><th className="p-3">Semesters</th><th className="p-3">Published total</th></tr></thead>
+                    <tbody>{verifiedCosts.map((programme) => <tr key={programme.name} className="border-t border-slate-700"><td className="p-3 font-semibold">{programme.name}</td><td className="p-3 text-slate-300">{programme.credits || "Not separated"}</td><td className="p-3 text-slate-300">{programme.semesters ?? "Not published"}</td><td className="p-3 font-bold text-blue-300">{money(programme.total)}{programme.minimum ? "+" : ""}</td></tr>)}</tbody>
+                  </table>
+                </div>
+              </>
             ) : <PendingMessage text="No complete current programme total has been verified. CampusChoice BD does not estimate it." />}
             {pendingCosts.length > 0 && <p className="mt-4 text-sm leading-6 text-amber-200">{pendingCosts.length} listed {pendingCosts.length === 1 ? "programme has" : "programmes have"} cost verification pending.</p>}
           </ProfileSection>

@@ -10,6 +10,14 @@ import { programmeDirectory } from "@/lib/discovery";
 import { createFinancialPlan } from "@/lib/financial-planner";
 import { universityProfilePath } from "@/lib/university-profile";
 import { trackPrivacyEvent } from "@/lib/privacy-analytics";
+import {
+  Combobox,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
+} from "@/components/ui/combobox";
 
 const money = (value: number) => `৳${new Intl.NumberFormat("en-IN").format(Math.round(value))}`;
 
@@ -65,7 +73,7 @@ export function DecisionWorkspace() {
       <section id="decision-form" tabIndex={-1} className="mx-auto max-w-6xl px-5 py-10 outline-none">
         <div className="tool-panel rounded-2xl border border-slate-700 bg-[#172337] p-5 sm:p-7">
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-5">
-            <label className="text-sm font-semibold text-slate-200 lg:col-span-2">Programme<select className="field mt-2 min-h-12" value={programme} onChange={(event) => { setProgramme(event.target.value); setStarted(false); }}><option value="">Choose a programme…</option>{programmeDirectory.map((item) => <option key={item.slug} value={item.name}>{item.name}</option>)}</select></label>
+            <div className="text-sm font-semibold text-slate-200 lg:col-span-2"><ProgrammePicker value={programme} onChange={(value) => { setProgramme(value); setStarted(false); }} /></div>
             <label className="text-sm font-semibold text-slate-200">Preferred division<select className="field mt-2 min-h-12" value={division} onChange={(event) => setDivision(event.target.value)}><option value="">Any division</option>{divisions.map((item) => <option key={item}>{item}</option>)}</select></label>
             <label className="text-sm font-semibold text-slate-200">Living arrangement<select className="field mt-2 min-h-12" value={living} onChange={(event) => setLiving(event.target.value as AccommodationMode)}>{Object.entries(accommodationLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
             <label className="text-sm font-semibold text-slate-200">SSC/HSC reference GPA<input className="field mt-2 min-h-12" type="number" min="2" max="5" step="0.1" value={gpa} onChange={(event) => setGpa(Number(event.target.value))} /></label>
@@ -78,4 +86,25 @@ export function DecisionWorkspace() {
       </section>
     </main>
   );
+}
+
+function ProgrammePicker({ value, onChange }: { value: string; onChange: (value: string) => void }) {
+  const [query, setQuery] = useState(value);
+  // Keep the visible search value aligned when the decision form is reset.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => setQuery(value), [value]);
+  const normalized = query.trim().toLocaleLowerCase();
+  const options = programmeDirectory.filter((item) => !normalized || normalized === value.toLocaleLowerCase() || item.name.toLocaleLowerCase().includes(normalized));
+
+  return <label className="block">Programme
+    <Combobox items={options.map((item) => item.name)} value={value} inputValue={query} onInputValueChange={setQuery} onValueChange={(next) => { if (!next) return; setQuery(next); onChange(next); }}>
+      <ComboboxInput aria-label="Programme" placeholder="Search programmes…" className="search-select mt-2" />
+      <ComboboxContent className="max-h-72 w-[var(--anchor-width)] border border-slate-500 bg-[#0f1928] text-slate-100 shadow-2xl shadow-black/50">
+        <ComboboxEmpty>No matching programme</ComboboxEmpty>
+        <ComboboxList className="max-h-72 overscroll-contain">
+          {options.map((item) => <ComboboxItem key={item.slug} value={item.name} className="data-highlighted:bg-blue-500/20 data-highlighted:text-white">{item.name}</ComboboxItem>)}
+        </ComboboxList>
+      </ComboboxContent>
+    </Combobox>
+  </label>;
 }
