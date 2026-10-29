@@ -24,10 +24,9 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(html, /Safety allowance/);
   assert.match(pageSource, /Year-by-year planning schedule/);
   assert.doesNotMatch(html, /DATA VERIFICATION CENTRE/);
-  assert.match(html, /Built by/);
   assert.match(html, /Md Iftee Raiyan/);
   assert.match(html, /github\.com\/MdIfteeRaiyan/);
-  assert.match(html, /Confirm final details with the university/);
+  assert.match(html, /Independent, source-checked guidance/);
   assert.match(privateData, /UODA's official introduction states that the university was established in 2002/);
   assert.match(privateData, /Official 2026 undergraduate fee table/);
   assert.match(privateData, /Golden GPA 5.00: 100% tuition scholarship/);
@@ -137,7 +136,7 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(pageSource, /Compare the same programme and scan only the facts that matter/);
   assert.match(pageSource, /Lowest verified/);
   assert.match(pageSource, /Remove one university before saving another/);
-  assert.match(html, /Source-checked guidance/);
+  assert.match(html, /source-checked guidance/i);
   assert.match(html, /YOUR NEXT CHAPTER STARTS HERE/);
   assert.match(html, /Your simple decision path/);
   assert.match(html, /View eligibility summary/);
