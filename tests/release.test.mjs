@@ -299,7 +299,7 @@ test("ships an iPhone and Android safe responsive contract", async () => {
   assert.match(styles, /env\(safe-area-inset-bottom\)/);
   assert.match(styles, /input,select,textarea\{font-size:16px!important\}/);
   assert.match(styles, /a,button,summary,select,input\[type="checkbox"\],input\[type="radio"\]\{min-height:44px\}/);
-  assert.match(styles, /@media\(max-width:1023px\)\{\.university-card/);
+  assert.match(styles, /@media\(max-width:1279px\)\{\.university-card/);
   assert.match(styles, /\.profile-dialog,\.comparison-workspace\{position:fixed!important;inset:0!important/);
   assert.match(styles, /width:100%!important;height:100dvh!important/);
   assert.match(styles, /overflow-x:hidden!important;overflow-y:auto!important/);
