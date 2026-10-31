@@ -281,7 +281,7 @@ input[type="range"]{accent-color:var(--mint)}
 :root{--royal:#6863e7;--royal-deep:#4742ba;--lime:#d6f36a;--lavender:#e8e5ff;--warm-white:#fbfaf5;--night:#0f1729}
 .site-shell{background:radial-gradient(circle at 100% 0,rgba(104,99,231,.11),transparent 31rem),linear-gradient(180deg,#10182a 0%,#0d1625 52%,#101827 100%)}
 .premium-header{background:rgba(15,23,41,.88)!important;box-shadow:0 12px 35px rgba(2,8,23,.24);backdrop-filter:blur(22px) saturate(135%)}
-.premium-header>div{max-width:86rem}.brand-mark-wrap{background:var(--warm-white);box-shadow:none;transform:none;border:1px solid rgba(255,255,255,.65)}
+.premium-header>div{max-width:86rem}.brand-mark-wrap{background:rgba(20,36,58,.72);box-shadow:0 8px 22px rgba(2,8,23,.2),inset 0 0 0 1px rgba(103,232,249,.08);transform:none;border:1px solid rgba(96,165,250,.28);overflow:hidden}
 .brand-lockup:hover .brand-mark-wrap{transform:translateY(-1px) rotate(2deg)}
 .desktop-primary-nav{padding:.25rem;border:1px solid rgba(148,163,184,.22);border-radius:999px;background:rgba(255,255,255,.035)}
 .desktop-primary-nav a{display:inline-flex;align-items:center;min-height:2.25rem;padding:.4rem .8rem;border-radius:999px;color:#cbd5e1;font-size:.78rem;font-weight:750;transition:color .18s ease,background-color .18s ease,transform .18s ease}
