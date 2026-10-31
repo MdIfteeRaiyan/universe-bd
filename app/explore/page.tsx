@@ -1501,6 +1501,10 @@ export default function Home() {
     }
   };
 
+  const openUniversityProfile = (university: University) => {
+    window.location.assign(universityProfilePath(university));
+  };
+
   return (
     <main id="top" className="site-shell soft-dark min-h-screen bg-[#101827] text-slate-100">
       <a
@@ -1545,8 +1549,7 @@ export default function Home() {
                   (u) => `${u.name} (${u.short})` === value,
                 );
                 if (found) {
-                  setDirectProfile(true);
-                  setDetail(found);
+                  openUniversityProfile(found);
                 }
               }}
             >
@@ -1934,8 +1937,7 @@ export default function Home() {
                       key={u.id}
                       type="button"
                       onClick={() => {
-                        setDirectProfile(false);
-                        setDetail(u);
+                        openUniversityProfile(u);
                       }}
                       className="surface-card rounded-xl p-4 text-left transition hover:-translate-y-0.5 hover:border-blue-400"
                     >
@@ -2098,8 +2100,7 @@ export default function Home() {
                 <button
                   type="button"
                   onClick={() => {
-                    setDirectProfile(false);
-                    setDetail(u);
+                    openUniversityProfile(u);
                   }}
                   className="flex min-h-11 items-center justify-center gap-1 rounded-lg bg-[#173b68] px-3 py-2.5 text-sm font-semibold text-white"
                 >
@@ -2192,7 +2193,7 @@ export default function Home() {
                     </select>
                   </label>
                   <div className="mt-4 flex gap-2">
-                    <button type="button" onClick={() => { setDirectProfile(true); setDetail(university); }} className="flex-1 rounded-lg border border-slate-600 px-3 py-2 text-sm font-semibold text-slate-200 hover:border-blue-400">View profile</button>
+                    <Link href={universityProfilePath(university)} className="flex min-h-11 flex-1 items-center justify-center rounded-lg border border-slate-600 px-3 py-2 text-sm font-semibold text-slate-200 hover:border-blue-400">View profile</Link>
                     <button type="button" onClick={() => toggle(university.id)} className="rounded-lg border border-rose-400/30 px-3 py-2 text-sm font-semibold text-rose-200 hover:bg-rose-400/10" aria-label={`Remove ${university.name} from shortlist`}>Remove</button>
                   </div>
                 </article>
@@ -3333,8 +3334,7 @@ export default function Home() {
                           type="button"
                           onClick={() => {
                             setCompareOpen(false);
-                            setDirectProfile(true);
-                            setDetail(u);
+                            openUniversityProfile(u);
                           }}
                           className="text-sm font-semibold text-blue-300 hover:text-blue-200"
                         >

@@ -450,6 +450,14 @@ test("generates permanent source-rich university profiles", async () => {
   assert.match(profileHelpers, /universityProfileSlug/);
 });
 
+test("opens university search results as dedicated pages instead of mobile dialogs", async () => {
+  const pageSource = await readFile(new URL("../app/explore/page.tsx", import.meta.url), "utf8");
+  assert.match(pageSource, /const openUniversityProfile = \(university: University\)/);
+  assert.match(pageSource, /window\.location\.assign\(universityProfilePath\(university\)\)/);
+  assert.match(pageSource, /if \(found\) \{\s*openUniversityProfile\(found\);\s*\}/);
+  assert.match(pageSource, /href=\{universityProfilePath\(university\)\}/);
+});
+
 test("keeps public universities in a separate admission experience", async () => {
   const publicHtml = await readFile(publicHtmlPath, "utf8");
   const publicSource = await readFile(new URL("../app/public-universities/public-directory.tsx", import.meta.url), "utf8");
