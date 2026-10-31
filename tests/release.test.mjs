@@ -363,6 +363,17 @@ test("ships the app-release navigation and metadata contract", async () => {
   assert.match(manifest, /"display": "standalone"/);
 });
 
+test("ships the complete high-resolution CampusChoice brand icon set", async () => {
+  const manifest = await readFile(new URL("../public/site.webmanifest", import.meta.url), "utf8");
+  const layout = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
+  const monochrome = await readFile(new URL("../public/monochrome-icon.svg", import.meta.url), "utf8");
+  assert.match(manifest, /maskable-icon-512\.png/);
+  assert.match(manifest, /monochrome-icon\.svg/);
+  assert.match(manifest, /"purpose": "maskable"/);
+  assert.match(layout, /apple-touch-icon\.png/);
+  assert.match(monochrome, /viewBox="0 0 1024 1024"/);
+});
+
 test("ships a restrained accessible premium interaction layer", async () => {
   const styles = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   const home = await readFile(new URL("../app/explore/page.tsx", import.meta.url), "utf8");

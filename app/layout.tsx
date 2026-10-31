@@ -29,9 +29,9 @@ export const metadata: Metadata = {
     images: ["/opengraph-image"],
   },
   icons: {
-    icon: "/favicon.svg",
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }, { url: "/icon-192.png", sizes: "192x192", type: "image/png" }],
     shortcut: "/favicon.svg",
-    apple: "/icon-192.png",
+    apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
   other: {
