@@ -73,7 +73,7 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(privateData, /Official Fall 2026 CSE standard total/);
   assert.match(privateData, /Ten of eleven standard undergraduate routes have complete official totals; only Physics remains pending/);
   assert.match(privateData, /CSE components reconcile exactly: admission ৳12,500/);
-  assert.match(projectSource, /Your simple decision path/);
+  assert.match(projectSource, /Your path to a confident choice/);
   assert.match(projectSource, /Use the Save button on a university card/);
   assert.match(privateData, /fee-table and academic-page CSE credit counts conflict/);
   assert.match(privateData, /official bachelor catalogue lists eight current undergraduate programmes/);
@@ -138,7 +138,7 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(pageSource, /Remove one university before saving another/);
   assert.match(html, /source-checked guidance/i);
   assert.match(html, /YOUR NEXT CHAPTER STARTS HERE/);
-  assert.match(html, /Your simple decision path/);
+  assert.match(html, /Your path to a confident choice/);
   assert.match(html, /View eligibility summary/);
   assert.match(html, /Show more ·/);
   assert.match(html, /Refine by GPA or exact location/);
