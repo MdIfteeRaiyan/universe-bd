@@ -3,6 +3,8 @@ import { privateUniversities } from "@/data/private-universities";
 import { universityProfilePath } from "@/lib/university-profile";
 import { districtDirectory, programmeDirectory } from "@/lib/discovery";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://campuschoice-bd.vercel.app";
   const corePages: MetadataRoute.Sitemap = [

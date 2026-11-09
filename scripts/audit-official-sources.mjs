@@ -104,6 +104,7 @@ const changed = acceptReviewedChanges
       return result.ok && prior?.hash && prior.hash !== result.hash && prior.candidateHash === result.hash;
     });
 const unavailable = results.filter((result) => !result.ok);
+const monitorOutage = results.length > 0 && unavailable.length / results.length >= 0.9;
 const newlyUnavailable = unavailable.filter((result) => previous.sources?.[result.url]?.status !== result.status);
 const today = checkedAt.toISOString().slice(0, 10);
 const overdue = privateUniversities.filter(
@@ -112,7 +113,7 @@ const overdue = privateUniversities.filter(
 const previouslyOverdue = new Set(previous.overdue ?? []);
 const newlyOverdue = overdue.filter((university) => !previouslyOverdue.has(university.short));
 
-const nextState = {
+const nextState = monitorOutage ? previous : {
   checkedAt: checkedAt.toISOString(),
   overdue: overdue.map((university) => university.short),
   sources: Object.fromEntries(
@@ -150,6 +151,7 @@ const lines = [
   "",
 ];
 
+if (monitorOutage) lines.push("## Monitor connectivity warning", "", "At least 90% of monitored pages were unreachable in this run. The previous fingerprints were preserved and no university page was marked changed or individually unavailable. Run the monitor again from a network that can reach the official sites.", "");
 if (firstRun) lines.push("This was the baseline run. Page-change alerts begin with the next scheduled run.", "");
 if (acceptReviewedChanges) lines.push("Reviewed page fingerprints were accepted as the new monitoring baseline.", "");
 if (changed.length) {
@@ -157,7 +159,7 @@ if (changed.length) {
   for (const item of changed) lines.push(`- **${item.short}** — [${item.label}](${item.url})`);
   lines.push("");
 }
-if (unavailable.length) {
+if (unavailable.length && !monitorOutage) {
   lines.push("## Unavailable official pages", "");
   for (const item of unavailable) lines.push(`- **${item.short}** — ${item.status || "network error"}: [${item.label}](${item.url})`);
   lines.push("");
@@ -179,7 +181,7 @@ await mkdir(path.dirname(reportPath), { recursive: true });
 await writeFile(statePath, `${JSON.stringify(nextState, null, 2)}\n`);
 await writeFile(reportPath, `${lines.join("\n")}\n`);
 
-const needsReview = changed.length > 0 || newlyUnavailable.length > 0 || newlyOverdue.length > 0;
+const needsReview = monitorOutage || changed.length > 0 || newlyUnavailable.length > 0 || newlyOverdue.length > 0;
 if (process.env.GITHUB_OUTPUT) {
   await writeFile(process.env.GITHUB_OUTPUT, `needs_review=${needsReview}\n`, { flag: "a" });
 }

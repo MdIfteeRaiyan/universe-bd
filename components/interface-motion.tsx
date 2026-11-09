@@ -18,7 +18,12 @@ export function InterfaceMotion() {
       ),
     );
 
-    root.classList.add("motion-ready");
+    root.classList.remove("route-leaving");
+    root.classList.add("motion-ready", "route-entering");
+    const routeEntryTimer = window.setTimeout(
+      () => root.classList.remove("route-entering"),
+      reducedMotion ? 0 : 300,
+    );
     targets.forEach((target, index) => {
       target.classList.add("interface-reveal");
       target.style.setProperty("--reveal-delay", `${Math.min(index % 4, 3) * 55}ms`);
@@ -82,15 +87,42 @@ export function InterfaceMotion() {
       if (!frame) frame = window.requestAnimationFrame(updateProgress);
     };
 
+    const onDocumentClick = (event: MouseEvent) => {
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) return;
+
+      const link = (event.target as Element | null)?.closest<HTMLAnchorElement>("a[href]");
+      if (!link || link.target === "_blank" || link.hasAttribute("download")) return;
+
+      const destination = new URL(link.href, window.location.href);
+      const sameDocumentAnchor =
+        destination.pathname === window.location.pathname &&
+        destination.search === window.location.search &&
+        Boolean(destination.hash);
+
+      if (destination.origin !== window.location.origin || sameDocumentAnchor) return;
+      root.classList.add("route-leaving");
+      if (progressRef.current) progressRef.current.style.transform = "scaleX(1)";
+    };
+
     updateProgress();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    document.addEventListener("click", onDocumentClick);
 
     return () => {
       observer?.disconnect();
       sectionObserver.disconnect();
+      window.clearTimeout(routeEntryTimer);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      document.removeEventListener("click", onDocumentClick);
       if (frame) window.cancelAnimationFrame(frame);
       targets.forEach((target) => {
         target.classList.remove("interface-reveal", "is-visible");

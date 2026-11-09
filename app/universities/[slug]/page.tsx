@@ -9,6 +9,7 @@ import {
   universityFromProfileSlug,
   universityProfileSlug,
 } from "@/lib/university-profile";
+import { universityMapQuery, universityMapUrl } from "@/lib/map-link";
 
 type ProfilePageProps = { params: Promise<{ slug: string }> };
 
@@ -83,7 +84,12 @@ export default async function UniversityProfilePage({ params }: ProfilePageProps
                 </span>
               </div>
               <h1 className="editorial-title mt-4 max-w-4xl text-3xl font-bold tracking-tight sm:text-5xl">{university.name}</h1>
-              <p className="mt-4 flex items-start gap-2 text-slate-300"><MapPin size={18} className="mt-0.5 shrink-0 text-blue-300" aria-hidden="true" /> {university.address ?? [university.area, university.district, university.division].filter(Boolean).join(", ")}</p>
+              <div className="profile-location mt-4 text-slate-300">
+                <p className="flex min-w-0 items-start gap-2"><MapPin size={18} className="mt-0.5 shrink-0 text-blue-300" aria-hidden="true" /> <span>{universityMapQuery(university)}</span></p>
+                <a href={universityMapUrl(university)} target="_blank" rel="noreferrer" className="map-link ml-6 mt-1 inline-flex min-h-9 items-center gap-1.5 text-sm font-semibold text-blue-200" aria-label={`See ${university.name} location in Google Maps`}>
+                  See location in map <ExternalLink size={14} aria-hidden="true" />
+                </a>
+              </div>
             </div>
             <div className="grid min-w-52 grid-cols-2 gap-2 rounded-xl border border-slate-700 bg-[#111b2a] p-4 text-center">
               <ProfileMetric label="Programmes" value={String(university.programs.length)} />
@@ -143,14 +149,14 @@ export default async function UniversityProfilePage({ params }: ProfilePageProps
           </ProfileSection>
 
           <ProfileSection title="Official sources">
-            {university.sources?.length ? <div className="grid gap-2">{university.sources.map((source) => <a key={source.url} href={source.url} target="_blank" rel="noreferrer" className="quiet-action inline-flex min-h-11 min-w-0 items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm font-semibold text-blue-300"><span className="min-w-0 break-words">{source.label}</span><ExternalLink size={14} className="shrink-0" aria-hidden="true" /></a>)}</div> : <PendingMessage text="Official source links are still being collected." />}
+            {university.sources?.length ? <div className="compact-source-list grid gap-1.5">{university.sources.map((source) => <a key={source.url} href={source.url} target="_blank" rel="noreferrer" className="quiet-action inline-flex min-h-9 min-w-0 items-center justify-between gap-2 rounded-md px-2.5 py-1.5 text-xs font-semibold text-blue-300"><span className="min-w-0 break-words">{source.label}</span><ExternalLink size={13} className="shrink-0" aria-hidden="true" /></a>)}</div> : <PendingMessage text="Official source links are still being collected." />}
           </ProfileSection>
 
           <ProfileSection title="Help keep this profile current" note="Reports never change published information automatically">
             <ReportUpdate university={university.name} />
           </ProfileSection>
 
-          {university.facts?.length ? <ProfileSection title="Source-checked notes"><ul className="grid gap-3 text-sm leading-6 text-slate-300">{university.facts.map((fact) => <li key={fact} className="border-l-2 border-blue-400 pl-3">{fact}</li>)}</ul></ProfileSection> : null}
+          {university.facts?.length ? <ProfileSection title="Source-checked notes"><details className="compact-notes group"><summary className="flex min-h-9 cursor-pointer list-none items-center justify-between rounded-md px-2.5 py-1.5 text-xs font-semibold text-slate-200">View {university.facts.length} verified notes <span className="transition group-open:rotate-180" aria-hidden="true">⌄</span></summary><ul className="mt-2 grid gap-2 text-xs leading-5 text-slate-300">{university.facts.map((fact) => <li key={fact} className="border-l border-blue-400 pl-2.5">{fact}</li>)}</ul></details></ProfileSection> : null}
         </aside>
       </section>
     </main>

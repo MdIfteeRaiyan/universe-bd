@@ -14,6 +14,10 @@ Version 1.2 separates the experience completely: the homepage is a concise gatew
 
 Version 1.4 refreshes the live information layer for 29 October 2026. It adds source-checked Spring 2027 admission dates, applies BRAC University's current fee schedule, reconciles six current Sonargaon University programme totals and moves unreconciled figures back to clearly marked pending status. The release contains 744 verified programme totals, 170 pending totals, no blocking catalogue errors and no overdue review warnings.
 
+Version 1.5 refreshes the live information layer for 9 November 2026. It adds official Spring 2027 dates for NSU, BRAC University, AIUB, UIU, ULAB and East West University; clarifies that the catalogue contains 88 verified private-university profiles rather than the complete national registry; and prevents a network-wide monitoring outage from creating hundreds of false broken-source alerts. The release keeps 744 verified programme totals and 170 clearly marked pending totals, with no blocking catalogue errors or validation warnings.
+
+Version 1.5.1 is the public-launch interface polish. It reduces the visual system to navy and teal, replaces decorative effects with restrained professional motion, completes the Decision Trail animation from start to finish, and adds accessible route transitions with reduced-motion support.
+
 The public admission calendar expires old dates automatically and links every published event to its official source. A private review-queue generator prioritises pending costs, missing source coverage and expired admission events without publishing any change automatically.
 
 ## Local development

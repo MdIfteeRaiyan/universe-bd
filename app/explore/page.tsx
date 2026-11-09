@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   ArrowRight,
   BookmarkCheck,
@@ -47,6 +48,7 @@ import { buildUniversityCatalog } from "@/data/catalog";
 import { createFinancialPlan } from "@/lib/financial-planner";
 import { evaluateAdmissionReadiness } from "@/lib/admission-readiness";
 import { universityProfilePath } from "@/lib/university-profile";
+import { universityMapUrl } from "@/lib/map-link";
 import { trackPrivacyEvent } from "@/lib/privacy-analytics";
 import {
   createSharedShortlistUrl,
@@ -203,6 +205,7 @@ const universityCatalog = buildUniversityCatalog(universities);
 const dataQualityReport = validateUniversityData(universityCatalog.records);
 
 export default function Home() {
+  const router = useRouter();
   const [program, setProgram] = useState(""),
     [division, setDivision] = useState(""),
     [district, setDistrict] = useState(""),
@@ -250,6 +253,7 @@ export default function Home() {
   const [readinessProgram, setReadinessProgram] = useState("");
   const [readinessSsc, setReadinessSsc] = useState(4);
   const [readinessHsc, setReadinessHsc] = useState(4);
+  const [decisionTrailOpen, setDecisionTrailOpen] = useState(false);
   const programFilter = program === "All programmes" ? "" : program;
   const divisionFilter = division === "All divisions" ? "" : division;
   const districtFilter = district === "All districts" ? "" : district;
@@ -697,6 +701,28 @@ export default function Home() {
   const publishedSubjectTotals = evaluatedResults.filter(
     (u) => u.totalCost !== undefined,
   ).length;
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      try {
+        if (window.sessionStorage.getItem("campuschoice-decision-trail-seen") !== "1") {
+          setDecisionTrailOpen(true);
+        }
+      } catch {
+        setDecisionTrailOpen(true);
+      }
+    }, 420);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  const closeDecisionTrail = () => {
+    setDecisionTrailOpen(false);
+    try {
+      window.sessionStorage.setItem("campuschoice-decision-trail-seen", "1");
+    } catch {
+      // The tour can still close when browser storage is unavailable.
+    }
+  };
+
   useEffect(() => {
     if (!filtersChanged || displayResults.length > 0) return;
     const timer = window.setTimeout(
@@ -1502,7 +1528,7 @@ export default function Home() {
   };
 
   const openUniversityProfile = (university: University) => {
-    window.location.assign(universityProfilePath(university));
+    router.push(universityProfilePath(university));
   };
 
   return (
@@ -1630,7 +1656,7 @@ export default function Home() {
             <div className="mt-7 grid max-w-xl grid-cols-3 overflow-hidden rounded-xl border border-slate-700/80 bg-slate-950/25 backdrop-blur-sm">
               <div className="hero-proof px-3 py-3 sm:px-4">
                 <b className="block text-lg text-white">{dataQualityReport.universityCount}</b>
-                <span className="text-xs text-slate-400">universities</span>
+                <span className="text-xs text-slate-400">verified private profiles</span>
               </div>
               <div className="hero-proof border-x border-slate-700/80 px-3 py-3 sm:px-4">
                 <b className="block text-lg text-emerald-300">{dataQualityReport.verifiedProgrammeCount}</b>
@@ -1793,53 +1819,36 @@ export default function Home() {
         </div>
       </section>
 
-      <nav aria-label="Your university decision path" className="decision-nav border-b border-slate-700 bg-[#0d1522]">
-        <div className="mx-auto max-w-7xl px-5 py-4 lg:px-8">
-          <div className="mb-3 flex flex-wrap items-end justify-between gap-2">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[.16em] text-blue-300">Decision trail</p>
-              <p className="mt-1 text-sm text-slate-400">Your simple decision path—from search to application.</p>
-            </div>
-            <span className="rounded-full border border-slate-700 bg-slate-900/40 px-3 py-1 text-xs font-semibold text-slate-300" aria-live="polite">
-              {sortedResults.length} options in view · {compare.length}/3 saved
-            </span>
+      <Dialog open={decisionTrailOpen} onOpenChange={(open) => open ? setDecisionTrailOpen(true) : closeDecisionTrail()}>
+        <DialogContent className="decision-tour overflow-hidden border-slate-600 bg-[#0b1626] p-0 text-slate-100">
+          <div className="decision-tour-head px-5 pb-4 pt-6 sm:px-6">
+            <DialogHeader>
+              <p className="text-xs font-bold uppercase tracking-[.18em] text-[#63d8c4]">Decision trail</p>
+              <DialogTitle className="mt-1 text-xl font-bold sm:text-2xl">Your path to a confident choice</DialogTitle>
+              <DialogDescription className="mt-1 leading-6 text-slate-300">A quick four-step guide before you begin.</DialogDescription>
+            </DialogHeader>
           </div>
-          <div className="decision-path relative grid grid-cols-2 gap-2 sm:grid-cols-4">
-            <span className="decision-rail" aria-hidden="true"><span /></span>
-            {[
-              ["1", "Find", `${sortedResults.length} options`, "#universities", true],
-              ["2", "Shortlist", compare.length ? `${compare.length} saved` : "Save up to 3", "/shortlist", compare.length > 0],
-              ["3", "Plan costs", "Living budget", "/living-costs", false],
-              ["4", "Check dates", "Official calendar", "/admission-calendar", false],
-            ].map(([number, label, detail, href, active]) => (
-              <a key={String(href)} href={String(href)} className={`decision-step relative z-[1] flex min-h-[4.25rem] items-center gap-3 rounded-xl border px-3 py-2.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 ${active ? "is-active border-blue-400/60 bg-blue-400/10" : "border-slate-700 bg-[#172337]"}`}>
-                <span className="decision-number" aria-hidden="true">{number}</span>
-                <span className="min-w-0">
-                  <b className="block text-sm text-slate-100">{label}</b>
-                  <small className="mt-0.5 block truncate text-xs text-slate-400">{detail}</small>
-                </span>
-              </a>
-            ))}
-          </div>
-          <details className="group mt-2 rounded-lg border border-slate-800 bg-[#111b2a]/60 xl:hidden">
-            <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between px-3 py-2 text-sm font-semibold text-slate-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
-              More tools
-              <span className="text-slate-500 transition group-open:rotate-180" aria-hidden="true">⌄</span>
-            </summary>
-            <div className="grid gap-2 border-t border-slate-800 p-2 sm:grid-cols-3">
+          <div className="decision-tour-body px-5 pb-5 sm:px-6 sm:pb-6">
+            <div className="decision-tour-track" aria-hidden="true"><span /></div>
+            <ol className="decision-tour-steps grid gap-3 sm:grid-cols-4">
               {[
-                ["All tools", "/tools"],
-                ["Grade charts", "/grade-scales"],
-                ["Methodology", "/methodology"],
-              ].map(([label, href]) => (
-                <a key={href} href={href} className="flex min-h-11 items-center justify-center rounded-md px-3 py-2 text-center text-sm font-semibold text-slate-300 hover:bg-slate-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
-                  {label}
-                </a>
+                ["Find", `${sortedResults.length} options in view`],
+                ["Shortlist", "Save up to 3"],
+                ["Plan costs", "Tuition + living"],
+                ["Check dates", "Confirm officially"],
+              ].map(([label, detail], index) => (
+                <li key={label} className="decision-tour-step" style={{ "--trail-index": index } as CSSProperties}>
+                  <span>{index + 1}</span><b>{label}</b><small>{detail}</small>
+                </li>
               ))}
+            </ol>
+            <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-slate-700/70 pt-4">
+              <p className="text-xs text-slate-400">All filters remain editable.</p>
+              <button type="button" onClick={closeDecisionTrail} className="landing-primary inline-flex min-h-11 items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-bold">Start exploring <ArrowRight size={16} aria-hidden="true" /></button>
             </div>
-          </details>
-        </div>
-      </nav>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <section
         id="universities"
@@ -2038,6 +2047,9 @@ export default function Home() {
                   <span className="text-slate-500"> · {u.division} Division</span>
                 </span>
               </div>
+              <a href={universityMapUrl(u)} target="_blank" rel="noreferrer" className="map-link mt-1 inline-flex w-fit min-h-9 items-center gap-1.5 text-sm font-semibold text-blue-200" aria-label={`See ${u.name} location in Google Maps`}>
+                See location in map <ExternalLink size={14} aria-hidden="true" />
+              </a>
               <div className="university-programmes mt-4 flex min-h-7 flex-wrap gap-2">
                 {u.programs.length ? (
                   <>
@@ -2097,15 +2109,13 @@ export default function Home() {
                 )}
               </div>
               <div className="university-card-actions mt-5 grid grid-cols-[1fr_auto] gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    openUniversityProfile(u);
-                  }}
+                <Link
+                  href={universityProfilePath(u)}
+                  prefetch
                   className="flex min-h-11 items-center justify-center gap-1 rounded-lg bg-[#173b68] px-3 py-2.5 text-sm font-semibold text-white"
                 >
                   View details <ArrowRight size={15} />
-                </button>
+                </Link>
                 <button
                   type="button"
                   onClick={() => toggle(u.id)}

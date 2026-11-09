@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { MapPin, ShieldCheck } from "lucide-react";
+import { ExternalLink, MapPin, ShieldCheck } from "lucide-react";
 import type { University } from "@/data/models";
 import { universityProfilePath } from "@/lib/university-profile";
+import { universityMapUrl } from "@/lib/map-link";
 
 const money = (value: number) =>
   `৳${new Intl.NumberFormat("en-IN").format(Math.round(value))}`;
@@ -31,6 +32,9 @@ export function DiscoveryCard({
         <MapPin size={14} className="mt-0.5 shrink-0" aria-hidden="true" />
         {university.area ? `${university.area}, ` : ""}{university.district}
       </p>
+      <a href={universityMapUrl(university)} target="_blank" rel="noreferrer" className="map-link mt-1 inline-flex w-fit min-h-9 items-center gap-1.5 text-sm font-semibold text-blue-200">
+        See location in map <ExternalLink size={14} aria-hidden="true" />
+      </a>
       <div className="mt-5 rounded-xl border border-slate-700/80 bg-slate-950/20 p-4 text-sm">
         {programme ? (
           <>

@@ -168,10 +168,12 @@ test("ships a responsive accessible decision trail", async () => {
   const styles = await readFile(globalStylesPath, "utf8");
   assert.match(pageSource, /Decision trail/);
   assert.match(pageSource, /options in view/);
-  assert.match(pageSource, /aria-label="Your university decision path"/);
-  assert.match(styles, /@media\(min-width:640px\)\{\.decision-rail\{display:block\}\}/);
+  assert.match(pageSource, /decision-tour-track/);
+  assert.doesNotMatch(pageSource, /<nav aria-label="Your university decision path"/);
   assert.match(styles, /@media\(prefers-reduced-motion:reduce\)/);
   assert.match(styles, /animation:none!important/);
+  assert.match(styles, /@keyframes tour-track/);
+  assert.match(styles, /@keyframes tour-step-in/);
 });
 
 test("ships shared smooth interface motion across public pages", async () => {
@@ -200,6 +202,18 @@ test("ships shared smooth interface motion across public pages", async () => {
   assert.match(styles, /\.content-defer/);
   assert.match(styles, /prefers-contrast:more/);
   assert.match(styles, /forced-colors:active/);
+  assert.match(motion, /route-entering/);
+  assert.match(motion, /route-leaving/);
+  assert.match(styles, /@view-transition\{navigation:auto\}/);
+});
+
+test("uses a restrained two-tone public-launch design system", async () => {
+  const home = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const styles = await readFile(globalStylesPath, "utf8");
+  assert.match(styles, /--brand-navy:#0b1626/);
+  assert.match(styles, /--brand-teal:#63d8c4/);
+  assert.doesNotMatch(home, /tone-(?:lime|violet|blue|mint|amber|coral)/);
+  assert.match(styles, /\.hero-doodle\{display:none\}/);
 });
 
 test("ships the cohesive final-release experience across every decision surface", async () => {
@@ -461,10 +475,38 @@ test("generates permanent source-rich university profiles", async () => {
   assert.match(profileHelpers, /universityProfileSlug/);
 });
 
+test("opens Explore with an accessible animated decision trail instead of a fixed rail", async () => {
+  const pageSource = await readFile(new URL("../app/explore/page.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(pageSource, /campuschoice-decision-trail-seen/);
+  assert.match(pageSource, /Your path to a confident choice/);
+  assert.doesNotMatch(pageSource, /<nav aria-label="Your university decision path"/);
+  assert.match(css, /@keyframes tour-track/);
+  assert.match(css, /@keyframes tour-step-in/);
+});
+
+test("provides direct Google Maps actions for university locations", async () => {
+  const profileSource = await readFile(new URL("../app/universities/[slug]/page.tsx", import.meta.url), "utf8");
+  const exploreSource = await readFile(new URL("../app/explore/page.tsx", import.meta.url), "utf8");
+  const mapHelper = await readFile(new URL("../lib/map-link.ts", import.meta.url), "utf8");
+  assert.match(mapHelper, /google\.com\/maps\/search\/\?api=1&query=/);
+  assert.match(profileSource, /See location in map/);
+  assert.match(exploreSource, /See location in map/);
+});
+
+test("uses one direct correction email without social profile fallbacks", async () => {
+  const reportSource = await readFile(new URL("../components/report-update.tsx", import.meta.url), "utf8");
+  const footerSource = await readFile(new URL("../components/app-footer.tsx", import.meta.url), "utf8");
+  assert.match(reportSource, /iftunotsame@gmail\.com/);
+  assert.doesNotMatch(reportSource, /linkedin\.com|github\.com/);
+  assert.doesNotMatch(footerSource, /iftunotsame@gmail\.com|linkedin\.com/);
+  assert.match(footerSource, /github\.com\/MdIfteeRaiyan/);
+});
+
 test("opens university search results as dedicated pages instead of mobile dialogs", async () => {
   const pageSource = await readFile(new URL("../app/explore/page.tsx", import.meta.url), "utf8");
   assert.match(pageSource, /const openUniversityProfile = \(university: University\)/);
-  assert.match(pageSource, /window\.location\.assign\(universityProfilePath\(university\)\)/);
+  assert.match(pageSource, /router\.push\(universityProfilePath\(university\)\)/);
   assert.match(pageSource, /if \(found\) \{\s*openUniversityProfile\(found\);\s*\}/);
   assert.match(pageSource, /href=\{universityProfilePath\(university\)\}/);
 });

@@ -151,7 +151,7 @@ const universities: University[] = [
         url: "https://admissions.northsouth.edu/faq",
       },
     ],
-    verifiedAt: "8 September 2026",
+    verifiedAt: "9 November 2026",
   },
   {
     id: 2,
@@ -480,7 +480,7 @@ const universities: University[] = [
         url: "https://engineering.bracu.ac.bd/scholarships-financial-aid-for-prospective-students",
       },
     ],
-    verifiedAt: "29 October 2026",
+    verifiedAt: "9 November 2026",
   },
   {
     id: 3,
@@ -670,7 +670,7 @@ const universities: University[] = [
         url: "https://ewubd.edu/undergraduate-programs",
       },
     ],
-    verifiedAt: "20 September 2026",
+    verifiedAt: "9 November 2026",
   },
   {
     id: 4,
@@ -2886,7 +2886,7 @@ Object.assign(
         url: "https://www.aiub.edu/academic-regulations/grading-system",
       },
     ],
-    verifiedAt: "24 September 2026",
+    verifiedAt: "9 November 2026",
   },
 );
 Object.assign(
@@ -3597,7 +3597,7 @@ Object.assign(
         url: "https://ulab.edu.bd/where-is-ulab",
       },
     ],
-    verifiedAt: "20 September 2026",
+    verifiedAt: "9 November 2026",
   },
 );
 Object.assign(
@@ -3914,7 +3914,7 @@ Object.assign(
         url: "https://www.uiu.ac.bd/admission/tuition-fees-payment-policies/scholarship-tuition-fee-and-other-fees-waiver-policy/",
       },
     ],
-    verifiedAt: "13 September 2026",
+    verifiedAt: "9 November 2026",
   },
 );
 Object.assign(

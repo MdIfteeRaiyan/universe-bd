@@ -7,6 +7,7 @@ export default function MethodologyPage() {
     <h2>Source priority</h2><p>University fee tables, admission circulars, academic catalogues and policy pages are preferred. UGC records support institutional identity. Search snippets and third-party summaries are not used as final evidence.</p>
     <h2>Cost rules</h2><p>A complete total is shown only when the published components support it. Minimum or discounted figures are labelled. Missing charges are not silently estimated, and a waiver is applied only to a separately verified tuition component.</p>
     <h2>Review process</h2><p>Official pages are monitored for changes and availability. A change creates a human-review signal; it never rewrites published data automatically.</p>
+    <h2>Coverage</h2><p>CampusChoice currently publishes 88 source-checked private-university profiles. This is a verified working catalogue, not a claim to reproduce the complete national registry. UGC currently reports 116 private universities; institutions are added only after their identity, current programmes and official sources can be checked. <a href="https://ugc.gov.bd/" target="_blank" rel="noreferrer">Check the current UGC registry</a>.</p>
     <h2>Rankings</h2><p>CampusChoice BD does not publish a universal “best university” ranking. Filters and comparisons show fit against the student’s selected needs, with the reasons visible.</p>
   </TrustPage>;
 }
