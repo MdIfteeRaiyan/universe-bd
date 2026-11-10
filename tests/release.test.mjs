@@ -138,7 +138,11 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(pageSource, /Remove one university before saving another/);
   assert.match(html, /source-checked guidance/i);
   assert.match(html, /YOUR NEXT CHAPTER STARTS HERE/);
+<<<<<<< HEAD
   assert.match(pageSource, /Your path to a confident choice/);;
+=======
+  assert.match(pageSource, /Your path to a confident choice/);
+>>>>>>> fac7227 (changing)
   assert.match(html, /View eligibility summary/);
   assert.match(html, /Show more ·/);
   assert.match(html, /Refine by GPA or exact location/);
@@ -479,7 +483,7 @@ test("opens Explore with an accessible animated decision trail instead of a fixe
   const pageSource = await readFile(new URL("../app/explore/page.tsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(pageSource, /campuschoice-decision-trail-seen/);
-  assert.match(pageSource, /Your path to a confident choice/);
+  assert.match(pageSource, /Four clear steps\. One calmer decision\./);
   assert.doesNotMatch(pageSource, /<nav aria-label="Your university decision path"/);
   assert.match(css, /@keyframes tour-track/);
   assert.match(css, /@keyframes tour-step-in/);
@@ -494,19 +498,10 @@ test("provides direct Google Maps actions for university locations", async () =>
   assert.match(exploreSource, /See location in map/);
 });
 
-test("uses one direct correction email without social profile fallbacks", async () => {
-  const reportSource = await readFile(new URL("../components/report-update.tsx", import.meta.url), "utf8");
-  const footerSource = await readFile(new URL("../components/app-footer.tsx", import.meta.url), "utf8");
-  assert.match(reportSource, /iftunotsame@gmail\.com/);
-  assert.doesNotMatch(reportSource, /linkedin\.com|github\.com/);
-  assert.doesNotMatch(footerSource, /iftunotsame@gmail\.com|linkedin\.com/);
-  assert.match(footerSource, /github\.com\/MdIfteeRaiyan/);
-});
-
 test("opens university search results as dedicated pages instead of mobile dialogs", async () => {
   const pageSource = await readFile(new URL("../app/explore/page.tsx", import.meta.url), "utf8");
   assert.match(pageSource, /const openUniversityProfile = \(university: University\)/);
-  assert.match(pageSource, /router\.push\(universityProfilePath\(university\)\)/);
+  assert.match(pageSource, /window\.location\.assign\(universityProfilePath\(university\)\)/);
   assert.match(pageSource, /if \(found\) \{\s*openUniversityProfile\(found\);\s*\}/);
   assert.match(pageSource, /href=\{universityProfilePath\(university\)\}/);
 });

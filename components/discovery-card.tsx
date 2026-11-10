@@ -32,7 +32,7 @@ export function DiscoveryCard({
         <MapPin size={14} className="mt-0.5 shrink-0" aria-hidden="true" />
         {university.area ? `${university.area}, ` : ""}{university.district}
       </p>
-      <a href={universityMapUrl(university)} target="_blank" rel="noreferrer" className="map-link mt-1 inline-flex w-fit min-h-9 items-center gap-1.5 text-sm font-semibold text-blue-200">
+      <a href={universityMapUrl(university)} target="_blank" rel="noreferrer" className="map-link mt-2 inline-flex w-fit min-h-11 items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold text-blue-200">
         See location in map <ExternalLink size={14} aria-hidden="true" />
       </a>
       <div className="mt-5 rounded-xl border border-slate-700/80 bg-slate-950/20 p-4 text-sm">

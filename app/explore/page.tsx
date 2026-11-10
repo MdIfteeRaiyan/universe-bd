@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import {
   ArrowRight,
   BookmarkCheck,
@@ -205,7 +204,6 @@ const universityCatalog = buildUniversityCatalog(universities);
 const dataQualityReport = validateUniversityData(universityCatalog.records);
 
 export default function Home() {
-  const router = useRouter();
   const [program, setProgram] = useState(""),
     [division, setDivision] = useState(""),
     [district, setDistrict] = useState(""),
@@ -1528,7 +1526,7 @@ export default function Home() {
   };
 
   const openUniversityProfile = (university: University) => {
-    router.push(universityProfilePath(university));
+    window.location.assign(universityProfilePath(university));
   };
 
   return (
@@ -1820,15 +1818,15 @@ export default function Home() {
       </section>
 
       <Dialog open={decisionTrailOpen} onOpenChange={(open) => open ? setDecisionTrailOpen(true) : closeDecisionTrail()}>
-        <DialogContent className="decision-tour overflow-hidden border-slate-600 bg-[#0b1626] p-0 text-slate-100">
-          <div className="decision-tour-head px-5 pb-4 pt-6 sm:px-6">
+        <DialogContent className="decision-tour max-w-3xl overflow-hidden border-slate-600 bg-[#0b1626] p-0 text-slate-100">
+          <div className="decision-tour-head px-5 pb-5 pt-7 sm:px-8 sm:pt-8">
             <DialogHeader>
               <p className="text-xs font-bold uppercase tracking-[.18em] text-[#63d8c4]">Decision trail</p>
-              <DialogTitle className="mt-1 text-xl font-bold sm:text-2xl">Your path to a confident choice</DialogTitle>
-              <DialogDescription className="mt-1 leading-6 text-slate-300">A quick four-step guide before you begin.</DialogDescription>
+              <DialogTitle className="mt-2 text-2xl font-bold sm:text-3xl">Four clear steps. One calmer decision.</DialogTitle>
+              <DialogDescription className="mt-2 max-w-2xl leading-6 text-slate-300">Search first, save only your strongest options, check the complete cost and confirm official dates before applying.</DialogDescription>
             </DialogHeader>
           </div>
-          <div className="decision-tour-body px-5 pb-5 sm:px-6 sm:pb-6">
+          <div className="decision-tour-body px-5 pb-6 sm:px-8 sm:pb-8">
             <div className="decision-tour-track" aria-hidden="true"><span /></div>
             <ol className="decision-tour-steps grid gap-3 sm:grid-cols-4">
               {[
@@ -1842,8 +1840,8 @@ export default function Home() {
                 </li>
               ))}
             </ol>
-            <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-slate-700/70 pt-4">
-              <p className="text-xs text-slate-400">All filters remain editable.</p>
+            <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-slate-700/70 pt-5">
+              <p className="text-sm text-slate-400">You can change every filter later.</p>
               <button type="button" onClick={closeDecisionTrail} className="landing-primary inline-flex min-h-11 items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-bold">Start exploring <ArrowRight size={16} aria-hidden="true" /></button>
             </div>
           </div>
@@ -2047,7 +2045,7 @@ export default function Home() {
                   <span className="text-slate-500"> · {u.division} Division</span>
                 </span>
               </div>
-              <a href={universityMapUrl(u)} target="_blank" rel="noreferrer" className="map-link mt-1 inline-flex w-fit min-h-9 items-center gap-1.5 text-sm font-semibold text-blue-200" aria-label={`See ${u.name} location in Google Maps`}>
+              <a href={universityMapUrl(u)} target="_blank" rel="noreferrer" className="map-link mt-2 inline-flex w-fit min-h-11 items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold text-blue-200" aria-label={`See ${u.name} location in Google Maps`}>
                 See location in map <ExternalLink size={14} aria-hidden="true" />
               </a>
               <div className="university-programmes mt-4 flex min-h-7 flex-wrap gap-2">
@@ -2109,13 +2107,15 @@ export default function Home() {
                 )}
               </div>
               <div className="university-card-actions mt-5 grid grid-cols-[1fr_auto] gap-2">
-                <Link
-                  href={universityProfilePath(u)}
-                  prefetch
+                <button
+                  type="button"
+                  onClick={() => {
+                    openUniversityProfile(u);
+                  }}
                   className="flex min-h-11 items-center justify-center gap-1 rounded-lg bg-[#173b68] px-3 py-2.5 text-sm font-semibold text-white"
                 >
                   View details <ArrowRight size={15} />
-                </Link>
+                </button>
                 <button
                   type="button"
                   onClick={() => toggle(u.id)}
