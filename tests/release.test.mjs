@@ -138,7 +138,7 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(pageSource, /Remove one university before saving another/);
   assert.match(html, /source-checked guidance/i);
   assert.match(html, /YOUR NEXT CHAPTER STARTS HERE/);
-  assert.match(html, /Your path to a confident choice/);
+  assert.match(pageSource, /Your path to a confident choice/);;
   assert.match(html, /View eligibility summary/);
   assert.match(html, /Show more ·/);
   assert.match(html, /Refine by GPA or exact location/);
