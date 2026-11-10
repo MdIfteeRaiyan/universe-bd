@@ -1,4 +1,4 @@
-﻿import assert from "node:assert/strict";
+import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
@@ -35,7 +35,7 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(privateData, /visible component columns do not fully reconcile/);
   assert.match(privateData, /reviewDue: "2027-01-15"/);
   assert.match(privateData, /Fall 2026 CSE published minimum/);
-  assert.match(privateData, /Transparent CSE minimum from the current official table: à§³3,48,500/);
+  assert.match(privateData, /Transparent CSE minimum from the current official table: .*3,48,500/);
   assert.match(privateData, /minimum GPA follows university policy without publishing a numerical threshold/);
   assert.match(privateData, /Current official CSE total/);
   assert.match(privateData, /promotional after-waiver figures are not treated as guaranteed payable costs/);
@@ -427,7 +427,7 @@ test("search controls expose named accessible touch targets", async () => {
   assert.match(combobox, /aria-label="Open options"/);
   assert.match(combobox, /aria-label="Clear selection"/);
   assert.match(combobox, /min-h-11 min-w-11/);
-  assert.match(home, /This count covers grading policiesâ€”not university profiles/);
+  assert.match(home, /This count covers grading policies.*not university profiles/);
   assert.match(home, /role="progressbar"/);
 });
 
