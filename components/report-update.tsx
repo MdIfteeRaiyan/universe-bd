@@ -8,7 +8,7 @@ export function ReportUpdate({ university }: { university: string }) {
   const [source, setSource] = useState("");
   const [details, setDetails] = useState("");
   const [message, setMessage] = useState("");
-  const feedbackEmail = process.env.NEXT_PUBLIC_FEEDBACK_EMAIL || "iftunotsame@gmail.com";
+  const feedbackEmail = "iftunotsame@gmail.com";
   const report = `CampusChoice BD correction report\nUniversity: ${university}\nAffected field: ${field}\nOfficial source: ${source || "Not supplied"}\nDetails: ${details || "Not supplied"}`;
 
   const prepare = async () => {

@@ -22,7 +22,7 @@ export function InterfaceMotion() {
     root.classList.add("motion-ready", "route-entering");
     const routeEntryTimer = window.setTimeout(
       () => root.classList.remove("route-entering"),
-      reducedMotion ? 0 : 520,
+      reducedMotion ? 0 : 300,
     );
     targets.forEach((target, index) => {
       target.classList.add("interface-reveal");

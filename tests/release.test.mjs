@@ -73,7 +73,7 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(privateData, /Official Fall 2026 CSE standard total/);
   assert.match(privateData, /Ten of eleven standard undergraduate routes have complete official totals; only Physics remains pending/);
   assert.match(privateData, /CSE components reconcile exactly: admission ৳12,500/);
-  assert.match(projectSource, /Your path to a confident choice/);
+  assert.match(projectSource, /Your simple decision path/);
   assert.match(projectSource, /Use the Save button on a university card/);
   assert.match(privateData, /fee-table and academic-page CSE credit counts conflict/);
   assert.match(privateData, /official bachelor catalogue lists eight current undergraduate programmes/);
@@ -138,11 +138,7 @@ test("renders the verified catalogue and complete financial planner", async () =
   assert.match(pageSource, /Remove one university before saving another/);
   assert.match(html, /source-checked guidance/i);
   assert.match(html, /YOUR NEXT CHAPTER STARTS HERE/);
-<<<<<<< HEAD
-  assert.match(pageSource, /Your path to a confident choice/);;
-=======
-  assert.match(pageSource, /Your path to a confident choice/);
->>>>>>> fac7227 (changing)
+  assert.match(html, /Your simple decision path/);
   assert.match(html, /View eligibility summary/);
   assert.match(html, /Show more ·/);
   assert.match(html, /Refine by GPA or exact location/);
@@ -255,7 +251,7 @@ test("ships sustainable discovery, trust, feedback and monitoring foundations", 
   assert.match(sitemap, /my-decision/);
   assert.match(decision, /there is no hidden ranking/);
   assert.match(decision, /Academic \+ living \+ 8% safety allowance/);
-  assert.match(feedback, /Nothing was sent automatically/);
+  assert.match(feedback, /Nothing was submitted automatically/);
   assert.match(feedback, /NEXT_PUBLIC_FEEDBACK_EMAIL/);
   assert.match(monitor, /Do not publish changed fees automatically/);
   assert.equal(JSON.parse(lighthouse).ci.assert.assertions["categories:performance"][1].minScore, 0.9);
@@ -483,7 +479,7 @@ test("opens Explore with an accessible animated decision trail instead of a fixe
   const pageSource = await readFile(new URL("../app/explore/page.tsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(pageSource, /campuschoice-decision-trail-seen/);
-  assert.match(pageSource, /Four clear steps\. One calmer decision\./);
+  assert.match(pageSource, /Your path to a confident choice/);
   assert.doesNotMatch(pageSource, /<nav aria-label="Your university decision path"/);
   assert.match(css, /@keyframes tour-track/);
   assert.match(css, /@keyframes tour-step-in/);
@@ -498,10 +494,19 @@ test("provides direct Google Maps actions for university locations", async () =>
   assert.match(exploreSource, /See location in map/);
 });
 
+test("uses one direct correction email without social profile fallbacks", async () => {
+  const reportSource = await readFile(new URL("../components/report-update.tsx", import.meta.url), "utf8");
+  const footerSource = await readFile(new URL("../components/app-footer.tsx", import.meta.url), "utf8");
+  assert.match(reportSource, /iftunotsame@gmail\.com/);
+  assert.doesNotMatch(reportSource, /linkedin\.com|github\.com/);
+  assert.doesNotMatch(footerSource, /iftunotsame@gmail\.com|linkedin\.com/);
+  assert.match(footerSource, /github\.com\/MdIfteeRaiyan/);
+});
+
 test("opens university search results as dedicated pages instead of mobile dialogs", async () => {
   const pageSource = await readFile(new URL("../app/explore/page.tsx", import.meta.url), "utf8");
   assert.match(pageSource, /const openUniversityProfile = \(university: University\)/);
-  assert.match(pageSource, /window\.location\.assign\(universityProfilePath\(university\)\)/);
+  assert.match(pageSource, /router\.push\(universityProfilePath\(university\)\)/);
   assert.match(pageSource, /if \(found\) \{\s*openUniversityProfile\(found\);\s*\}/);
   assert.match(pageSource, /href=\{universityProfilePath\(university\)\}/);
 });
