@@ -251,7 +251,7 @@ test("ships sustainable discovery, trust, feedback and monitoring foundations", 
   assert.match(sitemap, /my-decision/);
   assert.match(decision, /there is no hidden ranking/);
   assert.match(decision, /Academic \+ living \+ 8% safety allowance/);
-  assert.match(feedback, /Nothing was submitted automatically/);
+  assert.match(feedback, /Nothing was sent automatically/);
   assert.match(feedback, /NEXT_PUBLIC_FEEDBACK_EMAIL/);
   assert.match(monitor, /Do not publish changed fees automatically/);
   assert.equal(JSON.parse(lighthouse).ci.assert.assertions["categories:performance"][1].minScore, 0.9);
