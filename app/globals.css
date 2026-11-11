@@ -504,6 +504,15 @@ body,.site-shell,.landing-page,.focused-tool-page{background:#0b1420!important;f
 .landing-kicker,.hero-eyebrow{letter-spacing:.1em!important;color:#8edfd1!important}
 .landing-copy h1,.hero-title,.editorial-title{letter-spacing:-.035em!important}
 .landing-proof{border-radius:.75rem!important;background:#0d1826}
+.landing-proof b{font-variant-numeric:tabular-nums}
+.landing-journey-grid{align-items:stretch}
+.landing-journey-card{display:grid!important;grid-template-rows:auto auto 1fr auto;align-content:start;gap:0;padding:1.5rem!important}
+.landing-journey-card h3{max-width:18rem;font-size:1.18rem;line-height:1.25;letter-spacing:-.015em}
+.landing-journey-card p{max-width:25rem;color:#aebbd0;line-height:1.6}
+.landing-journey-link{align-self:end;width:max-content;border-bottom:1px solid transparent;padding-bottom:.1rem;font-size:.86rem}
+.landing-journey-card:focus-visible{outline:2px solid #63d8c4;outline-offset:3px}
+.landing-journey-card:hover{border-color:#496177!important}
+.landing-journey-card:hover .landing-journey-link{border-bottom-color:#63d8c4}
 .focused-tool-card{min-height:12rem!important;animation:none!important}
 .focused-tool-card h2{margin-top:1rem!important}.focused-tool-card span:last-child{color:#a7e9dd!important}.focused-tool-card:hover span:last-child svg{transform:none!important}
 .landing-public{border-color:#2c3c50!important;border-radius:.75rem!important;background:#0f1b2a!important}
@@ -516,10 +525,10 @@ body,.site-shell,.landing-page,.focused-tool-page{background:#0b1420!important;f
   .landing-copy>div.mt-7{margin-top:1.25rem!important}
   .landing-journeys>div{padding:2.25rem 1rem!important}
   .landing-journey-grid{margin-top:1.15rem!important;gap:.75rem!important}
-  .landing-journey-card{min-height:0!important;padding:1rem!important}
+  .landing-journey-card{min-height:0!important;padding:1.1rem!important}
   .landing-journey-card h3{font-size:1.05rem!important}
-  .landing-journey-card p{margin-top:.3rem!important;font-size:.84rem!important;line-height:1.45!important}
-  .landing-journey-link{margin-top:.75rem!important}
+  .landing-journey-card p{margin-top:.35rem!important;font-size:.86rem!important;line-height:1.55!important}
+  .landing-journey-link{margin-top:.85rem!important;font-size:.8rem!important}
   .landing-public{min-height:0!important;margin-top:.75rem!important;padding:1rem!important}
   .landing-public b{font-size:.95rem}.landing-public small{font-size:.78rem;line-height:1.4}
   .focused-tool-hero>div{padding:2rem 1rem!important}

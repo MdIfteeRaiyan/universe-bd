@@ -19,12 +19,12 @@ const verifiedTotals = privateUniversities.reduce(
 );
 
 const journeys = [
-  { href: "/explore", icon: Search, title: "Find universities", copy: "Browse programmes, locations and verified academic costs." },
-  { href: "/my-decision", icon: ListChecks, title: "Build my decision", copy: "Test programme, GPA, city and complete family budget together." },
-  { href: "/shortlist", icon: BookmarkCheck, title: "Review saved choices", copy: "Return to the universities saved in this browser." },
-  { href: "/living-costs", icon: House, title: "Plan living costs", copy: "Compare hall, hostel, mess and family-living estimates." },
-  { href: "/grade-scales", icon: ChartNoAxesCombined, title: "Check grade scales", copy: "Read each university’s own verified grading policy." },
-  { href: "/admission-calendar", icon: CalendarDays, title: "Check admission dates", copy: "Follow source-checked applications, tests and results." },
+  { href: "/explore", icon: Search, title: "Find universities", copy: "Browse programmes, locations and verified academic costs.", action: "Browse universities" },
+  { href: "/my-decision", icon: ListChecks, title: "Build my shortlist", copy: "Match your programme, GPA, city and complete budget.", action: "Start my shortlist" },
+  { href: "/shortlist", icon: BookmarkCheck, title: "Review saved choices", copy: "Compare the universities saved in this browser.", action: "View saved choices" },
+  { href: "/living-costs", icon: House, title: "Plan living costs", copy: "Compare hall, hostel, mess and family-living estimates.", action: "Estimate living costs" },
+  { href: "/grade-scales", icon: ChartNoAxesCombined, title: "Check grade scales", copy: "Read each university’s verified grading policy.", action: "Compare grade scales" },
+  { href: "/admission-calendar", icon: CalendarDays, title: "Check admission dates", copy: "Follow source-checked applications, tests and results.", action: "View admission dates" },
 ];
 
 export default function LandingPage() {
@@ -37,7 +37,7 @@ export default function LandingPage() {
             <span className="brand-mark-wrap"><Image className="logo-mark" src="/logo-mark.svg" alt="" width={44} height={44} priority /></span>
             <span className="min-w-0"><b className="block truncate">CampusChoice BD</b><small className="text-xs text-slate-400">Clearer university decisions</small></span>
           </Link>
-          <Link href="/explore" className="landing-header-action inline-flex min-h-11 items-center gap-2 rounded-full px-4 py-2 text-sm font-bold">Explore <ArrowRight size={15} /></Link>
+          <Link href="/explore" className="landing-header-action inline-flex min-h-11 items-center gap-2 rounded-full px-4 py-2 text-sm font-bold">Find universities <ArrowRight size={15} /></Link>
         </div>
       </header>
 
@@ -51,7 +51,7 @@ export default function LandingPage() {
             <p className="mt-6 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">Choose the task you need. CampusChoice keeps university discovery, complete costs, grade scales and admission dates on focused pages—without the crowded dashboard.</p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href="/explore" className="landing-primary inline-flex min-h-12 items-center gap-2 rounded-full px-5 py-3 font-bold">Find universities <ArrowRight size={17} /></Link>
-              <Link href="/my-decision" className="landing-secondary inline-flex min-h-12 items-center gap-2 rounded-lg px-5 py-3 font-bold"><ListChecks size={17} /> Try My Decision</Link>
+              <Link href="/my-decision" className="landing-secondary inline-flex min-h-12 items-center gap-2 rounded-lg px-5 py-3 font-bold"><ListChecks size={17} /> Build my shortlist</Link>
             </div>
             <div className="landing-proof mt-8 grid max-w-xl grid-cols-3 overflow-hidden rounded-2xl border border-white/10">
               <div><b>{privateUniversities.length}</b><span>verified private profiles</span></div>
@@ -70,10 +70,10 @@ export default function LandingPage() {
             <Link href="/tools" className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-[#bbb7ff]">See all tools <ArrowRight size={15} /></Link>
           </div>
           <div className="landing-journey-grid mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {journeys.map(({ href, icon: Icon, title, copy }, index) => (
+            {journeys.map(({ href, icon: Icon, title, copy, action }, index) => (
               <Link key={href} href={href} className="landing-journey-card" style={{ "--journey-index": index } as CSSProperties}>
-                <span className="landing-journey-icon"><Icon size={21} /></span>
-                <h3>{title}</h3><p>{copy}</p><span className="landing-journey-link">Open page <ArrowRight size={14} /></span>
+                <span className="landing-journey-icon" aria-hidden="true"><Icon size={20} strokeWidth={1.8} /></span>
+                <h3>{title}</h3><p>{copy}</p><span className="landing-journey-link">{action} <ArrowRight size={14} /></span>
               </Link>
             ))}
           </div>
