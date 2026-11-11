@@ -1,43 +1,23 @@
-import Image from "next/image";
 import Link from "next/link";
+import { ArrowLeft, BookOpenCheck, Search } from "lucide-react";
+
+export const metadata = {
+  title: "Page not found — HSC2Plus",
+  description: "The requested HSC2Plus page could not be found.",
+  robots: { index: false, follow: false },
+};
 
 export default function NotFound() {
-  return (
-    <main className="site-shell grid min-h-screen place-items-center bg-[#101827] px-5 py-12 text-slate-100">
-      <section className="surface-card w-full max-w-xl rounded-2xl p-6 text-center sm:p-10">
-        <Image
-          className="mx-auto"
-          src="/logo-mark.svg"
-          alt=""
-          width={52}
-          height={52}
-          priority
-        />
-        <p className="mt-6 text-sm font-bold uppercase tracking-[.14em] text-blue-300">
-          Page not found
-        </p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
-          This university link may have changed.
-        </h1>
-        <p className="mx-auto mt-4 max-w-md leading-7 text-slate-300">
-          Return to the directory and search by university name or programme.
-          Your saved shortlist in this browser will remain available.
-        </p>
-        <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-          <Link
-            href="/explore"
-            className="inline-flex min-h-11 items-center justify-center rounded-lg bg-blue-500 px-5 py-2.5 font-semibold text-white transition hover:bg-blue-400"
-          >
-            Find universities
-          </Link>
-          <Link
-            href="/public-universities"
-            className="inline-flex min-h-11 items-center justify-center rounded-lg border border-slate-600 px-5 py-2.5 font-semibold text-slate-200 transition hover:border-blue-400 hover:text-white"
-          >
-            Browse public universities
-          </Link>
-        </div>
-      </section>
-    </main>
-  );
+  return <main className="legal-page">
+    <div className="legal-shell">
+      <Link className="legal-brand" href="/"><span className="brand-mark"><BookOpenCheck size={20}/></span><span>HSC2Plus</span></Link>
+      <article className="legal-card not-found-card">
+        <span className="eyebrow">PAGE NOT FOUND · 404</span>
+        <Search size={38}/>
+        <h1>এই পেজটি পাওয়া যায়নি</h1>
+        <p>লিংকটি পুরোনো হতে পারে অথবা ঠিকানায় ভুল আছে। বিভাগ বাছাইয়ে ফিরে Commerce বা Humanities থেকে আবার শুরু করো।</p>
+        <Link className="legal-back" href="/"><ArrowLeft size={16}/>বিভাগ বাছাইয়ে ফিরুন</Link>
+      </article>
+    </div>
+  </main>;
 }

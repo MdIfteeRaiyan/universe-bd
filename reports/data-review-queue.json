@@ -1,0 +1,690 @@
+{
+  "generatedAt": "2026-10-29T13:42:15.178Z",
+  "publishPolicy": "Human review required; never publish automatically",
+  "summary": {
+    "total": 113,
+    "blocking": 0,
+    "high": 31,
+    "medium": 82
+  },
+  "tasks": [
+    {
+      "priority": "high",
+      "university": "BAUET",
+      "field": "programme costs",
+      "reason": "6 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "BGCTUB",
+      "field": "programme costs",
+      "reason": "6 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "BU",
+      "field": "programme costs",
+      "reason": "1 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "BUBT",
+      "field": "programme costs",
+      "reason": "9 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "BUHS",
+      "field": "programme costs",
+      "reason": "11 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "CUST",
+      "field": "programme costs",
+      "reason": "2 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "CWU",
+      "field": "programme costs",
+      "reason": "5 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "EBAUB",
+      "field": "programme costs",
+      "reason": "5 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "EDU",
+      "field": "programme costs",
+      "reason": "7 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "EU",
+      "field": "programme costs",
+      "reason": "8 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "FCUB",
+      "field": "programme costs",
+      "reason": "8 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "FIU",
+      "field": "programme costs",
+      "reason": "1 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "GUB-B",
+      "field": "programme costs",
+      "reason": "4 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "HUB",
+      "field": "programme costs",
+      "reason": "4 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "IIUB",
+      "field": "programme costs",
+      "reason": "4 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "IIUC",
+      "field": "programme costs",
+      "reason": "5 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "MIU",
+      "field": "programme costs",
+      "reason": "1 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "NBIU",
+      "field": "programme costs",
+      "reason": "2 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "NEUB",
+      "field": "programme costs",
+      "reason": "4 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "PAU",
+      "field": "programme costs",
+      "reason": "3 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "PUC",
+      "field": "programme costs",
+      "reason": "9 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "RMU",
+      "field": "programme costs",
+      "reason": "11 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "RUD",
+      "field": "programme costs",
+      "reason": "6 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "SMUCT",
+      "field": "programme costs",
+      "reason": "1 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "SU",
+      "field": "programme costs",
+      "reason": "7 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "SUB-C",
+      "field": "programme costs",
+      "reason": "1 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "TUB-F",
+      "field": "programme costs",
+      "reason": "6 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "UGV",
+      "field": "programme costs",
+      "reason": "1 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "UODA",
+      "field": "programme costs",
+      "reason": "13 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "VU",
+      "field": "programme costs",
+      "reason": "12 costs remain explicitly pending"
+    },
+    {
+      "priority": "high",
+      "university": "ZHSUST",
+      "field": "programme costs",
+      "reason": "7 costs remain explicitly pending"
+    },
+    {
+      "priority": "medium",
+      "university": "AKMU",
+      "field": "source coverage",
+      "reason": "Missing admissions, scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "AKMU",
+      "field": "profile completeness",
+      "reason": "75% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "AUST",
+      "field": "source coverage",
+      "reason": "Missing academics source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "BGCTUB",
+      "field": "source coverage",
+      "reason": "Missing fees, admissions, scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "BGCTUB",
+      "field": "profile completeness",
+      "reason": "50% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "BRIU",
+      "field": "source coverage",
+      "reason": "Missing admissions source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "BRIU",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "BU",
+      "field": "source coverage",
+      "reason": "Missing scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "BU",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "BUBT",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "BUHS",
+      "field": "source coverage",
+      "reason": "Missing fees, admissions, scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "BUHS",
+      "field": "profile completeness",
+      "reason": "50% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "CCNUST",
+      "field": "source coverage",
+      "reason": "Missing admissions source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "CCNUST",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "CUB",
+      "field": "source coverage",
+      "reason": "Missing scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "CUB",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "CUST",
+      "field": "source coverage",
+      "reason": "Missing fees, admissions, scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "CUST",
+      "field": "profile completeness",
+      "reason": "50% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "CWU",
+      "field": "source coverage",
+      "reason": "Missing fees, scholarships, academics source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "CWU",
+      "field": "profile completeness",
+      "reason": "63% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "DIU-D",
+      "field": "source coverage",
+      "reason": "Missing scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "DIU-D",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "EBAUB",
+      "field": "source coverage",
+      "reason": "Missing admissions, scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "EBAUB",
+      "field": "profile completeness",
+      "reason": "63% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "EDU",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "EU",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "EUB",
+      "field": "source coverage",
+      "reason": "Missing fees source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "EUB",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "FCUB",
+      "field": "source coverage",
+      "reason": "Missing fees, admissions, scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "FCUB",
+      "field": "profile completeness",
+      "reason": "50% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "FIU",
+      "field": "source coverage",
+      "reason": "Missing scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "FIU",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "FU",
+      "field": "source coverage",
+      "reason": "Missing academics source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "GB",
+      "field": "source coverage",
+      "reason": "Missing scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "GB",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "GUB",
+      "field": "source coverage",
+      "reason": "Missing scholarships, academics source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "GUB",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "GUB-B",
+      "field": "source coverage",
+      "reason": "Missing fees, scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "GUB-B",
+      "field": "profile completeness",
+      "reason": "63% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "HUB",
+      "field": "source coverage",
+      "reason": "Missing admissions source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "HUB",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "IIUB",
+      "field": "source coverage",
+      "reason": "Missing admissions, scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "IIUB",
+      "field": "profile completeness",
+      "reason": "63% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "IUBAT",
+      "field": "source coverage",
+      "reason": "Missing fees source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "IUBAT",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "KYAU",
+      "field": "source coverage",
+      "reason": "Missing academics source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "NEUB",
+      "field": "source coverage",
+      "reason": "Missing scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "NEUB",
+      "field": "profile completeness",
+      "reason": "75% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "PU",
+      "field": "source coverage",
+      "reason": "Missing admissions, scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "PU",
+      "field": "profile completeness",
+      "reason": "75% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "PUC",
+      "field": "source coverage",
+      "reason": "Missing scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "PUC",
+      "field": "profile completeness",
+      "reason": "75% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "PUST",
+      "field": "source coverage",
+      "reason": "Missing scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "PUST",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "RMU",
+      "field": "source coverage",
+      "reason": "Missing fees, scholarships, academics source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "RMU",
+      "field": "profile completeness",
+      "reason": "63% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "RTM-AKTU",
+      "field": "source coverage",
+      "reason": "Missing scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "RTM-AKTU",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "RUD",
+      "field": "source coverage",
+      "reason": "Missing fees, scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "RUD",
+      "field": "profile completeness",
+      "reason": "63% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "SIU",
+      "field": "source coverage",
+      "reason": "Missing fees source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "SIU",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "SMUCT",
+      "field": "source coverage",
+      "reason": "Missing admissions source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "SMUCT",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "SUB",
+      "field": "source coverage",
+      "reason": "Missing scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "SUB",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "TUB-F",
+      "field": "source coverage",
+      "reason": "Missing scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "TUB-F",
+      "field": "profile completeness",
+      "reason": "75% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "UITS",
+      "field": "source coverage",
+      "reason": "Missing admissions source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "UITS",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "ULAB",
+      "field": "source coverage",
+      "reason": "Missing scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "ULAB",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "UODA",
+      "field": "source coverage",
+      "reason": "Missing admissions, scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "UODA",
+      "field": "profile completeness",
+      "reason": "63% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "VU",
+      "field": "source coverage",
+      "reason": "Missing scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "VU",
+      "field": "profile completeness",
+      "reason": "75% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "VUB",
+      "field": "source coverage",
+      "reason": "Missing scholarships source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "VUB",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "WUB",
+      "field": "source coverage",
+      "reason": "Missing admissions, academics source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "WUB",
+      "field": "profile completeness",
+      "reason": "88% complete"
+    },
+    {
+      "priority": "medium",
+      "university": "ZHSUST",
+      "field": "source coverage",
+      "reason": "Missing admissions source coverage"
+    },
+    {
+      "priority": "medium",
+      "university": "ZHSUST",
+      "field": "profile completeness",
+      "reason": "75% complete"
+    }
+  ]
+}

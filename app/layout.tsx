@@ -1,70 +1,34 @@
 import type { Metadata, Viewport } from "next";
-import { InterfaceMotion } from "@/components/interface-motion";
-import { AnalyticsEvents } from "@/components/analytics-events";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { AppNavigation } from "@/components/app-navigation";
-import { AppFooter } from "@/components/app-footer";
 import "./globals.css";
+import { OfflineSupport } from "@/components/offline-support";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://campuschoice-bd.vercel.app"),
-  applicationName: "CampusChoice BD",
-  title: { default: "CampusChoice BD — University Decisions Made Clear", template: "%s | CampusChoice BD" },
-  description: "Compare verified private-university programmes, costs and admission information in Bangladesh, with a separate guide for public universities.",
-  alternates: { canonical: "/" },
-  openGraph: {
-    type: "website",
-    locale: "en_BD",
-    url: "/",
-    siteName: "CampusChoice BD",
-    title: "CampusChoice BD — Find Your University Fit",
-    description: "Compare source-checked university programmes, costs, scholarships and admission information in Bangladesh.",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "CampusChoice BD university decision guide" }],
+  title: "HSC2Plus — Learn. Practice. Repeat.",
+  description: "বাংলা মাধ্যমের HSC ব্যবসায় শিক্ষা ও মানবিক বিভাগের শিক্ষার্থীদের জন্য পাঠ, রিভিশন, অনুশীলন ও মডেল টেস্টের Public Beta।",
+   verification: {
+    google: "2A9GBDVUBb4EHR1uPaEhCVuAMNRIhvDUQdlgH9Vo6JY",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "CampusChoice BD — Find Your University Fit",
-    description: "Compare source-checked university programmes, costs, scholarships and admission information in Bangladesh.",
-    images: ["/opengraph-image"],
-  },
-  icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }, { url: "/icon-192.png", sizes: "192x192", type: "image/png" }],
-    shortcut: "/favicon.svg",
-    apple: "/apple-touch-icon.png",
-  },
-  manifest: "/site.webmanifest",
-  other: {
-    "campuschoice-release": "2026.11.09",
-  },
-  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
-    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
-    : undefined,
+  icons: { icon: "/favicon.svg", apple: "/apple-touch-icon.png" },
+  manifest: "/manifest.webmanifest",
+  appleWebApp: { capable: true, title: "HSC2Plus", statusBarStyle: "default" },
 };
 
 export const viewport: Viewport = {
-  colorScheme: "dark",
-  themeColor: "#101827",
   width: "device-width",
   initialScale: 1,
-  viewportFit: "cover",
+  themeColor: "#0a6b5c",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-BD">
-      <body className="antialiased">
-        <InterfaceMotion />
-        <AnalyticsEvents />
-        <AppNavigation />
+    <html lang="bn">
+      <body>
         {children}
-        <AppFooter />
+        <OfflineSupport />
         <Analytics />
-        <SpeedInsights sampleRate={0.5} />
+        <SpeedInsights />
       </body>
     </html>
   );

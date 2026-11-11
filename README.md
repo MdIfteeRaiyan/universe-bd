@@ -1,26 +1,18 @@
-# CampusChoice BD
+# HSC Academic Platform — Working Project
 
-## Optional public contact details
+A premium, mobile-first academic command center for Bangladesh HSC Business Studies and Humanities students. The permanent product name has not been selected.
 
-Set `NEXT_PUBLIC_FEEDBACK_EMAIL` and `NEXT_PUBLIC_CONTACT_PHONE` in Vercel to show clickable email and phone actions. They remain hidden when unset, so the release never publishes invented contact details.
+## Included in this foundation release
 
-CampusChoice BD is a responsive university discovery and comparison website for students in Bangladesh. It helps users explore programmes, divisions, districts, budgets, university profiles, costs, comparison options and source-checked admission dates.
+- Daily Mission with a clear next action
+- Subject mastery and syllabus progress
+- Interactive MCQ practice with explanations
+- Mistake Notebook concept and revision queue
+- HSC readiness and study rhythm views
+- Mobile sidebar and bottom navigation
+- Responsive layouts for phone, tablet, laptop and desktop
 
-Version 1.0 is the public-release baseline. It includes the verified university catalogue, programme discovery pages, separate public-university experience, shortlist comparison, complete financial planner, admission-readiness tools and accessible responsive navigation.
-
-Version 1.1 introduces a mobile-first focused-tool architecture. University browsing remains on the homepage while grade scales, living costs, admission dates, public universities and transparent decision planning open on dedicated pages.
-
-Version 1.2 separates the experience completely: the homepage is a concise gateway, `/explore` is dedicated to university discovery, `/shortlist` holds saved choices, and each planning tool has its own focused route.
-
-Version 1.4 refreshes the live information layer for 29 October 2026. It adds source-checked Spring 2027 admission dates, applies BRAC University's current fee schedule, reconciles six current Sonargaon University programme totals and moves unreconciled figures back to clearly marked pending status. The release contains 744 verified programme totals, 170 pending totals, no blocking catalogue errors and no overdue review warnings.
-
-Version 1.5 refreshes the live information layer for 9 November 2026. It adds official Spring 2027 dates for NSU, BRAC University, AIUB, UIU, ULAB and East West University; clarifies that the catalogue contains 88 verified private-university profiles rather than the complete national registry; and prevents a network-wide monitoring outage from creating hundreds of false broken-source alerts. The release keeps 744 verified programme totals and 170 clearly marked pending totals, with no blocking catalogue errors or validation warnings.
-
-Version 1.5.1 is the public-launch interface polish. It reduces the visual system to navy and teal, replaces decorative effects with restrained professional motion, completes the Decision Trail animation from start to finish, and adds accessible route transitions with reduced-motion support.
-
-The public admission calendar expires old dates automatically and links every published event to its official source. A private review-queue generator prioritises pending costs, missing source coverage and expired admission events without publishing any change automatically.
-
-## Local development
+## Run locally
 
 ```bash
 npm install
@@ -29,41 +21,18 @@ npm run dev
 
 Open `http://localhost:3000`.
 
-## Weekly official-source monitoring
-
-The scheduled GitHub workflow checks official programme, fee, admission and scholarship pages every Monday. It detects page changes, broken sources and overdue university reviews, uploads a review report and creates a GitHub review issue when attention is needed. It never publishes changed financial data automatically.
-
-Run the same audit locally with:
+## Production check
 
 ```bash
-npm run audit:sources
+npm test
 ```
 
-Build the private human-review queue with:
+## Next product milestones
 
-```bash
-npm run review:queue
-```
-
-## Production checks
-
-```bash
-npm run release:check
-```
-
-This runs linting, the catalogue validation gate, a production build and all automated tests. GitHub repeats the same check after every push and pull request.
-
-## Deploy on Vercel
-
-Import this GitHub repository into Vercel. Vercel will detect Next.js automatically.
-
-After deployment:
-
-1. Enable **Web Analytics** and **Speed Insights** in the Vercel project dashboard.
-2. Add `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` only after Google Search Console provides the verification token.
-3. Optionally add `NEXT_PUBLIC_FEEDBACK_EMAIL` to open correction reports in the visitor's email app. Without it, the report is copied locally and nothing is submitted.
-4. The optional custom event layer records only fixed event names and non-personal selection categories. It never sends GPA values, budget amounts, correction text or free-form search text.
-
-The scheduled Lighthouse workflow audits the live home, public-university and My Decision pages using mobile emulation. Release targets are Performance 90+, Accessibility 95+, Best Practices 95+ and SEO 95+.
-
-See [DEPLOYMENT.md](DEPLOYMENT.md) for the complete PowerShell push and Vercel deployment steps.
+1. Supabase authentication and profiles
+2. Versioned NCTB syllabus and verified content workflow
+3. Chapter/topic/lesson pages
+4. Board-aligned MCQ and CQ engine with autosave
+5. Spaced-repetition scheduler and persistent Mistake Notebook
+6. Guardian and reviewer dashboards
+7. Later: shared identity with TomarShikkha and CampusChoice BD

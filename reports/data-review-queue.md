@@ -1,0 +1,124 @@
+# CampusChoice BD data review queue
+
+Generated: 2026-10-29T13:42:15.178Z
+
+Nothing in this queue is published automatically. Review the linked official source, update the structured record, run the release gate, and then publish.
+
+- Blocking: 0
+- High priority: 31
+- Medium priority: 82
+
+- **HIGH · BAUET · programme costs** — 6 costs remain explicitly pending
+- **HIGH · BGCTUB · programme costs** — 6 costs remain explicitly pending
+- **HIGH · BU · programme costs** — 1 costs remain explicitly pending
+- **HIGH · BUBT · programme costs** — 9 costs remain explicitly pending
+- **HIGH · BUHS · programme costs** — 11 costs remain explicitly pending
+- **HIGH · CUST · programme costs** — 2 costs remain explicitly pending
+- **HIGH · CWU · programme costs** — 5 costs remain explicitly pending
+- **HIGH · EBAUB · programme costs** — 5 costs remain explicitly pending
+- **HIGH · EDU · programme costs** — 7 costs remain explicitly pending
+- **HIGH · EU · programme costs** — 8 costs remain explicitly pending
+- **HIGH · FCUB · programme costs** — 8 costs remain explicitly pending
+- **HIGH · FIU · programme costs** — 1 costs remain explicitly pending
+- **HIGH · GUB-B · programme costs** — 4 costs remain explicitly pending
+- **HIGH · HUB · programme costs** — 4 costs remain explicitly pending
+- **HIGH · IIUB · programme costs** — 4 costs remain explicitly pending
+- **HIGH · IIUC · programme costs** — 5 costs remain explicitly pending
+- **HIGH · MIU · programme costs** — 1 costs remain explicitly pending
+- **HIGH · NBIU · programme costs** — 2 costs remain explicitly pending
+- **HIGH · NEUB · programme costs** — 4 costs remain explicitly pending
+- **HIGH · PAU · programme costs** — 3 costs remain explicitly pending
+- **HIGH · PUC · programme costs** — 9 costs remain explicitly pending
+- **HIGH · RMU · programme costs** — 11 costs remain explicitly pending
+- **HIGH · RUD · programme costs** — 6 costs remain explicitly pending
+- **HIGH · SMUCT · programme costs** — 1 costs remain explicitly pending
+- **HIGH · SU · programme costs** — 7 costs remain explicitly pending
+- **HIGH · SUB-C · programme costs** — 1 costs remain explicitly pending
+- **HIGH · TUB-F · programme costs** — 6 costs remain explicitly pending
+- **HIGH · UGV · programme costs** — 1 costs remain explicitly pending
+- **HIGH · UODA · programme costs** — 13 costs remain explicitly pending
+- **HIGH · VU · programme costs** — 12 costs remain explicitly pending
+- **HIGH · ZHSUST · programme costs** — 7 costs remain explicitly pending
+- **MEDIUM · AKMU · source coverage** — Missing admissions, scholarships source coverage
+- **MEDIUM · AKMU · profile completeness** — 75% complete
+- **MEDIUM · AUST · source coverage** — Missing academics source coverage
+- **MEDIUM · BGCTUB · source coverage** — Missing fees, admissions, scholarships source coverage
+- **MEDIUM · BGCTUB · profile completeness** — 50% complete
+- **MEDIUM · BRIU · source coverage** — Missing admissions source coverage
+- **MEDIUM · BRIU · profile completeness** — 88% complete
+- **MEDIUM · BU · source coverage** — Missing scholarships source coverage
+- **MEDIUM · BU · profile completeness** — 88% complete
+- **MEDIUM · BUBT · profile completeness** — 88% complete
+- **MEDIUM · BUHS · source coverage** — Missing fees, admissions, scholarships source coverage
+- **MEDIUM · BUHS · profile completeness** — 50% complete
+- **MEDIUM · CCNUST · source coverage** — Missing admissions source coverage
+- **MEDIUM · CCNUST · profile completeness** — 88% complete
+- **MEDIUM · CUB · source coverage** — Missing scholarships source coverage
+- **MEDIUM · CUB · profile completeness** — 88% complete
+- **MEDIUM · CUST · source coverage** — Missing fees, admissions, scholarships source coverage
+- **MEDIUM · CUST · profile completeness** — 50% complete
+- **MEDIUM · CWU · source coverage** — Missing fees, scholarships, academics source coverage
+- **MEDIUM · CWU · profile completeness** — 63% complete
+- **MEDIUM · DIU-D · source coverage** — Missing scholarships source coverage
+- **MEDIUM · DIU-D · profile completeness** — 88% complete
+- **MEDIUM · EBAUB · source coverage** — Missing admissions, scholarships source coverage
+- **MEDIUM · EBAUB · profile completeness** — 63% complete
+- **MEDIUM · EDU · profile completeness** — 88% complete
+- **MEDIUM · EU · profile completeness** — 88% complete
+- **MEDIUM · EUB · source coverage** — Missing fees source coverage
+- **MEDIUM · EUB · profile completeness** — 88% complete
+- **MEDIUM · FCUB · source coverage** — Missing fees, admissions, scholarships source coverage
+- **MEDIUM · FCUB · profile completeness** — 50% complete
+- **MEDIUM · FIU · source coverage** — Missing scholarships source coverage
+- **MEDIUM · FIU · profile completeness** — 88% complete
+- **MEDIUM · FU · source coverage** — Missing academics source coverage
+- **MEDIUM · GB · source coverage** — Missing scholarships source coverage
+- **MEDIUM · GB · profile completeness** — 88% complete
+- **MEDIUM · GUB · source coverage** — Missing scholarships, academics source coverage
+- **MEDIUM · GUB · profile completeness** — 88% complete
+- **MEDIUM · GUB-B · source coverage** — Missing fees, scholarships source coverage
+- **MEDIUM · GUB-B · profile completeness** — 63% complete
+- **MEDIUM · HUB · source coverage** — Missing admissions source coverage
+- **MEDIUM · HUB · profile completeness** — 88% complete
+- **MEDIUM · IIUB · source coverage** — Missing admissions, scholarships source coverage
+- **MEDIUM · IIUB · profile completeness** — 63% complete
+- **MEDIUM · IUBAT · source coverage** — Missing fees source coverage
+- **MEDIUM · IUBAT · profile completeness** — 88% complete
+- **MEDIUM · KYAU · source coverage** — Missing academics source coverage
+- **MEDIUM · NEUB · source coverage** — Missing scholarships source coverage
+- **MEDIUM · NEUB · profile completeness** — 75% complete
+- **MEDIUM · PU · source coverage** — Missing admissions, scholarships source coverage
+- **MEDIUM · PU · profile completeness** — 75% complete
+- **MEDIUM · PUC · source coverage** — Missing scholarships source coverage
+- **MEDIUM · PUC · profile completeness** — 75% complete
+- **MEDIUM · PUST · source coverage** — Missing scholarships source coverage
+- **MEDIUM · PUST · profile completeness** — 88% complete
+- **MEDIUM · RMU · source coverage** — Missing fees, scholarships, academics source coverage
+- **MEDIUM · RMU · profile completeness** — 63% complete
+- **MEDIUM · RTM-AKTU · source coverage** — Missing scholarships source coverage
+- **MEDIUM · RTM-AKTU · profile completeness** — 88% complete
+- **MEDIUM · RUD · source coverage** — Missing fees, scholarships source coverage
+- **MEDIUM · RUD · profile completeness** — 63% complete
+- **MEDIUM · SIU · source coverage** — Missing fees source coverage
+- **MEDIUM · SIU · profile completeness** — 88% complete
+- **MEDIUM · SMUCT · source coverage** — Missing admissions source coverage
+- **MEDIUM · SMUCT · profile completeness** — 88% complete
+- **MEDIUM · SUB · source coverage** — Missing scholarships source coverage
+- **MEDIUM · SUB · profile completeness** — 88% complete
+- **MEDIUM · TUB-F · source coverage** — Missing scholarships source coverage
+- **MEDIUM · TUB-F · profile completeness** — 75% complete
+- **MEDIUM · UITS · source coverage** — Missing admissions source coverage
+- **MEDIUM · UITS · profile completeness** — 88% complete
+- **MEDIUM · ULAB · source coverage** — Missing scholarships source coverage
+- **MEDIUM · ULAB · profile completeness** — 88% complete
+- **MEDIUM · UODA · source coverage** — Missing admissions, scholarships source coverage
+- **MEDIUM · UODA · profile completeness** — 63% complete
+- **MEDIUM · VU · source coverage** — Missing scholarships source coverage
+- **MEDIUM · VU · profile completeness** — 75% complete
+- **MEDIUM · VUB · source coverage** — Missing scholarships source coverage
+- **MEDIUM · VUB · profile completeness** — 88% complete
+- **MEDIUM · WUB · source coverage** — Missing admissions, academics source coverage
+- **MEDIUM · WUB · profile completeness** — 88% complete
+- **MEDIUM · ZHSUST · source coverage** — Missing admissions source coverage
+- **MEDIUM · ZHSUST · profile completeness** — 75% complete
+

@@ -1,6 +1,6 @@
 {
-  "name": "campuschoice-bd",
-  "version": "1.5.4",
+  "name": "hsc-academic-platform",
+  "version": "0.1.0",
   "private": true,
   "engines": {
     "node": ">=22.13.0"
@@ -9,18 +9,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "npm run validate:data && next build && npm run audit:built && node --test tests/*.test.mjs",
     "lint": "eslint . --ignore-pattern .next",
-    "release:check": "npm run lint && npm test",
-    "validate:data": "node --experimental-strip-types scripts/validate-catalogue.mjs",
-    "audit:sources": "node --experimental-strip-types scripts/audit-official-sources.mjs",
-    "audit:built": "node scripts/audit-built-site.mjs",
-    "review:queue": "node --experimental-strip-types scripts/build-review-queue.mjs"
+    "test": "node --test tests/*.test.mjs && next build"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
     "@hookform/resolvers": "^5.7.1",
     "@shadcn/react": "^0.3.0",
+    "@supabase/supabase-js": "^2.117.3",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "class-variance-authority": "0.7.1",
