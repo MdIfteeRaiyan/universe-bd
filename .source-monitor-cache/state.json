@@ -1,0 +1,1491 @@
+{
+  "checkedAt": "2026-09-23T09:28:50.989Z",
+  "overdue": [],
+  "sources": {
+    "https://www.northsouth.edu/undergraduate-programs.html": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://admissions.northsouth.edu/program": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.northsouth.edu/tuition-fees/": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://admissions.northsouth.edu/undergraduate_requirement": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://admissions.northsouth.edu/faq": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.bracu.ac.bd/ug-domestic-applicant": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.bracu.ac.bd/admissions/undergraduate": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.bracu.ac.bd/admissions/tuition-and-fees": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.bracu.ac.bd/avilable-program/bachelor-business-administration-bba": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.bracu.ac.bd/avilable-program/bachelor-science-computer-science-cs": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.bracu.ac.bd/avilable-program/bachelor-pharmacy-hons-phr": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.bracu.ac.bd/avilable-program/bachelor-science-electrical-and-electronic-engineering-eee": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.bracu.ac.bd/avilable-program/bachelor-science-electronic-and-communication-engineering-ece": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.bracu.ac.bd/avilable-program/bachelor-science-applied-physics-and-electronics-ape": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.bracu.ac.bd/avilable-program/bachelor-science-physics-phy": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.bracu.ac.bd/avilable-program/bachelor-science-mathematics-mat": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.bracu.ac.bd/avilable-program/bachelor-science-biotechnology-bio": {
+      "status": 403,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.bracu.ac.bd/avilable-program/bachelor-science-microbiology-mic": {
+      "status": 403,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.bracu.ac.bd/avilable-program/bachelor-social-science-economics-eco": {
+      "status": 403,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.bracu.ac.bd/avilable-program/bachelor-laws-llb-hons-llb": {
+      "status": 403,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.bracu.ac.bd/avilable-program/bachelor-social-sciences-anthropology-ant": {
+      "status": 403,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.bracu.ac.bd/avilable-program/bachelor-architecture-arc": {
+      "status": 403,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.bracu.ac.bd/admissions/scholarships-and-financial-aid": {
+      "status": 403,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://engineering.bracu.ac.bd/scholarships-financial-aid-for-prospective-students": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ewubd.edu/undergraduate-tuition-fees": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ewubd.edu/undergraduate-programs": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.iiuc.ac.bd/web/fee-structure": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://portal.iiuc.ac.bd/program/cse": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://web.iiuc.ac.bd/program/bcriteria": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://web.iiuc.ac.bd/program/financial-info": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.iiuc.ac.bd/web/admission": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.eastdelta.edu.bd/": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://catalog.eastdelta.edu.bd/programs": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.eastdelta.edu.bd/programs-offered-by-the-university/soset/bsc-in-cse": {
+      "hash": "92f51ba69bb37d3df061fe3b8e888907e09b1dfbdc4403a862c9b06a1065a8cc",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://scholarships.eastdelta.edu.bd/": {
+      "hash": "4437503d2a909ba3ae068347a8f8aebe4dd418d899328fc30e115c25b1c8def3",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://lus.ac.bd/admission/academic-programs/": {
+      "hash": "d5f364a7e8f4d0eb34498f55eb65711bc0737e3f2774b4b101242e1cae74bb54",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://lus.ac.bd/admission/tution-fees/": {
+      "hash": "047061182c5d1e25a1c8ae25c449796ed7111b94d1347bd7484f15fda18f9ce1",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://lus.ac.bd/admission/admission-and-registration-policies/": {
+      "hash": "883e34096f9ead8fbda5de542ce1a3bfd2543c87e0790a0bb411daaf19aa2c45",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://lus.ac.bd/admission/scholarship-and-aid/": {
+      "hash": "abbaa1670f19219dd45d746ae9761975b08916c4e8302eed114373207c75100d",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.uap-bd.edu/undergraduate.php": {
+      "hash": "49d2f381f956d2ebb79bc3d6da3172611d799354b2017497c6c106e5370d5a67",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.uap-bd.edu/admission_requirment_undergraduate.php": {
+      "hash": "0ac3aec37f860ca2c18e2265c3a720ec9efa539d2cd914629869e7d0a765ec07",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://uap-bd.edu/tution.php": {
+      "hash": "e366042018d939b7fafe43e0fe18586a9c1d929ba0a29366f5686e7f03af41b7",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://daffodilvarsity.edu.bd/tuition-fee-calculator": {
+      "hash": "3bf329233a08d5358e5280a9d11885a1d7ab0df7ebaa8748f1ebb4d172bc8f9c",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://webbackend.daffodilvarsity.edu.bd/api/v1/public/programs?tuition_category_id=1&program_type_id=1": {
+      "hash": "569fbba11a53382afbaf624be6c6ff0e16e6013476c1e9f03dd01c8913107099",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://daffodilvarsity.edu.bd/scholarship": {
+      "hash": "2d7e3e78df9345b690492d0089fa564706e8ea64f9d66ed6d4d4ed385d5afd30",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://daffodilvarsity.edu.bd/admission": {
+      "hash": "6d82b0948f17259ca7305ffc2ea177c46985ff7aea3b6752dcbbf03d27f1d2ee",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://iub.ac.bd/academics/undergraduate-programs": {
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://iub.ac.bd/admissions/tuition-fees-and-charges": {
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://iub.ac.bd/page/ug-admission-info": {
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://iub.ac.bd/admissions/scholarships-and-financial-aid": {
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://iub.ac.bd/academics/undergraduate-programs/bsc-in-computer-science-and-engineering-cse": {
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://admission.aust.edu/fee-structure-engg-arch/": {
+      "hash": "a1544abee7319228f2392c96c20baeedb8d7179bd485a517c78d2b8320bbaa2b",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://admission.aust.edu/ug-admission-engg/#qualifications": {
+      "hash": "47cfc7d211cd1e29dbc95e5bc0afe4652484b380268218b7e8af809d21f6f587",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.aiub.edu/admission": {
+      "hash": "4dfb1b2c18e9df7b896eef096fbd1f3f65d9f6cc57c748130371b4265e104bff",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.aiub.edu/tuition-fee": {
+      "hash": "6d1de35416ef4d953c0b4538155bec09130e1cf1fe0f152a00f38c9caec84011",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.aiub.edu/faculties/engg/departments/eee": {
+      "hash": "b65aa51829ea0b7b05ef7b03caa3b26d0ce6cc9caa75c297cbdb642c31a3ef92",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.aiub.edu/academic-scholarship": {
+      "hash": "6f02c6ed4cdd72a8f607cd117ea2aba5bd15e7a104caba50a67dc266193a7e3f",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.uiu.ac.bd/admission/undergraduate-program/": {
+      "hash": "7f9a831885159263cca6a0b0fe47969c0ecca1a6bb8e64edf079f45485cf3de0",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.uiu.ac.bd/admission/admission-requirements/": {
+      "hash": "ee061c2b0cebe77c7f35f23921b39fe0484c52f7eb6e00400c2b23d4a057988e",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.uiu.ac.bd/admission/tuition-fees-payment-policies/tuition-fees-waiver/": {
+      "hash": "5c55d9583d6afd489a13b8e910184b824f6ee9c861369d4c52ef0717df84e103",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.uiu.ac.bd/admission/tuition-fees-payment-policies/scholarship-tuition-fee-and-other-fees-waiver-policy/": {
+      "hash": "69c2ddb9c9c60cada2eb3f1fadc51d55133d9d9bcc692132d32942cc9efcde92",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://seu.edu.bd/tuitions-fees": {
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://seu.edu.bd/scholarship-and-waiver": {
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://seu.edu.bd/admission-requirements-undergraduate": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.stamforduniversity.edu.bd/index.php/stamford/details/27": {
+      "hash": "47a4826779f693be74712ec96feb0f16c1ac9b70efa1a93bd092c172d5130071",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.stamforduniversity.edu.bd/index.php/stamford/details_view/19": {
+      "hash": "2bc340bb62402f83d25c57a3ae2993c2ad83a39a527ce0d2e8d6166622429300",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.stamforduniversity.edu.bd/index.php/stamford/details/7": {
+      "hash": "badfd2bc18245ae5af9893345820c9544985f13a4ede92d064b42bbc4d5c22a2",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://sub.ac.bd/tuition-fee": {
+      "hash": "559f2ce1b77794ac1c0ed064a7f35e4118d963445ce67f9b844f70ec2416cf7b",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://sub.ac.bd/programs": {
+      "hash": "e47c360995e0cef7ac7c884f424c7acb2aa2647879ce67dfa3ad6f306fa2b21d",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://sub.ac.bd/admission": {
+      "hash": "89de5705b67c136944a475654250e7d0be88523ce2efd5f598c401befabce48b",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://sub.ac.bd/scholarship-%26-waiver": {
+      "hash": "9f66ce0ddff3bbb3e7385af3013518ccbdca26c09fb28d03e67ccbcf0bd68d85",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://primeasia.edu.bd/": {
+      "hash": "80a57859be674e03855c14a54b7d3e1cc6c8793f1f5cb02fbd4835e255598ed4",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://primeasia.edu.bd/admission/admission-tuition-fees/": {
+      "hash": "fc5b7e0c28d129751f5e6d9f31aae653a1d5d8d209e4c25ca235345e31e9047a",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://primeasia.edu.bd/admission/admission-requirments/": {
+      "hash": "870d853bf96f671b490d01240aa5d349d983fe68e0dd42eb6f531a191f8bd216",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://primeasia.edu.bd/admission/scholarship-waiver/": {
+      "hash": "06968b24afeedd753166781bd353c180eb6e40adf4b9026835b9971dcfb5ef2b",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.easternuni.edu.bd/admission/tuition-fees": {
+      "hash": "b0d6f56271cba5e9674816ea1c985d6d03c44a067f2109ca316f6c60cdc2342f",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://easternuni.edu.bd/admission/admission-eligibility": {
+      "hash": "2d753949a54282a58c064656cc851c7084dd27b1c3585ddf23752a8fef868a9f",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.easternuni.edu.bd/admission/waivers": {
+      "hash": "5438f542294a26bf9edffec11cf530b3b2c11e7c104239202161bb0cbbb06d42",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ulab.edu.bd/undergraduate-programs": {
+      "hash": "b4e6e4778b165d286d7815018979bd3c0ccb87001826da06b139375988d9e85f",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://admissions.ulab.edu.bd/undergraduate-programs/tuition-fees": {
+      "hash": "4cb1c5cc70e8a32de66a2a002a0d2544eecf620cae282579ed3b7fbf209daf63",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://admissions.ulab.edu.bd/undergraduate-programs/admissions-requirements": {
+      "hash": "303c164f1443eab8b0830a3d3f33725a293ffecb3e30d33eb14f560ed7e9615c",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://green.edu.bd/local-tuition-fee": {
+      "hash": "38ccdf4e36fda5dd45fd6502a837c91e359a39a11d37c4cfef78ead3595f0b57",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://green.edu.bd/admission-req-local-students": {
+      "hash": "b36c993d4ec79e05d7a15be04711e456b8703b745713d42bcf9cab23d1c6f650",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://admission.bubt.edu.bd/": {
+      "hash": "33ac7c94d24338ae8a9417dce75a8ebed86e09167db5dadbf3056d20c0a18aba",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://bubt.edu.bd/page/tuition-and-fees": {
+      "hash": "9edd439e4d43fc97e4b15d076856de0287644f5c717a039b4086b98ee7f0a3f0",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.bubt.edu.bd/page/scholarship": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.bubt.edu.bd/departments": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://nub.ac.bd/academic/t3gwthgw/academic-programs": {
+      "hash": "495cbb30f2f1ecbe1f36f557c22720484f397c6d27ee9352afff0fce1b435fbe",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://nub.ac.bd/department/t05oqo1z/computer-science-%26-engineering": {
+      "hash": "d14dfa65f12e0a097d44754e5955d31f411ed2ff25ea990c9c7a2b360500f497",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://nub.ac.bd/admission/uy4d8iaf/admission-information": {
+      "hash": "c0d54a979e4d2cc0eab459f617db1ce801f2726305dc72117e15a284b2f28020",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.nub.ac.bd/admission/w2zuickf/online-admission": {
+      "hash": "f0295bd88e699f24c057abee1167d1825ce25e890fd08a20a353729a8231bc02",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://nub.ac.bd/assets/images//fee-structure/Spring%202026%20%282%29.pdf": {
+      "hash": "36e67f43affdba649513742770c01ea07667116b662bf9be6cff22b62105a53e",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://nub.ac.bd/admission/qt3uj0a7/why-study-at-nub": {
+      "hash": "6408985002a4b28e45b5bcce0ec99c095b4d206184494e035fc9c3402664e6ea",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://admission.wub.edu.bd/admission/tuition_fees": {
+      "hash": "add8724e551ae57198cfd23c695635d914eb5c9cb6c41e4012c2b27921c2e1c8",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://admission.wub.edu.bd/admission/scholarship": {
+      "hash": "d2585fa8800ab6088045246945965bf8e393da665ce1a871eaecc71ea0c42ce3",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://diu.ac/program-fee-structure": {
+      "hash": "641e45f8dc0ecedcbccf62be240a8626d890ae59e2e1cb68c84557fa07146ec6",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://admission.diu.ac/course-fee-calculation": {
+      "hash": "07a4c75d4defd7d078626afd2bc64c92519b9e9a25f036e96704c5a151a5b967",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://cse.manarat.ac.bd/admission-and-fees": {
+      "hash": "4cc4da05b301c05b3b9b89c72f55e5ff796d482a0453807e3694890779b22b10",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://dba.manarat.ac.bd/admission-and-fees": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://eee.manarat.ac.bd/admission-and-fees": {
+      "hash": "e4c1c37f1aa5f4a0c8639836eabc9fbe7787c30ab2982bb29bec59fbf57b030f",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://english.manarat.ac.bd/admission-and-fees": {
+      "hash": "a05f36812b8a3d2cf2330687fe86d198d92e77068c7139bda8859caf07c431fe",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://law.manarat.ac.bd/admission-and-fees": {
+      "hash": "c27bbcff890a9e4d08b3a5212765470bb7c5ffed98fb3d7562c202bbe6b433a8",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://jms.manarat.ac.bd/admission-and-fees": {
+      "hash": "5d25a3921de825623c6aad3d1ba70627d554b1ad553cd188ad06844d9462aa47",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://english.manarat.ac.bd/scholarship": {
+      "hash": "b69784ee71fcc118c4be8dd77cbd9791a3e9a36fdc50d7f9798d1da9b61d12d3",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://law.manarat.ac.bd/": {
+      "hash": "b7f0e483745c1464fc662f0f9be37ba024eb51d2f2211687c6cd63a5ffb5b8e9",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://dis.manarat.ac.bd/admission-and-fees": {
+      "hash": "6f826b030caa65935fb924760cbb8151e1103f85d07e420807f332335fdd776a",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.asaub.edu.bd/": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.asaub.edu.bd/financial_info.php": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.asaub.edu.bd/admission_ifo.php": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.asaub.edu.bd/tuition_fee_waiver_english.php": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://bu.edu.bd/syllabus-and-course-fees/": {
+      "hash": "0192ffc397c40d52818ccb5a99b8e55bc69bd4d6fdf80224937529b46098592d",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://bu.edu.bd/syllabus-and-course-fees/?degree=BSc+in+CSE+(Regular)": {
+      "hash": "7e4639ea8167f24f100144fcec3825509edee2039abad9966a52fde89a89a681",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://bu.edu.bd/admissions/": {
+      "hash": "d32fd0847104425d04a87dce238f526a440a66f8a484241ef3092d076d8c9cf8",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://eub.edu.bd/financial-information": {
+      "hash": "7fadc8c32ecca0b885f73a04c96780c78ea4d7e511ba346ba71d2c8b4f8b6565",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://eub.edu.bd/admission-information": {
+      "hash": "fe7fc9df2e8dad400621c834b23d8646518604a4b115c4047520544286281e74",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://eub.edu.bd/bsc-electrical-and-electronic/regular-program/program-details": {
+      "hash": "cc0f84359879208566b0b8d749557062eb27235e3fe7482afa40ada04445784d",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://pu.edu.bd/academics/programs": {
+      "hash": "17c27b67ca42b53d3e2bbc1c2438f54f9ef85c548f837154b2a66cb7732299bc",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://pu.edu.bd/academics/cse": {
+      "hash": "15e715dc34be77271e9e7abd016417e646c8b4afce91e8a5d6dbc9acf4d58b9d",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://pu.edu.bd/academics/civil": {
+      "hash": "f4ee6577b1331674425f026328d959ed06167f559f3e0ed14d0753694b7aa254",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://pu.edu.bd/academics/eee": {
+      "hash": "1f6c5a99384c693ad8bda3b98444eadd177a568e7c6af06cea2fffe8f37ef80f",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://pu.edu.bd/academics/business-administration": {
+      "hash": "2f52e5c61c6241e7b89e5babc5bb4c71e0630910b77e38a8e23ebb39ef00562c",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://pu.edu.bd/academics/english": {
+      "hash": "cc568c9a2bd3d0d99eade37a935389b1ddd8b536361e8c72b54710ea47117b25",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://pu.edu.bd/academics/economics": {
+      "hash": "900f4d506c8f812a1529023db3cfce4ef2b39a325063ac158320a3a1d974d5d1",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://pu.edu.bd/academics/laws": {
+      "hash": "319806ef07f270af3331c65db3b4b3aec3ae63acddd01e8641d9acc669560111",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.cityuniversity.ac.bd/admission-eligibility": {
+      "hash": "6c76816ac50d212eb1555da0a7ae7ff8bc560cecc218c5e83a8c58e190158ef4",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.cityuniversity.ac.bd/tution-fees": {
+      "hash": "2fe5646f8dc9f928740b12bf6a1922e02e496b894bdac0ae9f99dcd5d45a2f15",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.cityuniversity.ac.bd/waiverpolicy": {
+      "hash": "8e31a23879af285903ada7a58b334d2e94fe281733f1b5959b5294271ad4e85b",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://uttarauniversity.edu.bd/tuition-fees/": {
+      "hash": "6f9fab3b6354e9a50947320fe3dd652a413f6e7e2a42150a9c972c5d9fd91d8a",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://uttarauniversity.edu.bd/scholarship-policy/": {
+      "hash": "574551c735f04827f04b0e8782b690000b2c285eca97a60b108815b4558a859e",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://uttarauniversity.edu.bd/entry-requirements/": {
+      "hash": "eefe3c3fc6225ea7e6438dcc67f6f645b019c6ef7dffbe5fbf1f7e1c378786a9",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.cub.edu.bd/fees_structure.php": {
+      "hash": "1613f34740b54a5f919c57cd2ed37f0fb32dfeb54cba1ad2390acaf3e22087d5",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.cub.edu.bd/admission.php": {
+      "hash": "a65a7e6142c5e5ca4f04f20105266eba19e0eab5882d46b68a1fef617c880a6c",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://smuct.ac.bd/": {
+      "hash": "1b60b88a4cec166c53e1cc3cf3939ccb35ca0bfb55997221e91f83a75e155a0f",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://smuct.ac.bd/undergraduate-course-fees/": {
+      "hash": "61137eb40ec5b07f8c87164e29e572c7dacbc7378fd77c6202935f49b616d1ac",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://smuct.ac.bd/scholarship-and-waiver/": {
+      "hash": "64520de61b73553bfb1c164df1969888be95fe384eae5d89505bacdacfe08cfd",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://uoda.edu.bd/admission/tuition-fees/": {
+      "hash": "1c10dd03799c7e2f86ff1c3290d67c0711a1a4c6f544187a3ee33e7317d37982",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://gonouniversity.edu.bd/admission/undergraduate-admission-requirements/": {
+      "hash": "fad213c01182865daae5645980ad3e3b33c4d2ea8ff16c79f88ed3e379bcbc45",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://gonouniversity.edu.bd/admission/tuition-and-other-fees/": {
+      "hash": "4c2b9ce0e0911178ac8be75bf2903a45b7a02e1c09779ff13b7788c09af38b19",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://buft.edu.bd/programs": {
+      "hash": "9e836d3b9a9319446dd58e8beb3886df429a86d43265e5c5cbea2da7dda564be",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://buft.edu.bd/admission/eligibility": {
+      "hash": "ccd7db2b4ba0ea6d594664252144b4aa0b5ef367a60f5b4426b6c551ad29c171",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://buft.edu.bd/scholarship": {
+      "hash": "5f1ba17e1868df9787138c9ee89b2d7e446527c5c0151c6535ebd8fda0fb525c",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://admission.buft.edu.bd/Upload/Notices/20260611161902_InfoFall_26.pdf": {
+      "hash": "2ef31142ec018f1ef408da3069f46a3dd7881cf8644edfe03f4befef370bb4ef",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ustc.ac.bd/fee-waiver-structure/": {
+      "hash": "1c10dd03799c7e2f86ff1c3290d67c0711a1a4c6f544187a3ee33e7317d37982",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ustc.ac.bd/department-of-pharmacy/": {
+      "hash": "1c10dd03799c7e2f86ff1c3290d67c0711a1a4c6f544187a3ee33e7317d37982",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ustc.ac.bd/department-of-english-language-and-literature/": {
+      "hash": "1c10dd03799c7e2f86ff1c3290d67c0711a1a4c6f544187a3ee33e7317d37982",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://puc.ac.bd/Home/Content/?Alias=undergraduate-program": {
+      "hash": "12b15e756897a306eb4d96f22cb4c68d03a2bea57f4fb5f95b0b004b9779e07d",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://puc.ac.bd/Home/Content/?Alias=undergraduate-program-requirements": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.puc.ac.bd/Home/Content/?Alias=tuition-fees": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ciu.edu.bd/undergraduate-courses": {
+      "hash": "def62c93e0a8638d1340553704d91abcb2a8341e7b4b549d4918da91bb4aa657",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ciu.edu.bd/admission-eligibility": {
+      "hash": "da75ab992a8cf530ba4a6ca8d11a235250b5ca9b7fed1f3fe5f6adc646920681",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ciu.edu.bd/tuition-fees-sse-engineering": {
+      "hash": "db8364f1cbbe33145e91e6cf1e7a730fcf8c3c1f82d6fefa8657bde1d834d34c",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ciu.edu.bd/tuition-fees-ciubs-bba": {
+      "hash": "be7c281bfdb75465cbb8a4a7713ccc662b198736978cf7926260eaa105b4b974",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ciu.edu.bd/tuition-fees-slass-ba-english": {
+      "hash": "88b25bbb2f739acc2c2f8d3464c252ad45ab3bd6d3e702367d3e606be4b41a4f",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ciu.edu.bd/tuition-fees-sol-llb": {
+      "hash": "490740d2c644c484f58ea8d01dcdc03ccaf8e825cb8323a4c9f7dcc4aa12386d",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ciu.edu.bd/scholarship": {
+      "hash": "88dfe9fa63d6becd4ec1110bc360cc8dec0cbf7c314ccd4d64500ed159b60a25",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ciu.edu.bd/youngone-scholarship-program": {
+      "hash": "686b340cb364b34c373806e22dbe89988ac0da21c3abd8cc315cae4c29a9cfea",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://southern.ac.bd/programs": {
+      "hash": "541ec363da7fdf7dd820d68c7d63689e633a2e53400c2e574fbd530f6d0de5d7",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://old.southern.ac.bd/tuition-other-fees/": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://old.southern.ac.bd/scholarships/": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://old.southern.ac.bd/information/": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://old.southern.ac.bd/programs/": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://bgctub.com/": {
+      "hash": "426596372d0d4d6cac0847c48e88827a52d3977effdeb76cd79bbb7973b5f8cd",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://bgctub.com/in-brief-2/": {
+      "hash": "a585336b6922b2e57f169d54592f9d61bca0052d3da31137189b7ab9af83cc50",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://bgctub.com/in-brief-3/": {
+      "hash": "3fb4c6ff0a4c6b23bf8c6f697737607db985c7f5f18b984572814f4b965143a1",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.portcity.edu.bd/HomePage/DepatmentDetails/29/Portfolio/bachelor-s-degree-programs": {
+      "hash": "5f2733c1a9139473b317d725047ee4326d205987f794a062954537e947609219",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.portcity.edu.bd/HomePage/DepatmentDetails/19/C/department-of-law": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.portcity.edu.bd/HomePage/SubPageDetailsPara/32/Page/admission-admission-schedule": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://metrouni.edu.bd/sites/programmes/honours-programmes": {
+      "hash": "17669661447ae718235a3bc8aa03913dd136e6cf2638fca4808368eef8e24bd0",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://metrouni.edu.bd/sites/admission/programme-fee-structure": {
+      "hash": "1c44edac5c707d7f31a7f3b63cf57e891b9da1e2057ae003e018a2a36c2c1cd3",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://metrouni.edu.bd/sites/admission/scholarship-aid": {
+      "hash": "628c7179b06f7b9d0be076dc12ecefd56ba7721e0d2981f066e3ae39b9dde3c2",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://metrouni.edu.bd/sites/admission/undergraduate": {
+      "hash": "7e40c514a414a479b24ab1fc531df8185b3d1666598d037fd5e567458b34768f",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://metrouni.edu.bd/sites/school-of-science-technology/school-of-science-technology": {
+      "hash": "ecf468a349b7740e790bbea58bf2362f2cacf589f04afec84ed3b6e47c8bf9ed",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://metrouni.edu.bd/sites/department-of-data-science/bachelor-of-science-honours-in-data-science": {
+      "hash": "e5b0f16c758dd28b08dcd40b706fb5cefa5ef941d93a31805134405d757cf598",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.neub.edu.bd/admission/undergraduate-programs": {
+      "hash": "6493491bc507a9b78a6b485934ea6c05057fb50c5406016264d766679e9b96ee",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://neub.edu.bd/content/354-neub-programs": {
+      "hash": "c61e46edfb95ee5317a526dbb5b8d683779a19b8706e4a4692ffd17a040181a9",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.neub.edu.bd/admission/tuition-fee": {
+      "hash": "fc26dfe83a8e08eff5a068e09662af026de760a59bea166a573e0bfe76c546e3",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://siu.edu.bd/admission/tuition-fees": {
+      "hash": "f43b0bb10762f4c2a9ac3dedf1dd0573a284e8db9f9a7207558e43a80f26d97b",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://siu.edu.bd/admission/undergraduate": {
+      "hash": "d4ab44c0f8148acd1f6cbf4937a42d85d7da856d73415b890fa622cb6b6834a4",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://siu.edu.bd/admission/waiver-information": {
+      "hash": "5a3298b603d172fda46d24377ad7621766f50a77189ba1955e7c581bf6bc883b",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://vu.edu.bd/academics/departments": {
+      "hash": "64eb1867a90432e87fc395ed65482afbc2080cd7d615becb17611666ee36ff7a",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://admission.vu.edu.bd/": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://vu.edu.bd/public/academics/programs/5/b-pharm-honors-pharmacy": {
+      "hash": "7f34df8be3bf8ab32970abe1063743635c93368e253fdbc4374852d639d02c4c",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://vu.edu.bd/international/tuition-fees": {
+      "hash": "3bb9fa83f47dcc32bfb3691d6158deae8695779f19759cf5e6efb763b5608b10",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.nbiu.edu.bd/prospectivestudents/ug-programs.html": {
+      "hash": "a96033294a2fc527f6804952d81bf75c471ad8fd7b74c97ac17260f0cde5f587",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.nbiu.edu.bd/prospectivestudents/tuition-fees.html": {
+      "hash": "91f0dd87a4dd9dcab7a189e0b09b9f1871011d9195ca643dfaa9aae241339818",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.nbiu.edu.bd/prospectivestudents/admission-procedure.html": {
+      "hash": "bac21bbd579ba004c81bde37f40ff347d8298460cbc8ba2359e8d0d0de7a4c83",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.nbiu.edu.bd/": {
+      "hash": "099ddd988bec8d7d7f350089469ea2497b90ac4137cfabb3881b7017ececf73c",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://kyau.edu.bd/undergraduate": {
+      "hash": "95fb353cb10b6c15a9e7dfdd0aa33ed3ed41a5a7463d79daf66408abddaf5d2f",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://kyau.edu.bd/admission-information": {
+      "hash": "95fb353cb10b6c15a9e7dfdd0aa33ed3ed41a5a7463d79daf66408abddaf5d2f",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.nwu.ac.bd/undergraduate.php": {
+      "hash": "c42be8836e726015d43271b0c617eabebc8c66078d8c8977be5f807b815e7371",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.nwu.ac.bd/admission_requirement.php": {
+      "hash": "74d85fb0ab44dbc54e70222f9a92629983bafc93a438487f408542edb0880194",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.nwu.ac.bd/tuition_waiver.php": {
+      "hash": "cd6078a9e4cdad5ff5685b9bcc13c4238c363ed58f2de91929965f1d368d4265",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://nubtkhulna.ac.bd/": {
+      "hash": "2c0f80b8f3ff4bf3da125afc5fc56d98e7565e26c46121a28f28e00ae67bafcf",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://nubtkhulna.ac.bd/assets/images/media/Brochure_Admission_Going_On_22_04_2025.pdf": {
+      "hash": "886231ff533fa0248f5b6fff9a22f26c38acbad458e1151c0782343ac2d39557",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://nubtkhulna.ac.bd/sp/fRCxd9/Admission-Information": {
+      "hash": "970bb2549a160b6cc876a2fec5c49363cc324178280acfa04bf0339b7bff4b04",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://soe.nubtkhulna.ac.bd/": {
+      "hash": "a163b5690499df7ed222dd9c3f7e1227c04e283d91e0429e01d4a11ec1c83778",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ugv.edu.bd/": {
+      "hash": "0865ba1bf806c74ffc1051bfa046d84bd1f755d7d29dd4051d762ed3b40f45aa",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ugv.edu.bd/fees-structure": {
+      "hash": "68bb7543349f1be13aac7aa389e7f4d6c9df2c82c430005d51fc60526a7fcd3b",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ugv.edu.bd/admission/show": {
+      "hash": "ff2c295d501b6b8e48812d2f45571be6d8bb3d4281e556c960764c23e8b5ba96",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ugv.edu.bd/scholarship": {
+      "hash": "bd6af843fcc11587b9b15b6e86dda6fb7beb4e8f81b5e63ddb133d8d3c15c942",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://trustuniversity.edu.bd/tuition-fees": {
+      "hash": "47c66f5f668057532383b78f56c05d7cf0e491e26832b62bfd1df775cdd2f879",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://trustuniversity.edu.bd/academics/cse": {
+      "hash": "47c66f5f668057532383b78f56c05d7cf0e491e26832b62bfd1df775cdd2f879",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://fcub.edu.bd/bachelor-programs/": {
+      "hash": "c4d54c2e8b92e9d105928e1dd142cf45c94562997c8055567f1ab1c2cf99a5ee",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.ishakha.edu.bd/en/faculty-members-law/": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.ishakha.edu.bd/pdf/IIUB%20Tuition%20fees.pdf": {
+      "hash": "987c9643e2dbaee7ec7f24c16521f90f343804b1b3e266f1f849a07108126ff2",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://timesuniversitybd.com/": {
+      "hash": "95bc33899a036f852a75c3fed8989947683edece683378191129018c38f10644",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://timesuniversitybd.com/admission/undergraduate-admission/": {
+      "hash": "622aa069424a4d5cc33b3fef3ce9a98dd396278d36a340174bd00328a9aa3de6",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://timesuniversitybd.com/students-corner/bachelor-programs/": {
+      "hash": "7f23f99aaab22cc25ca866a5e2e3951741e4123799b25fbc5998bc17988b89de",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://timesuniversitybd.com/admission/tuition-fees/": {
+      "hash": "775d2418c419023dbfcefe0e3a9f5b54691e96d6b5382452b6871fa53fc779d6",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.pub.ac.bd/programs/": {
+      "hash": "9ccd3a9cebdc8f8bed7cd1d475a8c258d8848cbddb64cfc179fd17a552c728c6",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.pub.ac.bd/tuition-fees/": {
+      "hash": "239ba62dbf76c0110b3be2568f9132aa4d5e3a1d759fa98c1079d90073d49d22",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.pub.ac.bd/programs/undergraduate/bsc-in-cse/": {
+      "hash": "002068221629fed24c74c830a4bb906c723183418302df53434a43b72fbba131",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.pub.ac.bd/scholarships/": {
+      "hash": "477e7b38aaeeef1881d3ce287099f378d102c9f6cb6e6107ba5cf85c1a72ba18",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://aub.ac.bd/undergraduates": {
+      "hash": "ab04854a214877dc124f81b3d920b2e059e9936974966fe99abf6ced5fdfc2b6",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://aub.ac.bd/admission": {
+      "hash": "b093c8429ac36610328558ab29d0f7bc8b0d7bee45b3f4cfd1e18d82dbd240dc",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://aub.ac.bd/media_root/admission/tuition-fees/Fee_Structure_new_CRDHYeN.pdf": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://aub.ac.bd/waiver-and-scholarships": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://admission.isu.ac.bd/tuition-fees": {
+      "hash": "93ce375364107e94399a298ffa767fcc315484cff05e0fb241f93e48efbec698",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://admission.isu.ac.bd/scholarship-waiver": {
+      "hash": "edf47ed124b3b13b8bf1bbd73a1400781ef18c5b1f757778ecd48513e564f7dc",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.isu.ac.bd/": {
+      "hash": "45cbc764bc014ebce1a3a8d270ec020e601d616edf810df9dc83d2c651e7ad2e",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.isu.ac.bd/academics/3/1/bachelor-of-business-administration": {
+      "hash": "09b58f829a3663c17cec407cf9d33f76153f562f2bb5bb13d61b414ed654c5f1",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://iubat.edu/admission/": {
+      "hash": "7459947002e17bc223b864725bee70f3677ea0e821f1da258a18317193d435b3",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://iubat.edu/online-admission/": {
+      "hash": "1693e8bb32e378972b22b9c7546a503abded7d87d0a48f08a448754e90a1c4cc",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://cse.iubat.edu/curriculum/": {
+      "hash": "042af89f1b836b5f50587826001863afcc6050a0808235e840d664c3bd624c42",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://iubat.edu/scholarships/": {
+      "hash": "5ff3fb5e304b6e6f2ba748d9a90b96274daf52b0feaf7eed616bad94285c4373",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://uits.ac.bd/tuition_fee": {
+      "hash": "47e0ea6f929c55fd5227a0400396199a23f55b857d42e3cc89225de5810b1b79",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://uits.ac.bd/regular_waiver_scholarship": {
+      "hash": "4eac610d21a47b269f4fb5be59fe6049bc82ba308b94ed24d3a6535c67bc5529",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://adust.edu.bd/admission/tuition-fees-scholarship": {
+      "hash": "f25779776bc7842410c9ea3a69cdb0258bade61bbe24cbd42a21367ff2ff3fd2",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://adust.edu.bd/programs": {
+      "hash": "f25779776bc7842410c9ea3a69cdb0258bade61bbe24cbd42a21367ff2ff3fd2",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://su.edu.bd/": {
+      "hash": "c708e2809768dc0b191f123b05a496d3c1b62d32cc57fcf10c45dee14c356ae4",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://su.edu.bd/Admission/tution_fee": {
+      "hash": "b96f985b0c1dc355eafa3f4bc54398b87b971f34d5fca8327528dce45a1aa1d3",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://su.edu.bd/Admission/requirement": {
+      "hash": "446563d3bff900e94c84c7940b79dc27f38443777c7e5be6dd654b6574e643d3",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://su.edu.bd/Admission/waiver_policy": {
+      "hash": "68a04de52f9373f505e2151315bd355b8bb78da2aece3694fd6ffdc859f14133",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://fiu.edu.bd/tuition-fees/": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://fiu.edu.bd/legacy/admission_requirements.pdf": {
+      "hash": "21058d05f8397a895e510ffea31a768a6d7abb25376faea89aeb0e88966a3f52",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://fiu.edu.bd/program-syllabuses/": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ndub.edu.bd/admission-and-aid/undergraduate-admission/": {
+      "hash": "2e2f4c4d91b178e73b644366de1f6dea6e6d2c988274c08e31dab33b5737be84",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ndub.edu.bd/admission-and-aid/tuition-fees/": {
+      "hash": "cab34f8d7a36ce04f5289d9c7f5b5c3e864d8a9037cb93ea3f28afa33909e451",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ndub.edu.bd/admission-and-aid/financial-aid-and-scholarships/": {
+      "hash": "6766d369e6d3170dd07084b63b284079078408e01b992b4f0c65e56831f4d708",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://cwu.edu.bd/online_admission": {
+      "hash": "c34143e0ce1cf985413ed1d5f038f053feca04a66b0af9bac09e25f16bdaf87c",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://onlineapplication.buhs.ac.bd/admission/student/apply.php": {
+      "hash": "b746d815ed90115bf84b793b10063d0bec5b5f16f2d56bc240ca8ba354a63c49",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://buhs.ac.bd/program/undergraduate": {
+      "hash": "d7fc6789d5250cd76b6e642f18c3e0d8f8e0bd2a218da316c7393c68d90d951a",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://hamdarduniversity.edu.bd/admission/tuition_fees": {
+      "hash": "665e1c37781b4522236ff7a1e43f14eb5bba97e70383680cabadecf7ee59d987",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.admission.hamdarduniversity.edu.bd/waiver.php": {
+      "hash": "c333fd4e40731c096f229d5ea88b31cae0693f0ea5d89e761fd44c25ae478dcd",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.admission.hamdarduniversity.edu.bd/calculator.php": {
+      "hash": "aec9016ea6307712e4e81d1c25333581031d0d3da253e71965a1defd2fcc5858",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://hamdarduniversity.edu.bd/": {
+      "hash": "94c64e50090c6217fc1a9d4b3f52669f91ce82daf9a20cf3477d4e87dd3b135a",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://gub.edu.bd/admission/tuition-fees-payment/": {
+      "hash": "341f77a23e84b6aae0bfd6e619bc7f72986b9604777c98e827a6a61d9d9b8dee",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://gub.edu.bd/admission/scholarship-and-financial-aid/": {
+      "hash": "c12b1125a065e585edf2730230e10b8dba84b286249a4d3d1a47ce75c0bd4e27",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://rpsu.ac.bd/admissions/tuition-and-other-fees": {
+      "hash": "2fea94c982375dd2234d40a7f2e984e9b469039eadfdbfa75fdf35c88fa3b685",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://rpsu.ac.bd/admissions/waiver-and-scholarship": {
+      "hash": "f75474490ac338e859724a988beb0835199e419cb585f7513d7cf426b4f7669b",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://rpsu.ac.bd/admissions/undergraduate-admission": {
+      "hash": "93884394e90fdcf7b3fc436bc0e4ffc3db7bbc69887ae3b0daba3a71deffe4ee",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://zhsust.ac.bd/": {
+      "hash": "13c4b7c5a94105c8d1f0b2596099c7f0f7f0dbe0d7d84ea22e8911216db4a861",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://zhsust.ac.bd/tuition-policy/": {
+      "hash": "d6c9bb0ce91108e0964f2e945a781ab2dcd07d152d789e4cb383ed0abaec3946",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://akmu.edu.bd/": {
+      "hash": "f7be0ece4f3f85703f5cb299f29b970123fb5d2fde246b77702fdc58f01e0a07",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://akmu.edu.bd/admission/tuition-fees-payment-information-anwer-khan-modern-university-akmu/": {
+      "hash": "bdbec13eac7a04f58e9f836802b55262b689904283328032fcbe06b7f5bdff72",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://akmu.edu.bd/admission/programs-offering/": {
+      "hash": "49c3fd266ee1b56f28ac2dc8cb91a212083aca343fe7ebdc7be990da85bf8985",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ius.edu.bd/tuition-fees": {
+      "hash": "a404da320b37fe05b8537c6e1b1d8999ef9d7c435f75937d3c8cc5aec17c70a6",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ius.edu.bd/admission-requirements": {
+      "hash": "8b29180e061c6161543e67757e976685cedf279040bad43aa680fe4d9bc4264a",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ius.edu.bd/scholarships": {
+      "hash": "d2bf89ec930aedf853461877b711e3c20309dca017e480351a27ff8f2225027b",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ius.edu.bd/": {
+      "hash": "bb4d76de1228e9d47825feef7aeb3f8a19e61f68435d7aa86ccb2d84ddf767d4",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.royal.edu.bd/": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.royal.edu.bd/bsc-in-cse/": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.royal.edu.bd/bsc-in-csit/": {
+      "hash": "092986a67c5c0e1e856a4e59439070300d3d300bc8b48542f90c5bd037c25450",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.royal.edu.bd/ba-in-english-program/": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.royal.edu.bd/bachelor-of-hotel-management-and-tourism/": {
+      "hash": "e63fe3a32042a16de2dbd2a49c48074466db55bbb7031aabb24d79a6d969783a",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://vub.edu.bd/": {
+      "hash": "68580b2575cbcb806e6d948c9149de17431d9c461e5ac86a6c09b95d8e649b53",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://vub.edu.bd/tuition-fees/": {
+      "hash": "703ae891b92a7d0546d3d13a85048df5e7a0705011eac30ec38a5d597ad4fb93",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://vub.edu.bd/admission-information/": {
+      "hash": "dd593efa9e3bd7482274c6abcc4418aca0997fa37b60a929b8f1946dd127bc5f",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://cust.ac.bd/": {
+      "hash": "533f1043c2d51295140e0f7d4fec46ce4495c24c1c4f574d0b3e9b2d242fd058",
+      "status": 200,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://feniuniversity.ac.bd/content/tuition-policy": {
+      "hash": "3b5da1f61d8b3cce6f31d121ae83874cca205b820d52f8393bf2c02eacd2876b",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://feniuniversity.ac.bd/content/undergraduate-programs": {
+      "hash": "aec3465520c5e6a80ba5ac042037aa31bfc01713364dec8e3528b435ea34e847",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://feniuniversity.ac.bd/content/financial-assistance": {
+      "hash": "a68fbd5c6c4c4a20f058ec394ebd79ca93bdf7b979f9341a4d4eff4d3e4bac75",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://britannia.edu.bd/": {
+      "hash": "1be50f5802010cd349b8f609e348396a9062a798915037bbc748f07fcfaf48ea",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://britannia.edu.bd/admission-process/tuition-fee": {
+      "hash": "4389e74532f64424eb7353368edafdd783ea9970bc816f858c514584a5eb40ba",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://britannia.edu.bd/admission-process/admission-eligibility": {
+      "hash": "0b0ba37b3e1dfcdad038d7b94dc49f0d132d213f49f07a4c3491849ae66bebc8",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://britannia.edu.bd/programs/bsc.-in-computer-science-and-engineering-(cse)": {
+      "hash": "d1a32f4b3ec07d88ccc566e67bab28334ed9c88a9a4166b8188d0d62bac7276c",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://admission.ccnust.ac.bd/fee": {
+      "hash": "d1284593c3a79291d570feaa39da6c094b14afe4938127492ebcfb2893d11fa0",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ccnust.ac.bd/scholarship": {
+      "hash": "650eaa82a5a7cee9a1bd5b9e6410f0602f3974d8418ac1d5d6c5b77564ddff0b",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.cbiu.ac.bd/fees": {
+      "hash": "604d2d5887fb66ab21e0f80a2bd8b2b9fd7ace532d6fb2a31342b20e4be02395",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.cbiu.ac.bd/admission-requirements": {
+      "hash": "4b3c529109ca2b579f9bb252daeaca2e8bb2bdd578e445e805c117fd6c2a86f2",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.cbiu.ac.bd/": {
+      "hash": "330d190cec0ef8613d1ef36d52060d5b5b13c1583d62b5a1af15d12b872d8d4d",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.uctc.ac.bd/": {
+      "hash": "2ee2843097188acce1c32f5ec1ddbbc9a89e239190be8fd9214f67dc62173177",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.uctc.ac.bd/fees": {
+      "hash": "2ee2843097188acce1c32f5ec1ddbbc9a89e239190be8fd9214f67dc62173177",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.uctc.ac.bd/admission-requirement": {
+      "hash": "2ee2843097188acce1c32f5ec1ddbbc9a89e239190be8fd9214f67dc62173177",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.uctc.ac.bd/scholarship": {
+      "hash": "2ee2843097188acce1c32f5ec1ddbbc9a89e239190be8fd9214f67dc62173177",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://admission.rmu.ac.bd/": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.kkbau.ac.bd/": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.kkbau.ac.bd/admission-requirements/": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://pundrauniversity.ac.bd/programs": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://pundrauniversity.ac.bd/programs/bba": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://pundrauniversity.ac.bd/programs/cse": {
+      "hash": "e2fe7cc62b4c8cfa81cd292b5259c8d516b628f54f9e8f294cde7af91ec309fd",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://pundrauniversity.ac.bd/programs/eee": {
+      "hash": "d3f00c551027319bd9dd656a4576337435954775d7bd106296b7b5240fd8e18b",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://pundrauniversity.ac.bd/programs/llb": {
+      "hash": "33df2a45071361d2cfc460d110c3ee162f31725278656347c25e08856c08e612",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ebaub.ac.bd/old/academics/programs.php": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://ebaub.ac.bd/about/costing.html": {
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://bauet.ac.bd/admission/admission-information/": {
+      "hash": "8368769c6068b38578c6d500130dc0fc5a61cbe2f598360fc71d91b0ffd56936",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://bauet.ac.bd/academic/faculty-department-offered-programs/": {
+      "hash": "d42fc4b9102185a0e381cc0bfa9fecbd1460e529f565a49c49e1229ed26c56c4",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://bauet.ac.bd/admission/tuition-fees/": {
+      "hash": "e38ee83fd02cf79232375d33e3a94a231e6123c452ec8b5216e0d4d58a2ed02c",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://bauet.ac.bd/admission/scholarships-waiver/": {
+      "hash": "d34b7853bf9dad61686624bf55b65e0185349dfcdce599d2055d831ff1e33386",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.baust.edu.bd/admission/program-offering/": {
+      "hash": "97c997a038fabad06aef18676cf3e2da902f0ee917f70a6007665f4a6a38213c",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.baust.edu.bd/admission/tuition-fees/": {
+      "hash": "049116f7b0cfb73238bcdeadbacb897dbe2d1df88516d599a65c55957dfee860",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.baust.edu.bd/admission/admission-requirment/": {
+      "hash": "cfe355f015e36cd7070cb45790bf9bf82fb742a0246fd42bdc9ed39b95faeb66",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.baust.edu.bd/admission/waiver-and-financial-aid/": {
+      "hash": "d7ce609d265783eaa6b46a4577d2f0195c88fb586eb78ca27ff3e0d723b766dd",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.rtm-aktu.edu.bd/4001/": {
+      "hash": "98d1ac3583bb13641fe71e6454ca0a0a331c28406d6858943013f61dd60883b1",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.rtm-aktu.edu.bd/4004/": {
+      "hash": "c84c1b9aef4db56d85029763441e7a5a2a5ca06cce70bc97bbf36ccae4cc4134",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://www.rtm-aktu.edu.bd/3210/?id=20230806134023": {
+      "hash": "f328765bf85ae9df3a989707666304c13c145a102224583ebb4fbfd456c4b47d",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://briu.ac.bd/homes/content_details/YlBHUHFGMFVDeUN6TUJPTnl2MFlQUT09": {
+      "hash": "ececae731861b3be2c366555741ecabd1e831256493323e25b5320df1b73a54d",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://briu.ac.bd/homes/content_details/bkt3VmZjUk1YZW4xZ1VsOUo4bXVYZz09": {
+      "hash": "bd0c08a5e9e02fa21d0d9f25195637b0b847ac8e47e0928364a8245383d3e212",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://globaluniversity.edu.bd/": {
+      "hash": "29df4402683ff3910a940b26a5dcc8d957b2dbf01049b14694c9029d1f205cdc",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    },
+    "https://globaluniversity.edu.bd/admission-requirement/": {
+      "hash": "ed39eebad27dedcb674f307d74c17facabd04a9c4c1e99a26a9cb5a79fe58c84",
+      "status": 0,
+      "checkedAt": "2026-09-23T09:28:50.989Z"
+    }
+  }
+}

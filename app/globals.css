@@ -4450,6 +4450,12 @@ html { -webkit-text-size-adjust:100%; text-size-adjust:100%; }
 .route-loading p { margin:0; display:grid; gap:4px; text-align:center; }.route-loading p strong{font-size:14px}.route-loading p span{color:var(--muted);font-size:12px}
 @keyframes route-skeleton { to { background-position:-220% 0; } }
 
+/* Continuous horizontal tour strip. Kept transform-only for smooth mobile rendering. */
+@keyframes tour-track {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
 @media (max-width: 760px) {
   :where(.page-shell,.practice-shell,.test-center-page,.question-card,.bank-practice-card,.test-setup-card,.test-side-rail,.test-plan-summary) { min-width:0; max-width:100%; }
   :where(.question-card,.bank-practice-card,.test-center-page,.practice-shell) { word-break:normal; overflow-wrap:break-word; writing-mode:horizontal-tb; }
@@ -4509,4 +4515,8 @@ html { -webkit-text-size-adjust:100%; text-size-adjust:100%; }
   .question-card h2,.bank-practice-card>h1,.bank-practice-card .bangla-question-title { font-size:20px; }
   .practice-mode-switch { grid-template-columns:1fr 1fr; }
   .test-plan-metrics>span { padding-inline:3px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tour-track { animation: none !important; transform: none !important; }
 }

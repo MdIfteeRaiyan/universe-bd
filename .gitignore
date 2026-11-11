@@ -7,5 +7,3 @@ npm-debug.log*
 .DS_Store
 tmp/
 
-
-.source-monitor-cache/
