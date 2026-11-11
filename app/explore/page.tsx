@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import {
   ArrowRight,
   BookmarkCheck,
@@ -205,7 +204,6 @@ const universityCatalog = buildUniversityCatalog(universities);
 const dataQualityReport = validateUniversityData(universityCatalog.records);
 
 export default function Home() {
-  const router = useRouter();
   const [program, setProgram] = useState(""),
     [division, setDivision] = useState(""),
     [district, setDistrict] = useState(""),
@@ -1456,14 +1454,30 @@ export default function Home() {
           amount: null,
           note: `${aidProgram} is available for selection, but a payable scholarship total will appear only after this university's programme-specific fee components and waiver application are verified.`,
         };
-  const toggle = (id: number) =>
-    setCompare((c) =>
-      c.includes(id)
-        ? c.filter((x) => x !== id)
-        : c.length < 3
-          ? [...c, id]
-          : c,
-    );
+  const toggle = (id: number) => {
+    setCompare((current) => {
+      const removing = current.includes(id);
+      if (!removing && current.length >= 3) {
+        setShortlistMessage("Your shortlist already has three universities. Remove one before saving another.");
+        return current;
+      }
+      const next = removing
+        ? current.filter((universityId) => universityId !== id)
+        : [...current, id];
+      try {
+        window.localStorage.setItem(
+          "campuschoice-bd-shortlist",
+          JSON.stringify({ ids: next, stages: shortlistStages }),
+        );
+        window.dispatchEvent(new Event("campuschoice-shortlist-change"));
+      } catch {
+        setShortlistMessage("This browser blocked shortlist storage. Check its privacy or storage settings.");
+        return current;
+      }
+      setShortlistMessage(removing ? "University removed from your shortlist." : "University saved to your shortlist.");
+      return next;
+    });
+  };
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -1528,7 +1542,7 @@ export default function Home() {
   };
 
   const openUniversityProfile = (university: University) => {
-    router.push(universityProfilePath(university));
+    window.location.assign(`${universityProfilePath(university)}/`);
   };
 
   return (
@@ -2109,21 +2123,19 @@ export default function Home() {
                 )}
               </div>
               <div className="university-card-actions mt-5 grid grid-cols-[1fr_auto] gap-2">
-                <Link
-                  href={universityProfilePath(u)}
-                  prefetch
+                <a
+                  href={`${universityProfilePath(u)}/`}
                   className="flex min-h-11 items-center justify-center gap-1 rounded-lg bg-[#173b68] px-3 py-2.5 text-sm font-semibold text-white"
                 >
                   View details <ArrowRight size={15} />
-                </Link>
+                </a>
                 <button
                   type="button"
                   onClick={() => toggle(u.id)}
                   aria-label={`${compare.includes(u.id) ? "Remove" : "Save"} ${u.name} ${compare.includes(u.id) ? "from" : "to"} shortlist`}
                   aria-pressed={compare.includes(u.id)}
-                  disabled={compare.length >= 3 && !compare.includes(u.id)}
                   title={compare.length >= 3 && !compare.includes(u.id) ? "Remove one university before saving another" : undefined}
-                  className={`flex min-h-11 min-w-[5.5rem] items-center justify-center gap-1.5 rounded-lg border px-3 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-35 ${compare.includes(u.id) ? "border-blue-400 bg-blue-400/15 text-blue-200" : "border-slate-600 text-slate-300 hover:border-blue-400 hover:text-blue-200"}`}
+                  className={`flex min-h-11 min-w-[5.5rem] items-center justify-center gap-1.5 rounded-lg border px-3 text-sm font-semibold transition ${compare.includes(u.id) ? "border-blue-400 bg-blue-400/15 text-blue-200" : "border-slate-600 text-slate-300 hover:border-blue-400 hover:text-blue-200"}`}
                 >
                   {compare.includes(u.id) ? (
                     <><Check size={17} /> Saved</>
@@ -2203,7 +2215,7 @@ export default function Home() {
                     </select>
                   </label>
                   <div className="mt-4 flex gap-2">
-                    <Link href={universityProfilePath(university)} className="flex min-h-11 flex-1 items-center justify-center rounded-lg border border-slate-600 px-3 py-2 text-sm font-semibold text-slate-200 hover:border-blue-400">View profile</Link>
+                    <a href={`${universityProfilePath(university)}/`} className="flex min-h-11 flex-1 items-center justify-center rounded-lg border border-slate-600 px-3 py-2 text-sm font-semibold text-slate-200 hover:border-blue-400">View profile</a>
                     <button type="button" onClick={() => toggle(university.id)} className="rounded-lg border border-rose-400/30 px-3 py-2 text-sm font-semibold text-rose-200 hover:bg-rose-400/10" aria-label={`Remove ${university.name} from shortlist`}>Remove</button>
                   </div>
                 </article>
@@ -3248,7 +3260,7 @@ export default function Home() {
                       ))}
                     </div>
                   </div>
-                  <a href={universityProfilePath(detail)} className="mt-4 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-blue-400/40 bg-blue-400/10 px-4 py-2.5 text-sm font-semibold text-blue-100 hover:bg-blue-400/20">
+                  <a href={`${universityProfilePath(detail)}/`} className="mt-4 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-blue-400/40 bg-blue-400/10 px-4 py-2.5 text-sm font-semibold text-blue-100 hover:bg-blue-400/20">
                     Open permanent university profile <ArrowRight size={15} aria-hidden="true" />
                   </a>
                 </>

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ExternalLink, MapPin, ShieldCheck } from "lucide-react";
 import type { University } from "@/data/models";
 import { universityProfilePath } from "@/lib/university-profile";
@@ -50,9 +49,9 @@ export function DiscoveryCard({
           </>
         )}
       </div>
-      <Link href={universityProfilePath(university)} className="mt-5 inline-flex min-h-11 items-center justify-center rounded-lg border border-slate-600 px-4 py-2 text-sm font-semibold text-slate-100 hover:border-blue-400">
+      <a href={`${universityProfilePath(university)}/`} className="mt-5 inline-flex min-h-11 items-center justify-center rounded-lg border border-slate-600 px-4 py-2 text-sm font-semibold text-slate-100 hover:border-blue-400">
         View verified profile
-      </Link>
+      </a>
     </article>
   );
 }
